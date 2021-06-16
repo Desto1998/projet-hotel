@@ -31,10 +31,20 @@ mysqlConnection.connect((err) => {
     else
         console.log('DB connection failed \n Error : ' + JSON.stringify(err, undefined, 2));
 });
-app.listen(3000, () => console.log('Express server is running at port no : 3000'));
+app.listen(process.env.PORT || 3000, function() {
+    console.log('Express server is running at port no : 3000');
+});
+// app.listen(3000, () => console.log('Express server is running at port no : 3000'));
 
 
+// const http = require('http');
 
+// http.createServer(function(req, res) {
+//     // res.writeHead(200, { 'Content-Type': 'text/plain' });
+//     // res.end('Hello World\n');
+// }).listen(process.env.PORT || 3000);
+
+console.log('Server currently listening...');
 
 app.get('/', (req, res) => {
     res.render('authentification')
