@@ -198,24 +198,24 @@ app.post('/', urlencodedParser, [
                             if (role == 'admin') {
 
 
-                                res.render('acceuille_admin');
+                                res.render('client/client');
                             }
                             if (role == 'receptioniste') {
-                                res.render('acceuille');
+                                res.render('client/client');
                             }
                             //res.send(rows);
                         } else
-                            res.render('authentification')
+                            res.render('login/login')
 
                     })
                 } else {
                     var requette;
-                    res.render('authentification', {
+                    res.render('login/login', {
                         requette: 'error'
                     })
                 }
             } else
-                res.render('authentification')
+                res.render('login/login')
 
         })
     }
