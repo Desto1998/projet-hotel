@@ -1,0 +1,154 @@
+body{
+    background-color: #F9F9F9;
+}
+
+.container{
+	width:40%;
+	height:90%;
+	background-color:#fff;
+	position: absolute;
+	left:50%;
+    top:50%;
+    border-radius: 30px;
+	transform:translate(-50%,-50%);
+	box-shadow:2px 2px 30px rgba(66,57,238,0.2);	
+}
+
+
+.form{
+	position: absolute;
+	width:90%;
+	height:35%;
+	background-color:#fff;
+	right: -230px;
+	bottom: 110px;
+	transform:translate(-50%,-50%);
+	box-shadow: 0px 5px   rgba(66,57,238,0.2);	
+}
+
+.container .taille_de_plus{
+	font-weight: 50px;
+}
+
+ h2{
+	background-color: #28be69;
+	width: 380px;
+	height: 48px;
+	font-weight: bold;
+	margin-left: 80px;
+	padding-top: 10px;
+	text-align: center;
+	border-radius: 30px;
+	color: #fff;
+}
+  
+.form .en_gras{
+    position: absolute;
+	color: #273486;
+    top: -4px;
+    left: 0;
+}
+
+.form__group {
+	position: relative;
+	padding: 11px 0 0;
+	margin-top: 10px;
+	width: 100%;
+  }
+  
+  .form__field {
+    width: 92%;
+    height: 100px   ;
+	border: 0;
+	border-bottom: 2px solid #9b9b9b;
+	outline: 0;
+	font-size: 1.9rem;
+	color: rgb(39, 2, 2);
+    padding: 20px 0;
+    border-left: none;
+
+  }
+
+  .form__label {
+	  position: absolute;
+	  cursor: text;
+	  top: 0;
+      display: block;
+      
+	  font-size: 0.8rem;
+	  color: #11998e;
+	  font-weight:700;    
+	}
+  
+  
+	.check {
+		display: block;
+		position: relative;
+		padding-left: 27px;
+		margin-bottom: 12px;
+		cursor: pointer;
+		font-size: 11px;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	  }
+	  .chec{
+		  margin-left: 25px;
+		  margin-top: 12px;
+	  }
+	  
+	  /* Hide the browser's default checkbox */
+	  .check input {
+		position: absolute;
+		opacity: 0;
+		cursor: pointer;
+		height: 0;
+		width: 0;
+	  }
+	  
+	  /* Create a custom checkbox */
+	  .checkmark {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 16px;
+		width: 16px;
+		background-color: #273486;
+	  }
+
+
+.boutons button{
+	background-color: #273486;
+	width: 130px;
+	height: 60px;
+	font-weight: bold;
+	border-radius: 30px;
+	color: #fff;
+	border: none;
+	font-size: 20px;
+	
+}
+.boutons{
+    margin-left: 20px;
+	margin-top: 350px;
+	display: flex;
+	padding-left: 50px;
+}
+
+.boutons p{
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+.boutons .bouton1{
+	padding-right: 150px;
+}
+
+
+footer{
+	position: absolute;
+	bottom: 0px;
+	right: 210px;
+	color: #ed1f24;
+}

@@ -1,0 +1,127 @@
+body{
+    background-color: #F9F9F9;
+}
+
+body{
+	margin: 0;
+	padding: 0;
+}
+/*---------------------------------header-----------------------------*/
+.header{
+	display: flex;
+    height: 75px;
+	background-color: #273486;
+}
+
+.header .logo_nom{
+	display: flex;
+	margin: 0px;
+	padding-left: 30px;
+	padding-top: 10px;
+}
+
+.header .logo_nom h2{
+	padding-left: 20px;
+	color: #fff;
+}
+
+.header .manu_a{
+	float: left;
+}
+
+.header .manu_a ul{
+	position: absolute;
+	display: flex;
+	list-style-type: none;
+	margin-left: 400px;
+	top: -15px;
+}
+.header .manu_a li{
+	padding: 30px;
+}
+
+.header  a{
+	text-decoration: none;
+	color: #fff;
+	font-weight: bold;
+}
+
+ .header .déconnexion .lien{
+	display: block;
+	padding: 24px 50px;
+	margin-left: 822.5px;
+	font-size: 25px;
+	text-decoration: none;
+	background-color: #fff;
+}
+/*---------------------------------end of header-----------------------------*/
+
+
+
+
+
+.tableaux{
+	width:93%;
+	height:60%;
+	background-color:#fff;
+	position: absolute;
+	left:50%;
+	top:60%;
+	transform:translate(-50%,-50%);
+	box-shadow:2px 2px 30px rgba(66,57,238,0.2);
+}
+ 
+.forme{
+	background-color: #273486;
+	color: white;
+}
+
+table{
+	border-collapse: collapse;
+}
+
+
+.titre_h2{
+position: absolute;
+color: #273486;
+bottom: 480px;
+left: 50px;
+}
+
+.date{
+	position: absolute;
+	bottom: 500px;
+	left: 53rem;
+}
+
+.date_color{
+	background-color: #273486;
+	border: none;
+	border-radius: 20px;
+	color: white;
+}
+
+.color,
+.bordure{
+	margin: 8px;
+	border: none;
+}
+
+.color{
+	border: none;
+	width: 80px;
+}
+/*
+tr:nth-child(even){
+    background-color: rgb(226, 226, 241);
+}*/
+
+
+/*---------------------------------footer-----------------------------*/
+footer{
+	position: absolute;
+	bottom: 0px;
+	right: 650px;
+	color: #ed1f24;
+}
+/*---------------------------------end of footer-----------------------------*/
