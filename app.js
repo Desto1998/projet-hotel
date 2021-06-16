@@ -47,7 +47,7 @@ app.listen(process.env.PORT || 3000, function() {
 console.log('Server currently listening...');
 
 app.get('/', (req, res) => {
-    res.render('authentification')
+    res.render('login/login')
 });
 
 app.get('/register', (req, res) => {
@@ -171,19 +171,11 @@ app.post('/', urlencodedParser, [
         var requette = "password or login error";
 
 
-        res.render('authentification', {
+        res.render('login/login', {
             alert,
             requette
 
         })
-
-
-
-
-
-
-
-
     }
     var id = 0;
 
