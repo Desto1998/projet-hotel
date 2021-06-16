@@ -1,0 +1,165 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style1.css" />
+    <title>Formulaire</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1> Register</h1>
+
+        <% if(typeof alert != 'undefined'){%>
+            <% alert.forEach(function(error){%>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <%= error.msg %>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <% }) %>
+
+                    <% } %>
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+    <form action="/admin/client" method="POST">
+
+        <div class="container">
+            <!--inscription --->
+            <div class="sign-up">
+                <!--header-->
+                <h1 class="heading"> Coordonnées du client</h1>
+                <!--nom-->
+                <div class="text">
+                    <input type="text" placeholder="Nom" name="name" id="name" />
+                </div>
+                <!--Email-->
+                <div class="text">
+                    <input type="text" placeholder="Prenom" />
+                </div>
+                <!--Téléhone--->
+                <div class="text">
+                    <input type="tel" placeholder="Téléphone" id="numero" name="numero" />
+                </div>
+                <!--Password--->
+                <div class="text">
+                    <input type="email" placeholder=" Example@gmail.com" id="mail" name="mail" />
+                </div>
+
+                <!--date de naissance--->
+                <div class="text">
+                    <input type="date" placeholder=" JJ/MM/AA" />
+                </div>
+                <!--sexe-->
+                <div class="sexes">
+                    <div class="sexe2">
+                        <p class="p1">Sexe:</p>
+                    </div>
+                    <div class="sexe2">
+                        <label><input type="radio" name="sexe" value="masculin" id="masculin">
+                        M</label>
+                        <div class="p2">
+                            <label> <input type="radio" name="sexe" value="feminin"> F
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <!--numéro de piece--->
+                <div class="text">
+                    <input type="text" placeholder=" numero de piece d'identitée" id="cni" name="cni" />
+                </div>
+
+                <div>
+                    <% if(typeof alert != 'undefined'){%>
+
+                        <% alert.forEach(function(error){%>
+
+
+                            <% if(typeof row != 'undefined'){%>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">numéro</th>
+                                            <th scope="col">catégorie</th>
+                                            <th scope="col">prix</th>
+                                            <th scope="col">status</th>
+                                        </tr>
+                                    </thead>
+                                    <% row.forEach(function(row){ %>
+                                        <tbody>
+                                            <tr>
+
+
+
+                                                <th scope="row">
+                                                    <%= row.id_chambre %>
+                                                </th>
+
+                                                <td>
+                                                    <%=row.categorie%>
+                                                </td>
+                                                <td>
+                                                    <%=row.prix%>
+                                                </td>
+                                                <td>
+                                                    <%=row.status %>,
+                                                        <%=  %><label> changer de status</label><input type="checkbox" name="libre" value="li">
+                                                </td>
+
+                                            </tr>
+                                        </tbody>
+                                        <% }) %>
+
+                                </table>
+                                <% } %>
+
+                                    <div>
+
+                                        <div class="text">
+                                            <input type="text" placeholder="nom de la commande" id="commande" name="commande" />
+                                        </div>
+
+                                        <div class="text">
+                                            <input type="number" placeholder="Prix" id="prix" name="prix" />
+                                        </div>
+
+                                        <div class="text">
+                                            <input type="number" placeholder="nombre" id="nombre" name="nombre" />
+                                        </div>
+
+                                    </div>
+                                    <% }) %>
+
+                                        <% } %>
+                </div>
+
+
+
+
+                <!-------------------termes------------------------------->
+
+            </div>
+            <!--button-->
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+        </div>
+
+    </form>
+
+
+</body>
+
+</html>

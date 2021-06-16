@@ -1,0 +1,52 @@
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+        <title>Formulaire</title>
+	</head>
+	<body>
+<div class="container">
+    <h1> Register</h1>
+
+    <% if(typeof alert != 'undefined'){%>
+        <% alert.forEach(function(error){%>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <%= error.msg %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <% }) %>
+
+    <% } %>
+   
+    
+
+
+
+
+    <form action="/register" method="POST">
+        <div class="form-group">
+          <label for="username" class="form-label">name</label>
+          <input type="text" class="form-control" name="name" id="name">
+          
+        </div>
+        <div class="form-group">
+          <label for="code" class="form-label">code employer</label>
+          <input type="text" class="form-control" id="code" name="code">
+        </div>
+        <div class="form-group">
+            <label for="salaire" class="form-label">salaire</label>
+            <input type="text" class="form-control" id="salaire" name="salaire">
+          </div>
+       
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+</div>
+
+</body>
+</html>

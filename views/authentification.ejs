@@ -1,0 +1,85 @@
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+	
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css"/>
+    <title>Sign-up</title>
+	</head>
+	<body>
+<div class="container">
+    <h1> Register</h1>
+
+    <% if(typeof alert != 'undefined'){%>
+        <% alert.forEach(function(error){%>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <%= error.msg %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <% }) %>
+
+    <% } %>
+   
+    
+
+
+</div>
+
+
+
+
+<div class="container">
+	<!----------------------End of contener---------------------->
+
+	<!----------------------inscription-------------------------->
+<div class="sign-up">
+	<img src="images/avatar.svg"  class="avatar">
+	<!----------------------End of inscription----------------->
+
+	<!-----------------------header------------------------>
+	<h1 class="heading">Login</h1>
+ 
+	<!----------------------End of header------------------->
+  <form action="/" method="POST">
+	<!--------------------------nom------------------------->
+	<div class="text">
+	<img src="images/user.png" height="20px"/>
+	<input type="text" placeholder=" Nom" name="username" id="username"/>
+	</div>
+	<!-----------------------End of nom------------------------->
+
+	
+
+	<!-------------------------Password------------------------->
+	<div class="text">
+	<img src="images/password.png" height="20px"/>
+	<input type="password" placeholder=" Mots de passe" id="password" name="password"/>
+	</div>
+	<!------------------------- End of Password------------------------->
+	
+  
+
+     <!--------------------------------button---------------------------->
+<button><a href="./enregistrer/enregistrer.html"> <span class="connecter"> SE CONNECTER</span></a></button> 
+	 <!--------------------------------End of button---------------------------->
+  </form>
+     <!----------------------------signe -------------------------->
+    <p class="conditions"> <span class="inscrire">Pas de compte ? :</span> <a href="#"> <span class="color">S'INSCRIRE</span></a></p>
+	</div>
+	<!----------------------------End of signe -------------------------->
+
+     <!---------------contenue du text----------------------->
+<div class="text-container">
+	<img src="images/logo.png" alt="Logo en cours de réalisation..." class="logo">
+	</div>
+	<!---------------End of contenue du text----------------------->
+	</div>
+
+
+
+</body>
+</html>
