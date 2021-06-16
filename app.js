@@ -255,15 +255,8 @@ app.post('/receptioniste/client', urlencodedParser, [
             res.render('clients', {
                 alert,
                 row
-
             })
-
-
-
         })
-
-
-
 
     } else {
 
