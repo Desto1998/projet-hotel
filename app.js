@@ -441,11 +441,6 @@ app.post('/admin/client', urlencodedParser, [
     }
 });
 
-
-
-
-
-
 app.post('/receptioniste/client/autre_entree', urlencodedParser, [
     check('name', 'nom trop grand')
     .exists()
@@ -487,24 +482,16 @@ app.post('/receptioniste/facture', urlencodedParser, [], (req, res) => {
     var row;
     var sql = "select * from facture ";
     mysqlConnection.query(sql, (err, rows, fields) => {
-
-
         row = rows;
         var l = rows.length;
         if (l >= 1) {
             var sql = "select nom from client ";
             mysqlConnection.query(sql, (err, rows, fields) => {
-
-
                 nom = rows;
-
-
                 res.render('facture.ejs', {
                     row,
                     nom,
                     l
-
-
                 })
             })
         } else {
