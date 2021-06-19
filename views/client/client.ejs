@@ -4,156 +4,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../../public/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../../public/fontawesome-5.15.2/css/fontawesome.min.css">
     <link rel="stylesheet" href="../../public/css/style_client.css">
-    <title>Clients</title>
+    <title>Doc</title>
 </head>
 
 <body>
 
-
-    <div class="container-fluid">
-        <header>
-            <div class="container-fluid offset">
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="header">
-                            <div class="logo_nom col-md-4">
-                                <img src="/image/Logo-atitle-hotelJ.png" alt="logo" class="image" style="width: 60px; height: 60px;">
-                                <h2>HOTEL ALTITEL</h2>
-                            </div>
-                            <div class="manu_a col-md-6 offset-0">
-                                <ul>
-                                    <div class="col-md-2">
-                                        <li><a href="" class="lien_menu">Accueil</a></li>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <li><a href="/" class="lien_menu">Main courant</a></li>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <li><a href="" class="lien_menu">Bilan</a></li>
-                                    </div>
-                                </ul>
-                            </div>
-
-                            <div class="deconnexion col-md-2">
-                                <a href="" class="lien" style="color: rgb(32, 3, 65);"><span class="couleur">Deconnexion</span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div class="container">
+        <!------------------------header--------------------------------->
+        <div class="header">
+            <div class="logo_nom">
+                <img src="/image/Logo-atitle-hotelJ.png" alt="logo" class="image" style="width: 60px; height: 60px;">
+                <h2>HOTEL ALTITEL</h2>
             </div>
-        </header>
-    </div>
-    <div class="contentenu">
+            <div class="manu_a">
+                <ul>
+                    <li><a href="" class="lien_menu">Accueil</a></li>
+                    <li><a href="/receptioniste/main_courant" class="lien_menu">Main courant</a></li>
+                    <li><a href="" class="lien_menu">Bilan</a></li>
+                </ul>
+            </div>
 
-        <% var i=0 %>
+            <div class="déconnexion">
+                <a href="" class="lien" style="color: rgb(32, 3, 65);"><span class="couleur">Deconnexion</span></a>
+            </div>  
+        </div>
+           <!--------------------End of header--------------------------------->
+
+
+        
+<% var i=0 %>
 
             <!--------------------------------enrégistement---------------------->
-            <div class="container-fluid">
-                <div class="col-md-12">
-                    <div class="row d-block">
-                        <div class="col-md-4 enregistrer float-start">
-                            <div class="row">
 
-                                <h2> <a href="/receptioniste/client"><span class="taille_de_plus"><i class="fa-plus"></i></span> Nouveau client</h2></a>
-                            </div>
-                            <div class="form">
-                                <span class="en_gras">Nombre de client dans l'hotel: <%= client.length %></span>
+            <div class="enregistrer">
 
-                                <div class="row">
-                                    <div class="form__group field">
-                                        <label for="name" class="form__label">Nombre total de client present dans l'hotel</label> <br><input type="input" class="form__field" placeholder="" name="name" id='name' required />
+                <h2> <a href="/receptioniste/client"><span class="taille_de_plus">+</span> Enregistrer un nouveau client</h2></a>
 
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="chec">
-                                        <label class="check"> informaton permet sur le nombre de chamre occupée dans l'hotel
-                                        <input type="checkbox" checked="checked">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="boutons float-start">
-                                    <div class="bouton1">
-                                        <p>Nouvelle Entrée</p>
-                                        <a href=""><button>Entrée</button></a>
-                                    </div>
-                                    <div class="bouton2 float-end offset-4">
-                                        <p>Nouvelle Sortie</p>
-                                        <a href=""><button>Sortie</button></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-8 float-end">
-                            <div class="row">
-                                <div class="title_h2">
-                                    <h2>Liste des chambres occupées</h2>
-                                </div>
-
-                                <!--------------------------Tableau---------------------->
-
-                                <table class="tableau text-center table-bordered table-responsive-sm ">
-
-                                    <thead class="forme">
-                                        <tr>
-                                            <td>Nom</td>
-                                            <td>N° chambre</td>
-                                            <td>voir plus</td>
-                                            <td>Passer une <br>commande</td>
-                                            <td>Consulter la <br>facture</td>
-                                        </tr>
-                                    </thead>
-                                    <% var i = 0%>
-                                        <% client.forEach(function(r){  %>
-                                            <tr>
-                                                <td>
-                                                    <div class="groupe">
-                                                        <%=r.nom %>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="groupe">
-                                                        <%=chambre[i].id_chambre %>
-
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="groupe">
-                                                        <a href="/receptioniste/client/<%=r.id_client %>"><button>Détails</button></a>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="groupe">
-                                                        <a href="/receptioniste/commande/<%=r.id_client %>"><button  id="couleur0">Ajouter</button></a>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="groupe">
-                                                        <a href="/generateReport2/<%=r.id_client %>"><button id="couleur1">Client</button></a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                            <% i=i+1 %>
-                                                <% }) %>
-
-                                </table>
-
-                            </div>
-                        </div>
+                <div class="form">
+                    <p> <span class="en_gras">Nombre de client dans l'hotel: <%= client.length %></span> </p>
+                    <div class="form__group field">
+                        <input type="input" class="form__field" placeholder="" name="name" id='name' required />
+                        <label for="name" class="form__label">nombre total de client present dans l'hotel</label>
+                    </div>
+                    <div class="chec">
+                        <label class="check"> informaton permet sur le nombre de chamre occupée dans l'hotel
+                            <input type="checkbox" checked="checked">
+                            <span class="checkmark"></span>
+                        </label>
                     </div>
                 </div>
-            </div>
-    </div>
 
+                <div class="boutons">
+                    <div class="bouton1">
+                        <p>Nouvelle Etrée</p>
+                        <a href=""><button>Entrée</button></a>
+                    </div>
+                    <div class="bouton2">
+                        <p>Nouvelle Sortie</p>
+                        <a href=""><button>Sortie</button></a>
+                    </div>
+                </div>
+
+
+                <!--------------------------End of enrégistement---------------------->
+
+            </div>
+
+            <div class="title_h2">
+                <h2>Liste des chambres occupées</h2>
+            </div>
+
+            <!--------------------------Tableau---------------------->
+
+            <table class="tableau">
+
+                <thead class="forme">
+                    <tr>
+                        <td>Nom</td>
+                        <td>N° chambre</td>
+                        <td>voir plus</td>
+                        <td>Passer une <br>commande</td>
+                        <td>Consulter la <br>facture</td>
+
+                    </tr>
+                </thead>
+<% var i = 0
+client.forEach(function(r){ 
+     
+   
+    %>
+                <tr>
+                    <td>
+                        <div class="groupe">
+                            <%=r.nom %>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="groupe">
+                            <%=chambre[i].id_chambre %>
+                            
+                        </div>
+                    </td>
+                    <td>
+                        <div class="groupe">
+                            <a href="/receptioniste/client/<%=r.id_client %>"><button>Plus de détaille</button></a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="groupe">
+                            <a href="/receptioniste/commande/<%=r.id_client %>"><button  id="couleur0">Ajouter</button></a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="groupe">
+                            <a href="/generateReport2/<%=r.id_client %>"><button id="couleur1">Facture client</button></a>
+                        </div>
+                    </td>
+                </tr>
+
+<% i=i+1 
+}) %>
+               
+            </table>
 
     </div>
 
@@ -162,20 +135,11 @@
 
     <!--------------------------------footer--------------------------------->
     <footer>
-        <div class="container-fluid">
-            <div class="col-md-12">
-                <div class="row">
-                    <p>copyrygth MI 2020</p>
-                </div>
-            </div>
-
-        </div>
-
+        <p>copyrygth MI 2020</p>
     </footer>
     <!--------------------------------footer--------------------------------->
+    </div>
 
-
-    <script type="text/javascript" src="../../public/fontawesome-5.15.2/js/fontawesome.js"></script>
 
 </body>
 

@@ -1,41 +1,56 @@
+
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/main2.css">
+        <title>Doc</title>
+    </head>
+    <body>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/css/style_client.css">
-    <link rel="stylesheet" href="../public/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/main2.css">
-    <title>Doc</title>
-</head>
-
-<body>
-    <!------------------------header--------------------------------->
-    <%- include('./menu.ejs'); -%>
-        <!--------------------End of header--------------------------------->
         <div class="container">
-
-
-            <h2><strong>Enregistrement des clients</strong></h2>
-
-            <!--------------------search--------------------------------->
-
-            <div class="bar_de_recherche">
-                <input type="search" name="A" id="Recherche" placeholder="Rechercher un clien..." class="recherche">
-                <button class="boutton_recherche"><strong>Recherche</strong></button>
+            <!------------------------header--------------------------------->
+            <div class="header">
+                <div class="logo_nom">
+                    <img src="/image/Logo-atitle-hotelJ.png" alt="logo" class="image" style="width: 60px; height: 60px;">
+                    <h2>HOTEL ALTITEL</h2>
+                </div>
+                <div class="manu_a">
+                    <ul>
+                        <li><a href="" class="lien_menu">Accueil</a></li>
+                        <li><a href="" class="lien_menu">Main courant</a></li>
+                        <li><a href="" class="lien_menu">Bilan</a></li>
+                    </ul>
+                </div>
+    
+                <div class="déconnexion">
+                    <a href="" class="lien" style="color: rgb(32, 3, 65);"><span class="couleur">Deconnexion</span></a>
+                </div>  
             </div>
+               <!--------------------End of header--------------------------------->
 
-            <!--------------------End of search--------------------------------->
+               <h2><strong>Enregistrement des clients</strong></h2>
+
+               <!--------------------search--------------------------------->
+
+               <div class="bar_de_recherche">
+                   <input type="search" name="A" id="Recherche" placeholder="Rechercher un clien..." class="recherche">
+                   <button class="boutton_recherche"><strong>Recherche</strong></button>
+               </div>
+
+               <!--------------------End of search--------------------------------->
 
 
 
-            <!--------------------champs de renseignementh--------------------------------->
-
-            <form action="/receptioniste/client" method="POST">
+               <!--------------------champs de renseignementh--------------------------------->
+               
+    <form action="/receptioniste/client" method="POST">
                 <div class="champs">
-
-                    <h3><strong>Information du client</strong></h3>
+                    
+                          <h3><strong>Information du client</strong></h3>
 
                     <div class="nom_prenom">
                         <div class="nom">
@@ -47,7 +62,7 @@
                             <input type="text" id="prenom" name="prenom">
                         </div>
                     </div>
-
+    
                     <div class="phone_cni">
                         <div class="phone">
                             <p>Numero de téléphone</p>
@@ -57,14 +72,14 @@
                             <p>Numero de CNI</p>
                             <input type="text" id="cni" name="cni">
                         </div>
-
+                        
                     </div>
-
+                    
 
                     <h2 class="h2"><strong>Chambre(s) disponible(s)</strong></h2>
 
                     <!--------------------------chambre disponible-------------------->
-
+                   
                     <div class="etat ">
                         <div class="chambre_standart col-md-3">
                             <p>Chambre standart</p>
@@ -72,10 +87,9 @@
 
                                 if(r.categorie==='chambre standart'){
                                 %>
-                                N°
-                                <%=r.id_chambre%>
-                                    <input type="checkbox" name="chambre" value="<%=r.id_chambre%>" class="b">
-                                    <% }
+                               N° <%=r.id_chambre%>
+                                <input type="checkbox" name="chambre" value="<%=r.id_chambre%>" class="b">
+                            <% }
                             }) %>
                         </div>
                         <div class="chambre_standart col-md-3">
@@ -84,10 +98,9 @@
 
                                 if(r.categorie==='climatise'){
                                 %>
-                                N°
-                                <%=r.id_chambre%>
-                                    <input type="checkbox" name="chambre" value="<%=r.id_chambre%>" class="b">
-                                    <% }
+                                 N° <%=r.id_chambre%>
+                                <input type="checkbox" name="chambre" value="<%=r.id_chambre%>" class="b">
+                            <% }
                             }) %>
                         </div>
                         <div class="chambre_standart col-md-3">
@@ -95,10 +108,9 @@
                             <% row.forEach(function(r){ 
                                 if(r.categorie==='chambre de luxe'){
                                 %>
-                                N°
-                                <%=r.id_chambre%>
-                                    <input type="checkbox" name="chambre" value="<%=r.id_chambre%>" class="b">
-                                    <% }
+                                 N° <%=r.id_chambre%>
+                                <input type="checkbox" name="chambre" value="<%=r.id_chambre%>" class="b">
+                            <% }
                             }) %>
                         </div>
                         <div class="chambre_standart col-md-3" class="b">
@@ -106,10 +118,9 @@
                             <% row.forEach(function(r){ 
                                 if(r.categorie==='chambre double'){
                                 %>
-                                N°
-                                <%=r.id_chambre%>
-                                    <input type="checkbox" name="chambre" value="<%=r.id_chambre%>" class="b">
-                                    <% }
+                                 N° <%=r.id_chambre%>
+                                <input type="checkbox" name="chambre" value="<%=r.id_chambre%>" class="b">
+                            <% }
                             }) %>
                         </div>
                         <div class="chambre_standart col-md-3">
@@ -117,57 +128,55 @@
                             <% row.forEach(function(r){ 
                                 if(r.categorie==='appartement'){
                                 %>
-
-                                N°
-                                <%=r.id_chambre%>
-                                    <input type="checkbox" name="chambre" value="<%=r.id_chambre%>" class="b">
-                                    <% }
+                            
+                                N° <%=r.id_chambre%>
+                           <input type="checkbox" name="chambre" value="<%=r.id_chambre%>" class="b">
+                            <% }
                             }) %>
                         </div>
-
-
-
+                  
+                   
+                   
                     </div>
-
+                    
                     <div class="col-md-3">
-                        <button type="submit" class="btn btn-primary">Enregistrer</button>
-                    </div>
-
-
-                    <!--------------------------End of chambre disponible-------------------->
-
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </div>
+            
+                
+                     <!--------------------------End of chambre disponible-------------------->
+                    
                 </div>
                 <!--------------------End of champs de renseignement--------------------------------->
 
+              
 
-
-
+                
 
 
             </form>
 
+           
+   
+</div>
 
 
+
+
+  
+
+
+              
         </div>
-
-
-
-
-
-
-
-
-        </div>
-
-        <!--------------------------------footer--------------------------------->
-        <div>
-            <footer>
-                <p>copyrygth MI 2020</p>
-            </footer>
-        </div>
-        <!--------------------------------footer--------------------------------->
-</body>
-
+    
+          <!--------------------------------footer--------------------------------->
+          <div>
+          <footer>
+            <p>copyrygth MI 2020</p>
+        </footer>  
+    </div>
+        <!--------------------------------footer--------------------------------->    
+    </body>
 </html>
 
 
@@ -175,3 +184,4 @@
 </body>
 
 </html>
+
