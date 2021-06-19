@@ -11,19 +11,38 @@
 <body>
 
     <div class="container">
+        <!------------------------header--------------------------------->
+        <div class="header">
+            <div class="logo_nom">
+                <img src="/image/Logo-atitle-hotelJ.png" alt="logo" class="image" style="width: 60px; height: 60px;">
+                <h2>HOTEL ALTITEL</h2>
+            </div>
+            <div class="manu_a">
+                <ul>
+                    <li><a href="" class="lien_menu">Accueil</a></li>
+                    <li><a href="/receptioniste/main_courant" class="lien_menu">Main courant</a></li>
+                    <li><a href="" class="lien_menu">Bilan</a></li>
+                </ul>
+            </div>
+
+            <div class="déconnexion">
+                <a href="" class="lien" style="color: rgb(32, 3, 65);"><span class="couleur">Deconnexion</span></a>
+            </div>  
+        </div>
+           <!--------------------End of header--------------------------------->
 
 
-        <%- include('../menu.ejs'); %>
-
+        
+<% var i=0 %>
 
             <!--------------------------------enrégistement---------------------->
 
             <div class="enregistrer">
 
-                <h2><span class="taille_de_plus">+</span> Enregistrer un nouveau client</h2>
+                <h2> <a href="/receptioniste/client"><span class="taille_de_plus">+</span> Enregistrer un nouveau client</h2></a>
 
                 <div class="form">
-                    <p> <span class="en_gras">Nombre de client dans l'hotel</span> </p>
+                    <p> <span class="en_gras">Nombre de client dans l'hotel: <%= client.length %></span> </p>
                     <div class="form__group field">
                         <input type="input" class="form__field" placeholder="" name="name" id='name' required />
                         <label for="name" class="form__label">nombre total de client present dans l'hotel</label>
@@ -70,230 +89,43 @@
 
                     </tr>
                 </thead>
-
+<% var i = 0
+client.forEach(function(r){ 
+     
+   
+    %>
                 <tr>
                     <td>
                         <div class="groupe">
-                            <input type="text" placeholder=" Nom du client" class="bordure">
+                            <%=r.nom %>
                         </div>
                     </td>
                     <td>
                         <div class="groupe">
-                            <input type="text" placeholder="Numero" class="color">
+                            <%=chambre[i].id_chambre %>
+                            
                         </div>
                     </td>
                     <td>
                         <div class="groupe">
-                            <a href=""><button>Plus de détaille</button></a>
+                            <a href="/receptioniste/client/<%=r.id_client %>"><button>Plus de détaille</button></a>
                         </div>
                     </td>
                     <td>
                         <div class="groupe">
-                            <a href=""><button  id="couleur0">Ajouter</button></a>
+                            <a href="/receptioniste/commande/<%=r.id_client %>"><button  id="couleur0">Ajouter</button></a>
                         </div>
                     </td>
                     <td>
                         <div class="groupe">
-                            <a href=""><button id="couleur1">Facture client</button></a>
+                            <a href="/generateReport2/<%=r.id_client %>"><button id="couleur1">Facture client</button></a>
                         </div>
                     </td>
                 </tr>
 
-
-                <tr>
-                    <td>
-                        <div class="groupe">
-                            <input type="text" placeholder=" Nom du client" class="bordure">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="groupe">
-                            <input type="text" placeholder=" Numero" class="color">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="groupe">
-                            <a href=""><button>Plus de détaille</button></a>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="groupe">
-                            <a href=""><button  id="couleur0">Ajouter</button></a>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="groupe">
-                            <a href=""><button id="couleur1">Facture client</button></a>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="groupe">
-                            <input type="text" placeholder=" Nom du client" class="bordure">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="groupe">
-                            <input type="text" placeholder=" Numero" class="color">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="groupe">
-                            <a href=""><button>Plus de détaille</button></a>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="groupe">
-                            <a href=""><button  id="couleur0">Ajouter</button></a>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="groupe">
-                            <a href=""><button id="couleur1">Facture client</button></a>
-                        </div>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        <div class="groupe">
-                            <input type="text" placeholder=" Nom du client" class="bordure">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="groupe">
-                            <input type="text" placeholder=" Numero" class="color">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="groupe">
-                            <a href=""><button>Plus de détaille</button></a>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="groupe">
-                            <a href=""><button  id="couleur0">Ajouter</button></a>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="groupe">
-                            <a href=""><button id="couleur1">Facture client</button></a>
-                        </div>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        <div class="groupe">
-                            <input type="text" placeholder=" Nom du client" class="bordure">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="groupe">
-                            <input type="text" placeholder=" Numero" class="color">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="groupe">
-                            <a href=""><button>Plus de détaille</button></a>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="groupe">
-                            <a href=""><button  id="couleur0">Ajouter</button></a>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="groupe">
-                            <a href=""><button id="couleur1">Facture client</button></a>
-                        </div>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        <div class="groupe">
-                            <input type="text" placeholder=" Nom du client" class="bordure">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="groupe">
-                            <input type="text" placeholder="Numero" class="color">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="groupe">
-                            <a href=""><button>Plus de détaille</button></a>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="groupe">
-                            <a href=""><button  id="couleur0">Ajouter</button></a>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="groupe">
-                            <a href=""><button id="couleur1">Facture client</button></a>
-                        </div>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        <div class="groupe">
-                            <input type="text" placeholder=" Nom du client" class="bordure">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="groupe">
-                            <input type="text" placeholder=" Numero" class="color">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="groupe">
-                            <a href=""><button>Plus de détaille</button></a>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="groupe">
-                            <a href=""><button  id="couleur0">Ajouter</button></a>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="groupe">
-                            <a href=""><button id="couleur1">Facture client</button></a>
-                        </div>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        <div class="groupe">
-                            <input type="text" placeholder=" Nom du client" class="bordure">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="groupe">
-                            <input type="text" placeholder=" Numero" class="color">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="groupe">
-                            <a href=""><button>Plus de détaille</button></a>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="groupe">
-                            <a href=""><button  id="couleur0">Ajouter</button></a>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="groupe">
-                            <a href=""><button id="couleur1">Facture client</button></a>
-                        </div>
-                    </td>
-                </tr>
+<% i=i+1 
+}) %>
+               
             </table>
 
     </div>
