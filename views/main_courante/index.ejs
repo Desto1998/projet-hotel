@@ -45,6 +45,7 @@
 
                 <table>
                     <thead class="forme">
+                      
                         <tr>
                             <th>Nom</th>
                             <th>N°chambre</th>
@@ -60,156 +61,76 @@
                             <th>A raporter</th>
                         </tr>
                     </thead>
+                   
                     <tr>
-                        <td><input type="text" placeholder=" Nom du client" class="bordure"></td>
-                        <td><input type="text" placeholder=" Numero" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
+                        <% var i=0;
+                        var totalj=0;
+                        var totaljh=0;
+                        var totalg=0;
+                         client.forEach(function(row){ %>
+                        <td><%= row.nom %></td>
+                        <td><%= chambreclient[i].id_chambre %>   </td>
+                        <% if(i<= commande.length -1) {
+                             %>
+                            
+                        <% if(commande[i].lieu==='Petit dejeune' && commande[i].id_client==row.id_client){ %>
+                        <td><%= commande[i].montant %></td>
+                        <% }else{%>
+                            <td>0</td>
+                            <% } %>
+                        <% if(commande[i].lieu==='Restaurant' && commande[i].id_client===row.id_client){ %>
+                            <td><%= commande[i].montant %></td>
+                            <% }else{%>
+                                <td>0</td>
+                                <% } %>
+                            <% if(commande[i].lieu==='Bar' && commande[i].id_client===row.id_client){ %>
+                                <td><%= commande[i].montant %></td>
+                                <% }else{%>
+                                    <td>0</td>
+                                    <% } %>
+                                <% if(commande[i].lieu==='Linge' && commande[i].id_client===row.id_client){ %>
+                                    <td><%= commande[i].montant %></td>
+                                    <% } else{%>
+                                        <td>0</td>
+                                        <% } %>
+                                    <% if(commande[i].lieu==='Divers' && commande[i].id_client===row.id_client){ %>
+                                        <td><%= commande[i].montant %></td>
+                                        <% } else{%>
+                                            <td>0</td>
+                                            <% } %>
+                                            <%   if( commande[i].id_client===row.id_client){ 
+                                                totalj=commande[i].montant * commande[i].nombre; %>
+                        <td><%= totalj %></td>
+                        <% }  else{%>
+                            <td>0</td>
+                            <% } %>
+                        
+                        <% if(i<= commandeh.length -1) {
+                            %>
+                        <%   if( commandeh[i].id_client===row.id_client){ totaljh=commandeh[i].montant * commandeh[i].nombre;
+                            %>
+                            <td><%= totaljh  %></td>
+                            <% }  else{%>
+                                <td>0</td>
+                                <% } %>
+                                <% } else{%>
+                                    <td>0</td>
+                                    <% } %>
+                        <td><%= totaljh+totalj  %></td>
+                        <%   if( status[i].id_client===row.id_client){  %>
+                        
+                        <td><%= status[i].montant* status[i].nombre  %></td>
+                        <% }  else{%>
+                            <td>0</td>
+                            <% } %>
+                       
+                        <td> <%= totaljh+totalj  %></td>
+                        <% } %>
                     </tr>
 
-                    <tr>
-                        <td><input type="text" placeholder=" Nom du client" class="bordure"></td>
-                        <td><input type="text" placeholder=" Numero" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                    </tr>
-
-                    <tr>
-                        <td><input type="text" placeholder=" Nom du client" class="bordure"></td>
-                        <td><input type="text" placeholder=" Numero" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                    </tr>
-
-                    <tr>
-                        <td><input type="text" placeholder=" Nom du client" class="bordure"></td>
-                        <td><input type="text" placeholder=" Numero" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                    </tr>
-
-                    <tr>
-                        <td><input type="text" placeholder=" Nom du client" class="bordure"></td>
-                        <td><input type="text" placeholder=" Numero" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                    </tr>
-
-                    <tr>
-                        <td><input type="text" placeholder=" Nom du client" class="bordure"></td>
-                        <td><input type="text" placeholder=" Numero" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                    </tr>
-
-                    <tr>
-                        <td><input type="text" placeholder=" Nom du client" class="bordure"></td>
-                        <td><input type="text" placeholder=" Numero" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                    </tr>
-
-                    <tr>
-                        <td><input type="text" placeholder=" Nom du client" class="bordure"></td>
-                        <td><input type="text" placeholder=" Numero" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                    </tr>
-
-                    <tr>
-                        <td><input type="text" placeholder=" Nom du client" class="bordure"></td>
-                        <td><input type="text" placeholder=" Numero" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                    </tr>
-
-                    <tr>
-                        <td><input type="text" placeholder=" Nom du client" class="bordure"></td>
-                        <td><input type="text" placeholder=" Numero" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                        <td><input type="text" placeholder=" Montant" class="color"></td>
-                    </tr>
-
+                    
+<% i=i+1;
+}) %>
 
                 </table>
 
