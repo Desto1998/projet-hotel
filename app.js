@@ -79,6 +79,9 @@ app.get('/admin/client', (req, res) => {
 });
 
 
+
+
+
 app.get('/receptioniste/facture', (req, res) => {
     var nom;
     var row;
@@ -157,8 +160,49 @@ app.get("/receptioniste/commande/:id", (req, res) => {
         id
     })
 });
+
+
+
+
 app.get('/receptioniste/main_courant', (req, res) => {
-    res.render('main_courante/index')
+   let date = Date.now();
+    var yesterday = new Date(new Date().setDate(new Date().getDate()-1));
+    let MyDate = yesterday.toISOString().slice(0, 10);
+    let toDay= new Date(date);
+
+    
+    let hier = MyDate+" 00:00:00";
+
+   var day=toDay.toISOString().slice(0, 10)+" 00:00:00";
+    
+    
+    var sql = "select * from client ORDER BY id_client ASC";
+    mysqlConnection.query(sql, (err, rows, fields) => {
+        client = rows;
+        var sql = "select * from commande where date_commande >= '"+day+"'   ORDER BY id_client ASC ";
+        mysqlConnection.query(sql, (err, rows, fields) => {
+            commande=rows;
+            var sql = "select * from chambreclient ORDER BY id_client ASC";
+            mysqlConnection.query(sql, (err, rows, fields) => {
+                chambreclient=rows;
+                var sql = "select * from commande where date_commande >= '"+hier+"' and date_commande <= '"+day+"'  ORDER BY id_client ASC ";
+        mysqlConnection.query(sql, (err, rows, fields) => {
+            commandeh=rows;
+            var sql = "select * from commande where status= '0' ORDER BY id_client ASC ";
+        mysqlConnection.query(sql, (err, rows, fields) => {
+            status=rows;
+            console.log(status);
+    res.render('main_courante/index', {
+        client,
+        chambreclient,
+        commande
+        
+    })
+})
+        });
+            })
+        })
+    });
 });
 
 
@@ -210,7 +254,18 @@ app.post('/', urlencodedParser, [
                             if (role == 'admin') {
 
 
-                                res.render('client/client');
+                                var sql = "select * from client";
+                                mysqlConnection.query(sql, (err, rows, fields) => {
+                                    client=rows;
+                                    var sql = "select * from chambreclient";
+                                    mysqlConnection.query(sql, (err, rows, fields) => {
+                                        chambre=rows;
+                                res.render('client/client',{
+                                    client,
+                                    chambre
+                                });
+                                })
+                            })
                             }
                             if (role == 'receptioniste') {
                                 var sql = "select * from client";
@@ -281,7 +336,7 @@ app.post('/receptioniste/client', urlencodedParser, [
         let minute = MyDate.getMinutes();
         let second = MyDate.getSeconds();
         let clientDate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
-        let clientD = year + "-" + month + "-" + day ;
+        //let clientD = year + "-" + month + "-" + day ;
 
         var sql = "select * from chambre where status = 'libre'";
         mysqlConnection.query(sql, (err, rows, fields) => {
@@ -729,40 +784,64 @@ app.get("/generateReport2/:id", (req, res) => {
 // insertion commande
 
 
-app.post("/receptioniste/commande/:id", (req, res) => {
-    var id = req.params.id;
-    let date = Date.now();
-    let MyDate = new Date(date);
-    let day = MyDate.getDate();
-    let month = MyDate.getMonth();
-    let year = MyDate.getFullYear();
-    let hour = MyDate.getHours();
-    let minute = MyDate.getMinutes();
-    let second = MyDate.getSeconds();
-    let clientDate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+app.post('/receptioniste/commande/:id', urlencodedParser, [
+    check('name', 'nom trop grand')
+    .exists()
+    .isLength({ max: 45 }),
+    check('mail', 'email non valide')
+    .isEmail()
+    .normalizeEmail()
+
+
+
+], (req, res) => {
     
 
-    console.log(req.body.motif)
-    console.log(req.body.nombre)
-    console.log(req.body.montant)
-    //console.log(req.body.username)
-    var sql1 = "insert into commande values(null,'"+req.body.nom+"','"+req.body.motif+"',"+req.body.montant+",'"+0+"',"+id+",'"+clientDate+"',"+req.body.nombre+")";
-    mysqlConnection.query(sql1, (err, rows, fields) => {
-      
-        var sql = "select * from client";
-                                mysqlConnection.query(sql, (err, rows, fields) => {
-                                    client=rows;
-                                    var sql = "select * from chambreclient";
+
+        // var sexe;
+        // if (req.body.sexe != undefined) {
+        //     sexe = req.body.masculin;
+        // }
+        // if (req.body.feminin != undefined) {
+        //     sexe = req.body.feminin;
+        // }
+id=req.params.id;
+        let date = Date.now();
+        let MyDate = new Date(date);
+        let day = MyDate.getDate();
+        let month = MyDate.getMonth();
+        let year = MyDate.getFullYear();
+        let hour = MyDate.getHours();
+        let minute = MyDate.getMinutes();
+        let second = MyDate.getSeconds();
+        let clientDate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+        let clientD = year + "-" + month + "-" + day ;
+
+        console.log(req.body)
+   
+        var sql1 = "insert into commande values(null,'"+req.body.nom+"','"+req.body.poste+"',"+req.body.montant+",'"+0+"',"+id+",'"+clientDate+"',"+req.body.nombre+")";
+        mysqlConnection.query(sql1, (err, rows, fields) => {
+          
+            var sql = "select * from client";
                                     mysqlConnection.query(sql, (err, rows, fields) => {
-                                        chambre=rows;
-                                res.render('client/client',{
-                                    client,
-                                    chambre
-                                });
+                                        client=rows;
+                                        var sql = "select * from chambreclient";
+                                        mysqlConnection.query(sql, (err, rows, fields) => {
+                                            chambre=rows;
+                                    res.render('client/client',{
+                                        client,
+                                        chambre
+                                    });
+                                    })
                                 })
-                            })
-    })
+        })
+    
 });
+
+
+
+
+
 
 
 
