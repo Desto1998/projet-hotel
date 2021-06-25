@@ -30,7 +30,7 @@
                                         <li><a href="" class="lien_menu">Accueil</a></li>
                                     </div>
                                     <div class="col-md-4">
-                                        <li><a href="/" class="lien_menu">Main courant</a></li>
+                                        <li><a href="/receptioniste/main_courant" class="lien_menu">Main courant</a></li>
                                     </div>
                                     <div class="col-md-2">
                                         <li><a href="" class="lien_menu">Bilan</a></li>
@@ -53,12 +53,14 @@
 
 
         <h2 class="titre_h2">Main courant réception</h2>
+        <form action="/receptioniste/main_courant" method="POST">
+
         <div class="date">
             <label for="date">Selectionner la date ici</label>
-            <input type="date" name="" id="date" value="2021-06-12" class="date_color">
+            <input type="date" name="date" id="date"  class="date_color">
             <button type="submit">valider</button>
         </div>
-
+    </form>
 
         <div class="tableaux">
 
@@ -86,6 +88,7 @@
                         var totalj=0;
                         var totaljh=0;
                         var totalg=0;
+                        if(commande.length>=1){
                          client.forEach(function(row){ %>
                         <td><%= row.nom %></td>
                         <td><%= chambreclient[i].id_chambre %>   </td>
@@ -149,8 +152,42 @@
 
                     
 <% i=i+1;
-}) %>
-
+}) } else { %>
+    <td></td>
+    <td>0 </td>
+  
+        
+   
+        <td>0</td>
+        
+   
+            <td>0</td>
+            
+      
+                <td>0</td>
+                
+         
+                    <td>0</td>
+                   
+              
+                        <td>0</td>
+                       
+                      
+        <td>0</td>
+        
+    
+   
+                <td>0</td>
+               
+    <td>0</td>
+   
+        <td>0</td>
+      
+   
+    <td>0 </td>
+   
+</tr>
+<% } %>
                 </table>
 
 
