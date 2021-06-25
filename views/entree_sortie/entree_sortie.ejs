@@ -4,50 +4,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../public/css/style_entree_sortie.css">
-    <title>Doc</title>
+    <link rel="stylesheet" href="../../public/css/style_client.css">
+    <link rel="stylesheet" href="../../public/css/bootstrap.min.css">
+    <title>Entree/sortie</title>
 </head>
 
 <body>
 
-    <div class="container">
-        <%- include('../menu.ejs'); %>
 
-            <h2><span class="taille_de_plus">+</span> Enregistrer un nouveau client</h2>
+    <div class="container-fluid">
+        <header>
+            <div class="container-fluid offset">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="header">
+                            <div class="logo_nom col-md-4">
+                                <img src="/image/Logo-atitle-hotelJ.png" alt="logo" class="image" style="width: 60px; height: 60px;">
+                                <h2>HOTEL ALTITEL</h2>
+                            </div>
+                            <div class="manu_a col-md-6 offset-0">
+                                <ul>
+                                    <div class="col-md-2">
+                                        <li><a href="" class="lien_menu">Accueil</a></li>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <li><a href="/" class="lien_menu">Main courant</a></li>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <li><a href="" class="lien_menu">Bilan</a></li>
+                                    </div>
+                                </ul>
+                            </div>
 
-
-
-            <div class="form">
-                <p> <span class="en_gras">Nombre de client dans l'hotel</span> </p>
-                <div class="form__group field">
-                    <input type="input" class="form__field" placeholder="" name="name" id='name' required />
-                    <label for="name" class="form__label">informaton générale sue le nombre total de client present dans l'hotel</label>
+                            <div class="deconnexion col-md-2">
+                                <a href="" class="lien" style="color: rgb(32, 3, 65);"><span class="couleur">Deconnexion</span></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="chec">
-                    <label class="check">Cette information permet de constater le nombre de chambre occupée dans l'hotel
+            </div>
+        </header>
+    </div>
+    <div class="container">
+
+
+        <h2><span class="taille_de_plus">+</span> Enregistrer un nouveau client</h2>
+
+
+
+        <div class="form">
+            <p> <span class="en_gras">Nombre de client dans l'hotel</span> </p>
+            <div class="form__group field">
+                <input type="input" class="form__field" placeholder="" name="name" id='name' required />
+                <label for="name" class="form__label">informaton générale sue le nombre total de client present dans l'hotel</label>
+            </div>
+            <div class="chec">
+                <label class="check">Cette information permet de constater le nombre de chambre occupée dans l'hotel
                             <input type="checkbox" checked="checked">
                             <span class="checkmark"></span>
                         </label>
-                </div>
+            </div>
+        </div>
+
+        <div class="boutons">
+            <div class="bouton1">
+                <p>Nouvelle Etrée</p>
+                <button>Entrée</button>
+            </div>
+            <div class="bouton2">
+                <p>Nouvelle Sortie</p>
+                <button>Sortie</button>
             </div>
 
-            <div class="boutons">
-                <div class="bouton1">
-                    <p>Nouvelle Etrée</p>
-                    <button>Entrée</button>
-                </div>
-                <div class="bouton2">
-                    <p>Nouvelle Sortie</p>
-                    <button>Sortie</button>
-                </div>
-
-            </div>
+        </div>
 
 
 
-            <footer>
-                <p>copyrygth MI 2020</p>
-            </footer>
+        <footer>
+            <p>copyrygth MI 2020</p>
+        </footer>
 
     </div>
 

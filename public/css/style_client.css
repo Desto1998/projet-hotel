@@ -1,257 +1,277 @@
-body{
+body {
     background-color: #F9F9F9;
+    font-family: montserrat font;
 }
 
-body{
-	margin: 0;
-	padding: 0;
-}
+
 /*---------------------------------header-----------------------------*/
-.header{
-	display: flex;
+
+.header {
+    display: flex;
     height: 75px;
-	background-color: #273486;
+    background-color: #273486;
 }
 
-.header .logo_nom{
-	display: flex;
-	margin: 0px;
-	padding-left: 30px;
-	padding-top: 10px;
+.header .logo_nom {
+    display: flex;
+    margin: 0px;
+    /* padding-left: 30px; */
+    padding-top: 10px;
 }
 
-.header .logo_nom h2{
-	padding-left: 20px;
-	color: #fff;
+.header .logo_nom h2 {
+    padding-left: 20px;
+    color: #fff;
 }
 
-.header .manu_a{
-	float: left;
+.header .manu_a {
+    /* float: left; */
 }
 
-.header .manu_a ul{
-	position: absolute;
-	display: flex;
-	list-style-type: none;
-	margin-left: 400px;
-	top: -15px;
-}
-.header .manu_a li{
-	padding: 30px;
+.header .manu_a ul {
+    position: relative;
+    display: flex;
+    list-style-type: none;
+    /* margin-left: 400px; */
+    top: -15px;
 }
 
-.header  a{
-	text-decoration: none;
-	color: #fff;
-	font-weight: bold;
+.header .manu_a li {
+    padding: 30px;
 }
 
- .header .déconnexion .lien{
-	display: block;
-	padding: 24px 50px;
-	margin-left: 822.5px;
-	font-size: 25px;
-	text-decoration: none;
-	background-color: #fff;
+.header a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
 }
+
+.header .deconnexion .lien {
+    display: block;
+    padding: 24px 0px;
+    text-align: center;
+    /* margin-left: 82
+	2.5px; */
+    justify-content: center;
+    font-size: 25px;
+    height: 75px;
+    text-decoration: none;
+    background-color: #fff;
+}
+
+
 /*---------------------------------end of header-----------------------------*/
 
 
 /*--------------------------------- Enregistation------------------------------*/
-.enregistrer{
-	position: absolute;
-    bottom:110px;
-    left: 58x;
+
+.contentenu {
+    margin-top: 50px;
 }
 
-.enregistrer .taille_de_plus{
-	font-weight: 50px;
+.enregistrer {
+    position: relative;
+    /* bottom: 110px; */
+    /* left: 58x; */
 }
 
-.enregistrer .form{
-	position: absolute;
-	width:100%;
-	height:43%;
-	background-color:#fff;
-	right: -260px;
-	bottom: 10px;
-	transform:translate(-50%,-50%);
-	box-shadow: 0px 5px   rgba(66,57,238,0.2);	
+.enregistrer .taille_de_plus {
+    font-weight: 50px;
 }
 
-
-.enregistrer h2{
-	background-color: #28be69;
-	width: 380px;
-	height: 48px;
-	font-weight: bold;
-	margin-left: 35px;
-	padding-top: 10px;
-	text-align: center;
-	border-radius: 30px;
-	color: #fff;
+.enregistrer .form {
+    position: relative;
+    /* width: 100%; */
+    height: 43%;
+    background-color: #fff;
+    /* right: -260px; */
+    bottom: 10px;
+    /* transform: translate(-50%, -50%); */
+    box-shadow: 0px 5px rgba(66, 57, 238, 0.2);
 }
-  
-.enregistrer .form .en_gras{
-	color: #273486;
-	bottom: 5px;
+
+.enregistrer h2 {
+    background-color: #28be69;
+    /* width: 380px; */
+    /* height: 48px; */
+    font-weight: bold;
+    /* margin-left: 35px; */
+    /* padding-top: 10px; */
+    text-align: center;
+    border-radius: 30px;
+    color: #fff;
+}
+
+.enregistrer .form .en_gras {
+    color: #273486;
+    /* bottom: 5px; */
 }
 
 .enregistrer .form .form__group {
-	position: relative;
-	padding: 11px 0 0;
-	margin-top: 10px;
-	width: 100%;
-  }
-  
-  .enregistrer .form .form__group .form__field {
-	width: 92%;
-	border: 0;
-	border-bottom: 2px solid #9b9b9b;
-	outline: 0;
-	font-size: 1.9rem;
-	color: rgb(39, 2, 2);
-	padding: 20px 0;
-  }
-
-  .enregistrer .form .form__group .form__label {
-	  position: absolute;
-	  cursor: text;
-	  top: 0;
-	  display: block;
-	  transition: 0.2s;
-	  font-size: 1rem;
-	  color: #11998e;
-	  font-weight:700;    
-	}
-  
-    .enregistrer .form .chec{
-        margin-left: 25px;
-        margin-top: 12px;
-    } 
-  
-    .enregistrer .form .chec .check {
-		display: block;
-		position: relative;
-		padding-left: 27px;
-		margin-bottom: 12px;
-		cursor: pointer;
-		font-size: 11px;
-		-webkit-user-select: none;
-		-moz-user-select: none;
-		-ms-user-select: none;
-		user-select: none;
-	  }
-	  
-	  /* Hide the browser's default checkbox */
-	  .check input {
-		position: absolute;
-		opacity: 0;
-		cursor: pointer;
-		height: 0;
-		width: 0;
-	  }
-	  
-	  /* Create a custom checkbox */
-	  .checkmark {
-		position: absolute;
-		top: 0;
-		left: 0;
-		height: 16px;
-		width: 16px;
-		background-color: #273486;
-	  }
- 
-      .enregistrer .boutons{
-
-        margin-top: 260px;
-        display: flex;
-        padding-left: 50px;
-    }    
-
-.enregistrer .boutons button{
-	background-color: #273486;
-	width: 100px;
-	height: 40px;
-	font-weight: bold;
-	border-radius: 30px;
-	color: #fff;
-	border: none;
-	font-size: 20px;
+    position: relative;
+    /* padding: 11px 0 0; */
+    /* margin-top: 10px; */
+    /* width: 100%; */
 }
 
-.enregistrer .boutons .bouton1{
-	padding-right: 150px;
+.enregistrer .form .form__group .form__field {
+    /* width: 92%; */
+    border: 0;
+    border-bottom: 2px solid #9b9b9b;
+    outline: 0;
+    font-size: 1.9rem;
+    color: rgb(39, 2, 2);
+    padding: 20px 0;
 }
+
+.enregistrer .form .form__group .form__label {
+    position: relative;
+    cursor: text;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: #11998e;
+    font-weight: 700;
+}
+
+.enregistrer .form .chec {
+    /* margin-left: 25px; */
+    /* margin-top: 12px; */
+}
+
+.enregistrer .form .chec .check {
+    display: block;
+    position: relative;
+    /* padding-left: 27px; */
+    /* margin-bottom: 12px; */
+    cursor: pointer;
+    font-size: 11px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+/* Hide the browser's default checkbox */
+
+.check input {
+    position: relative;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+
+/* Create a custom checkbox */
+
+.checkmark {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 16px;
+    /* width: 16px; */
+    background-color: #273486;
+}
+
+.enregistrer .boutons {
+    /* margin-top: 260px; */
+    display: flex;
+    /* padding-left: 50px; */
+}
+
+.enregistrer .boutons button {
+    background-color: #273486;
+    width: 100px;
+    height: 40px;
+    font-weight: bold;
+    border-radius: 30px;
+    color: #fff;
+    border: none;
+    font-size: 20px;
+}
+
+
+/* .enregistrer .boutons .bouton1 {
+    padding-right: 150px;
+} */
+
 
 /*---------------------------------End of Enregistation------------------------------*/
 
+
 /*------------------------------Tableau---------------------------------*/
 
-.tableau{
-	height:61%;
-	background-color:#fff;
-	position: absolute;
-	margin-left: 68%;
-	top:60%;
-	transform:translate(-50%,-50%);
-    box-shadow:3px 3px 30px rgba(66,57,238,0.2);
+.tableau {
+    /* width: 600px; */
+    background-color: #fff;
+    position: relative;
+    /* margin-left: 68%; */
+    /* top: 60%; */
+    /* transform: translate(-50%, -50%); */
+    box-shadow: 3px 3px 30px rgba(66, 57, 238, 0.2);
     border-collapse: collapse;
 }
 
-.tableau .forme{
-	background-color: #273486;
-	font-weight: bold;
-	color: #fff;
+.tableau .forme {
+    background-color: #273486;
+    font-weight: bold;
+    color: #fff;
 }
 
-.tableau .groupe button{
-	font-size: 11px;
-	border-radius: 30px;
-	background-color: #273486;
-	color: #fff;
-	border: none;
-	padding: 5px;
-	font-weight: bold;
-	width: 100px;
+.tableau .groupe button {
+    font-size: 11px;
+    border-radius: 30px;
+    background-color: #273486;
+    color: #fff;
+    border: none;
+    padding: 5px;
+    font-weight: bold;
+    width: 100px;
 }
 
-.tableau .groupe{
-	margin-top: 15px;
-	padding-right: 40px;
+.tableau .groupe {
+    /* margin-top: 15px; */
+    /* padding-right: 40px; */
 }
 
-.tableau .groupe .bordure{
-	border: none;
+.tableau .groupe .bordure {
+    border: none;
 }
 
-.tableau .groupe .color{
-	border: none;
+.tableau .groupe .color {
+    border: none;
 }
 
-#couleur0{
-	background-color: #ff7700;
+#couleur0 {
+    background-color: #ff7700;
 }
-#couleur1{
-	background-color: #28be69;
+
+#couleur1 {
+    background-color: #28be69;
 }
+
 
 /*---------------------------------------End of Tableau-------------------*/
 
-.title_h2 h2{
-position: absolute;
-top: 105px;
-right: 250px;
-color: #273486;
+.title_h2 h2 {
+    position: relative;
+    /* top: 105px; */
+    /* right: 250px; */
+    color: #273486;
 }
-
 
 
 /*---------------------------------footer-----------------------------*/
-footer{
-	position: absolute;
-	bottom: 0px;
-	right: 650px;
-	color: #ed1f24;
+
+footer {
+    position: relative;
+    bottom: -150px;
+    /* right: 650px; */
+    color: #ed1f24;
 }
+
+
 /*---------------------------------end of footer-----------------------------*/
