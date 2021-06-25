@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../../public/css/main_courante.css">
+    <link rel="stylesheet" href="../../public/css/style_client.css">
+    <link rel="stylesheet" href="../../public/css/bootstrap.min.css">
+    <title>Main courante</title>
+</head>
+
+<body>
+    <!------------------------header--------------------------------->
+
+    <div class="container-fluid">
+        <header>
+            <div class="container-fluid offset">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="header">
+                            <div class="logo_nom col-md-4">
+                                <img src="/image/Logo-atitle-hotelJ.png" alt="logo" class="image" style="width: 60px; height: 60px;">
+                                <h2>HOTEL ALTITEL</h2>
+                            </div>
+                            <div class="manu_a col-md-6 offset-0">
+                                <ul>
+                                    <div class="col-md-2">
+                                        <li><a href="" class="lien_menu">Accueil</a></li>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <li><a href="/" class="lien_menu">Main courant</a></li>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <li><a href="" class="lien_menu">Bilan</a></li>
+                                    </div>
+                                </ul>
+                            </div>
+
+                            <div class="deconnexion col-md-2">
+                                <a href="" class="lien" style="color: rgb(32, 3, 65);"><span class="couleur">Deconnexion</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+    <!--------------------End of header--------------------------------->
+    <div class="container">
+
+
+
+        <h2 class="titre_h2">Main courant réception</h2>
+        <div class="date">
+            <label for="date">Selectionner la date ici</label>
+            <input type="date" name="" id="date" value="2021-06-12" class="date_color">
+            <button type="submit">valider</button>
+        </div>
+
+
+        <div class="tableaux">
+
+            <table>
+                <thead class="forme">
+
+                    <tr>
+                        <th>Nom</th>
+                        <th>N°chambre</th>
+                        <th>Petit déjeuner</th>
+                        <th>Restaurant</th>
+                        <th>Bar</th>
+                        <th>Linge</th>
+                        <th>Divers</th>
+                        <th>Total jour</th>
+                        <th>Rpport veille</th>
+                        <th>Total général</th>
+                        <th>Règlement</th>
+                        <th>A raporter</th>
+                    </tr>
+                </thead>
+
+                <tr>
+                    <% var i=0;
+                        var totalj=0;
+                        var totaljh=0;
+                        var totalg=0;
+                         client.forEach(function(row){ %>
+                        <td>
+                            <%= row.nom %>
+                        </td>
+                        <td>
+                            <%= chambreclient[i].id_chambre %>
+                        </td>
+                        <% if(i<= commande.length -1) {
+                             %>
+
+                            <% if(commande[i].lieu==='Petit dejeune' && commande[i].id_client==row.id_client){ %>
+                                <td>
+                                    <%= commande[i].montant %>
+                                </td>
+                                <% }else{%>
+                                    <td>0</td>
+                                    <% } %>
+                                        <% if(commande[i].lieu==='Restaurant' && commande[i].id_client===row.id_client){ %>
+                                            <td>
+                                                <%= commande[i].montant %>
+                                            </td>
+                                            <% }else{%>
+                                                <td>0</td>
+                                                <% } %>
+                                                    <% if(commande[i].lieu==='Bar' && commande[i].id_client===row.id_client){ %>
+                                                        <td>
+                                                            <%= commande[i].montant %>
+                                                        </td>
+                                                        <% }else{%>
+                                                            <td>0</td>
+                                                            <% } %>
+                                                                <% if(commande[i].lieu==='Linge' && commande[i].id_client===row.id_client){ %>
+                                                                    <td>
+                                                                        <%= commande[i].montant %>
+                                                                    </td>
+                                                                    <% } else{%>
+                                                                        <td>0</td>
+                                                                        <% } %>
+                                                                            <% if(commande[i].lieu==='Divers' && commande[i].id_client===row.id_client){ %>
+                                                                                <td>
+                                                                                    <%= commande[i].montant %>
+                                                                                </td>
+                                                                                <% } else{%>
+                                                                                    <td>0</td>
+                                                                                    <% } %>
+                                                                                        <%   if( commande[i].id_client===row.id_client){ 
+                                                totalj=commande[i].montant * commande[i].nombre; %>
+                                                                                            <td>
+                                                                                                <%= totalj %>
+                                                                                            </td>
+                                                                                            <% }  else{%>
+                                                                                                <td>0</td>
+                                                                                                <% } %>
+
+                                                                                                    <% if(i<= commandeh.length -1) {
+                            %>
+                                                                                                        <%   if( commandeh[i].id_client===row.id_client){ totaljh=commandeh[i].montant * commandeh[i].nombre;
+                            %>
+                                                                                                            <td>
+                                                                                                                <%= totaljh  %>
+                                                                                                            </td>
+                                                                                                            <% }  else{%>
+                                                                                                                <td>0</td>
+                                                                                                                <% } %>
+                                                                                                                    <% } else{%>
+                                                                                                                        <td>0</td>
+                                                                                                                        <% } %>
+                                                                                                                            <td>
+                                                                                                                                <%= totaljh+totalj  %>
+                                                                                                                            </td>
+                                                                                                                            <%   if( status[i].id_client===row.id_client){  %>
+
+                                                                                                                                <td>
+                                                                                                                                    <%= status[i].montant* status[i].nombre  %>
+                                                                                                                                </td>
+                                                                                                                                <% }  else{%>
+                                                                                                                                    <td>0</td>
+                                                                                                                                    <% } %>
+
+                                                                                                                                        <td>
+                                                                                                                                            <%= totaljh+totalj  %>
+                                                                                                                                        </td>
+                                                                                                                                        <% } %>
+                </tr>
+
+
+                <% i=i+1;
+}) %>
+
+            </table>
+
+
+        </div>
+
+
+
+
+
+
+
+        <!--------------------------------footer--------------------------------->
+        <footer>
+            <p>copyrygth MI 2020</p>
+        </footer>
+        <!--------------------------------footer--------------------------------->
+    </div>
+
+
+</body>
+
+</html>

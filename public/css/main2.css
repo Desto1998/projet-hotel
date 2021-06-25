@@ -1,0 +1,205 @@
+
+body{
+	margin: 0;
+    padding: 0;
+    background-color: #fff;
+}
+/*---------------------------------header-----------------------------*/
+.header{
+	display: flex;
+    height: 75px;
+	background-color: #273486;
+}
+
+.header .logo_nom{
+	display: flex;
+	margin: 0px;
+	padding-left: 30px;
+	padding-top: 10px;
+}
+
+.header .logo_nom h2{
+	padding-left: 20px;
+	color: #fff;
+}
+
+.header .manu_a{
+	float: left;
+}
+
+.header .manu_a ul{
+	position: absolute;
+	display: flex;
+	list-style-type: none;
+	margin-left: 400px;
+	top: -15px;
+}
+.header .manu_a li{
+	padding: 30px;
+}
+
+.header  a{
+	text-decoration: none;
+	color: #fff;
+	font-weight: bold;
+}
+
+ .header .déconnexion .lien{
+	display: block;
+	padding: 24px 50px;
+	margin-left: 822.5px;
+	font-size: 25px;
+	text-decoration: none;
+	background-color: #fff;
+}
+/*---------------------------------end of header-----------------------------*/
+
+/*--------------------------Bar de recherche---------------------------*/
+h2,h3{
+    text-align: center;
+    color: #273486;
+}
+.bar_de_recherche{
+    margin-left: 370px;
+    margin-top: 20px;
+}
+
+.bar_de_recherche .recherche{
+    padding-left: 10px;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    width: 500px;
+    height: 37px;
+    border-color: #273486;
+}
+
+.bar_de_recherche .boutton_recherche{
+    margin-left: -6px;
+    width: 120px;
+    height: 40px;
+    font-size: 15px;
+    background-color: #273486;
+    border: none;
+    color: #fff;
+}
+
+
+/*--------------------------End of Bar de recherche---------------------------*/
+
+/*----------------------------------champs de renseignement------------------*/
+.champs{
+	width:70%;
+	height:56%;
+	background-color:#fff;
+	position: absolute;
+	left:50%;
+	top:60%; 
+	transform:translate(-50%,-50%);
+	box-shadow:2px 2px 30px rgba(66,57,238,0.2);
+}
+
+.champs .nom_prenom{
+	position: absolute;
+	margin-left: 150px;
+	top: 25px;
+}
+
+.champs .nom_prenom .nom,.phone{
+	margin-left: 40px;
+}
+.champs .nom_prenom #nom,#phone{
+	margin-right: 200px;
+
+}
+.champs .nom_prenom .nom,.phone{
+	float: left;
+}
+.champs .phone_cni{
+	margin-top: 70px;
+	margin-left: 150px;
+}
+#prenom,#nom,#phone,#cni{
+	width: 170px;
+	height: 30px;
+}
+
+.h2{
+	text-align: center;
+	color: #273486;
+	margin-top: 180px;
+}
+/*-------------------------------chambre disponible-----------------------*/
+.etat{
+	margin-left: 100px;
+	margin-bottom: 100px;
+}
+.etat .chambre_standart{
+	float: left;
+	margin-right: 50px;
+}
+
+.btn{
+	display: block;
+	width: 100%;
+	height: 50px;
+	border-radius: 25px;
+	outline: none;
+	border: none;
+	background-image: linear-gradient(to right,  #273486, #382e6d,  #273486);
+	background-size: 200%;
+	font-size: 1.2rem;
+	color: #fff;
+	font-family: 'Poppins', sans-serif;
+	text-transform: uppercase;
+	margin: 1rem 0;
+	cursor: pointer;
+	transition: .5s;
+}
+.btn:hover{
+	background-position: right;
+}
+.back{
+	background-color: #273486;
+	border: none;
+	color: #fff;
+	width: 40px;
+	height: 40px;
+	border-radius: 10px;
+}
+
+#gap{
+	margin-right: 30px;
+}
+
+.checked_in{
+	background-color: #273486;
+	width: 130px;
+	height: 30px;
+	border: none;
+	color: #fff;
+	border-radius: 20px;
+	margin-top: 401px;
+	margin-left: 590px;
+}
+/*-------------------------------End of chambre disponible-----------------------*/
+
+/*----------------------------------End of champs de renseignement------------------*/
+
+/*---------------------------------footer-----------------------------*/
+footer{
+	position: absolute;
+	bottom: 0px;
+	right: 650px;
+	color: #ed1f24;
+}
+/*---------------------------------end of footer-----------------------------*/
+
+.b{
+	background-color: #273486;
+	border: none;
+	color: #fff;
+	width: 20px;
+	height: 20px;
+	border-radius: 10px;
+}
