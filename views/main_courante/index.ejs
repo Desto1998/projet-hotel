@@ -4,69 +4,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
+
     <link rel="stylesheet" href="../../public/css/main_courante.css">
-    <title>Doc</title>
+    <link rel="stylesheet" href="../../public/css/style_client.css">
+    <link rel="stylesheet" href="../../public/css/bootstrap.min.css">
+    <title>Main courante</title>
 </head>
 
 <body>
+    <!------------------------header--------------------------------->
 
-    <div class="container">
-       <!------------------------header--------------------------------->
-       <div class="header">
-        <div class="logo_nom">
-            <img src="/image/Logo-atitle-hotelJ.png" alt="logo" class="image" style="width: 60px; height: 60px;">
-            <h2>HOTEL ALTITEL</h2>
-        </div>
-        <div class="manu_a">
-            <ul>
-                <li><a href="" class="lien_menu">Accueil</a></li>
-                <li><a href="/receptioniste/main_courant" class="lien_menu">Main courant</a></li>
-                <li><a href="" class="lien_menu">Bilan</a></li>
-            </ul>
-        </div>
+    <div class="container-fluid">
+        <header>
+            <div class="container-fluid offset">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="header">
+                            <div class="logo_nom col-md-4">
+                                <img src="/image/Logo-atitle-hotelJ.png" alt="logo" class="image" style="width: 60px; height: 60px;">
+                                <h2>HOTEL ALTITEL</h2>
+                            </div>
+                            <div class="manu_a col-md-6 offset-0">
+                                <ul>
+                                    <div class="col-md-2">
+                                        <li><a href="" class="lien_menu">Accueil</a></li>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <li><a href="/receptioniste/main_courant" class="lien_menu">Main courant</a></li>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <li><a href="" class="lien_menu">Bilan</a></li>
+                                    </div>
+                                </ul>
+                            </div>
 
-        <div class="déconnexion">
-            <a href="" class="lien" style="color: rgb(32, 3, 65);"><span class="couleur">Deconnexion</span></a>
-        </div>  
-    </div>
-       <!--------------------End of header--------------------------------->
-
-
-            <h2 class="titre_h2">Main courant réception</h2>
-            <div class="date">
-                <label for="date">Selectionner la date ici</label>
-                <input type="date" name="" id="date" value="2021-06-12" class="date_color">
-                <button type="submit">valider</button>
+                            <div class="deconnexion col-md-2">
+                                <a href="" class="lien" style="color: rgb(32, 3, 65);"><span class="couleur">Deconnexion</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </header>
+    </div>
+    <!--------------------End of header--------------------------------->
+    <div class="container">
 
 
-            <div class="tableaux">
 
-                <table>
-                    <thead class="forme">
-                      
-                        <tr>
-                            <th>Nom</th>
-                            <th>N°chambre</th>
-                            <th>Petit déjeuner</th>
-                            <th>Restaurant</th>
-                            <th>Bar</th>
-                            <th>Linge</th>
-                            <th>Divers</th>
-                            <th>Total jour</th>
-                            <th>Rpport veille</th>
-                            <th>Total général</th>
-                            <th>Règlement</th>
-                            <th>A raporter</th>
-                        </tr>
-                    </thead>
-                   
+        <h2 class="titre_h2">Main courant réception</h2>
+        <form action="/receptioniste/main_courant" method="POST">
+
+        <div class="date">
+            <label for="date">Selectionner la date ici</label>
+            <input type="date" name="date" id="date"  class="date_color">
+            <button type="submit">valider</button>
+        </div>
+    </form>
+
+        <div class="tableaux">
+
+            <table>
+                <thead class="forme">
+
                     <tr>
-                        <% var i=0;
+                        <th>Nom</th>
+                        <th>N°chambre</th>
+                        <th>Petit déjeuner</th>
+                        <th>Restaurant</th>
+                        <th>Bar</th>
+                        <th>Linge</th>
+                        <th>Divers</th>
+                        <th>Total jour</th>
+                        <th>Rpport veille</th>
+                        <th>Total général</th>
+                        <th>Règlement</th>
+                        <th>A raporter</th>
+                    </tr>
+                </thead>
+
+                <tr>
+                    <% var i=0;
                         var totalj=0;
                         var totaljh=0;
                         var totalg=0;
+                        if(commande.length>=1){
                          client.forEach(function(row){ %>
                         <td><%= row.nom %></td>
                         <td><%= chambreclient[i].id_chambre %>   </td>
@@ -130,8 +152,42 @@
 
                     
 <% i=i+1;
-}) %>
-
+}) } else { %>
+    <td></td>
+    <td>0 </td>
+  
+        
+   
+        <td>0</td>
+        
+   
+            <td>0</td>
+            
+      
+                <td>0</td>
+                
+         
+                    <td>0</td>
+                   
+              
+                        <td>0</td>
+                       
+                      
+        <td>0</td>
+        
+    
+   
+                <td>0</td>
+               
+    <td>0</td>
+   
+        <td>0</td>
+      
+   
+    <td>0 </td>
+   
+</tr>
+<% } %>
                 </table>
 
 

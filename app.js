@@ -176,22 +176,23 @@ app.get('/receptioniste/main_courant', (req, res) => {
    var day=toDay.toISOString().slice(0, 10)+" 00:00:00";
     
     
-    var sql = "select * from client ORDER BY id_client ASC";
+    var sql = "select * from client  ORDER BY id_client ASC";
     mysqlConnection.query(sql, (err, rows, fields) => {
         client = rows;
-        var sql = "select * from commande where date_commande >= '"+day+"'   ORDER BY id_client ASC ";
+        var sql = "select * from commande    ORDER BY id_client ASC ";
         mysqlConnection.query(sql, (err, rows, fields) => {
             commande=rows;
             var sql = "select * from chambreclient ORDER BY id_client ASC";
             mysqlConnection.query(sql, (err, rows, fields) => {
                 chambreclient=rows;
-                var sql = "select * from commande where date_commande >= '"+hier+"' and date_commande <= '"+day+"'  ORDER BY id_client ASC ";
+                var sql = "select * from commande  ORDER BY id_client ASC ";
         mysqlConnection.query(sql, (err, rows, fields) => {
             commandeh=rows;
             var sql = "select * from commande where status= '0' ORDER BY id_client ASC ";
         mysqlConnection.query(sql, (err, rows, fields) => {
             status=rows;
-            console.log(status);
+           // console.log(status);
+           console.log(commande)
     res.render('main_courante/index', {
         client,
         chambreclient,
@@ -204,6 +205,68 @@ app.get('/receptioniste/main_courant', (req, res) => {
         })
     });
 });
+
+
+
+
+
+
+
+
+
+app.post('/receptioniste/main_courant', urlencodedParser, (req, res) => {
+    
+
+
+
+
+
+
+    let date = Date.now();
+     var yesterday = new Date(new Date().setDate(new Date().getDate()-1));
+     let MyDate = yesterday.toISOString().slice(0, 10);
+     let toDay= new Date(date);
+ 
+     
+     let hier = MyDate+" 00:00:00";
+ 
+     var day=req.body.date+" 00:00:00";
+     
+     
+     var sql = "select * from client ORDER BY id_client ASC";
+     mysqlConnection.query(sql, (err, rows, fields) => {
+         client = rows;
+         var sql = "select * from commande where date_commande >= '"+day+"'   ORDER BY id_client ASC ";
+         mysqlConnection.query(sql, (err, rows, fields) => {
+             commande=rows;
+             var sql = "select * from chambreclient ORDER BY id_client ASC";
+             mysqlConnection.query(sql, (err, rows, fields) => {
+                 chambreclient=rows;
+                 var sql = "select * from commande where date_commande >= '"+hier+"' and date_commande <= '"+day+"'  ORDER BY id_client ASC ";
+         mysqlConnection.query(sql, (err, rows, fields) => {
+             commandeh=rows;
+             var sql = "select * from commande where status= '0' ORDER BY id_client ASC ";
+         mysqlConnection.query(sql, (err, rows, fields) => {
+             status=rows;
+            // console.log(status);
+            console.log(commande)
+     res.render('main_courante/index', {
+         client,
+         chambreclient,
+         commande
+         
+     })
+ })
+         });
+             })
+         })
+     });
+ });
+
+
+
+
+
 
 
 
