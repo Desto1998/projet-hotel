@@ -4,9 +4,9 @@ const htmlPdf = require('html-pdf');
 const fs = require('fs');
 const ejs = require('ejs');
 var path = require('path');
-const cookierParser = require('cookie-parser');
+// const cookierParser = require('cookie-parser');
 const session = require('express-session');
-
+const router = express.Router();
 const { check, validatorResult, validationResult } = require('express-validator');
 //const methodeOverride = require(methode-Override);
 var app = express();
@@ -27,7 +27,7 @@ app.use(session({
     secret:'123456xxx',
     saveUninitialized:false,
     resave:false,
-    cookie: { maxAge: oneDay },
+    // cookie: { maxAge: oneDay },
 }));
 var id_user;
 var mysqlConnection = mysql.createConnection({
@@ -57,21 +57,32 @@ app.listen(process.env.PORT || 3000, function() {
 
 console.log('Server currently listening...');
 
-app.get('/', (req, res) => {
-    res.render('login/login')
+router.get('/', (req, res) => {
+
+    let sess = req.session;
+    if(!sess.username) {
+        res.render('login/login')
+    }else{
+        res.redirect('/acceuil/clients');
+    }
+
+});
+router.get('/',(req,res) => {
+
 });
 router.get('/logout',(req,res) => {
     req.session.destroy((err) => {
         if(err) {
             return console.log(err);
         }
-        res.redirect('/');
+        res.redirect('/')
     });
 
 });
 app.get('/register', (req, res) => {
     res.render('register')
 });
+app.use('/', router);
 app.get('/delete', (req, res) => {
     res.render('delete')
 });
@@ -315,80 +326,78 @@ app.post('/', urlencodedParser, [
         })
     }
     var id = 0;
+    if(sess.role == 'admin' || sess.role=='receptioniste' && sess.username) {
+        if (req.body.username != undefined && req.body.password != undefined) {
+            var sql = "select * from utilisateur where nom ='" + req.body.username + "' and password = '" + req.body.password + "'";
+            mysqlConnection.query(sql, (err, rows, fields) => {
+                console.log(err);
+                if (!err) {
 
-    if (req.body.username != undefined && req.body.password != undefined) {
-        var sql = "select * from utilisateur where nom ='" + req.body.username + "' and password = '" + req.body.password + "'";
-        mysqlConnection.query(sql, (err, rows, fields) => {
-            console.log(err);
-            if (!err) {
+                    if (rows.length == 1) {
+                        id = rows[0].id_user;
+                        userData= rows;
+                        var sql = "select * from profil where id_user =" + id + "";
+                        mysqlConnection.query(sql, (err, rows, fields) => {
 
-                if (rows.length == 1) {
-                    id = rows[0].id_user;
-                    userData= rows;
-                    var sql = "select * from profil where id_user =" + id + "";
-                    mysqlConnection.query(sql, (err, rows, fields) => {
+                            if (!err) {
+                                var role = rows[0].role;
+                                if (role == 'admin') {
 
-                        if (!err) {
-                            var role = rows[0].role;
-                            if (role == 'admin') {
-
-                                var sql = "select * from client";
-                                mysqlConnection.query(sql, (err, rows, fields) => {
-                                    client=rows;
-                                    var sql = "select * from chambreclient";
+                                    var sql = "select * from client";
                                     mysqlConnection.query(sql, (err, rows, fields) => {
-                                        chambre=rows;
-
-                                        sess = req.session;
-                                        sess.username = userData[0].nom;
-                                        sess.userid = userData[0].id_user;
-                                        sess.role = role;
-                                        sess.userid = userData[0].id_user;
-                                        console.log(sess);
-                                res.render('client/client',{
-                                    client,
-                                    chambre
-                                });
-                                })
-                            })
-                            }
-                            if (role == 'receptioniste') {
-                                var sql = "select * from client";
-                                mysqlConnection.query(sql, (err, rows, fields) => {
-                                    client=rows;
-                                    var sql = "select * from chambreclient";
+                                        client=rows;
+                                        var sql = "select * from chambreclient";
+                                        mysqlConnection.query(sql, (err, rows, fields) => {
+                                            chambre=rows;
+                                            sess = req.session;
+                                            sess.username = userData[0].nom;
+                                            sess.userid = userData[0].id_user;
+                                            sess.role = role;
+                                            sess.userid = userData[0].id_user;
+                                            res.render('client/client',{
+                                                client,
+                                                chambre
+                                            });
+                                        })
+                                    })
+                                }
+                                if (role == 'receptioniste') {
+                                    var sql = "select * from client";
                                     mysqlConnection.query(sql, (err, rows, fields) => {
-                                        chambre=rows;
+                                        client=rows;
+                                        var sql = "select * from chambreclient";
+                                        mysqlConnection.query(sql, (err, rows, fields) => {
+                                            chambre=rows;
+                                            sess = req.session;
+                                            sess.username = userData[0].nom;
+                                            sess.role = role;
+                                            sess.userid = userData.id_user;
+                                            res.render('client/client',{
+                                                client,
+                                                chambre
+                                            });
+                                        })
+                                    })
+                                }
+                                //res.send(rows);
+                            } else
+                                res.render('login/login')
 
-
-                                        sess = req.session;
-                                        sess.username = userData[0].nom;
-                                        sess.role = role;
-                                        sess.userid = userData.id_user;
-                                        console.log(req.session);
-
-                                res.render('client/client',{
-                                    client,
-                                    chambre
-                                });
-                                })
-                            })
-                            }
-                            //res.send(rows);
-                        } else
-                            res.render('login/login')
-
-                    })
-                } else {
-                    var requette;
-                    res.render('login/login', {
-                        requette: 'error'
-                    })
-                }
-            } else
-                res.render('login/login')
-        })
+                        })
+                    } else {
+                        var requette;
+                        res.render('login/login', {
+                            requette: 'error'
+                        })
+                    }
+                } else
+                    res.render('login/login')
+            })
+        }
+    }else{
+        res.redirect('/acceuil/clients')
     }
+
 });
 
 var id = 0;
@@ -922,19 +931,24 @@ id=req.params.id;
         })
     
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
+app.get("/acceuil/clients",(req,res)=>{
+    if(sess.role == 'admin' || sess.role=='receptioniste' && sess.username) {
+        var sql = "select * from client";
+        mysqlConnection.query(sql, (err, rows, fields) => {
+            client = rows;
+            var sql = "select * from chambreclient";
+            mysqlConnection.query(sql, (err, rows, fields) => {
+                chambre = rows;
+                res.render('client/client', {
+                    client,
+                    chambre
+                });
+            })
+        })
+    }else{
+        res.redirect('/');
+    }
+});
 app.get("/admin/genererFacture/:id", (req, res) => {
 
     var id = req.params.id;
