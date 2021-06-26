@@ -4,11 +4,13 @@ const htmlPdf = require('html-pdf');
 const fs = require('fs');
 const ejs = require('ejs');
 var path = require('path');
+const cookierParser = require('cookie-parser');
+const session = require('express-session');
 
 const { check, validatorResult, validationResult } = require('express-validator');
 //const methodeOverride = require(methode-Override);
 var app = express();
-
+var sess;
 const bodyParser = require('body-parser');
 const { info } = require('console');
 
@@ -18,7 +20,16 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname));
 //app.use(methodeOverride('_methode'))
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
+const oneDay = 1000 * 60 * 60 * 24;
 
+app.use(session({
+    name:'User_Session',
+    secret:'123456xxx',
+    saveUninitialized:false,
+    resave:false,
+    cookie: { maxAge: oneDay },
+}));
+var id_user;
 var mysqlConnection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -49,7 +60,15 @@ console.log('Server currently listening...');
 app.get('/', (req, res) => {
     res.render('login/login')
 });
+router.get('/logout',(req,res) => {
+    req.session.destroy((err) => {
+        if(err) {
+            return console.log(err);
+        }
+        res.redirect('/');
+    });
 
+});
 app.get('/register', (req, res) => {
     res.render('register')
 });
@@ -287,8 +306,7 @@ app.post('/', urlencodedParser, [
     if (!errors.isEmpty()) {
         //return res.status(422).jsonp(errors.array())
         const alert = errors.array()
-        var requette = "password or login error";
-
+        var requette = "Erreur de mot de passe ou login";
 
         res.render('login/login', {
             alert,
@@ -301,21 +319,18 @@ app.post('/', urlencodedParser, [
     if (req.body.username != undefined && req.body.password != undefined) {
         var sql = "select * from utilisateur where nom ='" + req.body.username + "' and password = '" + req.body.password + "'";
         mysqlConnection.query(sql, (err, rows, fields) => {
+            console.log(err);
             if (!err) {
 
                 if (rows.length == 1) {
                     id = rows[0].id_user;
-
-                    var sql = "select role from profil where id_user =" + id + "";
+                    userData= rows;
+                    var sql = "select * from profil where id_user =" + id + "";
                     mysqlConnection.query(sql, (err, rows, fields) => {
+
                         if (!err) {
-                            var role = new String(rows[0].role);
-
-
-
-
+                            var role = rows[0].role;
                             if (role == 'admin') {
-
 
                                 var sql = "select * from client";
                                 mysqlConnection.query(sql, (err, rows, fields) => {
@@ -323,6 +338,13 @@ app.post('/', urlencodedParser, [
                                     var sql = "select * from chambreclient";
                                     mysqlConnection.query(sql, (err, rows, fields) => {
                                         chambre=rows;
+
+                                        sess = req.session;
+                                        sess.username = userData[0].nom;
+                                        sess.userid = userData[0].id_user;
+                                        sess.role = role;
+                                        sess.userid = userData[0].id_user;
+                                        console.log(sess);
                                 res.render('client/client',{
                                     client,
                                     chambre
@@ -337,6 +359,14 @@ app.post('/', urlencodedParser, [
                                     var sql = "select * from chambreclient";
                                     mysqlConnection.query(sql, (err, rows, fields) => {
                                         chambre=rows;
+
+
+                                        sess = req.session;
+                                        sess.username = userData[0].nom;
+                                        sess.role = role;
+                                        sess.userid = userData.id_user;
+                                        console.log(req.session);
+
                                 res.render('client/client',{
                                     client,
                                     chambre
@@ -357,10 +387,8 @@ app.post('/', urlencodedParser, [
                 }
             } else
                 res.render('login/login')
-
         })
     }
-
 });
 
 var id = 0;
@@ -407,7 +435,7 @@ row=rows;
 //console.log(row)
 if (req.body.chambre != undefined) {
    
-            var sql = "insert into client values(null,'" + req.body.name + "','" + req.body.prenom + "'," + req.body.phone + "," + req.body.cni + ", '" + clientDate  + "')";
+            var sql = "insert into client values(null," + req.body.name + ",'" + req.body.prenom + "'," + req.body.phone + "," + req.body.cni + ", '" + clientDate  + "')";
             mysqlConnection.query(sql, (err, rows, fields) => {
                 var sql = "select * from client where cni = " + req.body.cni + "";
             mysqlConnection.query(sql, (err, rows, fields) => {
@@ -429,14 +457,8 @@ if (req.body.chambre != undefined) {
                                 });
                                 })
                             })
-
-
                 })
             })
-
-              
-               
-            
         })
     }
        
