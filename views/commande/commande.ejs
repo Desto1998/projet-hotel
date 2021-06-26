@@ -5,40 +5,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../public/css/style_commande.css">
-    <title>Doc</title>
+    <link rel="stylesheet" href="../../public/css/style_client.css">
+    <link rel="stylesheet" href="../../public/css/bootstrap.min.css">
+    <title>Commandes</title>
 </head>
 
 <body>
+    <!------------------------header--------------------------------->
 
-    <div class="container">
-       <!------------------------header--------------------------------->
-       <div class="header">
-        <div class="logo_nom">
-            <img src="/image/Logo-atitle-hotelJ.png" alt="logo" class="image" style="width: 60px; height: 60px;">
-            <h2>HOTEL ALTITEL</h2>
-        </div>
-        <div class="manu_a">
-            <ul>
-                <li><a href="" class="lien_menu">Accueil</a></li>
-                <li><a href="/receptioniste/main_courant" class="lien_menu">Main courant</a></li>
-                <li><a href="" class="lien_menu">Bilan</a></li>
-            </ul>
-        </div>
+    <div class="container-fluid">
+        <header>
+            <div class="container-fluid offset">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="header">
+                            <div class="logo_nom col-md-4">
+                                <img src="/image/Logo-atitle-hotelJ.png" alt="logo" class="image" style="width: 60px; height: 60px;">
+                                <h2>HOTEL ALTITEL</h2>
+                            </div>
+                            <div class="manu_a col-md-6 offset-0">
+                                <ul>
+                                    <div class="col-md-2">
+                                        <li><a href="/acceuil/clients" class="lien_menu">Accueil</a></li>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <li><a href="/" class="lien_menu">Main courant</a></li>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <li><a href="" class="lien_menu">Bilan</a></li>
+                                    </div>
+                                </ul>
+                            </div>
 
-        <div class="déconnexion">
-            <a href="" class="lien" style="color: rgb(32, 3, 65);"><span class="couleur">Deconnexion</span></a>
-        </div>  
+                            <div class="deconnexion col-md-2">
+                                <a href="/logout" class="lien" style="color: rgb(32, 3, 65);"><span class="couleur">Deconnexion</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
     </div>
-       <!--------------------End of header--------------------------------->
-            <div class="login-content">
-                <form action="/receptioniste/commande/<%= id %>" method="POST">
-                    <img src="/image/Logo-atitle-hotel.png">
-                    <h2 class="title">
-                        <div class="liste_deroulante">
-                            <label for="poste"> <b> <i>Motif</i> </b></label>
-                            <select  id="poste" name="poste" >
+    <!--------------------End of header--------------------------------->
+    <div class="container">
+
+
+
+        <div class="login-content">
+            <form action="/receptioniste/commande/<%= id %>" method="POST">
+                <img src="/image/Logo-atitle-hotel.png">
+                <h2 class="title">
+                    <div class="liste_deroulante">
+                        <label for="poste"> <b> <i>Motif</i> </b></label>
+                        <select id="poste" name="poste">
                                 <option value="chambre">N°chambre</option>
-                                <option value="restaurant">Petit dejeune</option>
+                                <option value="restaurant">Petit dejeuné</option>
                                 <option value="restaurant">Restaurant</option>
                                 <option value="divers">Bar</option>
                                 <option value="linge">Linge</option>
@@ -52,7 +73,7 @@
                         </div>
                         <div class="div">
                             <h5>Nom de la commande</h5>
-                            <input type="text" class="input" id="nom" name="nom">
+                            <input type="text" class="input">
                         </div>
                     </div>
                     <div class="input-div pass">
@@ -61,17 +82,7 @@
                         </div>
                         <div class="div">
                             <h5>Montant</h5>
-                            <input type="number" class="input" name="montant" id="montant">
-                        </div>
-                        
-                    </div>
-                    <div class="input-div pass">
-                        <div class="i">
-                            <i class="fas fa-lock"></i>
-                        </div>
-                        <div class="div">
-                            <h5>nombre</h5>
-                            <input type="number" class="input" name="nombre">
+                            <input type="password" class="input">
                         </div>
                     </div>
 
