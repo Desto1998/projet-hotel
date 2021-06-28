@@ -1,0 +1,210 @@
+@import url('../css/font.css');
+
+html,body{
+    margin: 0%;
+   box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+:root{
+/*-----------------Theme colors----------------*/
+    --bgk-color:#273486;
+    --text-light:#686666da;
+    --bg-color:#0f0f0f;
+    --white:#ffffff;
+
+/*--------------------gradient color--------------*/
+   --sky:linear-gradient(120deg, #a1c4fd 0%, #b195f1 100%);
+
+
+/*-------------------them font-family-----------*/
+    --Abel:'Abel', cursive;
+    --Anton:'Anton', cursive;
+    --Josefin:'Josefin', cursive;
+    --Lexend:'Lexend', cursive;
+    --Livvic:'Livvic', cursive;
+}
+
+/*-------------------global classe--------------*/
+
+.ligne{
+    text-decoration: none;
+}
+
+.flexs-row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+/*------------------- End of global classe--------------*/
+
+
+
+/*--------------------navabar-------------------*/
+
+.ab{
+    background-color: var(--bgk-color);
+    height: 4.1rem;
+    min-height: 8vh;
+    overflow: hidden;
+    transition: height 1s ease-in-out;
+
+}
+
+.ab .ab-menu{
+    justify-content: space-between;
+}
+
+.ab .toggles-collapses{
+    position: absolute;
+    top: 0;
+    width: 90%;
+    cursor: pointer;
+    display: none;
+}
+ 
+.collapses{
+    height: 33rem;
+}
+
+
+.ab .toggles-collapses .toggles-icons{
+    display: flex;
+    justify-content: flex-end;
+    padding: 1.7rem 0;
+}
+
+.ab .toggles-collapses .toggles-icons i{
+    font-size: 1.4rem;
+    color: var(--text-gray);
+}
+
+.ab .ab-items{
+    list-style-type: none;
+    display: flex;
+    margin: 0; 
+    color: var(--white);
+}
+
+.ab .ab-items .ab-link{
+    padding: 1.6rem 0.5rem;
+
+    position: relative;
+    font-family: var(--Lexend);
+    font-size: 1rem;   
+}
+
+.ab .ab-items .ligne{
+    color: var(--white)
+}
+
+.image{
+ padding: 1rem 1rem;
+}
+
+.ab .ab-items .ab-link:hover{
+    background-color: var(--white);
+}
+
+.ab .ab-items .ab-link:hover .ligne{
+    color: var(--bgk-color);
+}
+
+.ab .ab-brand span{  
+    padding: 1.5rem 0;
+    font-size: 1.6rem;   
+    font-family: var(--Abel);
+    font-size: 1.3rem;
+    color: var(--white)
+}
+
+.ab .ab-brand{
+    display: flex;
+} 
+.ab .socials{
+    padding: 1.6rem 0;
+    
+}
+
+.ab .socials .liens{
+	padding: 1.7rem;
+    background-color: var(--white);
+    font-size: 1.1rem;
+    color: var(--bgk-color);
+}
+/*--------------------End of navabar-------------------*/
+
+
+/*--------------------------Main site section----------------------------*/
+
+/*-------------------site title-----------------------*/
+.title-date{
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.title{
+    padding: 1.5rem 2rem;
+    color: var(--bgk-color);
+}
+
+.date{
+    padding: 2rem 2rem;
+}
+
+.botton-valide{
+    width: 10rem;
+    border-radius: 3rem;
+    border: none;
+    background: var(--sky);
+}
+/*-------------------End of site title-----------------------*/
+
+/*--------------------------Tableau--------------------------*/
+
+.forme{
+	background-color: #273486;
+	color: white;
+}
+
+tr:nth-child(even){
+    background-color: rgb(209, 222, 248);
+}
+/*----------------------End of Tableau-----------------------*/
+
+/*------------------------End of Main site section-------------------------*/
+
+
+/*---------viewport less then or equal to 750px--------*/
+
+@media only screen and (max-width: 750px){
+    .ab .ab-menu, .ab .ab-items{
+        flex-direction: column;
+    }
+
+    .ab .toggles-collapses{
+        display: initial;
+    }
+
+   
+}
+
+@media only screen and (max-width: 526px){
+    .botton-valide{
+        width: 5rem;
+    }
+   
+    .date input{
+        width: 5rem;
+    }
+
+   
+}
+
+
+
+
+
+/*---------End of viewport less then or equal to 750px--------*/

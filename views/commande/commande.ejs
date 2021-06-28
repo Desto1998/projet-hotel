@@ -4,51 +4,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../public/css/style_commande.css">
-    <link rel="stylesheet" href="../../public/css/style_client.css">
-    <link rel="stylesheet" href="../../public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style_cm.css">
+    <!---------------------------------Font icons-------------------------------> 
+    <link rel="stylesheet" href="/css/all_cm.css">
+   
     <title>Commandes</title>
 </head>
 
 <body>
-    <!------------------------header--------------------------------->
+    <nav class="nav">
+        <div class="nav-menu flex-row">
+            <div class="nav-brand">
+                <div class="img">
+                  <img src="/image/Logo-atitle-hotelJ.png" alt="logo"  style="width: 50px; height: 50px;">
+                </div>          
+                  <span> HOTEL ALTITEL</span>
+            </div>
+            
 
-    <div class="container-fluid">
-        <header>
-            <div class="container-fluid offset">
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="header">
-                            <div class="logo_nom col-md-4">
-                                <img src="/image/Logo-atitle-hotelJ.png" alt="logo" class="image" style="width: 60px; height: 60px;">
-                                <h2>HOTEL ALTITEL</h2>
-                            </div>
-                            <div class="manu_a col-md-6 offset-0">
-                                <ul>
-                                    <div class="col-md-2">
-                                        <li><a href="/acceuil/clients" class="lien_menu">Accueil</a></li>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <li><a href="/" class="lien_menu">Main courant</a></li>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <li><a href="" class="lien_menu">Bilan</a></li>
-                                    </div>
-                                </ul>
-                            </div>
-
-                            <div class="deconnexion col-md-2">
-                                <a href="/logout" class="lien" style="color: rgb(32, 3, 65);"><span class="couleur">Deconnexion</span></a>
-                            </div>
-                        </div>
-                    </div>
+            <div class="toggle-collapse">
+                <div class="toggle-icons">
+                    <i class="fas fa-bars"></i>
                 </div>
             </div>
-        </header>
-    </div>
-    <!--------------------End of header--------------------------------->
-    <div class="container">
 
+            <div class="nav-items">
+                <li class="nav-link">
+                    <a href="/acceuil/clients">Accueil</a>
+                </li>
+                <li class="nav-link">
+                  <a href="/receptioniste/main_courant">Main courant</a>
+                </li>
+                <li class="nav-link">
+                  <a href="">Bilan</a>
+                </li>
+                <li class="nav-link">
+                  <a href="">Facture</a>
+                </li>
+                <li class="nav-link">
+                  <a href="">Contact </a>
+                </li>
+            </div>
+
+            <div class="social text-gray">
+              <a href="/logout" class="lien">Deconnexion</a>
+            </div>
+        </div>
+      </nav>
+    <!------------------------header--------------------------------->
+
+    
+    <!--------------------End of header--------------------------------->
+   
 
 
         <div class="login-content">
@@ -58,12 +65,13 @@
                     <div class="liste_deroulante">
                         <label for="poste"> <b> <i>Motif</i> </b></label>
                         <select id="poste" name="poste">
-                                <option value="chambre">N°chambre</option>
-                                <option value="restaurant">Petit dejeuné</option>
-                                <option value="restaurant">Restaurant</option>
-                                <option value="divers">Bar</option>
-                                <option value="linge">Linge</option>
-                                <option value="restaurant">Divers</option>
+                            <option value="">Sélectionnez une option</option>
+                            <option value="reglement">Règlement</option>
+                            <option value="restaurant">Petit dejeuné</option>
+                            <option value="restaurant">Restaurant</option>
+                            <option value="divers">Bar</option>
+                            <option value="linge">Linge</option>
+                            <option value="restaurant">Divers</option>
                             </select>
                         </div>
                     </h2>
@@ -72,8 +80,8 @@
                             <i class="fas fa-user"></i>
                         </div>
                         <div class="div">
-                            <h5>Nom de la commande</h5>
-                            <input type="text" class="input">
+                            <h5>Montant</h5>
+                            <input type="text" class="input" name="montant">
                         </div>
                     </div>
                     <div class="input-div pass">
@@ -81,8 +89,8 @@
                             <i class="fas fa-lock"></i>
                         </div>
                         <div class="div">
-                            <h5>Montant</h5>
-                            <input type="password" class="input">
+                            <h5>Nombre</h5>
+                            <input type="text" class="input" name="nombre">
                         </div>
                     </div>
 
@@ -97,9 +105,14 @@
                 <p>copyrygth MI 2020</p>
             </footer>
             <!--------------------------------footer--------------------------------->
-    </div>
+   
 
-    <script type="text/javascript" src="../../public/js/commande.js"></script>
+   
+      <!-----------------------------Jquery Library file---------------------------->
+      <script src="/js/Jquery3.4.1.min.js"></script>
+
+      <!-----------------------------Custom javascript file------------------------->
+      <script src="./js/main_cm.js"></script>
 </body>
 
 </html>
