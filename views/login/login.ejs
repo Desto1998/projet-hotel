@@ -3,7 +3,7 @@
 
 <head>
     <title>Connexion</title>
-    <link rel="stylesheet" type="text/css" href="../../public/css/stylel_login.css">
+    <link rel="stylesheet" type="text/css" href="../../public/css/style_log.css">
     <link rel="stylesheet" type="text/css" href="../../public/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 <!--    <script src="https://kit.fontawesome.com/a81368914c.js"></script>-->
@@ -12,32 +12,32 @@
 
 <body>
 
-    <div class="container">
-        <div class="login-content">
-            <form action="/login" method="POST">
-                <img src="./image/Logo-atitle-hotel.png">
-                <div class="input-div one">
+     <div class="login-content">
+        <form action="/login" method="POST">
+          <img src="image/Logo-atitle-hotel.png">
+         
+                 <div class="input-div one">
                     <div class="i">
-                        <i class="fas fa-user"></i>
+                        <i class="fas fa-user"  class="icons-bar"></i>
                     </div>
                     <div class="div">
                         <h5>Nom d'utilisateur</h5>
-                        <input type="text" name="username" class="input">
+                        <input type="text" class="input" name="username">
                     </div>
-                </div>
-                <div class="input-div pass">
-                    <div class="i">
-                        <i class="fas fa-lock"></i>
+                 </div>
+                 <div class="input-div pass">
+                    <div class="i"> 
+                       <i class="fas fa-lock"  class="icons-bar"></i>
                     </div>
                     <div class="div">
-                        <h5>Mot de passe</h5>
-                        <input type="password" name="password" class="input">
-                    </div>
+                       <h5>Mot de passe</h5>
+                       <input type="password" class="input" name="password">
+                   </div>
                 </div>
-                <a href="#" class="forgot-password">Mot de passe oublié?</a>
-                <input type="submit" class="login-btn" value="Connexion">
-            </form>
-        </div>
+                <a href="#" class="norme forgot-password" id="btnPopup" class="btnPopup">Mot de passe oublier?</a>
+                <input type="submit" class="btn" value="Connexion">
+              </form>
+          </div>
         <div class="modal" id="infos">
             <div class="modal-dialog  modal-lg">
                 <div class="modal-content">
@@ -56,8 +56,11 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="../../public/js/login.js"></script>
-    <script type="text/javascript" src="../../public/js/jquery-3.6.0.min.js"></script>
+   <!-----------------------------Jquery Library file---------------------------->
+   <script src="/js/Jquery3.4.1.min.js"></script>
+
+   <!-----------------------------Custom javascript file------------------------->
+ <script src="/js/main.js"></script>
     <script>
         $('.modal').hide();
         $('.forgot-password').click(function() {
