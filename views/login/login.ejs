@@ -3,61 +3,64 @@
 
 <head>
     <title>Connexion</title>
-    <link rel="stylesheet" type="text/css" href="../../public/css/stylel_login.css">
+    <link rel="stylesheet" type="text/css" href="../../public/css/style_log.css">
     <link rel="stylesheet" type="text/css" href="../../public/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
-<!--    <script src="https://kit.fontawesome.com/a81368914c.js"></script>-->
+    <!--    <script src="https://kit.fontawesome.com/a81368914c.js"></script>-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
 
-    <div class="container">
-        <div class="login-content">
-            <form action="/login" method="POST">
-                <img src="./image/Logo-atitle-hotel.png">
-                <div class="input-div one">
-                    <div class="i">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="div">
-                        <h5>Nom d'utilisateur</h5>
-                        <input type="text" name="username" class="input">
-                    </div>
-                </div>
-                <div class="input-div pass">
-                    <div class="i">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <div class="div">
-                        <h5>Mot de passe</h5>
-                        <input type="password" name="password" class="input">
-                    </div>
-                </div>
-                <a href="#" class="forgot-password">Mot de passe oublié?</a>
-                <input type="submit" class="login-btn" value="Connexion">
-            </form>
-        </div>
-        <div class="modal" id="infos">
-            <div class="modal-dialog  modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header ">
-                        <button type="button" title="Fermer" class="close btn-light" datadismiss="modal">x</button>
-                        <h4 class="modal-title" style="position:fixed; margin-left:30px;">Récupération du mot de passe </h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <p>Veillez contacter l'administrateur pour Récupérer votre mot de passe MERCI!</p>
+    <div class="login-content">
+        <form action="/login" method="POST">
+            <img src="image/Logo-atitle-hotel.png">
 
-                        </div>
-                    </div>
-
+            <div class="input-div one">
+                <div class="i">
+                    <i class="fas fa-user" class="icons-bar"></i>
                 </div>
+                <div class="div">
+                    <h5>Nom d'utilisateur</h5>
+                    <input type="text" class="input" name="username">
+                </div>
+            </div>
+            <div class="input-div pass">
+                <div class="i">
+                    <i class="fas fa-lock" class="icons-bar"></i>
+                </div>
+                <div class="div">
+                    <h5>Mot de passe</h5>
+                    <input type="password" class="input" name="password">
+                </div>
+            </div>
+            <a href="#" class="norme forgot-password" id="btnPopup" class="btnPopup">Mot de passe oublier?</a>
+            <input type="submit" class="btn" value="Connexion">
+        </form>
+    </div>
+    <div class="modal" id="infos">
+        <div class="modal-dialog  modal-lg">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <button type="button" title="Fermer" class="close btn-light" datadismiss="modal">x</button>
+                    <h4 class="modal-title" style="position:fixed; margin-left:30px;">Récupération du mot de passe </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <p>Veillez contacter l'administrateur pour Récupérer votre mot de passe MERCI!</p>
+
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="../../public/js/login.js"></script>
-    <script type="text/javascript" src="../../public/js/jquery-3.6.0.min.js"></script>
+
+    <!-----------------------------Jquery Library file---------------------------->
+    <script src="/public/js/Jquery3.4.1.min.js"></script>
+
+    <!-----------------------------Custom javascript file------------------------->
+    <script src="/public/js/main.js"></script>
     <script>
         $('.modal').hide();
         $('.forgot-password').click(function() {

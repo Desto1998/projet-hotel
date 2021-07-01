@@ -23,21 +23,21 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const oneDay = 1000 * 60 * 60 * 24;
 
 app.use(session({
-    name:'User_Session',
-    secret:'123456xxx',
-    saveUninitialized:false,
-    resave:false,
+    name: 'User_Session',
+    secret: '123456xxx',
+    saveUninitialized: false,
+    resave: false,
     // cookie: { maxAge: oneDay },
-    role:'',
-    username:'',
-    userid:'',
+    role: '',
+    username: '',
+    userid: '',
 }));
 var id_user;
 var mysqlConnection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '',
-    database: 'hotels'
+    password: 'Hostire1',
+    database: 'hotel'
 });
 mysqlConnection.connect((err) => {
     if (!err)
@@ -63,20 +63,20 @@ console.log('Server currently listening...');
 router.get('/', (req, res) => {
 
 
-    if(!req.session.username) {
+    if (!req.session.username) {
         res.render('login/login')
-    }else{
+    } else {
         res.redirect('/acceuil/clients');
     }
 
 });
 
-router.get('/logout',(req,res) => {
-    req.session.username='';
-    req.session.role='';
-    req.session.userid= '';
+router.get('/logout', (req, res) => {
+    req.session.username = '';
+    req.session.role = '';
+    req.session.userid = '';
     req.session.destroy();
-        res.redirect('/')
+    res.redirect('/')
 });
 app.get('/register', (req, res) => {
     res.render('register')
@@ -94,11 +94,11 @@ app.get('/authentification', (req, res) => {
 app.get('/receptioniste/client', (req, res) => {
     var sql = "select * from chambre where status = 'libre'";
     mysqlConnection.query(sql, (err, rows, fields) => {
-row=rows;
-res.render('clients', {
-    row
-})
-})
+        row = rows;
+        res.render('clients', {
+            row
+        })
+    })
 });
 
 
@@ -185,7 +185,7 @@ app.get('/admin/facture_admin', (req, res) => {
 
 app.get("/receptioniste/commande/:id", (req, res) => {
     var id = req.params.id;
-    res.render('commande/commande',{
+    res.render('commande/commande', {
         id
     })
 });
@@ -194,42 +194,42 @@ app.get("/receptioniste/commande/:id", (req, res) => {
 
 
 app.get('/receptioniste/main_courant', (req, res) => {
-   let date = Date.now();
-    var yesterday = new Date(new Date().setDate(new Date().getDate()-1));
+    let date = Date.now();
+    var yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
     let MyDate = yesterday.toISOString().slice(0, 10);
-    let toDay= new Date(date);
+    let toDay = new Date(date);
 
-    
-    let hier = MyDate+" 00:00:00";
 
-   var day=toDay.toISOString().slice(0, 10)+" 00:00:00";
-    
-    
+    let hier = MyDate + " 00:00:00";
+
+    var day = toDay.toISOString().slice(0, 10) + " 00:00:00";
+
+
     var sql = "select * from client  ORDER BY id_client ASC";
     mysqlConnection.query(sql, (err, rows, fields) => {
         client = rows;
         var sql = "select * from commande    ORDER BY id_client ASC ";
         mysqlConnection.query(sql, (err, rows, fields) => {
-            commande=rows;
+            commande = rows;
             var sql = "select * from chambreclient ORDER BY id_client ASC";
             mysqlConnection.query(sql, (err, rows, fields) => {
-                chambreclient=rows;
+                chambreclient = rows;
                 var sql = "select * from commande  ORDER BY id_client ASC ";
-        mysqlConnection.query(sql, (err, rows, fields) => {
-            commandeh=rows;
-            var sql = "select * from commande where status= '0' ORDER BY id_client ASC ";
-        mysqlConnection.query(sql, (err, rows, fields) => {
-            status=rows;
-           // console.log(status);
-           console.log(commande)
-    res.render('main_courante/index', {
-        client,
-        chambreclient,
-        commande
-        
-    })
-})
-        });
+                mysqlConnection.query(sql, (err, rows, fields) => {
+                    commandeh = rows;
+                    var sql = "select * from commande where status= '0' ORDER BY id_client ASC ";
+                    mysqlConnection.query(sql, (err, rows, fields) => {
+                        status = rows;
+                        // console.log(status);
+
+                        res.render('main_courante/index', {
+                            client,
+                            chambreclient,
+                            commande
+
+                        })
+                    })
+                });
             })
         })
     });
@@ -244,7 +244,7 @@ app.get('/receptioniste/main_courant', (req, res) => {
 
 
 app.post('/receptioniste/main_courant', urlencodedParser, (req, res) => {
-    
+
 
 
 
@@ -252,45 +252,49 @@ app.post('/receptioniste/main_courant', urlencodedParser, (req, res) => {
 
 
     let date = Date.now();
-     var yesterday = new Date(new Date().setDate(new Date().getDate()-1));
-     let MyDate = yesterday.toISOString().slice(0, 10);
-     let toDay= new Date(date);
- 
-     
-     let hier = MyDate+" 00:00:00";
- 
-     var day=req.body.date+" 00:00:00";
-     
-     
-     var sql = "select * from client ORDER BY id_client ASC";
-     mysqlConnection.query(sql, (err, rows, fields) => {
-         client = rows;
-         var sql = "select * from commande where date_commande >= '"+day+"'   ORDER BY id_client ASC ";
-         mysqlConnection.query(sql, (err, rows, fields) => {
-             commande=rows;
-             var sql = "select * from chambreclient ORDER BY id_client ASC";
-             mysqlConnection.query(sql, (err, rows, fields) => {
-                 chambreclient=rows;
-                 var sql = "select * from commande where date_commande >= '"+hier+"' and date_commande <= '"+day+"'  ORDER BY id_client ASC ";
-         mysqlConnection.query(sql, (err, rows, fields) => {
-             commandeh=rows;
-             var sql = "select * from commande where status= '0' ORDER BY id_client ASC ";
-         mysqlConnection.query(sql, (err, rows, fields) => {
-             status=rows;
-            // console.log(status);
-            console.log(commande)
-     res.render('main_courante/index', {
-         client,
-         chambreclient,
-         commande
-         
-     })
- })
-         });
-             })
-         })
-     });
- });
+    var yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
+    let MyDate = yesterday.toISOString().slice(0, 10);
+    let toDay = new Date(date);
+
+
+    let hier = MyDate + " 00:00:00";
+    let hiers = MyDate + " 23:59:59";
+
+    var day = req.body.date + " 00:00:00";
+    var days = req.body.date + " 23:59:59"
+
+
+    var sql = "select * from client where date_ajout >= '" + day + "' and date_ajout <= '" + days + "' ORDER BY id_client ASC";
+    mysqlConnection.query(sql, (err, rows, fields) => {
+        client = rows;
+        var sql = "select * from commande where date_commande >= '" + day + "' and date_commande <= '" + days + "'  ORDER BY id_client ASC ";
+        mysqlConnection.query(sql, (err, rows, fields) => {
+            commande = rows;
+
+            var sql = "select * from chambreclient where date >= '" + day + "' and date <= '" + days + "' ORDER BY id_client ASC";
+            mysqlConnection.query(sql, (err, rows, fields) => {
+                chambreclient = rows;
+
+                var sql = "select * from commande where date_commande >= '" + hier + "' and date_commande <= '" + hiers + "'   ORDER BY id_client ASC ";
+                mysqlConnection.query(sql, (err, rows, fields) => {
+                    commandeh = rows;
+                    var sql = "select * from commande where status= '0' ORDER BY id_client ASC ";
+                    mysqlConnection.query(sql, (err, rows, fields) => {
+                        status = rows;
+                        // console.log(status);
+
+                        res.render('main_courante/index', {
+                            client,
+                            chambreclient,
+                            commande
+
+                        })
+                    })
+                });
+            })
+        })
+    });
+});
 
 
 
@@ -325,7 +329,7 @@ app.post('/login', urlencodedParser, [
         })
     }
     var id = 0;
-    if(req.session.role !=='' && req.session.username !='') {
+    if (req.session.role !== '' && req.session.username != '') {
         if (req.body.username != undefined && req.body.password != undefined) {
             var sql = "select * from utilisateur where nom ='" + req.body.username + "' and password = '" + req.body.password + "'";
             mysqlConnection.query(sql, (err, rows, fields) => {
@@ -334,7 +338,7 @@ app.post('/login', urlencodedParser, [
 
                     if (rows.length == 1) {
                         id = rows[0].id_user;
-                        userData= rows;
+                        userData = rows;
                         var sql = "select * from profil where id_user =" + id + "";
                         mysqlConnection.query(sql, (err, rows, fields) => {
 
@@ -342,19 +346,19 @@ app.post('/login', urlencodedParser, [
                                 var role = rows[0].role;
                                 if (role == 'admin') {
 
-                                    var sql = "select * from client";
+                                    var sql = "select * from client order by id_client asc";
                                     mysqlConnection.query(sql, (err, rows, fields) => {
-                                        client=rows;
-                                        var sql = "select * from chambreclient";
+                                        client = rows;
+                                        var sql = "select * from chambreclient order by id_client asc";
                                         mysqlConnection.query(sql, (err, rows, fields) => {
-                                            chambre=rows;
+                                            chambre = rows;
                                             sess = req.session;
                                             req.session.username = userData[0].nom;
                                             req.session.userid = userData[0].id_user;
                                             req.session.role = role;
                                             req.userid = userData[0].id_user;
                                             console.log(req.session);
-                                            res.render('client/client',{
+                                            res.render('client/client', {
                                                 client,
                                                 chambre
                                             });
@@ -364,16 +368,16 @@ app.post('/login', urlencodedParser, [
                                 if (role == 'receptioniste') {
                                     var sql = "select * from client";
                                     mysqlConnection.query(sql, (err, rows, fields) => {
-                                        client=rows;
+                                        client = rows;
                                         var sql = "select * from chambreclient";
                                         mysqlConnection.query(sql, (err, rows, fields) => {
-                                            chambre=rows;
+                                            chambre = rows;
                                             // sess = req.session;
                                             req.session.username = userData[0].nom;
                                             req.session.role = role;
                                             req.session.userid = userData.id_user;
                                             console.log(req.session);
-                                            res.render('client/client',{
+                                            res.render('client/client', {
                                                 client,
                                                 chambre
                                             });
@@ -394,8 +398,13 @@ app.post('/login', urlencodedParser, [
                 } else
                     res.render('login/login')
             })
+        } else {
+            var requette;
+            res.render('login/login', {
+                requette: 'error'
+            })
         }
-    }else{
+    } else {
         res.redirect('/acceuil/clients')
     }
 
@@ -417,78 +426,82 @@ app.post('/receptioniste/client', urlencodedParser, [
 
 
 ], (req, res) => {
-    
 
 
-        // var sexe;
-        // if (req.body.sexe != undefined) {
-        //     sexe = req.body.masculin;
-        // }
-        // if (req.body.feminin != undefined) {
-        //     sexe = req.body.feminin;
-        // }
 
-        let date = Date.now();
-        let MyDate = new Date(date);
-        let day = MyDate.getDate();
-        let month = MyDate.getMonth();
-        let year = MyDate.getFullYear();
-        let hour = MyDate.getHours();
-        let minute = MyDate.getMinutes();
-        let second = MyDate.getSeconds();
-        let clientDate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
-        //let clientD = year + "-" + month + "-" + day ;
+    // var sexe;
+    // if (req.body.sexe != undefined) {
+    //     sexe = req.body.masculin;
+    // }
+    // if (req.body.feminin != undefined) {
+    //     sexe = req.body.feminin;
+    // }
 
-        var sql = "select * from chambre where status = 'libre'";
-        mysqlConnection.query(sql, (err, rows, fields) => {
-row=rows;
-//console.log(row)
-if (req.body.chambre != undefined) {
-   
-            var sql = "insert into client values(null," + req.body.name + ",'" + req.body.prenom + "'," + req.body.phone + "," + req.body.cni + ", '" + clientDate  + "')";
+    let date = Date.now();
+    let MyDate = new Date(date);
+    let day = MyDate.getDate();
+    let month = MyDate.getMonth();
+    let year = MyDate.getFullYear();
+    let hour = MyDate.getHours();
+    let minute = MyDate.getMinutes();
+    let second = MyDate.getSeconds();
+    let clientDate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+    //let clientD = year + "-" + month + "-" + day ;
+    toDay = MyDate.toISOString().slice(0, 10) + " " + hour + ":" + minute + ":" + second;
+    var sql = "select * from chambre where status = 'libre'";
+    mysqlConnection.query(sql, (err, rows, fields) => {
+        row = rows;
+        //console.log(row)
+        if (req.body.chambre != undefined) {
+
+            var sql = "insert into client values(null,'" + req.body.name + "','" + req.body.prenom + "'," + req.body.phone + "," + req.body.cni + ", '" + toDay + "')";
             mysqlConnection.query(sql, (err, rows, fields) => {
                 var sql = "select * from client where cni = " + req.body.cni + "";
-            mysqlConnection.query(sql, (err, rows, fields) => {
-                id=rows[0].id_client;
-                
-                var sql = "insert into chambreclient values(null," + id + "," + req.body.chambre + ",'" + clientDate + "')";
                 mysqlConnection.query(sql, (err, rows, fields) => {
-                    var sql = "UPDATE `chambre` SET `status` = 'occupé' WHERE `chambre`.`id_chambre` = "+req.body.chambre+"";
-                    mysqlConnection.query(sql, (err, rows, fields) => {})
-                    var sql = "select * from client";
+                    id = rows[0].id_client;
+                    var sql1 = "insert into commande values(null,'','',0,'" + 0 + "'," + id + ",'" + toDay + "'," + 0 + ")";
+                    mysqlConnection.query(sql1, (err, rows, fields) => {
+
+
+                        var sql = "insert into chambreclient values(null," + id + "," + req.body.chambre + ",'" + toDay + "')";
+                        mysqlConnection.query(sql, (err, rows, fields) => {
+                            var sql = "UPDATE `chambre` SET `status` = 'occupé' WHERE `chambre`.`id_chambre` = " + req.body.chambre + "";
+                            mysqlConnection.query(sql, (err, rows, fields) => {})
+                            var sql = "select * from client";
+                            mysqlConnection.query(sql, (err, rows, fields) => {
+                                client = rows;
+                                var sql = "select * from chambreclient";
                                 mysqlConnection.query(sql, (err, rows, fields) => {
-                                    client=rows;
-                                    var sql = "select * from chambreclient";
-                                    mysqlConnection.query(sql, (err, rows, fields) => {
-                                        chambre=rows;
-                                res.render('client/client',{
-                                    client,
-                                    chambre
-                                });
+                                    chambre = rows;
+                                    res.render('client/client', {
+                                        client,
+                                        chambre
+                                    });
                                 })
                             })
+                        })
+                    })
                 })
             })
-        })
-    }
-       
-/*
-            var sql = "select * from client where cni = " + clientDate + "";
-            mysqlConnection.query(sql, (err, rows, fields) => {
-                var total = req.body.prix * req.body.nombre;
-                console.log(req.body.commande);
-                var sql = "insert into facture values(null,'" + req.body.commande + "'," + req.body.prix + "," + req.body.nombre + "," + total + "," + rows[0].id_client + ")";
-                mysqlConnection.query(sql, (err, rows, fields) => {
-                    res.render('acceuille')
+        }
+
+        /*
+                    var sql = "select * from client where cni = " + clientDate + "";
+                    mysqlConnection.query(sql, (err, rows, fields) => {
+                        var total = req.body.prix * req.body.nombre;
+                        console.log(req.body.commande);
+                        var sql = "insert into facture values(null,'" + req.body.commande + "'," + req.body.prix + "," + req.body.nombre + "," + total + "," + rows[0].id_client + ")";
+                        mysqlConnection.query(sql, (err, rows, fields) => {
+                            res.render('acceuille')
 
 
-                })
+                        })
 
-            })*/
+                    })*/
 
 
-        })
-    
+    })
+
 });
 
 /*
@@ -817,7 +830,7 @@ app.post('/delete', urlencodedParser, (req, res) => {
 
 app.post("/admin/chambreVide/", (req, res) => {
     // var idClient = req.params.idClient;
-    if(req.session.role ==='admin'|| req.session.role ==='receptioniste'  && req.session.username) {
+    if (req.session.role === 'admin' || req.session.role === 'receptioniste' && req.session.username) {
         var sql = "select * from Chambre where status = " + 'occupé' + "";
         mysqlConnection.query(sql, (err, rows, fields) => {
             const row = rows;
@@ -826,7 +839,7 @@ app.post("/admin/chambreVide/", (req, res) => {
                 row
             })
         });
-    }else{
+    } else {
         res.redirect('/');
     }
 
@@ -834,7 +847,7 @@ app.post("/admin/chambreVide/", (req, res) => {
 
 app.post("/admin/chambreLibre/", (req, res) => {
     // var idClient = req.params.idClient;
-    if(req.session.role ==='admin'|| req.session.role ==='receptioniste'  && req.session.username) {
+    if (req.session.role === 'admin' || req.session.role === 'receptioniste' && req.session.username) {
         var sql = "select * from Chambre where status = " + 'libre' + "";
         mysqlConnection.query(sql, (err, rows, fields) => {
             const row = rows;
@@ -843,7 +856,7 @@ app.post("/admin/chambreLibre/", (req, res) => {
                 row
             })
         });
-    }else{
+    } else {
         res.redirect('/');
     }
 
@@ -856,8 +869,8 @@ app.post("/admin/chambreLibre/", (req, res) => {
 
 
 app.get("/generateReport2/:id", (req, res) => {
-    if(req.session.role ==='admin'|| req.session.role ==='receptioniste'  && req.session.username) {
-         var id = req.params.id;
+    if (req.session.role === 'admin' || req.session.role === 'receptioniste' && req.session.username) {
+        var id = req.params.id;
         var commandes;
         var infos;
         var chambres;
@@ -878,7 +891,7 @@ app.get("/generateReport2/:id", (req, res) => {
                 })
             })
         })
-    }else{
+    } else {
         res.redirect('/');
     }
 
@@ -905,18 +918,18 @@ app.post('/receptioniste/commande/:id', urlencodedParser, [
 
 
 ], (req, res) => {
-    
 
 
-        // var sexe;
-        // if (req.body.sexe != undefined) {
-        //     sexe = req.body.masculin;
-        // }
-        // if (req.body.feminin != undefined) {
-        //     sexe = req.body.feminin;
-        // }
-    if(req.session.role ==='admin'|| req.session.role ==='receptioniste'  && req.session.username) {
-        id=req.params.id;
+
+    // var sexe;
+    // if (req.body.sexe != undefined) {
+    //     sexe = req.body.masculin;
+    // }
+    // if (req.body.feminin != undefined) {
+    //     sexe = req.body.feminin;
+    // }
+    if (req.session.role === 'admin' || req.session.role === 'receptioniste' && req.session.username) {
+        id = req.params.id;
         let date = Date.now();
         let MyDate = new Date(date);
         let day = MyDate.getDate();
@@ -926,20 +939,20 @@ app.post('/receptioniste/commande/:id', urlencodedParser, [
         let minute = MyDate.getMinutes();
         let second = MyDate.getSeconds();
         let clientDate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
-        let clientD = year + "-" + month + "-" + day ;
+        let clientD = year + "-" + month + "-" + day;
 
         console.log(req.body)
 
-        var sql1 = "insert into commande values(null,'"+req.body.nom+"','"+req.body.poste+"',"+req.body.montant+",'"+0+"',"+id+",'"+clientDate+"',"+req.body.nombre+")";
+        var sql1 = "insert into commande values(null,'','" + req.body.poste + "'," + req.body.montant + ",'" + 0 + "'," + id + ",'" + clientDate + "'," + req.body.nombre + ")";
         mysqlConnection.query(sql1, (err, rows, fields) => {
 
             var sql = "select * from client";
             mysqlConnection.query(sql, (err, rows, fields) => {
-                client=rows;
+                client = rows;
                 var sql = "select * from chambreclient";
                 mysqlConnection.query(sql, (err, rows, fields) => {
-                    chambre=rows;
-                    res.render('client/client',{
+                    chambre = rows;
+                    res.render('client/client', {
                         client,
                         chambre
                     });
@@ -947,13 +960,13 @@ app.post('/receptioniste/commande/:id', urlencodedParser, [
             })
         })
 
-    }else{
+    } else {
         res.redirect('/');
     }
 
 });
-app.get("/acceuil/clients",(req,res)=>{
-    if(req.session.role ==='admin'|| req.session.role ==='receptioniste'  && req.session.username) {
+app.get("/acceuil/clients", (req, res) => {
+    if (req.session.role === 'admin' || req.session.role === 'receptioniste' && req.session.username) {
         var sql = "select * from client";
         mysqlConnection.query(sql, (err, rows, fields) => {
             client = rows;
@@ -966,12 +979,12 @@ app.get("/acceuil/clients",(req,res)=>{
                 });
             })
         })
-    }else{
+    } else {
         res.redirect('/');
     }
 });
 app.get("/admin/genererFacture/:id", (req, res) => {
-    if(req.session.role ==='admin'|| req.session.role ==='receptioniste'  && req.session.username) {
+    if (req.session.role === 'admin' || req.session.role === 'receptioniste' && req.session.username) {
         var id = req.params.id;
         var commandes;
         var infos;
@@ -1034,7 +1047,7 @@ app.get("/admin/genererFacture/:id", (req, res) => {
                 })
             })
         })
-    }else{
+    } else {
         res.redirect('/');
     }
 
