@@ -1,328 +1,661 @@
 @import url('../css/font.css');
-
-html,body{
+html,
+body {
     margin: 0%;
-   box-sizing: border-box;
+    box-sizing: border-box;
     overflow-x: hidden;
     background: rgb(233, 232, 232) !important;
 }
 
-:root{
-/*-----------------Theme colors----------------*/
-    --bgk-color:#273486;
-    --text-light:#686666da;
-    --bg-color:#0f0f0f;
-    --white:#ffffff;
-
-/*--------------------gradient color--------------*/
-   --sky:linear-gradient(120deg, #a1c4fd 0%, #b195f1 100%);
-
-
-/*-------------------them font-family-----------*/
-    --Abel:'Abel', cursive;
-    --Anton:'Anton', cursive;
-    --Josefin:'Josefin', cursive;
-    --Lexend:'Lexend', cursive;
-    --Livvic:'Livvic', cursive;
+:root {
+    /*-----------------Theme colors----------------*/
+    --bgk-color: #273486;
+    --text-light: #686666da;
+    --bg-color: #0f0f0f;
+    --white: #ffffff;
+    /*--------------------gradient color--------------*/
+    --sky: linear-gradient(120deg, #a1c4fd 0%, #b195f1 100%);
+    /*-------------------them font-family-----------*/
+    --Abel: 'Abel', cursive;
+    --Anton: 'Anton', cursive;
+    --Josefin: 'Josefin', cursive;
+    --Lexend: 'Lexend', cursive;
+    --Livvic: 'Livvic', cursive;
 }
+
 
 /*-------------------global classe--------------*/
 
-.ligne{
+.ligne {
     text-decoration: none;
 }
 
-.flexs-row{
+.flexs-row {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
-/*------------------- End of global classe--------------*/
 
+
+/*------------------- End of global classe--------------*/
 
 
 /*--------------------navabar-------------------*/
 
-.ab{
+* {
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "montserrat", sans-serif !important;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: rgb(145, 145, 145);
+    background-color: #E4E4E4 !important;
+}
+
+
+/*Menue*/
+
+.logo {
+    width: 45px !important;
+    height: 45px !important;
+    position: fixed;
+    margin-left: 1%;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    overflow: hidden;
+    background-color: #273486;
+    padding: 0%;
+}
+
+li {
+    float: right;
+}
+
+li a {
+    display: block;
+    padding: 3%;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    float: right;
+    text-align: center;
+    padding: 14px 16px;
+    font-weight: bold;
+}
+
+.deconnexion {
+    background-color: white;
+    color: #273486;
+}
+
+li a:hover {
+    background-color: #ffffff;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+.clientNom {
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-left: 60px;
+    margin-top: 8px;
+}
+
+
+/*end menue*/
+
+.entete {
+    background-color: #fff;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 2%;
+    position: relative;
+    display: flex;
+    top: 0;
+}
+
+.enteteGauche {
+    margin: 0;
+    width: 12%;
+    left: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.enteteDroite {}
+
+.menuImg {}
+
+.nomAdmin {
+    width: 88%;
+    right: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.entete2 {
+    background-color: #ED2227;
+    padding: 1%;
+    top: 0;
+    display: flex;
+    width: 100%;
+    height: 5%;
+    color: white;
+    font-weight: bold;
+    font-size: 2.1rem;
+}
+
+.resultatGlobal {
+    background-color: white;
+    width: 96%;
+    align-self: center;
+    padding: 1%;
+    margin-top: 3%;
+    box-shadow: 9px 15px 12px -10px #c7c5c5;
+}
+
+.titre1 {
+    color: #ED2227;
+    font-size: 2.1rem;
+    font-weight: bold;
+}
+
+.sousTitre1 {
+    color: #565555;
+}
+
+.note {
+    color: #ED2227;
+    font-size: 6.1rem;
+    font-weight: bold;
+    text-align: right;
+    padding-right: 15%;
+}
+
+.separateur {
+    background-color: #ED2227;
+    width: 80%;
+    margin-left: -1%;
+    border: 1px solid #ED2227;
+}
+
+.bas,
+.bas1 {
+    display: grid;
+    grid-template-columns: 5% 95%;
+}
+
+.marqueur {
+    width: 20px;
+    height: 20px;
+    background-color: #ED2227;
+}
+
+.texte1 {
+    margin-left: 0;
+}
+
+.StatBrefClient {
+    display: grid;
+    grid-template-columns: 33.3% 33.3% 33.4%;
+    width: 99.5%;
+    padding: 1%;
+    color: #3F3D56;
+}
+
+.nombreEnquete,
+.resultatEnqueteEnCours,
+.nombreInteraction {
+    background-color: white;
+    width: 96%;
+    height: 100%;
+    align-self: center;
+    padding: 1%;
+    margin-top: 3%;
+    box-shadow: 9px 15px 12px -10px #c7c5c5;
+}
+
+.titre2 {
+    font-weight: bold;
+    margin-left: 2%;
+}
+
+.note1 {
+    font-size: 4.5rem;
+    text-align: right;
+    padding-right: 15%;
+    font-weight: bold;
+}
+
+.separateur1 {
+    width: 90%;
+    margin-left: -1%;
+    border: 1px solid #3F3D56;
+}
+
+.marqueur1 {
+    width: 10px;
+    height: 10px;
+    background-color: #3F3D56;
+    margin-top: 15%;
+}
+
+.texte2 {
+    margin-left: 2%;
+    margin-top: -1%;
+}
+
+.detatilEnqueteEnCours {
+    width: 96%;
+    align-self: center;
+    margin-top: 1%;
+}
+
+.enteteTitre {
+    color: #ED2227;
+    font-size: 2.1rem;
+    font-weight: bold;
+    background-color: #E4E4E4;
+}
+
+.tableau {
+    width: 100%;
+    box-shadow: 9px 15px 12px -10px #c7c5c5;
+    background-color: #fff;
+    margin-top: 1%;
+}
+
+tbody tr:nth-of-type(even) {
+    background-color: #f7f1f1;
+    color: lightcoral;
+}
+
+.enteteTableau {
+    background-color: #E4E4E4;
+    color: #777777;
+    font-weight: lighter;
+}
+
+th,
+td {
+    padding: 10px 2px !important;
+}
+
+.libelle {
+    width: 65%;
+}
+
+.resultat {
+    width: 15%;
+    text-align: center;
+}
+
+.sugestionSection {
+    width: 96%;
+    margin-bottom: 15px;
+}
+
+.titreSugestion {
+    color: #ED2227;
+    font-size: 2.1rem;
+    font-weight: bold;
+    margin-top: 2%;
+}
+
+.sugestion {
+    background-color: white;
+    width: 100%;
+    align-self: center;
+    padding: 1%;
+    margin-top: 2%;
+    box-shadow: 9px 15px 12px -10px #c7c5c5;
+}
+
+footer {
+    color: #ED2227;
+    align-items: center;
+    margin-top: 5px;
+    bottom: 0;
+    padding-top: 15px;
+    width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+    .entete2 {
+        background-color: #ED2227;
+        padding: 1%;
+        top: 0;
+        display: flex;
+        width: 100%;
+        height: 5%;
+    }
+    .signout {
+        background-color: #ED2227;
+        border-radius: 5px;
+        padding: 7%;
+        border-color: white;
+        color: white;
+        font-weight: bold;
+        border: none;
+    }
+    .clientNom {
+        color: white;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    .adminNom {
+        color: #ED2227;
+        font-family: "Nirmala UI";
+        font-size: 3.5rem;
+        margin-top: -15px;
+        position: relative;
+        margin-left: -5%;
+    }
+    .logo {
+        width: 45px;
+        height: 45px;
+        position: fixed;
+    }
+}
+
+
+/*
+.ab {
     background-color: var(--bgk-color);
     height: 4.1rem;
     min-height: 8vh;
     overflow: hidden;
     transition: height 1s ease-in-out;
-
 }
 
-.ab .ab-menu{
+.ab .ab-menu {
     justify-content: space-between;
 }
 
-.ab .toggles-collapses{
+.ab .toggles-collapses {
     position: absolute;
     top: 0;
     width: 90%;
     cursor: pointer;
     display: none;
 }
- 
-.collapses{
+
+.collapses {
     height: 33rem;
 }
 
-
-.ab .toggles-collapses .toggles-icons{
+.ab .toggles-collapses .toggles-icons {
     display: flex;
     justify-content: flex-end;
     padding: 1.7rem 0;
 }
 
-.ab .toggles-collapses .toggles-icons i{
+.ab .toggles-collapses .toggles-icons i {
     font-size: 1.4rem;
     color: var(--text-gray);
 }
 
-.ab .ab-items{
+.ab .ab-items {
     list-style-type: none;
     display: flex;
-    margin: 0; 
+    margin: 0;
     color: var(--white);
 }
 
-.ab .ab-items .ab-link{
+.ab .ab-items .ab-link {
     padding: 1.6rem 0.5rem;
-
     position: relative;
     font-family: var(--Lexend);
-    font-size: 1rem;   
+    font-size: 1rem;
 }
 
-.ab .ab-items .ligne{
+.ab .ab-items .ligne {
     color: var(--white)
 }
 
-.image{
- padding: 1rem 1rem;
+.image {
+    padding: 1rem 1rem;
 }
 
-.ab .ab-items .ab-link:hover{
+.ab .ab-items .ab-link:hover {
     background-color: var(--white);
 }
 
-.ab .ab-items .ab-link:hover .ligne{
+.ab .ab-items .ab-link:hover .ligne {
     color: var(--bgk-color);
 }
 
-.ab .ab-brand span{  
+.ab .ab-brand span {
     padding: 1.5rem 0;
-    font-size: 1.6rem;   
+    font-size: 1.6rem;
     font-family: var(--Abel);
     font-size: 1.3rem;
     color: var(--white)
 }
 
-.ab .ab-brand{
+.ab .ab-brand {
     display: flex;
-} 
-.ab .socials{
-    padding: 1.6rem 0;
-    
 }
 
-.ab .socials .liens{
-	padding: 1.7rem;
+.ab .socials {
+    padding: 1.6rem 0;
+}
+
+.ab .socials .liens {
+    padding: 1.7rem;
     background-color: var(--white);
     font-size: 1.1rem;
     color: var(--bgk-color);
 }
+
+*/
+
+
 /*--------------------End of navabar-------------------*/
 
 
 /*-------------------------site-content----------------*/
 
-.sit-contents{
+.sit-contents {
     display: grid;
     margin-top: 3%;
     grid-template-columns: 50% 50%;
     width: 100%;
 }
 
+
 /*-------------------------End of site-content----------------*/
 
 
 /*------------------------------Tableau---------------------------------*/
 
-#tableau{
-
+#tableau {
     background-color: #fff;
-    box-shadow: 3px 3px 30px rgba(66,57,238,0.2);
+    box-shadow: 3px 3px 30px rgba(66, 57, 238, 0.2);
     border-collapse: collapse;
 }
 
-.tableau .forme{
-	background-color: #273486;
-	font-weight: bold;
-	color: #fff;
+.tableau .forme {
+    background-color: #273486;
+    font-weight: bold;
+    color: #fff;
 }
 
-.tableau .groupe button{
-	font-size: 11px;
-	border-radius: 30px;
+.tableau .groupe button {
+    font-size: 11px;
+    border-radius: 30px;
     background-color: #273486;
     transition: 1s;
-	color: #fff;
-	border: none;
-	padding: 5px;
-	font-weight: bold;
-	width: 100px;
+    color: #fff;
+    border: none;
+    padding: 5px;
+    font-weight: bold;
+    width: 100px;
 }
 
-#couleur0{
-	background-color: #ff7700;
-}
-#couleur1{
-	background-color: #28be69;
+#couleur0 {
+    background-color: #ff7700;
 }
 
-tr:nth-child(even){
+#couleur1 {
+    background-color: #28be69;
+}
+
+tr:nth-child(even) {
     background-color: rgb(209, 222, 248);
 }
+
 
 /*---------------------------------------End of Tableau-------------------*/
 
 
-
 /*--------------------------------- Enregistation------------------------------*/
-.enregistrer{
 
-    box-shadow: 3px 3px 30px rgba(66,57,238,0.2);
-    width: 90%; 
+.enregistrer {
+    box-shadow: 3px 3px 30px rgba(66, 57, 238, 0.2);
+    width: 90%;
 }
-.nombre_client{
+
+.nombre_client {
     font-size: 4.5rem;
     font-weight: bold;
-    color:#273486;
+    color: #273486;
     margin-left: 55%;
 }
-.enregistrer .taille_de_plus{
-	font-weight: 50px;
+
+.enregistrer .taille_de_plus {
+    font-weight: 50px;
 }
 
-.enregistrer .form{
+.enregistrer .form {
     margin-top: 8%;
-	width:100%;
-	height:42%;
-	background-color:#fff;
-	box-shadow: 0px 5px   rgba(66,57,238,0.2);	
+    width: 100%;
+    height: 42%;
+    background-color: #fff;
+    box-shadow: 0px 5px rgba(66, 57, 238, 0.2);
 }
 
-
-.enregistrer .h2{
-	background-color: #28be69;
-	width: 380px;
-	height: 60px;
-	font-size: 20px;
-	margin-left: 35px;
-	text-align: center;
-	border-radius: 30px;
-	color: #fff;
-	border: none;
+.enregistrer .h2 {
+    background-color: #28be69;
+    width: 380px;
+    height: 60px;
+    font-size: 20px;
+    margin-left: 35px;
+    text-align: center;
+    border-radius: 30px;
+    color: #fff;
+    border: none;
 }
-  
-.enregistrer .form .en_gras{
-	color: #273486;
-	bottom: 5px;
+
+.enregistrer .form .en_gras {
+    color: #273486;
+    bottom: 5px;
 }
 
 .enregistrer .form .form__group {
-	position: relative;
-	padding: 11px 0 0;
-	margin-top: 10px;
-	width: 100%;
-  }
-  
-  .enregistrer .form .form__group .form__field {
-	width: 92%;
-	border: 0;
-	border-bottom: 2px solid #9b9b9b;
-	outline: 0;
-	font-size: 1.9rem;
-	color: rgb(39, 2, 2);
-	padding: 20px 0;
-  }
+    position: relative;
+    padding: 11px 0 0;
+    margin-top: 10px;
+    width: 100%;
+}
 
-  .enregistrer .form .form__group .form__label {
-	  position: absolute;
-	  cursor: text;
-	  top: 0;
-	  display: block;
-	  transition: 0.2s;
-	  font-size: 1rem;
-	  color: #11998e;
-	  font-weight:700;    
-	}
-  
-    .enregistrer .form .chec{
-        margin-left: 25px;
-        margin-top: 12px;
-    } 
-  
-    .enregistrer .form .chec .check {
-		display: block;
-		position: relative;
-		padding-left: 27px;
-		margin-bottom: 12px;
-		cursor: pointer;
-		font-size: 11px;
-		-webkit-user-select: none;
-		-moz-user-select: none;
-		-ms-user-select: none;
-		user-select: none;
-	  }
-	  
-	  /* Hide the browser's default checkbox */
-	  .check input {
-		position: absolute;
-		opacity: 0;
-		cursor: pointer;
-		height: 0;
-		width: 0;
-	  }
-	  
-	  /* Create a custom checkbox */
-	  .checkmark {
-		position: absolute;
-		top: 0;
-		left: 0;
-		height: 16px;
-		width: 16px;
-		background-color: #273486;
-	  }
- 
-      .enregistrer .boutons{
+.enregistrer .form .form__group .form__field {
+    width: 92%;
+    border: 0;
+    border-bottom: 2px solid #9b9b9b;
+    outline: 0;
+    font-size: 1.9rem;
+    color: rgb(39, 2, 2);
+    padding: 20px 0;
+}
 
-        margin: 7% 16%;
-        display: flex;
-        padding-bottom: 5%;
-       
-    }    
+.enregistrer .form .form__group .form__label {
+    position: absolute;
+    cursor: text;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: #11998e;
+    font-weight: 700;
+}
 
-.enregistrer .boutons button{
-	width: 100px;
-	font-weight: bold;
-	border-radius: 30px;
-	color: #fff;
-	border: none;
-	font-size: 20px;
+.enregistrer .form .chec {
+    margin-left: 25px;
+    margin-top: 12px;
+}
+
+.enregistrer .form .chec .check {
+    display: block;
+    position: relative;
+    padding-left: 27px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 11px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+/* Hide the browser's default checkbox */
+
+.check input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+
+/* Create a custom checkbox */
+
+
+/*.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 16px;
+    width: 16px;
+    background-color: #273486;
+}
+*/
+
+.enregistrer .boutons {
+    margin: 7% 16%;
+    display: flex;
+    padding-bottom: 5%;
+}
+
+.enregistrer .boutons button {
+    width: 100px;
+    font-weight: bold;
+    border-radius: 30px;
+    color: #fff;
+    border: none;
+    font-size: 20px;
     background-image: linear-gradient(to right, #89898f, #273486, #273486);
     transition: .5s;
 }
 
-.enregistrer .boutons .bouton1{
-	padding-right: 150px;
+.enregistrer .boutons .bouton1 {
+    padding-right: 150px;
 }
+
 
 /*---------------------------------End of Enregistation------------------------------*/
 
-.overlay{
+.overlay {
     position: absolute;
     left: 0px;
     top: 0px;
@@ -331,63 +664,70 @@ tr:nth-child(even){
     background: rgba(0, 0, 0, 0.5);
     z-index: 1;
 }
-.bg-h2{
-	background-color: var(--bgk-color);
-	padding: 1rem;
-	color: var(--white);
+
+.bg-h2 {
+    background-color: var(--bgk-color);
+    padding: 1rem;
+    color: var(--white);
 }
-.global{
-	padding: 1rem;
+
+.global {
+    padding: 1rem;
     display: grid;
     grid-template-columns: 36% 31% 32%;
 }
-.popup{
+
+.popup {
     margin: 10% auto;
     width: 55%;
     background-color: white;
     border-radius: 5PX;
 }
 
-.gras{
+.gras {
     font-weight: bold;
 }
-#btnClose{
+
+#btnClose {
     cursor: pointer;
     float: right;
 }
 
+
 /*---------viewport less then or equal to 750px--------*/
 
-@media only screen and (min-width: 1000px){
-    .sit-contents{
+@media only screen and (min-width: 1000px) {
+    .sit-contents {
         grid-template-columns: 50% 50%;
     }
 }
 
-@media only screen and (min-width: 900px){
-    .sit-contents{
+@media only screen and (min-width: 900px) {
+    .sit-contents {
         grid-template-columns: 50% 50%;
     }
 }
 
-@media only screen and (min-width: 850px){
-    .sit-contents{
+@media only screen and (min-width: 850px) {
+    .sit-contents {
         grid-template-columns: 50% 50%;
     }
 }
 
-@media only screen and (max-width: 750px){
-    .ab .ab-menu, .ab .ab-items{
+@media only screen and (max-width: 750px) {
+    .ab .ab-menu,
+    .ab .ab-items {
         flex-direction: column;
     }
-
-    .ab .toggles-collapses{
+    .ab .toggles-collapses {
         display: initial;
     }
-    .sit-contents{
+    .sit-contents {
         grid-template-columns: 35% 15%;
     }
 }
+
+
 /*
 @media only screen and (max-width: 526px){
     .botton-valide{

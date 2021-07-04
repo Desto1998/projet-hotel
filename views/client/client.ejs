@@ -6,217 +6,178 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../../public/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../public/fontawesome-5.15.2/css/fontawesome.min.css">
-    <link rel="stylesheet" href="/css/style_acceuil.css">
-    <link rel="stylesheet" href="/css/all_acceuil.css">
+    <link rel="stylesheet" href="../../public/css/style_acceuil.css">
+    <script src="../../public/js/all.min.js"></script>
+
     <title>Clients</title>
 </head>
 
 <body>
-
-
-    <nav class="nav">
-        <div class="nav-menu flex-row">
-            <div class="nav-brand">
-                <div class="img">
-                  <img src="/image/Logo-atitle-hotelJ.png" alt="logo"  style="width: 50px; height: 50px;">
-                </div>          
-                  <span> HOTEL ALTITEL</span>
-            </div>
-            
-
-            <div class="toggle-collapse">
-                <div class="toggle-icons">
-                    <i class="fas fa-bars"></i>
-                </div>
-            </div>
-
-            <div class="nav-items">
-                <li class="nav-link">
-                    <a href="/acceuil/clients">Accueil</a>
-                </li>
-                <li class="nav-link">
-                  <a href="/receptioniste/main_courant">Main courant</a>
-                </li>
-                <li class="nav-link">
-                  <a href="">Bilan</a>
-                </li>
-                <li class="nav-link">
-                  <a href="">Facture</a>
-                </li>
-                <li class="nav-link">
-                  <a href="">Contact </a>
-                </li>
-            </div>
-
-            <div class="social text-gray">
-              <a href="/logout" class="lien">Deconnexion</a>
-            </div>
-        </div>
-      </nav>
-   
-
+    <header>
+        <ul>
+            <img src="/image/Logo-atitle-hotelJ.png" class="logo" alt="">
+            <li class="clientNom" id="nom" style="float:left"> ALTITEL HOTEL</li>
+            <li><a href="#about" class="deconnexion">Déconnexion</a></li>
+            <li class=" accueil"><a href="/acceuil/clients">Accueil</a></li>
+            <li class=" main_courante"><a href="/receptioniste/main_courant">Main courant</a></li>
+            <li class="bilan"><a href="">Bilan</a></li>
+            <li class="facture"><a href="">Facture</a></li>
+        </ul>
+    </header>
     <!--------------------------End of Tableau---------------------->
 
     <section class="containers">
 
         <div class="sit-contents">
-  
-          <div class="poste">
-  
-            <div class="enregistrer">
 
-                <a href="/receptioniste/client"><button class="h2">+ Enregistrer un nouveau client</button></a>
-           </div>
-           <div class="form">
-            
-                   <div class="form__group field">
-                       <label for="name" class="form__label">nombre total de client present dans l'hotel</label>
-                       <p> <span class="nombre_client" id="nombre_client"><%= client.length %></span> </p>
-                   </div>
-               </div>
-               <div class="chec">
-     <label class="check"> informaton permet sur le nombre de chamre occupée dans l'hotel
+            <div class="poste">
+
+                <div class="enregistrer">
+
+                    <a href="/receptioniste/client"><button class="h2">+ Enregistrer un nouveau client</button></a>
+                </div>
+                <div class="form">
+
+                    <div class="form__group field">
+                        <label for="name" class="form__label">nombre total de client present dans l'hotel</label>
+                        <p> <span class="nombre_client" id="nombre_client"><%= client.length %></span> </p>
+                    </div>
+                </div>
+                <div class="chec">
+                    <label class="check"> informaton permet sur le nombre de chamre occupée dans l'hotel
          <input type="checkbox" checked="checked">
          <span class="checkmark"></span>
      </label>
-</div>
-</div> 
-
-<div class="boutons">
- <div class="bouton1">
-     <p>Nouvelle Etrée</p>
-     <a href=""><button>Entrée</button></a>
- </div>
- <div class="bouton2">
-     <p>Nouvelle Sortie</p>
-     <a href=""><button>Sortie</button></a>
- </div>
-</div>
-  
-             <!--------------------------End of enrégistement---------------------->
-          </div>
-  
-          </div>
-  
-          <div class="sidbare">
-  
-            <div class="table-responsive">
-  
-              <table class="table table-borderless tableau">
-                      
-                <thead class="forme">
-                    <tr>
-                        <td>Nom</td>
-                        <td>N° chambre</td>
-                        <td>voir plus</td>
-                        <td>Passer<br>commande</td>
-                        <td>Consulter<br>facture</td>
-                        
-                    </tr>
-                </thead>
-                <% var i = 0%>
-                <% client.forEach(function(r){  %>
-                <tr>
-                    <td>
-                       
-                            <%=r.nom %>
-                        
-                    </td>
-                    <td>
-                      
-                            <%=chambre[i].id_chambre %>
-
-                      
-                    </td>
-                    <td>
-                        <div class="groupe">
-                            <button id="btnPopup" class="btnPopup">Détails</button>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="groupe">
-                            <a href="/receptioniste/commande/<%=r.id_client %>"><button  id="couleur0">Ajouter</button></a>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="groupe">
-                            <a href="/admin/genererFacture/<%=r.id_client %>"><button id="couleur1">Client</button></a>
-                        </div>
-                    </td>
-                </tr>
-                <% i=i+1 %>
-                <% }) %>
-            
-              
-            </table>
-  
-            </div>
-  
-          </div>
-  
-        </div>
-        
-        
-      </div>
-      
-  
-      <div id="overlay" class="overlay">
-        <div id="popup" class="popup">
-            <h2 class="bg-h2">
-                Détails générale
-                <span id="btnClose" class="btnClose">&times;</span>
-              </h2>
-              <div class="global">
-  
-                <div class="info1">
-                  <p>
-                    Numero de chambre : <span class="gras">2</span><br>
-                    Facture Petit déjeuner : <span class="gras">2</span><br>
-                    Facture Restaurant : <span class="gras">2</span><br>
-                    Facture Bar : <span class="gras">2</span><br>      
-                 </p>
-               </div>
-  
-               <div class="info1">
-                  <p>
-                    Facture Linge : <span class="gras">2</span><br>
-                    Facture Divers : <span class="gras">2</span><br>
-                    Facture Jour : <span class="gras">2</span><br>
-                    Facture Rapport veille : <span class="gras">2</span><br>
-                 </p>
-               </div>
-  
-               <div class="info1">
-                  <p>
-                    Facture Général : <span class="gras">2</span><br>
-                    Facture Règlement : <span class="gras">2</span><br>
-                    Facture A rapporter : <span class="gras">2</span><br>
-                 </p>
-               </div>
-  
-              </div>
-        </div>
-    </div>
-    <!--------------------------------footer--------------------------------->
-    <footer>
-        <div class="container-fluid">
-            <div class="col-md-12">
-                <div class="row">
-                    <p>copyrygth MI 2020</p>
                 </div>
             </div>
 
+            <div class="boutons">
+                <div class="bouton1">
+                    <p>Nouvelle Etrée</p>
+                    <a href=""><button>Entrée</button></a>
+                </div>
+                <div class="bouton2">
+                    <p>Nouvelle Sortie</p>
+                    <a href=""><button>Sortie</button></a>
+                </div>
+            </div>
+
+            <!--------------------------End of enrégistement---------------------->
         </div>
 
-    </footer>
-    <!--------------------------------footer--------------------------------->
+        </div>
 
- <!-----------------------------Jquery Library file---------------------------->
- <script src="/js/Jquery3.4.1.min.js"></script>
+        <div class="sidbare">
 
- <!-----------------------------Custom javascript file------------------------->
- <script src="/js/main_ac.js"></script>
-    <script type="text/javascript" src="../../public/fontawesome-5.15.2/js/fontawesome.js"></script>
+            <div class="table-responsive">
+
+                <table class="table table-borderless tableau">
+
+                    <thead class="forme">
+                        <tr>
+                            <td>Nom</td>
+                            <td>N° chambre</td>
+                            <td>voir plus</td>
+                            <td>Passer<br>commande</td>
+                            <td>Consulter<br>facture</td>
+
+                        </tr>
+                    </thead>
+                    <% var i = 0%>
+                        <% client.forEach(function(r){  %>
+                            <tr>
+                                <td>
+
+                                    <%=r.nom %>
+
+                                </td>
+                                <td>
+
+                                    <%=chambre[i].id_chambre %>
+
+
+                                </td>
+                                <td>
+                                    <div class="groupe">
+                                        <button id="btnPopup" class="btnPopup">Détails</button>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="groupe">
+                                        <a href="/receptioniste/commande/<%=r.id_client %>"><button  id="couleur0">Ajouter</button></a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="groupe">
+                                        <a href="/admin/genererFacture/<%=r.id_client %>"><button id="couleur1">Client</button></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <% i=i+1 %>
+                                <% }) %>
+
+
+                </table>
+
+            </div>
+
+        </div>
+
+        </div>
+
+
+        </div>
+
+        <!--
+        <div id="overlay" class="overlay">
+            <div id="popup" class="popup">
+                <h2 class="bg-h2">
+                    Détails générale
+                    <span id="btnClose" class="btnClose">&times;</span>
+                </h2>
+                <div class="global">
+
+                    <div class="info1">
+                        <p>
+                            Numero de chambre : <span class="gras">2</span><br> Facture Petit déjeuner : <span class="gras">2</span><br> Facture Restaurant : <span class="gras">2</span><br> Facture Bar : <span class="gras">2</span><br>
+                        </p>
+                    </div>
+
+                    <div class="info1">
+                        <p>
+                            Facture Linge : <span class="gras">2</span><br> Facture Divers : <span class="gras">2</span><br> Facture Jour : <span class="gras">2</span><br> Facture Rapport veille : <span class="gras">2</span><br>
+                        </p>
+                    </div>
+
+                    <div class="info1">
+                        <p>
+                            Facture Général : <span class="gras">2</span><br> Facture Règlement : <span class="gras">2</span><br> Facture A rapporter : <span class="gras">2</span><br>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>-->
+        <!--------------------------------footer--------------------------------->
+        <footer>
+            <div class="container-fluid">
+                <div class="col-md-12">
+                    <div class="row">
+                        <p>copyrygth MI 2020</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </footer>
+        <!--------------------------------footer--------------------------------->
+
+        <!-----------------------------Jquery Library file---------------------------->
+        <script src="/js/Jquery3.4.1.min.js"></script>
+
+        <!-----------------------------Custom javascript file------------------------->
+        <script src="/js/main_ac.js"></script>
+        <script type="text/javascript" src="../../public/fontawesome-5.15.2/js/fontawesome.js"></script>
 
 </body>
 
