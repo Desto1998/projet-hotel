@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../public/enregistrer/css/style.css">
+    <!---------------------------------Font icons-------------------------------> 
+    <link rel="stylesheet" href="../../public/enregistrer/css/all.css">
+     <!--------------------------And of Font icons------------------------------>
+    <title>Ajouter client</title>
+</head>
+<body>
+      <!--------------------------------Navigation------------------------------->  
+
+
+      <nav class="nav">
+          <div class="nav-menu flex-row">
+              <div class="nav-brand">
+                  <div class="img">
+                    <img src="image/Logo-atitle-hotelJ.png" alt="logo"  style="width: 50px; height: 50px;">
+                  </div>          
+                    <span> HOTEL ALTITEL</span>
+              </div>
+              
+
+              <div class="toggle-collapse">
+                  <div class="toggle-icons">
+                      <i class="fas fa-bars"></i>
+                  </div>
+              </div>
+
+              <div class="nav-items">
+                  <li class="nav-link">
+                      <a href="">Accueil</a>
+                  </li>
+                  <li class="nav-link">
+                    <a href="">Main courant</a>
+                  </li>
+                  <li class="nav-link">
+                    <a href="">Bilan</a>
+                  </li>
+                  <li class="nav-link">
+                    <a href="">Facture</a>
+                  </li>
+                  <li class="nav-link">
+                    <a href="">Contact </a>
+                  </li>
+              </div>
+
+              <div class="social text-gray">
+                <a href="page de connexion/index.html" class="lien">Deconnexion</a>
+              </div>
+          </div>
+        </nav>
+
+      <!-----------------------------End of Navigation--------------------------->
+
+
+   
+
+      <section class="container">
+          <div class="content">
+            <h2><strong>Enregistrement des clients</strong></h2>
+            <div class="bar_de_recherche">
+                <input type="search" name="A" id="Recherche" placeholder="Rechercher un clien..." class="recherche">
+                <button class="boutton_recherche"><strong>Recherche</strong></button>
+            </div>
+          </div>
+          
+          <div class="champ">
+            <h3><strong>Information du client</strong></h3>
+            <div class="contenu">
+            <div class="nom_num">
+                <div class="nom">
+                    <p>Nom du client</p>
+                    <input type="text" id="nom" name="nom">
+                </div>
+                <div class="nom">
+                    <p>Numero de téléphone</p>
+                    <input type="text" id="phone" name="phone">
+                </div>
+            </div>
+
+            <div class="prenom_cin">
+                <div class="nom">
+                    <p>Prenom du client</p>
+                    <input type="text" id="prenom" name="prenom">
+                </div>
+                <div class="nom">
+                    <p>Numero de CIN</p>
+                    <input type="text" id="cni" name="cni">
+                </div>
+            </div>
+        </div>
+            <h2>Chambre(s) disponible(s)</h2>
+
+           <div class="etat">
+        
+                <div class="chambre_standart">
+                    <p>Chambre standart</p>
+                    <% row.forEach(function(r){
+
+                    if(r.categorie==='chambre standart'){
+                    %>
+                    N° <%=r.id_chambre%>
+                    <input type="checkbox" class="back" id="gap" name="chambre" value="<%=r.id_chambre%>" class="b">
+                    <% }
+                    }) %>
+
+                </div>
+                <div class="chambre_standart">
+                    <p>Chambre climatisée</p>
+                    <% row.forEach(function(r){
+
+                    if(r.categorie==='climatise'){
+                    %>
+                    N° <%=r.id_chambre%>
+                    <input type="checkbox" class="back" id="gap" name="chambre" value="<%=r.id_chambre%>" class="b">
+                    <% }
+                    }) %>
+
+                </div>
+                <div class="chambre_standart">
+                    <p>Chambre de luxe</p>
+                    <% row.forEach(function(r){
+                    if(r.categorie==='chambre de luxe'){
+                    %>
+                    N° <%=r.id_chambre%>
+                    <input type="checkbox" class="back" id="gap" name="chambre" value="<%=r.id_chambre%>" class="b">
+                    <% }
+                    }) %>
+
+                </div>
+                <div class="chambre_standart">
+                    <p>Chambre double</p>
+                    <% row.forEach(function(r){
+                    if(r.categorie==='chambre double'){
+                    %>
+                    N° <%=r.id_chambre%>
+                    <input type="checkbox" class="back" id="gap" name="chambre" value="<%=r.id_chambre%>" class="b">
+                    <% }
+                    }) %>
+
+                </div>
+                <div class="chambre_standart">
+                    <p>Appartement</p>
+                    <% row.forEach(function(r){
+                    if(r.categorie==='appartement'){
+                    %>
+
+                    N° <%=r.id_chambre%>
+                    <input type="checkbox" class="back" id="gap" name="chambre" value="<%=r.id_chambre%>" class="b">
+                    <% }
+                    }) %>
+<!--                    <button class="back" id="gap">1</button>-->
+<!--                    <button class="back">2</button>-->
+                </div>
+           </div>
+
+           <button type="submit" class="checked_in">Enregistrer</button>
+          </div>
+      </section>
+
+
+      
+
+
+      <!-----------------------------Jquery Library file---------------------------->
+      <script src="../../public/enregistrer/js/Jquery3.4.1.min.js"></script>
+
+      <!-----------------------------Custom javascript file------------------------->
+    <script src="../../public/enregistrer/js/main.js"></script>
+</body>
+</html>
