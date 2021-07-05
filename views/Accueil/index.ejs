@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../public/Accueil/css/style.css">
+    <!---------------------------------boostrap------------------------------->
+    <link rel="stylesheet" href="../../public/Accueil/css/bootstrap.min.css">
+    <!--------------------------And of boostrap------------------------------>
+
+    <!---------------------------------Font icons------------------------------->
+    <link rel="stylesheet" href="../../public/Accueil/css/all.css">
+    <!--------------------------And of Font icons------------------------------>
+    <title>Accueil </title>
+</head>
+
+<body>
+
+<!--------------------------------Navigation------------------------------->
+<nav class="ab">
+    <div class="ab-menu flexs-row">
+        <div class="ab-brand">
+            <div class="image">
+                <img src="../../public/image/Logo-atitle-hotelJ.png" alt="logo" style="width: 50px; height: 50px;">
+            </div>
+            <span> HOTEL ALTITEL</span>
+        </div>
+
+
+        <div class="toggles-collapses">
+            <div class="toggles-icons">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+
+        <div class="ab-items">
+            <li class="ab-link">
+                <a href="" class="ligne">Accueil</a>
+            </li>
+            <li class="ab-link">
+                <a href="" class="ligne">Main courant</a>
+            </li>
+            <li class="ab-link">
+                <a href="" class="ligne">Bilan</a>
+            </li>
+            <li class="ab-link">
+                <a href="" class="ligne">Facture</a>
+            </li>
+            <li class="ab-link">
+                <a href="" class="ligne">Contact </a>
+            </li>
+        </div>
+
+        <div class="socials text-gray">
+            <a href="/logout" class="liens ligne">Deconnexion</a>
+        </div>
+    </div>
+</nav>
+<!-----------------------------Navigation--------------------------->
+
+
+<section class="containers">
+
+    <div class="sit-contents">
+
+        <div class="poste">
+
+            <div class="enregistrer">
+
+                <a href="/receptioniste/client">
+                    <button class="h2">+ Enregistrer un nouveau client</button>
+                </a>
+
+                <div class="form">
+                    <div class="form__group field">
+                        <label for="name" class="form__label">nombre total de client present dans l'hotel</label>
+                        <p><span class="nombre_client" id="nombre_client">25</span></p>
+                    </div>
+                    <hr>
+                    <div class="chec">
+                        <label class="check"> informaton permet sur le nombre de chamre occupée dans l'hotel
+                            <input type="checkbox" checked="checked">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="boutons">
+                    <div class="bouton1">
+                        <p>Nouvelle Etrée</p>
+                        <a href="">
+                            <button>Entrée</button>
+                        </a>
+                    </div>
+                    <div class="bouton2">
+                        <p>Nouvelle Sortie</p>
+                        <a href="">
+                            <button>Sortie</button>
+                        </a>
+                    </div>
+                </div>
+
+                <!--------------------------End of enrégistement---------------------->
+            </div>
+
+        </div>
+
+        <div class="sidbare">
+
+            <div class="table-responsive">
+
+                <table class="table table-borderless tableau">
+
+                    <thead class="forme">
+                    <tr>
+                        <td>Nom</td>
+                        <td>N° chambre</td>
+                        <td>voir plus</td>
+                        <td>Passer<br>commande</td>
+                        <td>Consulter<br>facture</td>
+
+                    </tr>
+                    </thead>
+                    <% var i = 0 %>
+                    <% client.forEach(function(r){ %>
+                        <tr>
+                            <td>
+                                <%= r.nom %>
+                            </td>
+                            <td>
+                                <%= chambre[i].id_chambre %>
+                            </td>
+                            <td>
+                                <div class="groupe">
+                                    <a href="javascript:void(0);" id="btnPopup" onClick="editFunc(<%= r.id_client; %>)" data-toggle="tooltip" class="btnPopup btn btn-primary">Détails</a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="groupe">
+                                    <a href="/receptioniste/commande/ <%= r.id_client; %>">
+                                        <button id="couleur0">Ajouter</button>
+                                    </a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="groupe">
+                                    <a href="/admin/genererFacture/<%= r.id_client %>">
+                                        <button id="couleur1">Client</button>
+                                    </a>
+                                </div>
+                            </td>
+
+                        </tr>
+
+                        <% i = i + 1 %>
+                    <% }) %>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    </div>
+</section>
+
+    <div id="overlay" class="overlay">
+        <div id="popup" class="popup">
+            <h2 class="bg-h2">
+                Détails générale
+                <span id="btnClose" class="btnClose">&times;</span>
+            </h2>
+            <div class="global">
+
+                <div class="info1">
+                    <p>
+                        Numero de chambre : <span class="gras"><label id="numchambre"></label></span><br>
+                        Facture Petit déjeuner : <span class="gras"><label id="facture_pd"></label></span><br>
+                        Facture Restaurant : <span class="gras"><label id="Facture_r"></label></span><br>
+                        Facture Bar : <span class="gras"><label id="facture_bar"></label></span><br>
+                    </p>
+                </div>
+
+                <div class="info1">
+                    <p>
+                        Facture Linge : <span class="gras"><label id="facture_linge"></label></span><br>
+                        Facture Divers : <span class="gras"><label id="facture_divers"></label></span><br>
+<!--                        Facture Jour : <span class="gras">2</span><br>-->
+<!--                        Facture Rapport veille : <span class="gras">2</span><br>-->
+                    </p>
+                </div>
+
+<!--                <div class="info1">-->
+<!--                    <p>-->
+<!--                        Facture Général : <span class="gras">2</span><br>-->
+<!--                        Facture Règlement : <span class="gras">2</span><br>-->
+<!--                        Facture A rapporter : <span class="gras">2</span><br>-->
+<!--                    </p>-->
+<!--                </div>-->
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-----------------------------Jquery Library file---------------------------->
+    <script src="../../public/Accueil/js/Jquery3.4.1.min.js"></script>
+
+    <!-----------------------------Custom javascript file------------------------->
+    <script src="../../public/Accueil/js/main.js"></script>
+<script>
+    $("#popup").hide();
+    $("#overlay").hide();
+    $(".btnClose").click(function (){
+        $("#popup").hide(200);
+        $("#overlay").hide(200);
+    });
+    $(".btnPopup").click(function (){
+        $("#popup").show(200);
+        $("#overlay").show(200);
+    });
+    function editFunc(id) {
+
+        $.ajax({
+            type: "GET",
+            url: "/client/detail",
+            data: {id: id},
+            dataType: 'json',
+            success: function (res) {
+                var num_chambre = res.Infos[0].id_chambre;
+                $('#numchambre').html(num_chambre);
+
+                var val;
+                var key;
+                console.log(res.Infos[0].id_client);
+                $.each( res, function(key, val) {
+                    num_chambre=val['id_client'];
+                    console.log(val);
+                    alert(num_chambre);
+                    // $('#state').append($('<option>', {value:k, text:v}));
+                });
+
+            }
+        });
+    }
+</script>
+</body>
+</html>

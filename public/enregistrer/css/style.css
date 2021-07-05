@@ -1,0 +1,283 @@
+@import url('../css/font.css');
+
+html,body{
+    margin: 0%;
+    background-color: white;
+   box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+:root{
+/*-----------------Theme colors----------------*/
+    --bgk-color:#273486;
+    --text-light:#686666da;
+    --bg-color:#0f0f0f;
+    --white:#ffffff;
+
+/*-------------------them font-family-----------*/
+    --Abel:'Abel', cursive;
+    --Anton:'Anton', cursive;
+    --Josefin:'Josefin', cursive;
+    --Lexend:'Lexend', cursive;
+    --Livvic:'Livvic', cursive;
+}
+
+/*-------------------global classe--------------*/
+
+a{
+    text-decoration: none;
+}
+
+.flex-row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+/*------------------- End of global classe--------------*/
+
+
+
+/*--------------------navabar-------------------*/
+
+.nav{
+    background-color: var(--bgk-color);
+    height: 4.1rem;
+    min-height: 8vh;
+    overflow: hidden;
+    transition: height 1s ease-in-out;
+
+}
+
+.nav .nav-menu{
+    justify-content: space-between;
+}
+
+.nav .toggle-collapse{
+    position: absolute;
+    top: 0;
+    width: 90%;
+    cursor: pointer;
+    display: none;
+}
+
+.collapse{
+    height: 33rem;
+}
+
+
+.nav .toggle-collapse .toggle-icons{
+    display: flex;
+    justify-content: flex-end;
+    padding: 1.7rem 0;
+}
+
+.nav .toggle-collapse .toggle-icons i{
+    font-size: 1.4rem;
+    color: var(--text-gray);
+}
+
+.nav .nav-items{
+    list-style-type: none;
+    display: flex;
+    margin: 0; 
+    color: var(--white);
+}
+
+.nav .nav-items .nav-link{
+    padding: 1.6rem 0.5rem;
+    font-size: 1.6rem;
+    position: relative;
+    font-family: var(--Lexend);
+    font-size: 1.1rem;   
+}
+
+.nav .nav-items a{
+    color: var(--white)
+}
+
+img{
+ padding: 1rem 1rem;
+}
+
+.nav .nav-items .nav-link:hover{
+    background-color: var(--white);
+}
+
+.nav .nav-items .nav-link:hover a{
+    color: var(--bgk-color);
+}
+
+.nav .nav-brand span{  
+    padding: 1.5rem 0;
+    font-size: 1.6rem;   
+    font-family: var(--Abel);
+    font-size: 1.3rem;
+    color: var(--white)
+}
+
+.nav .nav-brand{
+    display: flex;
+} 
+.nav .social{
+    padding: 1.6rem 0;
+    
+}
+
+.nav .social .lien{
+	padding: 1.7rem;
+    background-color: var(--white);
+    font-size: 1.1rem;
+    color: var(--bgk-color);
+}
+/*--------------------End of navabar-------------------*/
+
+.champ h2{
+	color: #273486;
+}
+.content h2,h3{
+	text-align: center;
+    color: #273486;
+}
+
+.bar_de_recherche{
+   text-align: center;
+   margin-top: 20px;
+}
+
+.bar_de_recherche .recherche{
+    padding-left: 10px;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    width: 500px;
+    height: 37px;
+    border-color: #273486;
+}
+
+.bar_de_recherche .boutton_recherche{
+    margin-left: -6px;
+    width: 10%;
+    height: 40px;
+    font-size: 15px;
+    background-color: #273486;
+    border: none;
+    color: #fff;
+}
+
+.champ{
+	text-align: center;
+}
+
+#prenom,#nom,#phone,#cni{
+	width: 170px;
+	height: 30px;
+}
+
+.nom_num{
+    margin-right: 20%;
+}
+
+.etat{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 50%;
+    margin: auto;
+}
+
+.back{
+	background-color: #273486;
+	border: none;
+	color: #fff;
+	width: 40px;
+	height: 40px;
+	border-radius: 10px;
+}
+
+.contenu{
+   
+    display: flex;
+    margin: auto;
+    width: 38%;
+}
+
+.checked_in{
+	background-color: #273486;
+	width: 130px;
+	height: 30px;
+	border: none;
+	color: #fff;
+	border-radius: 20px;
+	margin-top: 3%;
+    margin-right: 3%;
+}
+
+@media all and (max-width: 1310px) {
+    .etat{
+        width: 60%;
+    }
+}
+
+@media all and (max-width: 940px) {
+    .etat{
+        width: 60%;
+    }
+      .contenu{
+         width: 45%;
+    }
+}
+
+                                      
+@media all and (max-width: 890px) {
+    .etat{
+        width: 80%;
+    }
+      .contenu{
+         width: 50%;
+    }
+}
+
+@media all and (max-width: 900px) {
+    .etat{
+        width: 70%;
+    }
+  
+}
+
+@media only screen and (max-width: 753px) {
+    .etat{
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .etat{
+        width: 75%;
+    }
+}
+@media all and (max-width: 913px) {
+    .etat{
+        width: 64%;
+    }
+}
+
+@media only screen and (max-width: 750px){
+    .nav .nav-menu, .nav .nav-items{
+        flex-direction: column;
+    }
+
+    .nav .toggle-collapse{
+        display: initial;
+    }
+
+    .etat{
+        width: 80%;
+    }
+
+    .contenu{
+         width: 55%;
+     }
+   
+}
+/*---------End of viewport less then or equal to 750px--------*/
