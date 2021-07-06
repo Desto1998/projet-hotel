@@ -1,49 +1,5 @@
 @import url('../css/font.css');
-html,
-body {
-    margin: 0%;
-    box-sizing: border-box;
-    overflow-x: hidden;
-    background: rgb(233, 232, 232) !important;
-}
-
-:root {
-    /*-----------------Theme colors----------------*/
-    --bgk-color: #273486;
-    --text-light: #686666da;
-    --bg-color: #0f0f0f;
-    --white: #ffffff;
-    /*--------------------gradient color--------------*/
-    --sky: linear-gradient(120deg, #a1c4fd 0%, #b195f1 100%);
-    /*-------------------them font-family-----------*/
-    --Abel: 'Abel', cursive;
-    --Anton: 'Anton', cursive;
-    --Josefin: 'Josefin', cursive;
-    --Lexend: 'Lexend', cursive;
-    --Livvic: 'Livvic', cursive;
-}
-
-
-/*-------------------global classe--------------*/
-
-.ligne {
-    text-decoration: none;
-}
-
-.flexs-row {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-
-/*------------------- End of global classe--------------*/
-
-
-/*--------------------navabar-------------------*/
-
 * {
-    margin: 0 auto;
     padding: 0;
     box-sizing: border-box;
 }
@@ -57,7 +13,7 @@ body {
 }
 
 
-/*Menue*/
+/*--------------------navabar-------------------*/
 
 .logo {
     width: 45px !important;
@@ -109,40 +65,109 @@ li a:hover {
     margin-top: 8px;
 }
 
-
-/*end menue*/
-
-.entete {
-    background-color: #fff;
-    padding-left: 3%;
-    padding-right: 3%;
-    padding-top: 2%;
-    position: relative;
-    display: flex;
-    top: 0;
+.footer {
+    color: #ED2227;
+    align-items: center;
+    margin-top: 5px;
+    bottom: 0;
+    padding-top: 15px;
+    width: 100%;
+    margin-left: 43%;
 }
 
-.enteteGauche {
-    margin: 0;
-    width: 12%;
+@media only screen and (min-width: 768px) {
+    .clientNom {
+        color: white;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    .logo {
+        width: 45px;
+        height: 45px;
+        position: fixed;
+    }
+}
+
+
+/*--------------------End of navabar-------------------*/
+
+
+/*--------------------------------- Enregistation------------------------------*/
+
+.enregistrer {
+    width: 100%;
+    margin-left: 7%;
+}
+
+.enregistrer .h2 {
+    background-color: #28be69;
+    width: 80%;
+    font-size: 1.2rem;
+    text-align: center;
+    border-radius: 30px;
+    color: #fff;
+    border: none;
+    padding: 3%;
+}
+
+.enregistrer .h2:hover {
+    background-color: #a81212;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+
+/* Hide the browser's default checkbox */
+
+.check input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+
+/*---------------------------------End of Enregistation------------------------------*/
+
+
+/*-------------------------site-content----------------*/
+
+@media only screen and (min-width: 868px) {
+    .corps {
+        display: grid;
+        margin-top: 3%;
+        grid-template-columns: 50% 50%;
+        width: 100%;
+    }
+}
+
+
+/*
+.gauche {
+    width: 49%;
     left: 0;
-    position: relative;
+    position: fixed;
     z-index: 1;
+    height: 100%;
+    overflow-x: hidden;
+    margin-bottom: 15px;
 }
 
-.enteteDroite {}
-
-.menuImg {}
-
-.nomAdmin {
-    width: 88%;
+.droite {
+    width: 49%;
     right: 0;
-    position: relative;
+    position: fixed;
     z-index: 1;
+    height: 100%;
+    overflow-x: hidden;
+    margin-right: 1%;
+    margin-bottom: 15px;
 }
+*/
 
 .entete2 {
-    background-color: #ED2227;
+    background-color: #273486;
     padding: 1%;
     top: 0;
     display: flex;
@@ -160,52 +185,52 @@ li a:hover {
     padding: 1%;
     margin-top: 3%;
     box-shadow: 9px 15px 12px -10px #c7c5c5;
+    margin-left: 1%;
 }
 
 .titre1 {
-    color: #ED2227;
-    font-size: 2.1rem;
+    color: #273486;
+    font-size: 1.7rem;
     font-weight: bold;
 }
 
 .sousTitre1 {
     color: #565555;
+    font-size: 1rem !important;
 }
 
-.note {
-    color: #ED2227;
-    font-size: 6.1rem;
+.nombre_client {
+    color: #273486;
+    font-size: 3.1rem;
     font-weight: bold;
     text-align: right;
     padding-right: 15%;
+    margin-bottom: 0px;
 }
 
 .separateur {
-    background-color: #ED2227;
+    background-color: #273486;
     width: 80%;
     margin-left: -1%;
-    border: 1px solid #ED2227;
+    border: 1px solid#273486;
 }
 
 .bas,
 .bas1 {
     display: grid;
-    grid-template-columns: 5% 95%;
+    grid-template-columns: 7% 93%;
 }
 
 .marqueur {
     width: 20px;
     height: 20px;
-    background-color: #ED2227;
-}
-
-.texte1 {
-    margin-left: 0;
+    background-color: #273486;
 }
 
 .StatBrefClient {
+    margin-top: 1%;
     display: grid;
-    grid-template-columns: 33.3% 33.3% 33.4%;
+    grid-template-columns: 50% 50%;
     width: 99.5%;
     padding: 1%;
     color: #3F3D56;
@@ -221,18 +246,35 @@ li a:hover {
     padding: 1%;
     margin-top: 3%;
     box-shadow: 9px 15px 12px -10px #c7c5c5;
+    margin-left: 1%;
+}
+
+.entréesortie {
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 20%;
+}
+
+.btnenregistrement {
+    padding: 5%;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    width: 70%;
+    background-color: #273486;
+    border-radius: 30px;
+    color: #fff !important;
+    align-items: center;
+}
+
+.btnenregistrement:hover {
+    background-color: #a81212;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
 }
 
 .titre2 {
     font-weight: bold;
     margin-left: 2%;
-}
-
-.note1 {
-    font-size: 4.5rem;
-    text-align: right;
-    padding-right: 15%;
-    font-weight: bold;
 }
 
 .separateur1 {
@@ -248,227 +290,12 @@ li a:hover {
     margin-top: 15%;
 }
 
-.texte2 {
-    margin-left: 2%;
-    margin-top: -1%;
-}
-
-.detatilEnqueteEnCours {
-    width: 96%;
-    align-self: center;
-    margin-top: 1%;
-}
-
-.enteteTitre {
-    color: #ED2227;
-    font-size: 2.1rem;
+.note1 {
+    margin-top: 10%;
+    font-size: 3rem;
+    text-align: right;
+    padding-right: 15%;
     font-weight: bold;
-    background-color: #E4E4E4;
-}
-
-.tableau {
-    width: 100%;
-    box-shadow: 9px 15px 12px -10px #c7c5c5;
-    background-color: #fff;
-    margin-top: 1%;
-}
-
-tbody tr:nth-of-type(even) {
-    background-color: #f7f1f1;
-    color: lightcoral;
-}
-
-.enteteTableau {
-    background-color: #E4E4E4;
-    color: #777777;
-    font-weight: lighter;
-}
-
-th,
-td {
-    padding: 10px 2px !important;
-}
-
-.libelle {
-    width: 65%;
-}
-
-.resultat {
-    width: 15%;
-    text-align: center;
-}
-
-.sugestionSection {
-    width: 96%;
-    margin-bottom: 15px;
-}
-
-.titreSugestion {
-    color: #ED2227;
-    font-size: 2.1rem;
-    font-weight: bold;
-    margin-top: 2%;
-}
-
-.sugestion {
-    background-color: white;
-    width: 100%;
-    align-self: center;
-    padding: 1%;
-    margin-top: 2%;
-    box-shadow: 9px 15px 12px -10px #c7c5c5;
-}
-
-footer {
-    color: #ED2227;
-    align-items: center;
-    margin-top: 5px;
-    bottom: 0;
-    padding-top: 15px;
-    width: 100%;
-}
-
-@media only screen and (min-width: 768px) {
-    .entete2 {
-        background-color: #ED2227;
-        padding: 1%;
-        top: 0;
-        display: flex;
-        width: 100%;
-        height: 5%;
-    }
-    .signout {
-        background-color: #ED2227;
-        border-radius: 5px;
-        padding: 7%;
-        border-color: white;
-        color: white;
-        font-weight: bold;
-        border: none;
-    }
-    .clientNom {
-        color: white;
-        font-size: 1.5rem;
-        font-weight: bold;
-    }
-    .adminNom {
-        color: #ED2227;
-        font-family: "Nirmala UI";
-        font-size: 3.5rem;
-        margin-top: -15px;
-        position: relative;
-        margin-left: -5%;
-    }
-    .logo {
-        width: 45px;
-        height: 45px;
-        position: fixed;
-    }
-}
-
-
-/*
-.ab {
-    background-color: var(--bgk-color);
-    height: 4.1rem;
-    min-height: 8vh;
-    overflow: hidden;
-    transition: height 1s ease-in-out;
-}
-
-.ab .ab-menu {
-    justify-content: space-between;
-}
-
-.ab .toggles-collapses {
-    position: absolute;
-    top: 0;
-    width: 90%;
-    cursor: pointer;
-    display: none;
-}
-
-.collapses {
-    height: 33rem;
-}
-
-.ab .toggles-collapses .toggles-icons {
-    display: flex;
-    justify-content: flex-end;
-    padding: 1.7rem 0;
-}
-
-.ab .toggles-collapses .toggles-icons i {
-    font-size: 1.4rem;
-    color: var(--text-gray);
-}
-
-.ab .ab-items {
-    list-style-type: none;
-    display: flex;
-    margin: 0;
-    color: var(--white);
-}
-
-.ab .ab-items .ab-link {
-    padding: 1.6rem 0.5rem;
-    position: relative;
-    font-family: var(--Lexend);
-    font-size: 1rem;
-}
-
-.ab .ab-items .ligne {
-    color: var(--white)
-}
-
-.image {
-    padding: 1rem 1rem;
-}
-
-.ab .ab-items .ab-link:hover {
-    background-color: var(--white);
-}
-
-.ab .ab-items .ab-link:hover .ligne {
-    color: var(--bgk-color);
-}
-
-.ab .ab-brand span {
-    padding: 1.5rem 0;
-    font-size: 1.6rem;
-    font-family: var(--Abel);
-    font-size: 1.3rem;
-    color: var(--white)
-}
-
-.ab .ab-brand {
-    display: flex;
-}
-
-.ab .socials {
-    padding: 1.6rem 0;
-}
-
-.ab .socials .liens {
-    padding: 1.7rem;
-    background-color: var(--white);
-    font-size: 1.1rem;
-    color: var(--bgk-color);
-}
-
-*/
-
-
-/*--------------------End of navabar-------------------*/
-
-
-/*-------------------------site-content----------------*/
-
-.sit-contents {
-    display: grid;
-    margin-top: 3%;
-    grid-template-columns: 50% 50%;
-    width: 100%;
 }
 
 
@@ -477,10 +304,27 @@ footer {
 
 /*------------------------------Tableau---------------------------------*/
 
+.titredroit {
+    background-color: #273486;
+    padding: 2%;
+    margin-bottom: 2%;
+}
+
+.titreListe {
+    padding: 1%;
+    color: #fff !important;
+    margin-bottom: 0px;
+}
+
 #tableau {
-    background-color: #fff;
-    box-shadow: 3px 3px 30px rgba(66, 57, 238, 0.2);
-    border-collapse: collapse;
+    background-color: white !important;
+    width: 96%;
+    height: 100%;
+    align-self: center;
+    padding: 1%;
+    margin-top: 3%;
+    box-shadow: 9px 15px 12px -10px #c7c5c5;
+    margin-right: 1%;
 }
 
 .tableau .forme {
@@ -517,232 +361,7 @@ tr:nth-child(even) {
 /*---------------------------------------End of Tableau-------------------*/
 
 
-/*--------------------------------- Enregistation------------------------------*/
-
-.enregistrer {
-    box-shadow: 3px 3px 30px rgba(66, 57, 238, 0.2);
-    width: 90%;
-}
-
-.nombre_client {
-    font-size: 4.5rem;
-    font-weight: bold;
-    color: #273486;
-    margin-left: 55%;
-}
-
-.enregistrer .taille_de_plus {
-    font-weight: 50px;
-}
-
-.enregistrer .form {
-    margin-top: 8%;
-    width: 100%;
-    height: 42%;
-    background-color: #fff;
-    box-shadow: 0px 5px rgba(66, 57, 238, 0.2);
-}
-
-.enregistrer .h2 {
-    background-color: #28be69;
-    width: 380px;
-    height: 60px;
-    font-size: 20px;
-    margin-left: 35px;
-    text-align: center;
-    border-radius: 30px;
-    color: #fff;
-    border: none;
-}
-
-.enregistrer .form .en_gras {
-    color: #273486;
-    bottom: 5px;
-}
-
-.enregistrer .form .form__group {
-    position: relative;
-    padding: 11px 0 0;
-    margin-top: 10px;
-    width: 100%;
-}
-
-.enregistrer .form .form__group .form__field {
-    width: 92%;
-    border: 0;
-    border-bottom: 2px solid #9b9b9b;
-    outline: 0;
-    font-size: 1.9rem;
-    color: rgb(39, 2, 2);
-    padding: 20px 0;
-}
-
-.enregistrer .form .form__group .form__label {
-    position: absolute;
-    cursor: text;
-    top: 0;
-    display: block;
-    transition: 0.2s;
-    font-size: 1rem;
-    color: #11998e;
-    font-weight: 700;
-}
-
-.enregistrer .form .chec {
-    margin-left: 25px;
-    margin-top: 12px;
-}
-
-.enregistrer .form .chec .check {
-    display: block;
-    position: relative;
-    padding-left: 27px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    font-size: 11px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-
-/* Hide the browser's default checkbox */
-
-.check input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-}
-
-
-/* Create a custom checkbox */
-
-
-/*.checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 16px;
-    width: 16px;
-    background-color: #273486;
-}
-*/
-
-.enregistrer .boutons {
-    margin: 7% 16%;
-    display: flex;
-    padding-bottom: 5%;
-}
-
-.enregistrer .boutons button {
-    width: 100px;
-    font-weight: bold;
-    border-radius: 30px;
-    color: #fff;
-    border: none;
-    font-size: 20px;
-    background-image: linear-gradient(to right, #89898f, #273486, #273486);
-    transition: .5s;
-}
-
-.enregistrer .boutons .bouton1 {
-    padding-right: 150px;
-}
-
-
-/*---------------------------------End of Enregistation------------------------------*/
-
-.overlay {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1;
-}
-
-.bg-h2 {
-    background-color: var(--bgk-color);
-    padding: 1rem;
-    color: var(--white);
-}
-
-.global {
-    padding: 1rem;
-    display: grid;
-    grid-template-columns: 36% 31% 32%;
-}
-
-.popup {
-    margin: 10% auto;
-    width: 55%;
-    background-color: white;
-    border-radius: 5PX;
-}
-
-.gras {
-    font-weight: bold;
-}
-
-#btnClose {
-    cursor: pointer;
-    float: right;
-}
-
-
 /*---------viewport less then or equal to 750px--------*/
-
-@media only screen and (min-width: 1000px) {
-    .sit-contents {
-        grid-template-columns: 50% 50%;
-    }
-}
-
-@media only screen and (min-width: 900px) {
-    .sit-contents {
-        grid-template-columns: 50% 50%;
-    }
-}
-
-@media only screen and (min-width: 850px) {
-    .sit-contents {
-        grid-template-columns: 50% 50%;
-    }
-}
-
-@media only screen and (max-width: 750px) {
-    .ab .ab-menu,
-    .ab .ab-items {
-        flex-direction: column;
-    }
-    .ab .toggles-collapses {
-        display: initial;
-    }
-    .sit-contents {
-        grid-template-columns: 35% 15%;
-    }
-}
-
-
-/*
-@media only screen and (max-width: 526px){
-    .botton-valide{
-        width: 5rem;
-    }
-   
-    .date input{
-        width: 5rem;
-    }
-
-   
-}
-
-
-
 
 
 /*---------End of viewport less then or equal to 750px--------*/
