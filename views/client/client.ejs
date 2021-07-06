@@ -26,49 +26,72 @@
     </header>
     <!--------------------------End of Tableau---------------------->
 
-    <section class="containers">
+    <div class="corps">
 
-        <div class="sit-contents">
+        <section class="gauche">
 
-            <div class="poste">
 
-                <div class="enregistrer">
+            <div class="enregistrer">
 
-                    <a href="/receptioniste/client"><button class="h2">+ Enregistrer un nouveau client</button></a>
-                </div>
-                <div class="form">
-
-                    <div class="form__group field">
-                        <label for="name" class="form__label">nombre total de client present dans l'hotel</label>
-                        <p> <span class="nombre_client" id="nombre_client"><%= client.length %></span> </p>
+                <a href="/receptioniste/client"><button class="h2">Nouveau client</button></a>
+            </div>
+            <section class="resultatGlobal">
+                <h4 class="titre1">
+                    Nombre total de client</h4>
+                <h5 class="sousTitre1">
+                    Nombre total de client present dans l'hotel
+                </h5>
+                <p class="nombre_client " id="nombre_client">
+                    <%= client.length %>
+                </P>
+                <hr class="separateur">
+                <div class="bas">
+                    <div class="marqueur"></div>
+                    <div class="texte1">
+                        <p>Cette information permet de constater le nombre total de client present dans l'hotel</p>
                     </div>
                 </div>
-                <div class="chec">
-                    <label class="check"> informaton permet sur le nombre de chamre occupée dans l'hotel
-         <input type="checkbox" checked="checked">
-         <span class="checkmark"></span>
-     </label>
+            </section>
+            <section class="StatBrefClient">
+
+                <div class="nombreEnquete" id="liennbrenquetes">
+                    <h4 class="titre2">
+                        Nouvelle Entrée
+                    </h4>
+                    <div class="entréesortie"><button class="btnenregistrement">Entrée</button></div>
+                    <hr class="separateur1">
+                    <div class="bas1">
+                        <div class="marqueur1"></div>
+                        <div class="texte2">
+                            <p>Cliquez ici pour enregistrer une nouvelle entrée</p>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="resultatEnqueteEnCours">
+                    <h4 class="titre2">
+                        Nouvelle Sortie
+                    </h4>
+
+                    <div class="entréesortie"><button class="btnenregistrement">Sortie</button></div>
+                    <hr class="separateur1">
+                    <div class="bas1">
+                        <div class="marqueur1"></div>
+                        <div class="texte2">
+                            <p>Cliquez ici pour enregistrer une nouvelle sortie</p>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+        </section>
+
+        <!--------------------------End of enrégistement---------------------->
+        <section class="droite">
+            <div class="titredroit">
+                <h4 class="titreListe titre1">Liste des clients présent à l'hotel</h4>
             </div>
-
-            <div class="boutons">
-                <div class="bouton1">
-                    <p>Nouvelle Etrée</p>
-                    <a href=""><button>Entrée</button></a>
-                </div>
-                <div class="bouton2">
-                    <p>Nouvelle Sortie</p>
-                    <a href=""><button>Sortie</button></a>
-                </div>
-            </div>
-
-            <!--------------------------End of enrégistement---------------------->
-        </div>
-
-        </div>
-
-        <div class="sidbare">
-
             <div class="table-responsive">
 
                 <table class="table table-borderless tableau">
@@ -99,7 +122,8 @@
                                 </td>
                                 <td>
                                     <div class="groupe">
-                                        <button id="btnPopup" class="btnPopup">Détails</button>
+                                        <button class="btn btn-info" id="btn">Détails</button>
+
                                     </div>
                                 </td>
                                 <td>
@@ -121,63 +145,26 @@
 
             </div>
 
+        </section>
+
+    </div>
+
+
+    <!--------------------------------footer--------------------------------->
+    <footer>
+        <div class="footer">
+            copyrygth MI 2020
         </div>
 
-        </div>
+    </footer>
+    <!--------------------------------footer--------------------------------->
 
+    <!-----------------------------Jquery Library file---------------------------->
+    <script src="/js/Jquery3.4.1.min.js"></script>
 
-        </div>
-
-        <!--
-        <div id="overlay" class="overlay">
-            <div id="popup" class="popup">
-                <h2 class="bg-h2">
-                    Détails générale
-                    <span id="btnClose" class="btnClose">&times;</span>
-                </h2>
-                <div class="global">
-
-                    <div class="info1">
-                        <p>
-                            Numero de chambre : <span class="gras">2</span><br> Facture Petit déjeuner : <span class="gras">2</span><br> Facture Restaurant : <span class="gras">2</span><br> Facture Bar : <span class="gras">2</span><br>
-                        </p>
-                    </div>
-
-                    <div class="info1">
-                        <p>
-                            Facture Linge : <span class="gras">2</span><br> Facture Divers : <span class="gras">2</span><br> Facture Jour : <span class="gras">2</span><br> Facture Rapport veille : <span class="gras">2</span><br>
-                        </p>
-                    </div>
-
-                    <div class="info1">
-                        <p>
-                            Facture Général : <span class="gras">2</span><br> Facture Règlement : <span class="gras">2</span><br> Facture A rapporter : <span class="gras">2</span><br>
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-        </div>-->
-        <!--------------------------------footer--------------------------------->
-        <footer>
-            <div class="container-fluid">
-                <div class="col-md-12">
-                    <div class="row">
-                        <p>copyrygth MI 2020</p>
-                    </div>
-                </div>
-
-            </div>
-
-        </footer>
-        <!--------------------------------footer--------------------------------->
-
-        <!-----------------------------Jquery Library file---------------------------->
-        <script src="/js/Jquery3.4.1.min.js"></script>
-
-        <!-----------------------------Custom javascript file------------------------->
-        <script src="/js/main_ac.js"></script>
-        <script type="text/javascript" src="../../public/fontawesome-5.15.2/js/fontawesome.js"></script>
+    <!-----------------------------Custom javascript file------------------------->
+    <script src="/js/main_ac.js"></script>
+    <script type="text/javascript" src="../../public/fontawesome-5.15.2/js/fontawesome.js"></script>
 
 </body>
 
