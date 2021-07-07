@@ -5,66 +5,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style_cm.css">
-    <!---------------------------------Font icons-------------------------------> 
+    <!---------------------------------Font icons------------------------------->
     <link rel="stylesheet" href="/css/all_cm.css">
-   
+
     <title>Commandes</title>
 </head>
 
 <body>
-    <nav class="nav">
-        <div class="nav-menu flex-row">
-            <div class="nav-brand">
-                <div class="img">
-                  <img src="/image/Logo-atitle-hotelJ.png" alt="logo"  style="width: 50px; height: 50px;">
-                </div>          
-                  <span> HOTEL ALTITEL</span>
-            </div>
-            
-
-            <div class="toggle-collapse">
-                <div class="toggle-icons">
-                    <i class="fas fa-bars"></i>
-                </div>
-            </div>
-
-            <div class="nav-items">
-                <li class="nav-link">
-                    <a href="/acceuil/clients">Accueil</a>
-                </li>
-                <li class="nav-link">
-                  <a href="/receptioniste/main_courant">Main courant</a>
-                </li>
-                <li class="nav-link">
-                  <a href="">Bilan</a>
-                </li>
-                <li class="nav-link">
-                  <a href="">Facture</a>
-                </li>
-                <li class="nav-link">
-                  <a href="">Contact </a>
-                </li>
-            </div>
-
-            <div class="social text-gray">
-              <a href="/logout" class="lien">Deconnexion</a>
-            </div>
-        </div>
-      </nav>
+    <header>
+        <ul>
+            <img src="/image/Logo-atitle-hotelJ.png" class="logo" alt="">
+            <li class="clientNom" id="nom" style="float:left"> ALTITEL HOTEL</li>
+            <li><a href="#about" class="deconnexion">Déconnexion</a></li>
+            <li class=" accueil"><a href="/acceuil/clients">Accueil</a></li>
+            <li class=" main_courante"><a href="/receptioniste/main_courant">Main courant</a></li>
+            <li class="bilan"><a href="">Bilan</a></li>
+            <li class="facture"><a href="">Facture</a></li>
+        </ul>
+    </header>
     <!------------------------header--------------------------------->
 
-    
+
     <!--------------------End of header--------------------------------->
-   
 
 
-        <div class="login-content">
-            <form action="/receptioniste/commande/<%= id %>" method="POST">
-                <img src="/image/Logo-atitle-hotel.png">
-                <h2 class="title">
-                    <div class="liste_deroulante">
-                        <label for="poste"> <b> <i>Motif</i> </b></label>
-                        <select id="poste" name="poste">
+
+    <div class="login-content">
+        <form action="/receptioniste/commande/<%= id %>" method="POST">
+            <img src="/image/Logo-atitle-hotel.png">
+            <h2 class="title">
+                <div class="liste_deroulante">
+                    <label for="poste"> <b> <i>Service</i> </b></label>
+                    <select id="poste" name="poste">
                             <option value="">Sélectionnez une option</option>
                             <option value="reglement">Règlement</option>
                             <option value="restaurant">Petit dejeuné</option>
@@ -73,46 +45,49 @@
                             <option value="linge">Linge</option>
                             <option value="restaurant">Divers</option>
                             </select>
-                        </div>
-                    </h2>
-                    <div class="input-div one">
-                        <div class="i">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="div">
-                            <h5>Montant</h5>
-                            <input type="text" class="input" name="montant">
-                        </div>
-                    </div>
-                    <div class="input-div pass">
-                        <div class="i">
-                            <i class="fas fa-lock"></i>
-                        </div>
-                        <div class="div">
-                            <h5>Nombre</h5>
-                            <input type="text" class="input" name="nombre">
-                        </div>
-                    </div>
-
-                    <input type="submit" class="btn" value="Enregistrer" style="font-weight: bold;">
-                </form>
+                </div>
+            </h2>
+            <div class="input-div one">
+                <div class="i">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="div">
+                    <h5>Montant</h5>
+                    <input type="text" class="input" name="montant">
+                </div>
+            </div>
+            <div class="input-div pass">
+                <div class="i">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="div">
+                    <h5>Nombre</h5>
+                    <input type="text" class="input" name="nombre">
+                </div>
             </div>
 
-            <!--------------------End of container--------------------------------->
+            <input type="submit" class="btn" value="Enregistrer" style="font-weight: bold;">
+        </form>
+    </div>
 
-            <!--------------------------------footer--------------------------------->
-            <footer>
-                <p>copyrygth MI 2020</p>
-            </footer>
-            <!--------------------------------footer--------------------------------->
-   
+    <!--------------------End of container--------------------------------->
 
-   
-      <!-----------------------------Jquery Library file---------------------------->
-      <script src="/js/Jquery3.4.1.min.js"></script>
+    <!--------------------------------footer--------------------------------->
+    <footer>
+        <div class="footer">
+            copyrygth MI 2020
+        </div>
 
-      <!-----------------------------Custom javascript file------------------------->
-      <script src="./js/main_cm.js"></script>
+    </footer>
+    <!--------------------------------footer--------------------------------->
+
+
+
+    <!-----------------------------Jquery Library file---------------------------->
+    <script src="/js/Jquery3.4.1.min.js"></script>
+
+    <!-----------------------------Custom javascript file------------------------->
+    <script src="./js/main_cm.js"></script>
 </body>
 
 </html>

@@ -1,209 +1,195 @@
 @import url('../css/font.css');
-*{
-	padding: 0;
-	margin: 0;
+* {
+    padding: 0;
+    margin: 0;
 }
 
-html,body{
+html,
+body {
     margin: 0%;
-   box-sizing: border-box;
-	overflow-x: hidden;
-	font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
     overflow: hidden;
 }
 
-:root{
-/*-----------------Theme colors----------------*/
-    --bgk-color:#273486;
-    --text-light:#686666da;
-    --bg-color:#0f0f0f;
-    --white:#ffffff;
-
-/*-------------------them font-family-----------*/
-    --Abel:'Abel', cursive;
-    --Anton:'Anton', cursive;
-    --Josefin:'Josefin', cursive;
-    --Lexend:'Lexend', cursive;
-    --Livvic:'Livvic', cursive;
+:root {
+    /*-----------------Theme colors----------------*/
+    --bgk-color: #273486;
+    --text-light: #686666da;
+    --bg-color: #0f0f0f;
+    --white: #ffffff;
+    /*-------------------them font-family-----------*/
+    --Abel: 'Abel', cursive;
+    --Anton: 'Anton', cursive;
+    --Josefin: 'Josefin', cursive;
+    --Lexend: 'Lexend', cursive;
+    --Livvic: 'Livvic', cursive;
 }
+
 
 /*-------------------global classe--------------*/
 
-a{
+a {
     text-decoration: none;
 }
 
-.flex-row{
+.flex-row {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
-/*------------------- End of global classe--------------*/
 
+
+/*------------------- End of global classe--------------*/
 
 
 /*--------------------navabar-------------------*/
 
-.nav{
-    background-color: var(--bgk-color);
-    height: 4.1rem;
-    min-height: 8vh;
-    overflow: hidden;
-    transition: height 1s ease-in-out;
-
+.logo {
+    width: 45px !important;
+    height: 45px !important;
+    position: fixed;
+    margin-left: 1%;
 }
 
-.nav .nav-menu{
-    justify-content: space-between;
-}
-
-.nav .toggle-collapse{
-    position: absolute;
-    top: 0;
-    width: 90%;
-    cursor: pointer;
-    display: none;
-}
-
-.collapse{
-    height: 33rem;
-}
-
-
-.nav .toggle-collapse .toggle-icons{
-    display: flex;
-    justify-content: flex-end;
-    padding: 1.7rem 0;
-}
-
-.nav .toggle-collapse .toggle-icons i{
-    font-size: 1.4rem;
-    color: var(--text-gray);
-}
-
-.nav .nav-items{
+ul {
     list-style-type: none;
-    display: flex;
-    margin: 0; 
-    color: var(--white);
+    margin: 0;
+    overflow: hidden;
+    background-color: #273486;
+    padding: 0%;
 }
 
-.nav .nav-items .nav-link{
-    padding: 1.6rem 0.5rem;
-   
-    position: relative;
-    font-family: var(--Lexend);
-    font-size: 1rem;   
+li {
+    float: right;
 }
 
-.nav .nav-items a{
-    color: var(--white)
+li a {
+    display: block;
+    padding: 3%;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    float: right;
+    text-align: center;
+    padding: 14px 16px;
+    font-weight: bold;
+    transition: .5s;
 }
 
-img{
- padding: 1rem 1rem;
+.deconnexion {
+    background-color: white;
+    color: #273486;
+    transition: .5s;
 }
 
-.nav .nav-items .nav-link:hover{
-    background-color: var(--white);
+li a:hover,
+.deconnexion:hover,
+.btn:hover {
+    background-color: #337ad8;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
 }
 
-.nav .nav-items .nav-link:hover a{
-    color: var(--bgk-color);
+.clientNom {
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-left: 60px;
+    margin-top: 8px;
 }
 
-.nav .nav-brand span{  
-    padding: 1.5rem 0;
-    font-size: 1.6rem;   
-    font-family: var(--Abel);
-    font-size: 1.3rem;
-    color: var(--white)
+.footer {
+    color: #ED2227;
+    align-items: center;
+    margin-top: 5px;
+    bottom: 0;
+    padding-top: 15px;
+    width: 100%;
+    margin-left: 43%;
 }
 
-.nav .nav-brand{
-    display: flex;
-} 
-.nav .social{
-    padding: 1.6rem 0;
-    
+@media only screen and (min-width: 768px) {
+    .clientNom {
+        color: white;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    .logo {
+        width: 45px;
+        height: 45px;
+        position: fixed;
+    }
 }
 
-.nav .social .lien{
-	padding: 1.7rem;
-    background-color: var(--white);
-    font-size: 1.1rem;
-    color: var(--bgk-color);
-}
+
 /*--------------------End of navabar-------------------*/
 
-.wave{
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	height: 100%;
-	z-index: -1;
+.wave {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    z-index: -1;
 }
 
-.container{
+.container {
     width: 100vw;
     height: 100vh;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-   grid-gap :7rem;
+    grid-gap: 7rem;
     padding: 0 2rem;
 }
 
-
-.login-content{
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
-	text-align: center;
+.login-content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
 }
 
-
-form{
-	width: 30%;
-	margin: 0 auto;
-	padding: 1%;
-	border-radius: 15px;
-	background: rgb(255, 255, 255);
-	margin-top: 1%;
-	box-shadow:1px 1px 10px rgba(66,57,238,0.2);
-	
+form {
+    width: 30%;
+    margin: 0 auto;
+    padding: 1%;
+    border-radius: 15px;
+    background: rgb(255, 255, 255);
+    margin-top: 1%;
+    box-shadow: 1px 1px 10px rgba(66, 57, 238, 0.2);
 }
 
-#poste{
-	border-radius:  30px;
-	border: 1px solid #999;
+#poste {
+    border-radius: 30px;
+    border: 1px solid #999;
     width: 150px;
-    padding: 6px;  
+    padding: 6px;
 }
 
-.title{
-	margin-right: 30px;
+.title {
+    margin-right: 30px;
 }
 
-.liste_deroulante label{
-	padding-right: 40px;
-	font-size: 20px;
-	color: #999;
-	
+.liste_deroulante label {
+    padding-right: 40px;
+    font-size: 20px;
+    color: #999;
 }
 
-.login-content img{
-	height: 100px;
-	padding-bottom: 20px;
+.login-content img {
+    height: 100px;
+    padding-bottom: 20px;
 }
 
-.login-content h2{
-	margin-right: 80px;
-	margin-bottom: 30px;
-	font-size: 2.9rem;
+.login-content h2 {
+    margin-right: 80px;
+    margin-bottom: 30px;
+    font-size: 2.9rem;
 }
 
-.login-content .input-div{
-	position: relative;
+.login-content .input-div {
+    position: relative;
     display: grid;
     grid-template-columns: 7% 93%;
     margin: 25px 0;
@@ -211,172 +197,158 @@ form{
     border-bottom: 2px solid #d9d9d9;
 }
 
-.login-content .input-div.one{
-	margin-top: 0;
+.login-content .input-div.one {
+    margin-top: 0;
 }
 
-.input-div > div{
+.input-div>div {
     position: relative;
-	height: 45px;
+    height: 45px;
 }
 
-.input-div > div > h5{
-	position: absolute;
-	left: 10px;
-	top: 50%;
-	transform: translateY(-50%);
-	color: #999;
-	font-size: 18px;
-	transition: .3s;
+.input-div>div>h5 {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 18px;
+    transition: .3s;
 }
 
-.input-div:before, .input-div:after{
-	content: '';
-	position: absolute;
-	bottom: -2px;
-	width: 0%;
-	height: 2px;
-	background-color: #38d39f;
-	transition: .4s;
+.input-div:before,
+.input-div:after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    width: 0%;
+    height: 2px;
+    background-color: #38d39f;
+    transition: .4s;
 }
 
-.input-div:before{
-	right: 50%;
+.input-div:before {
+    right: 50%;
 }
 
-.input-div:after{
-	left: 50%;
+.input-div:after {
+    left: 50%;
 }
 
-.input-div.focus:before, .input-div.focus:after{
-	width: 50%;
+.input-div.focus:before,
+.input-div.focus:after {
+    width: 50%;
 }
 
-.input-div.focus > div > h5{
-	top: -5px;
-	font-size: 15px;
+.input-div.focus>div>h5 {
+    top: -5px;
+    font-size: 15px;
 }
 
-.input-div > div > input{
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	border: none;
-	outline: none;
-	background: none;
-	padding: 0.5rem 0.7rem;
-	font-size: 1.2rem;
-	color: #555;
-	font-family: 'poppins', sans-serif;
+.input-div>div>input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: none;
+    padding: 0.5rem 0.7rem;
+    font-size: 1.2rem;
+    color: #555;
+    font-family: 'poppins', sans-serif;
 }
 
-.input-div.pass{
-	margin-bottom: 4px;
+.input-div.pass {
+    margin-bottom: 4px;
 }
 
-.btn{
-	display: block;
-	width: 100%;
-	height: 50px;
-	border-radius: 25px;
-	outline: none;
-	border: none;
-	background-image: linear-gradient(to right, #434668, #273486, #273486);
-	font-size: 1.2rem;
-	color: #fff;
-	font-family: 'Poppins', sans-serif;
-	text-transform: uppercase;
-	margin:2rem 0;
-	cursor: pointer;
-	transition: .5s;
-}
-.btn:hover{
-	background-position: right;
+.btn {
+    display: block;
+    width: 100%;
+    height: 50px;
+    border-radius: 25px;
+    outline: none;
+    border: none;
+    background-color: #273486;
+    font-size: 1.2rem;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    margin: 2rem 0;
+    cursor: pointer;
+    transition: .5s;
 }
 
-
-
-@media screen and (max-width: 916px){
-	form{
-		width: 40%;
-	}
-}
-@media screen and (max-width: 1129px){
-    #poste{
-		width: 50%;
-	}
-	
+@media screen and (max-width: 916px) {
+    form {
+        width: 40%;
+    }
 }
 
-@media screen and (max-width: 1000px){
+@media screen and (max-width: 1129px) {
+    #poste {
+        width: 50%;
+    }
+}
 
-	.login-content h2{
+@media screen and (max-width: 1000px) {
+    .login-content h2 {
         font-size: 2.4rem;
         margin: 8px 0;
-	}
-
-	.img img{
-		width: 400px;
-	}
+    }
+    .img img {
+        width: 400px;
+    }
 }
 
-@media screen and (max-width: 900px){
-	.container{
-		grid-template-columns: 1fr;
-	}
-	
-	form{
-		width: 40%;
-	}
-
-	.wave{
-		display: none;
-	}
-
-	.login-content{
-		justify-content: center;
-	}
+@media screen and (max-width: 900px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+    form {
+        width: 40%;
+    }
+    .wave {
+        display: none;
+    }
+    .login-content {
+        justify-content: center;
+    }
 }
 
-
-@media screen and (max-width: 895px){
-
-
-	form{
-		width: 40%;
-	}
-
-
-	.login-content h2{
+@media screen and (max-width: 895px) {
+    form {
+        width: 40%;
+    }
+    .login-content h2 {
         font-size: 2.4rem;
         margin: 8px 0;
-	}
-
-	.img img{
-		width: 400px;
-	}
+    }
+    .img img {
+        width: 400px;
+    }
 }
+
 
 /*---------viewport less then or equal to 750px--------*/
 
-@media only screen and (max-width: 750px){
-    .nav .nav-menu, .nav .nav-items{
+@media only screen and (max-width: 750px) {
+    .nav .nav-menu,
+    .nav .nav-items {
         flex-direction: column;
     }
-
-    .nav .toggle-collapse{
+    .nav .toggle-collapse {
         display: initial;
-	}
-	
+    }
 }
+
+
 /*---------End of viewport less then or equal to 750px--------*/
 
-@media screen and (max-width: 640px){
-
-	#poste{
-       width: 100px;
-	}
-
+@media screen and (max-width: 640px) {
+    #poste {
+        width: 100px;
+    }
 }
