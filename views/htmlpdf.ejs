@@ -4,8 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style_f.css">
     <title>Document</title>
+
+    <script>
+        function print() {
+            var frame = document.getElementById('frame');
+            frame.contentWindow.focus();
+            frame.contentWindow.print();
+        }
+    </script>
+    <script>
+        function print(pdf) {
+            // Créer un IFrame.
+            var iframe = document.createElement('iframe');  
+            // Cacher le IFrame.    
+            iframe.style.visibility = "hidden"; 
+            // Définir la source.    
+            iframe.src = pdf;        
+            // Ajouter le IFrame sur la page Web.    
+            document.body.appendChild(iframe);  
+            iframe.contentWindow.focus();       
+            iframe.contentWindow.print(); // Imprimer.
+        }
+    </script>
 </head>
 <body>
     <nav class="nav-en-tete">
@@ -78,5 +101,6 @@
 
   </div>
  </section>
+ <a href="/admin/genererFacture/<%=id%>" class="btn btn-primary" >imprimer</a>
 </body>
 </html>
