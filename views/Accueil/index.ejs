@@ -34,21 +34,19 @@
         </div>
 
         <div class="ab-items">
+
+          
+            <li class="ab-link"><a href="/acceuil/clients" class="ligne">Accueil</a></li>
+            <li class="ab-link"><a href="/receptioniste/main_courant" class="ligne">Main courant</a></li>
+            <li class="ab-link"><a href="/receptioniste/bilan" class="ligne">Bilan</a></li>
             <li class="ab-link">
-                <a href="" class="ligne">Accueil</a>
+                <a href="/receptioniste/facture" class="ligne">Facture</a>
             </li>
+           
             <li class="ab-link">
-                <a href="" class="ligne">Main courant</a>
+                <a href="/receptioniste/contact" class="ligne">Contact </a>
             </li>
-            <li class="ab-link">
-                <a href="" class="ligne">Bilan</a>
-            </li>
-            <li class="ab-link">
-                <a href="" class="ligne">Facture</a>
-            </li>
-            <li class="ab-link">
-                <a href="" class="ligne">Contact </a>
-            </li>
+          
         </div>
 
         <div class="socials text-gray">
@@ -74,7 +72,7 @@
                 <div class="form">
                     <div class="form__group field">
                         <label for="name" class="form__label">nombre total de client present dans l'hotel</label>
-                        <p><span class="nombre_client" id="nombre_client">25</span></p>
+                        <p><span class="nombre_client" id="nombre_client"> <%= client.length %></span></p>
                     </div>
                     <hr>
                     <div class="chec">
@@ -137,14 +135,14 @@
                             </td>
                             <td>
                                 <div class="groupe">
-                                    <a href="/receptioniste/commande/ <%= r.id_client; %>">
+                                    <a href="/receptioniste/commande/<%=r.id_client; %>">
                                         <button id="couleur0">Ajouter</button>
                                     </a>
                                 </div>
                             </td>
                             <td>
                                 <div class="groupe">
-                                    <a href="/admin/genererFacture/<%= r.id_client %>">
+                                    <a href="/generateReport2/<%= r.id_client %>">
                                         <button id="couleur1">Client</button>
                                     </a>
                                 </div>
