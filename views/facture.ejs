@@ -1,270 +1,163 @@
 <!DOCTYPE html>
-<html lang="fr">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Imprimer la facture</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" href="/css/style.css" type="text/css" /> -->
-    <link rel="stylesheet" href="../public/css/style_client.css">
-    <link rel="stylesheet" href="../public/css/bootstrap.min.css">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style_f.css">
+    <title>Document</title>
+    
     <style>
-        .logo-img {
-            height: 40px;
-            width: 100px;
-        }
-        
-        .date-fact {
-            margin-top: 10px;
-        }
-        
-        .fact-content,
-        th,
-        td {
-            border: 1px solid;
-        }
-        
-        .fact-content {
-            border-collapse: collapse;
-        }
-        
-        .fact-head {
-            border: none;
-        }
-        
-        hr {
-            border: 1px solid black;
-        }
+        *{
+    margin: 0px;
+    padding: 0px;
+}
+
+.nav-en-tete {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-en-tete .en-tete {
+    display: flex;
+    margin: 1.5rem 2rem;
+}
+
+.nav-en-tete .en-tete .nom-hotel{
+    margin: 0.8rem .9rem;
+    color: #273486;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.nav-en-tete p{
+    margin: 2rem 2rem;
+}
+
+.contenair{
+    margin: 2% 25%;
+}
+
+
+.contenair .info-client{
+   display: flex;
+   justify-content: space-between;
+   text-align: center;
+  
+}
+
+.contenair .valeur {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+   
+ }
+
+ .contenair .info-client .espace1{
+    display: flex;
+    
+}
+
+.info-client .espace .bleu{
+    color: #273486;
+    font-weight: bold;
+}
+
+.info-client .espace .black{
+    color: black;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.contenair .info-client .espace1 .ecart{
+    margin-right: 5rem;
+}
+h3{
+    margin-top: 10%;
+}
+
+.contenair .valeur .service-montant{
+    width: 28%;
+}
+
+.contenair .valeur .service-montant .montant{
+    margin-top: 1.5rem;
+    color: #273486;
+    font-weight: bold;
+}
     </style>
 </head>
-
 <body>
-
-    <div class="container-fluid">
-        <div class="col-md-12">
-            <table class="fact-head">
-
-                <tr>
-                    <td>
-                        <div class="col-md-6 logo-facture">
-                            <img class="logo-img" src="../images/logo.png" alt="Logo introuvale">
-                        </div>
-                    </td>
-                    <td style="margin-left: 200px;">
-                        <div class="col-md-6 text-facture">
-                            <h3>MAIN COURANTE RECEPTION</h3>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
+    <nav class="nav-en-tete">
+       <div class="en-tete">
+            <div class="img">
+                <img src="./public/image/Logo-atitle-hotel.png" alt="logo"  style="width: 50px; height: 50px;">      
+            </div>          
+            <span class="nom-hotel"> HOTEL ALTITEL</span>
+       </div>
+      
+           <p>
+               Mobile:(+237) 677 76 90 08 <br>
+               Fax:(+237) 233 44 50 93 <br>
+               Tel:(+237) 233 44 51 11 <br>
+               B.p. 870 Bafoussam
+           </p>
+    </nav>
 
 
+ <section class="contenair">
 
-        <div class="row date-fact"><label for=""> <h4>DATE: <%= new Intl.DateTimeFormat('fr-GB',{year:'numeric', month: 'long',day:'2-digit'}).format(new Date())%></h4></label></div>
-        <div class="row">
-            <table class="fact-content">
-                <thead>
-                    <tr>
-                        <th scope="col">N_ client</th>
-                        <th scope="col">Nom client</th>
-                        <th scope="col">CH</th>
-                        <th scope="col">Petit déjeuné</th>
-                        <th scope="col">Restau</th>
-                        <th scope="col">Bar</th>
-                        <th scope="col">Linge</th>
-                        <th scope="col">Divers débours</th>
-                        <!-- <th scope="col">Total jour</th> -->
-                        <!-- <th scope="col">Réport veille</th> -->
-                        <th scope="col">Total Général</th>
-                        <th scope="col">A Reporter</th>
-                    </tr>
-                </thead>
+    <div class="info-client">
 
-
-
-                <tbody>
-                    <% if(infos !=undefined ){  %>
-
-                        <tr>
-
-                            <% var montant = 0;
-                            infos.forEach(function(row){
-                            var c = infos;
-                            
-                            %>
-                                <td>
-                                    <%= row.id_client %>
-                                </td>
-                                <td>
-                                    <%= row.nom %>
-                                </td>
-
-                                <% }) 
-                                chambres.forEach(function(chambre){
-                                        montant += chambre.prix;                                     
-                                    %>
-                                    <td>
-                                        <%= chambre.code_chambre %>
-                                    </td>
-
-
-                                    <% })
-                                    commandes.forEach(function(commande){
-                                        montant += commande.montant;                                     
-                                    %>
-
-                                        <td>
-                                            <% if(commande.lieu == "Petit déjeuné"){  %>
-                                                <%= commande.lieu   %>
-                                                    <% }%>
-                                        </td>
-                                        <td>
-                                            <% if(commande.lieu == "Restau"){  %>
-                                                <%= commande.lieu   %>
-                                                    <% }%>
-                                        </td>
-                                        <td>
-                                            <% if(commande.lieu == "Bar"){  %>
-                                                <%= commande.lieu   %>
-                                                    <% }%>
-                                        </td>
-                                        <td>
-                                            <% if(commande.lieu == "Linge"){  %>
-                                                <%= commande.lieu   %>
-                                                    <% }%>
-                                        </td>
-                                        <td>
-                                            <% if(commande.lieu == "Divers débours"){  %>
-                                                <%= commande.lieu   %>
-                                                    <% }%>
-                                        </td>
-
-                                        <% })  %>
-
-                                            <td>
-                                                <%= montant %>
-                                            </td>
-                                            <td>
-                                                <!-- <%= montant %> -->
-                                            </td>
-
-                        </tr>
-                        <% }%>
-                </tbody>
-
-
-            </table>
-
-            <!-- <div>
-                <form action="" method="POST">
-                    <label for="">Entrez le la somme versé </label>
-                    <input type="number" name="regle">
-                    <br>
-                    <br>
-                    <input type="submit" name="enregistrer" value="Enregistrer">
-                </form>
-            </div> -->
-            <hr>
-            <table class="fact-content">
-                <thead>
-                    <tr>
-                        <th scope="col">N_ client</th>
-                        <th scope="col">Nom client</th>
-                        <th scope="col">CH</th>
-                        <th scope="col">Petit déjeuné</th>
-                        <th scope="col">Restau</th>
-                        <th scope="col">Bar</th>
-                        <th scope="col">Linge</th>
-                        <th scope="col">Divers débours</th>
-                        <!-- <th scope="col">Total jour</th> -->
-                        <!-- <th scope="col">Réport veille</th> -->
-                        <th scope="col">Total Général</th>
-                        <th scope="col">A Reporter</th>
-                    </tr>
-                </thead>
-
-
-
-                <tbody>
-                    <% if(infos !=undefined ){  %>
-
-                        <tr>
-
-                            <% var montant = 0;
-                            infos.forEach(function(row){
-                            var c = infos;
-                            
-                            %>
-                                <td>
-                                    <%= row.id_client %>
-                                </td>
-                                <td>
-                                    <%= row.nom %>
-                                </td>
-
-                                <% }) 
-                                chambres.forEach(function(chambre){
-                                        montant += chambre.prix;                                     
-                                    %>
-                                    <td>
-                                        <%= chambre.code_chambre %>
-                                    </td>
-
-
-                                    <% })
-                                    commandes.forEach(function(commande){
-                                        montant += commande.montant;                                     
-                                    %>
-
-                                        <td>
-                                            <% if(commande.lieu == "Petit déjeuné"){  %>
-                                                <%= commande.lieu   %>
-                                                    <% }%>
-                                        </td>
-                                        <td>
-                                            <% if(commande.lieu == "Restau"){  %>
-                                                <%= commande.lieu   %>
-                                                    <% }%>
-                                        </td>
-                                        <td>
-                                            <% if(commande.lieu == "Bar"){  %>
-                                                <%= commande.lieu   %>
-                                                    <% }%>
-                                        </td>
-                                        <td>
-                                            <% if(commande.lieu == "Linge"){  %>
-                                                <%= commande.lieu   %>
-                                                    <% }%>
-                                        </td>
-                                        <td>
-                                            <% if(commande.lieu == "Divers débours"){  %>
-                                                <%= commande.lieu   %>
-                                                    <% }%>
-                                        </td>
-
-                                        <% })  %>
-
-                                            <td>
-                                                <%= montant %>
-                                            </td>
-                                            <td>
-                                                <!-- <%= montant %> -->
-                                            </td>
-
-                        </tr>
-                        <% }%>
-                </tbody>
-
-
-            </table>
-
-        </div>
-    </div>
+            <div class="espace1">
+                <h2 class="ecart">Date: <%= toDay %></h2>
+                <h2>Nom du client: <%=client[0].nom %> <%= client[0].prenom %></h2>      
+            </div>
+        
+            <div class="espace2">
+                <h2>Numero de chambre : <% chambreclient.forEach(function(r){ %>  <%=r.id_chambre %>, <% }) %> </h2>
+            </div>
     </div>
 
+    <div class="valeur">
+
+        <div class="service-montant">
+            <h3>Service</h3>
+            <div class="montant">
+                <% commande.forEach(function(r){ var lieu=r.lieu  %>
+                   
+                <p><%=lieu%></p>
+               <%})%>
+               <% chambreclient.forEach(function(r){ %> <p>   chambre <%=r.categorie %> </p><% }) %> 
+            </div>
+        </div>
+
+        <div class="service-montant">
+            <h3>montant</h3>
+           <div class="montant"> 
+            <% var com=0; commande.forEach(function(r){ var total1=r.montant*r.nombre; com=com+total1; %>
+                <p><%=total1%></p>
+               <% })%>
+               <% var cha=0; chambreclient.forEach(function(r){ cha=cha+r.prix %> <p>   <%=r.prix %> </p><% }) %> 
+           </div>
+        </div>
+      </div>
+    <br>   
+<hr><br>
+
+  <div class="info-client">
+      <div class="espace">
+          <p>Signature</p>
+      </div>
+
+      <div class="espace">
+        <p><span class="black"> Total :</span> <span class="bleu"> <% var total=com+cha; %>
+            <p><%=total%></p>
+           </span></p>
+    </div>
+
+  </div>
+ </section>
+ 
 </body>
-
 </html>

@@ -723,7 +723,8 @@ app.get("/generateReport2/:id", (req, res) => {
                                 chambreclient,
                                 commande,
                                 facture,
-                                toDay
+                                toDay,
+                                id
                                 
     
                             })
@@ -906,12 +907,12 @@ app.get("/admin/genererFacture/:id", (req, res) => {
         mysqlConnection.query(sql1, (err, rows, fields) => {
             client = rows;
             // var id = rows[0].id_client;
-            var factname = client[0].email + "_" + client[0].tel;
+            var factname = client[0].nom;
 
             var sql2 = "select * from commande where id_client = " + idClient + "";
             mysqlConnection.query(sql2, (err, rows, fields) => {
                 commande = rows;
-                var sql3 = "select c.id_chambre, code_chambre, prix  from chambre c ,chambreclient cc where   cc.id_client = " + idClient + " and c.id_chambre = cc.id_chambre";
+                var sql3 = "select c.id_chambre, ch.categorie, ch.prix from chambreclient c,chambre ch where c.id_client="+id+" and c.id_chambre=ch.id_chambre ORDER BY id_client ASC";;
                 // var sql = "select C.id_chambre c.prix c.codechambre from chambre c chambreclient cc where   cc.id_client = " + idClient + " and c.id_chambre = cc.id_chambre";
                 // var sql = "select * from  where id_client = " + idClient + "";
                 mysqlConnection.query(sql3, (err, rows, fields) => {
@@ -927,7 +928,7 @@ app.get("/admin/genererFacture/:id", (req, res) => {
                     let factDate = day + "_" + month + "_" + year + "__" + hour + "h_" + minute + "min_" + second;
 
 
-                    ejs.renderFile(path.join('./views', "facture.ejs"), { client: client, commande: commande, chambres: chambres }, (err, data) => {
+                    ejs.renderFile(path.join('./views', "facture.ejs"), { client: client, commande: commande, chambreclient: chambreclient,factname: factname }, (err, data) => {
                         // ejs.renderFile(path.join('./views/', "index.ejs"), (err, data) => {
                         if (err) {
                             res.send(err);
@@ -947,7 +948,7 @@ app.get("/admin/genererFacture/:id", (req, res) => {
                                 if (err) {
                                     res.send(err);
                                 } else {
-                                    const factPath = path.join('./public/factures/', factDate + factname + ".pdf");
+                                    const factPath = path.join('./public/factures/',  factname + ".pdf");
                                     // res.render("factPath");
                                     // require(factPath);
 
