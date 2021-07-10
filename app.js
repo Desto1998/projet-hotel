@@ -222,7 +222,54 @@ app.get('/receptioniste/main_courant', (req, res) => {
 app.get('/client/detail', (req, res) => {
     var  id = req.query.id;
 
-    var sql = "SELECT client.*, commande.*, chambreclient.id_chambre FROM client, commande, chambreclient WHERE client.id_client = commande.id_client AND client.id_client = chambreclient.id_client and client.id_client = "+id+"";
+    // var sql = "SELECT client.*, commande.*, chambreclient.id_chambre FROM client, commande, chambreclient WHERE client.id_client = commande.id_client AND client.id_client = chambreclient.id_client and client.id_client = "+id+"";
+    var sql = "SELECT  chambreclient.id_chambre FROM chambreclient WHERE   chambreclient.id_client  = "+id+"";
+    mysqlConnection.query(sql, (err, rows, fields) => {
+        var Infos = rows;
+            var sql1 = "SELECT  commande.* FROM  commande WHERE commande.id_client = "+id+"";
+            mysqlConnection.query(sql1, (err, rows, fields) => {
+                // var Infos = rows;
+                var Tlinge = 0;
+                var Trestaurant = 0;
+                var TpetitD = 0;
+                var Tbar = 0;
+                var Tdivers = 0;
+                var Tchambre = 0;
+                var Total = 0;
+                rows.forEach(row => {
+                    var lieu = new String(row.lieu);
+                    // var d = row.id_chambre;
+                    if (lieu == 'Bar') {
+                       Tbar = Tbar + row.montant;
+                    }
+                    if (lieu == 'Restaurant') {
+                        Trestaurant = Trestaurant + row.montant;
+                    }
+                    if (lieu == 'Linge') {
+                        Tlinge = Tlinge + row.montant;
+                    }
+                    if (lieu == 'Chambre') {
+                        Tchambre = Tchambre + row.montant;
+                    }
+                    if (lieu == 'Petit dejeune') {
+                        TpetitD = TpetitD + row.montant;
+                    }
+                    if (lieu == 'Divers') {
+                        TpetitD = Tdivers + row.montant;
+                    }
+                    Total = Tlinge + Tchambre + TpetitD + Tbar + Trestaurant + Tdivers;
+                // console.log(Infos);
+                // res.json({msg: 'success', data: Infos});
+                res.json({  Infos,Total , Tlinge , Tchambre , TpetitD , Tbar , Trestaurant,Tdivers});
+                // return res.end(JSON.stringify(Infos));
+            });
+        });
+    });
+});
+app.get('/client/rechercher', (req, res) => {
+    var  cni = req.query.rechercher;
+
+    var sql = "SELECT * FROM client WHERE client.cni = "+ cni + "";
     mysqlConnection.query(sql, (err, rows, fields) => {
         var Infos = rows;
         // res.json({msg: 'success', data: Infos});
@@ -963,4 +1010,4 @@ app.get("/admin/genererFacture/:id", (req, res) => {
     } else {
         res.redirect('/');
     }
-})
+});

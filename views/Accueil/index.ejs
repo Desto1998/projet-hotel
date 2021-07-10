@@ -177,15 +177,17 @@
                     <p>
                         Numero de chambre : <span class="gras"><label id="numchambre"></label></span><br>
                         Facture Petit déjeuner : <span class="gras"><label id="facture_pd"></label></span><br>
-                        Facture Restaurant : <span class="gras"><label id="Facture_r"></label></span><br>
+                        Facture Restaurant : <span class="gras"><label id="facture_r"></label></span><br>
                         Facture Bar : <span class="gras"><label id="facture_bar"></label></span><br>
                     </p>
                 </div>
 
                 <div class="info1">
                     <p>
-                        Facture Linge : <span class="gras"><label id="facture_linge"></label></span><br>
-                        Facture Divers : <span class="gras"><label id="facture_divers"></label></span><br>
+                        Facture Linge   : <span class="gras"><label id="facture_linge"></label></span><br>
+                        Facture Divers  : <span class="gras"><label id="facture_divers"></label></span><br>
+                        Facture Chambre : <span class="gras"><label id="facture_c"></label></span><br>
+                        Montant total   : <span class="gras"><label id="montantT"></label></span><br>
 <!--                        Facture Jour : <span class="gras">2</span><br>-->
 <!--                        Facture Rapport veille : <span class="gras">2</span><br>-->
                     </p>
@@ -228,18 +230,27 @@
             data: {id: id},
             dataType: 'json',
             success: function (res) {
+                // console.log(res);
                 var num_chambre = res.Infos[0].id_chambre;
+                // $('#state').append($('<option>', {value:k, text:v}));
                 $('#numchambre').html(num_chambre);
-
-                var val;
-                var key;
-                console.log(res.Infos[0].id_client);
-                $.each( res, function(key, val) {
-                    num_chambre=val['id_client'];
-                    console.log(val);
-                    alert(num_chambre);
-                    // $('#state').append($('<option>', {value:k, text:v}));
-                });
+                $('#facture_pd').html(res.TpetitD);
+                $('#facture_bar').html(res.Tbar);
+                $('#facture_divers').html(res.Tdivers);
+                $('#facture_linge').html(res.Tlinge);
+                $('#facture_r').html(res.Trestaurant);
+                $('#facture_c').html(res.Tchambre);
+                $('#montantT').html(res.Total);
+                //
+                // var val;
+                // var key;
+                // console.log(res.Infos[0].id_client);
+                // $.each( res, function(key, val) {
+                //     num_chambre=val['id_client'];
+                //     console.log(val);
+                //     alert(num_chambre);
+                //     // $('#state').append($('<option>', {value:k, text:v}));
+                // });
 
             }
         });
