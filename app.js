@@ -223,18 +223,25 @@ app.get('/client/detail', (req, res) => {
     var  id = req.query.id;
 
     // var sql = "SELECT client.*, commande.*, chambreclient.id_chambre FROM client, commande, chambreclient WHERE client.id_client = commande.id_client AND client.id_client = chambreclient.id_client and client.id_client = "+id+"";
-    var sql = "SELECT  chambreclient.id_chambre FROM chambreclient WHERE   chambreclient.id_client  = "+id+"";
+    var sql = "select c.id_chambre, ch.categorie, ch.prix from chambreclient c,chambre ch where c.id_client="+id+" and c.id_chambre=ch.id_chambre ORDER BY id_client ASC";
     mysqlConnection.query(sql, (err, rows, fields) => {
-        var Infos = rows;
+        chambreclient = rows;
+        console.log(rows)
+        var Tchambre = 0;
+        rows.forEach(row => {
+            Tchambre = Tchambre + row.prix;
+        })
             var sql1 = "SELECT  commande.* FROM  commande WHERE commande.id_client = "+id+"";
             mysqlConnection.query(sql1, (err, rows, fields) => {
                 // var Infos = rows;
+                var i=0;
+               
                 var Tlinge = 0;
                 var Trestaurant = 0;
                 var TpetitD = 0;
                 var Tbar = 0;
                 var Tdivers = 0;
-                var Tchambre = 0;
+               
                 var Total = 0;
                 rows.forEach(row => {
                     var lieu = new String(row.lieu);
@@ -248,23 +255,27 @@ app.get('/client/detail', (req, res) => {
                     if (lieu == 'Linge') {
                         Tlinge = Tlinge + row.montant;
                     }
-                    if (lieu == 'Chambre') {
-                        Tchambre = Tchambre + row.montant;
-                    }
+                   
                     if (lieu == 'Petit dejeune') {
                         TpetitD = TpetitD + row.montant;
                     }
                     if (lieu == 'Divers') {
-                        TpetitD = Tdivers + row.montant;
+                        Tdivers = Tdivers + row.montant;
                     }
+                    i=i+1;
+                });
                     Total = Tlinge + Tchambre + TpetitD + Tbar + Trestaurant + Tdivers;
                 // console.log(Infos);
                 // res.json({msg: 'success', data: Infos});
+                var sql = "SELECT  chambreclient.id_chambre FROM chambreclient WHERE   chambreclient.id_client  = "+id+"";
+                mysqlConnection.query(sql, (err, rows, fields) => {
+                    var Infos = rows;
                 res.json({  Infos,Total , Tlinge , Tchambre , TpetitD , Tbar , Trestaurant,Tdivers});
                 // return res.end(JSON.stringify(Infos));
             });
-        });
+        
     });
+})
 });
 app.get('/client/rechercher', (req, res) => {
     var  cni = req.query.rechercher;
@@ -379,7 +390,7 @@ app.post('/login', urlencodedParser, [
                                             req.session.role = role;
                                             req.userid = userData[0].id_user;
                                             // console.log(req.session);
-                                            res.render('Accueil/index', {
+                                            res.render('client/client', {
                                                 client,
                                                 chambre
                                             });
@@ -387,10 +398,10 @@ app.post('/login', urlencodedParser, [
                                     })
                                 }
                                 if (role == 'receptioniste') {
-                                    var sql = "select * from client";
+                                    var sql = "select * from client ORDER BY id_client ASC";
                                     mysqlConnection.query(sql, (err, rows, fields) => {
                                         client = rows;
-                                        var sql = "select * from chambreclient";
+                                        var sql = "select * from chambreclient ORDER BY id_client ASC";
                                         mysqlConnection.query(sql, (err, rows, fields) => {
                                             chambre = rows;
                                             // sess = req.session;
@@ -398,7 +409,7 @@ app.post('/login', urlencodedParser, [
                                             req.session.role = role;
                                             req.session.userid = userData.id_user;
                                             console.log(req.session);
-                                            res.render('Accueil/index', {
+                                            res.render('client/client', {
                                                 client,
                                                 chambre
                                             });
@@ -482,10 +493,10 @@ app.post('/receptioniste/client', urlencodedParser, [
                         mysqlConnection.query(sql, (err, rows, fields) => {
                             var sql = "UPDATE `chambre` SET `status` = 'occupé' WHERE `chambre`.`id_chambre` = " + req.body.chambre + "";
                             mysqlConnection.query(sql, (err, rows, fields) => {})
-                            var sql = "select * from client";
+                            var sql = "select * from client ORDER BY id_client ASC";
                             mysqlConnection.query(sql, (err, rows, fields) => {
                                 client = rows;
-                                var sql = "select * from chambreclient";
+                                var sql = "select * from chambreclient ORDER BY id_client ASC";
                                 mysqlConnection.query(sql, (err, rows, fields) => {
                                     chambre = rows;
                                     res.render('enregistrer/index', {
@@ -753,7 +764,7 @@ app.get("/generateReport2/:id", (req, res) => {
             var sql = "select * from commande where  id_client="+id+"  ORDER BY id_client ASC ";
             mysqlConnection.query(sql, (err, rows, fields) => {
                 commande = rows;
-    console.log(commande)
+    
                 var sql = "select c.id_chambre, ch.categorie, ch.prix from chambreclient c,chambre ch where c.id_client="+id+" and c.id_chambre=ch.id_chambre ORDER BY id_client ASC";
                 mysqlConnection.query(sql, (err, rows, fields) => {
                     chambreclient = rows;
@@ -847,7 +858,7 @@ app.post('/receptioniste/commande/:id', urlencodedParser, [
                 var sql = "select * from chambreclient ORDER BY id_client ASC";
                 mysqlConnection.query(sql, (err, rows, fields) => {
                     chambre = rows;
-                    res.render('Accueil/index', {
+                    res.render('client/client', {
                         client,
                         chambre
                     });
@@ -878,7 +889,7 @@ app.post('/receptioniste/commande/:id', urlencodedParser, [
                     var sql = "select * from chambreclient ORDER BY id_client ASC";
                     mysqlConnection.query(sql, (err, rows, fields) => {
                         chambre = rows;
-                        res.render('Accueil/index', {
+                        res.render('client/client', {
                             client,
                             chambre
                         });
@@ -911,7 +922,7 @@ app.post('/receptioniste/commande/:id', urlencodedParser, [
                 var sql = "select * from chambreclient ORDER BY id_client ASC";
                 mysqlConnection.query(sql, (err, rows, fields) => {
                     chambre = rows;
-                    res.render('Accueil/index', {
+                    res.render('client/client', {
                         client,
                         chambre
                     });
@@ -927,13 +938,13 @@ app.post('/receptioniste/commande/:id', urlencodedParser, [
 });
 app.get("/acceuil/clients", (req, res) => {
     if (req.session.role === 'admin' || req.session.role === 'receptioniste' && req.session.username) {
-        var sql = "select * from client";
+        var sql = "select * from client ORDER BY id_client ASC";
         mysqlConnection.query(sql, (err, rows, fields) => {
             client = rows;
-            var sql = "select * from chambreclient";
+            var sql = "select * from chambreclient ORDER BY id_client ASC";
             mysqlConnection.query(sql, (err, rows, fields) => {
                 chambre = rows;
-                res.render('Accueil/index', {
+                res.render('client/client', {
                     client,
                     chambre
                 });

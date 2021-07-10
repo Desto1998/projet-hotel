@@ -7,6 +7,13 @@
     <link rel="stylesheet" type="text/css" href="../../public/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../public/fontawesome-5.15.2/css/fontawesome.min.css">
     <link rel="stylesheet" href="../../public/css/style_acceuil.css">
+    <link rel="stylesheet" href="../../public/Accueil/css/style.css">
+    <!---------------------------------boostrap------------------------------->
+    <link rel="stylesheet" href="../../public/Accueil/css/bootstrap.min.css">
+    <!--------------------------And of boostrap------------------------------>
+
+    <!---------------------------------Font icons------------------------------->
+    <link rel="stylesheet" href="../../public/Accueil/css/all.css">
     <script src="../../public/js/all.min.js"></script>
 
     <title>Clients</title>
@@ -122,8 +129,7 @@
                                 </td>
                                 <td>
                                     <div class="groupe">
-                                        <button class="btn btn-info" id="btn">Détails</button>
-
+                                        <a href="javascript:void(0);" id="btnPopup" onClick="editFunc(<%= r.id_client; %>)" data-toggle="tooltip" class="btnPopup btn btn-primary">Détails</a>
                                     </div>
                                 </td>
                                 <td>
@@ -148,6 +154,46 @@
         </section>
 
     </div>
+    <div id="overlay" class="overlay">
+        <div id="popup" class="popup">
+            <h2 class="bg-h2">
+                Détails générale
+                <span id="btnClose" class="btnClose">&times;</span>
+            </h2>
+            <div class="global">
+
+                <div class="info1">
+                    <p>
+                        Numero de chambre : <span class="gras"><label id="numchambre"></label></span><br>
+                        Facture Petit déjeuner : <span class="gras"><label id="facture_pd"></label></span><br>
+                        Facture Restaurant : <span class="gras"><label id="facture_r"></label></span><br>
+                        Facture Bar : <span class="gras"><label id="facture_bar"></label></span><br>
+                    </p>
+                </div>
+
+                <div class="info1">
+                    <p>
+                        Facture Linge   : <span class="gras"><label id="facture_linge"></label></span><br>
+                        Facture Divers  : <span class="gras"><label id="facture_divers"></label></span><br>
+                        Facture Chambre : <span class="gras"><label id="facture_c"></label></span><br>
+                        Montant total   : <span class="gras"><label id="montantT"></label></span><br>
+<!--                        Facture Jour : <span class="gras">2</span><br>-->
+<!--                        Facture Rapport veille : <span class="gras">2</span><br>-->
+                    </p>
+                </div>
+
+<!--                <div class="info1">-->
+<!--                    <p>-->
+<!--                        Facture Général : <span class="gras">2</span><br>-->
+<!--                        Facture Règlement : <span class="gras">2</span><br>-->
+<!--                        Facture A rapporter : <span class="gras">2</span><br>-->
+<!--                    </p>-->
+<!--                </div>-->
+
+            </div>
+        </div>
+    </div>
+
 
 
     <!--------------------------------footer--------------------------------->
@@ -165,7 +211,51 @@
     <!-----------------------------Custom javascript file------------------------->
     <script src="/js/main_ac.js"></script>
     <script type="text/javascript" src="../../public/fontawesome-5.15.2/js/fontawesome.js"></script>
-
+    <script>
+        $("#popup").hide();
+        $("#overlay").hide();
+        $(".btnClose").click(function (){
+            $("#popup").hide(200);
+            $("#overlay").hide(200);
+        });
+        $(".btnPopup").click(function (){
+            $("#popup").show(200);
+            $("#overlay").show(200);
+        });
+        function editFunc(id) {
+    
+            $.ajax({
+                type: "GET",
+                url: "/client/detail",
+                data: {id: id},
+                dataType: 'json',
+                success: function (res) {
+                    // console.log(res);
+                    var num_chambre = res.Infos[0].id_chambre;
+                    // $('#state').append($('<option>', {value:k, text:v}));
+                    $('#numchambre').html(num_chambre);
+                    $('#facture_pd').html(res.TpetitD);
+                    $('#facture_bar').html(res.Tbar);
+                    $('#facture_divers').html(res.Tdivers);
+                    $('#facture_linge').html(res.Tlinge);
+                    $('#facture_r').html(res.Trestaurant);
+                    $('#facture_c').html(res.Tchambre);
+                    $('#montantT').html(res.Total);
+                    //
+                    // var val;
+                    // var key;
+                    // console.log(res.Infos[0].id_client);
+                    // $.each( res, function(key, val) {
+                    //     num_chambre=val['id_client'];
+                    //     console.log(val);
+                    //     alert(num_chambre);
+                    //     // $('#state').append($('<option>', {value:k, text:v}));
+                    // });
+    
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
