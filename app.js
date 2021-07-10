@@ -247,20 +247,20 @@ app.get('/client/detail', (req, res) => {
                     var lieu = new String(row.lieu);
                     // var d = row.id_chambre;
                     if (lieu == 'Bar') {
-                       Tbar = Tbar + row.montant;
+                       Tbar = Tbar + row.montant*row.nombre;
                     }
                     if (lieu == 'Restaurant') {
-                        Trestaurant = Trestaurant + row.montant;
+                        Trestaurant = Trestaurant + row.montant*row.nombre;
                     }
                     if (lieu == 'Linge') {
-                        Tlinge = Tlinge + row.montant;
+                        Tlinge = Tlinge + row.montant*row.nombre;
                     }
                    
                     if (lieu == 'Petit dejeune') {
-                        TpetitD = TpetitD + row.montant;
+                        TpetitD = TpetitD + row.montant*row.nombre;
                     }
                     if (lieu == 'Divers') {
-                        Tdivers = Tdivers + row.montant;
+                        Tdivers = Tdivers + row.montant*row.nombre;
                     }
                     i=i+1;
                 });
