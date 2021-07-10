@@ -226,7 +226,7 @@ app.get('/client/detail', (req, res) => {
     var sql = "select c.id_chambre, ch.categorie, ch.prix from chambreclient c,chambre ch where c.id_client="+id+" and c.id_chambre=ch.id_chambre ORDER BY id_client ASC";
     mysqlConnection.query(sql, (err, rows, fields) => {
         chambreclient = rows;
-        console.log(rows)
+        // console.log(rows)
         var Tchambre = 0;
         rows.forEach(row => {
             Tchambre = Tchambre + row.prix;
@@ -272,21 +272,79 @@ app.get('/client/detail', (req, res) => {
                     var Infos = rows;
                 res.json({  Infos,Total , Tlinge , Tchambre , TpetitD , Tbar , Trestaurant,Tdivers});
                 // return res.end(JSON.stringify(Infos));
+
             });
         
     });
 })
 });
-app.get('/client/rechercher', (req, res) => {
-    var  cni = req.query.rechercher;
+app.post('/client/rechercher', urlencodedParser,[],(req, res) => {
+    var  cni = req.body.rechercher;
 
-    var sql = "SELECT * FROM client WHERE client.cni = "+ cni + "";
+    var sql = "SELECT * FROM client WHERE cni = "+ cni + "";
     mysqlConnection.query(sql, (err, rows, fields) => {
-        var Infos = rows;
-        // res.json({msg: 'success', data: Infos});
-        res.json({  Infos});
-        // return res.end(JSON.stringify(Infos));
+         infos = rows;
+         // console.log(infos);
+        var sql = "select * from chambre where status = 'libre'";
+        mysqlConnection.query(sql, (err, rows, fields) => {
+             row = rows;
+             // console.log(rows);
+            res.render('enregistrer/modifier', {
+                    row,
+                    infos
+                 });
+
+        });
     });
+});
+app.post('/client/modifier', urlencodedParser,[],(req, res) => {
+    var  id = req.body.id_client;
+
+    let date = Date.now();
+    let MyDate = new Date(date);
+    let day = MyDate.getDate();
+    let month = MyDate.getMonth();
+    let year = MyDate.getFullYear();
+    let hour = MyDate.getHours();
+    let minute = MyDate.getMinutes();
+    let second = MyDate.getSeconds();
+    let clientDate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+    //let clientD = year + "-" + month + "-" + day ;
+    toDay = MyDate.toISOString().slice(0, 10) + " " + hour + ":" + minute + ":" + second;
+    var sql = "select * from chambre where status = 'libre'";
+    mysqlConnection.query(sql, (err, rows, fields) => {
+        row = rows;
+        //console.log(row)
+        if (req.body.chambre != undefined && req.body.id_client != undefined) {
+
+                    var sql1 = "insert into commande values(null,'','',0,'" + 0 + "'," + id + ",'" + toDay + "'," + 0 + ")";
+                    mysqlConnection.query(sql1, (err, rows, fields) => {
+                        var sql1 = "insert into facture values(null,''," + 0 + "," + 0 + "," + 0 + "," + id + ")";
+                        mysqlConnection.query(sql1, (err, rows, fields) => {
+
+                            var sql = "insert into chambreclient values(null," + id + "," + req.body.chambre + ",'" + toDay + "')";
+                            mysqlConnection.query(sql, (err, rows, fields) => {
+                                var sql = "UPDATE `chambre` SET `status` = 'occupé' WHERE `chambre`.`id_chambre` = " + req.body.chambre + "";
+                                mysqlConnection.query(sql, (err, rows, fields) => {})
+                                var sql = "select * from client ORDER BY id_client ASC";
+                                mysqlConnection.query(sql, (err, rows, fields) => {
+                                    client = rows;
+                                    var sql = "select * from chambreclient ORDER BY id_client ASC";
+                                    mysqlConnection.query(sql, (err, rows, fields) => {
+                                        chambre = rows;
+                                        res.render('enregistrer/index', {
+                                            client,
+                                            chambre
+                                        });
+                                    })
+                                })
+                            })
+                        })
+                    })
+
+        }
+
+    })
 });
 app.post('/receptioniste/main_courant', urlencodedParser, (req, res) => {
 
