@@ -287,7 +287,6 @@ app.post('/client/rechercher', urlencodedParser,[],(req, res) => {
             var sql = "select * from chambre where status = 'libre'";
             mysqlConnection.query(sql, (err, rows, fields) => {
                 row = rows;
-                // console.log(rows);
                 res.render('enregistrer/modifier', {
                     row,
                     infos
@@ -295,11 +294,10 @@ app.post('/client/rechercher', urlencodedParser,[],(req, res) => {
 
             });
         }
-        // else{
-        //     console.log(rows);
-        //     res.send('<h3 class="bg-danger">Le client n\'exite pas. Veillez l\'enregistrer</h3>');
-        //
-        // }
+        else{
+            res.render('enregistrer/erreurs');
+
+        }
 
 
     });
