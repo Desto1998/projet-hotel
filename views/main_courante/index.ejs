@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style_main.css">/
-    <!---------------------------------boostrap-------------------------------> 
+    <link rel="stylesheet" href="/css/style_main.css">
+    <!---------------------------------boostrap------------------------------->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <!--------------------------And of boostrap------------------------------>
 
-    <!---------------------------------Font icons-------------------------------> 
+    <!---------------------------------Font icons------------------------------->
     <link rel="stylesheet" href="/css/all_main.css">
-   
+
     <title>Main courante</title>
     <link rel="stylesheet" type="text/css" href="../../public/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../public/fontawesome-5.15.2/css/fontawesome.min.css">
@@ -28,19 +28,19 @@
 </head>
 
 <body>
-    <!------------------------header--------------------------------->
+<!------------------------header--------------------------------->
 
-    <header>
-        <ul>
-            <img src="/image/Logo-atitle-hotelJ.png" class="logo" alt="">
-            <li class="clientNom" id="nom" style="float:left"> ALTITEL HOTEL</li>
-            <li><a href="/logout" class="deconnexion">Déconnexion</a></li>
-            <li class=" main_courante"><a href="/receptioniste/main_courant">Main couran</a></li>
-            <li class="bilan"><a href="">Bilan</a></li>
-            <li class="facture"><a href="">Facture</a></li>
-            <li class=" accueil"><a href="/acceuil/clients">Accueil</a></li>
-        </ul>
-    </header>
+<header>
+    <ul>
+        <img src="/image/Logo-atitle-hotelJ.png" class="logo" alt="">
+        <li class="clientNom" id="nom" style="float:left"> ALTITEL HOTEL</li>
+        <li><a href="/logout" class="deconnexion">Déconnexion</a></li>
+        <li class=" main_courante"><a href="/receptioniste/main_courant">Main couran</a></li>
+        <li class="bilan"><a href="">Bilan</a></li>
+        <li class="facture"><a href="">Facture</a></li>
+        <li class=" accueil"><a href="/acceuil/clients">Accueil</a></li>
+    </ul>
+</header>
 
 <!--    <nav class="ab">-->
 <!--        <div class="ab-menu flexs-row">-->
@@ -81,180 +81,178 @@
 <!--          </div>-->
 <!--        </div>-->
 <!--      </nav>-->
-    <!--------------------End of header--------------------------------->
-    <div class="container">
+<!--------------------End of header--------------------------------->
+<!--<div class="container">-->
 
-        <main>
+    <main>
 
         <section>
 
             <div class="title-date">
-              <div class="title">
-                <h2>Main courant réception</h2>
-              </div>
-    
-              
-        <form action="/receptioniste/main_courant" method="POST">
-
-        <div class="date">
-            <label for="date">Selectionner la date ici</label>
-            <input type="date" name="date" id="date"  class="date_color">
-            <button type="submit">valider</button>
-        </div>
-    </form>
-</section>
+                <div class="title">
+                    <h2>Main courant réception</h2>
+                </div>
 
 
-<section>
-<table class="table table-borderless">
-    <thead class="forme">
-        <tr>
-            <th>Nom</th>
-            <th>N°chambre</th>
-            <th>Petit déjeuner</th>
-            <th>Restaurant</th>
-            <th>Bar</th>
-            <th>Linge</th>
-            <th>Divers</th>
-            <th>Total jour</th>
-            <th>Rpport veille</th>
-            <th>Total général</th>
-            <th>Règlement</th>
-            <th>A raporter</th>
-        </tr>
-    </thead>
+                <form action="/receptioniste/main_courant" method="POST">
 
-                <tr>
-                    <% var i=0;
-                        var totalj=0;
-                        var totaljh=0;
-                        var totalg=0;
-                        if(commande.length>=1){
-                         client.forEach(function(row){ %>
-                        <td><%= row.nom %></td>
-                        <% if(i<= chambreclient.length -1) {
-                            %>
-                        <td><%= chambreclient[i].id_chambre %>   </td>
-                        <% if(i<= commande.length -1) {
-                             %>
-                            
-                        <% if(commande[i].lieu==='Petit dejeune' && commande[i].id_client==row.id_client){ %>
-                        <td><%= commande[i].montant %></td>
-                        <% }else{%>
-                            <td>0</td>
-                            <% } %>
-                        <% if(commande[i].lieu==='Restaurant' && commande[i].id_client===row.id_client){ %>
-                            <td><%= commande[i].montant %></td>
-                            <% }else{%>
-                                <td>0</td>
-                                <% } %>
-                            <% if(commande[i].lieu==='Bar' && commande[i].id_client===row.id_client){ %>
-                                <td><%= commande[i].montant %></td>
-                                <% }else{%>
-                                    <td>0</td>
-                                    <% } %>
-                                <% if(commande[i].lieu==='Linge' && commande[i].id_client===row.id_client){ %>
-                                    <td><%= commande[i].montant %></td>
-                                    <% } else{%>
-                                        <td>0</td>
-                                        <% } %>
-                                    <% if(commande[i].lieu==='Divers' && commande[i].id_client===row.id_client){ %>
-                                        <td><%= commande[i].montant %></td>
-                                        <% } else{%>
-                                            <td>0</td>
-                                            <% } %>
-                                            <%   if( commande[i].id_client===row.id_client){ 
-                                                totalj=commande[i].montant * commande[i].nombre; %>
-                        <td><%= totalj %></td>
-                        <% }  else{%>
-                            <td>0</td>
-                            <% } %>
-                        
-                        <% if(i<= commandeh.length -1) {
-                            %>
-                        <%   if( commandeh[i].id_client===row.id_client){ totaljh=commandeh[i].montant * commandeh[i].nombre;
-                            %>
-                            <td><%= totaljh  %></td>
-                            <% }  else{%>
-                                <td>0</td>
-                                <% } %>
-                                <% } else{%>
-                                    <td>0</td>
-                                    <% } %>
-                        <td><%= totaljh+totalj  %></td>
-                        <%   if( status[i].id_client===row.id_client){  %>
-                        
-                        <td><%= status[i].montant* status[i].nombre  %></td>
-                        <% }  else{%>
-                            <td>0</td>
-                            <% } %>
-                       
-                        <td> <%= totaljh+totalj  %></td>
-                        <% } %>
-                        <% } %>
-                    </tr>
-
-                    
-<% i=i+1;
-}) } else { %>
-    <td></td>
-    <td>0 </td>
-  
-        
-   
-        <td>0</td>
-        
-   
-            <td>0</td>
-            
-      
-                <td>0</td>
-                
-         
-                    <td>0</td>
-                   
-              
-                        <td>0</td>
-                       
-                      
-        <td>0</td>
-        
-    
-   
-                <td>0</td>
-               
-    <td>0</td>
-   
-        <td>0</td>
-      
-   
-    <td>0 </td>
-   
-</tr>
-<% } %>
-                </table>
-
-
+                    <div class="date">
+                        <label for="date">Selectionner la date ici</label>
+                        <input type="date" name="date" id="date" class="date_color">
+                        <button type="submit">valider</button>
+                    </div>
+                </form>
             </div>
         </section>
 
-    </main>
+
+        <section>
+            <table class="table table-borderless">
+                <thead class="forme">
+                <tr>
+                    <th>Nom</th>
+                    <th>N°chambre</th>
+                    <th>Petit déjeuner</th>
+                    <th>Restaurant</th>
+                    <th>Bar</th>
+                    <th>Linge</th>
+                    <th>Divers</th>
+                    <th>Total jour</th>
+                    <th>Rpport veille</th>
+                    <th>Total général</th>
+                    <th>Règlement</th>
+                    <th>A raporter</th>
+                </tr>
+                </thead>
+
+                <tr>
+                    <% var i = 0;
+                    var totalj = 0;
+                    var totaljh = 0;
+                    var totalg = 0;
+                    if(commande.length >= 1){
+                    client.forEach(function(row){ %>
+                        <td><%= row.nom %></td>
+                        <% if(i <= chambreclient.length - 1) {
+                        %>
+                            <td><%= chambreclient[i].id_chambre %>   </td>
+                            <% if(i <= commande.length - 1) {
+                            %>
+
+                                <% if(commande[i].lieu === 'Petit dejeune' && commande[i].id_client == row.id_client){ %>
+                                    <td><%= commande[i].montant %></td>
+                                <% }else{ %>
+                                    <td>0</td>
+                                <% } %>
+                                <% if(commande[i].lieu === 'Restaurant' && commande[i].id_client === row.id_client){ %>
+                                    <td><%= commande[i].montant %></td>
+                                <% }else{ %>
+                                    <td>0</td>
+                                <% } %>
+                                <% if(commande[i].lieu === 'Bar' && commande[i].id_client === row.id_client){ %>
+                                    <td><%= commande[i].montant %></td>
+                                <% }else{ %>
+                                    <td>0</td>
+                                <% } %>
+                                <% if(commande[i].lieu === 'Linge' && commande[i].id_client === row.id_client){ %>
+                                    <td><%= commande[i].montant %></td>
+                                <% } else{ %>
+                                    <td>0</td>
+                                <% } %>
+                                <% if(commande[i].lieu === 'Divers' && commande[i].id_client === row.id_client){ %>
+                                    <td><%= commande[i].montant %></td>
+                                <% } else{ %>
+                                    <td>0</td>
+                                <% } %>
+                                <% if( commande[i].id_client === row.id_client){
+                                    totalj = commande[i].montant * commande[i].nombre; %>
+                                <td><%= totalj %></td>
+                                <% }  else{ %>
+                                    <td>0</td>
+                                <% } %>
+
+                                <% if(i <= commandeh.length - 1) {
+                                %>
+                                    <% if( commandeh[i].id_client === row.id_client){ totaljh = commandeh[i].montant * commandeh[i].nombre;
+                                    %>
+                                    <td><%= totaljh %></td>
+                                    <% }  else{ %>
+                                        <td>0</td>
+                                    <% } %>
+                                <% } else{ %>
+                                    <td>0</td>
+                                <% } %>
+                                <td><%= totaljh + totalj %></td>
+                                <% if( status[i].id_client === row.id_client){ %>
+
+                                    <td><%= status[i].montant * status[i].nombre %></td>
+                                <% }  else{ %>
+                                    <td>0</td>
+                                <% } %>
+
+                                <td> <%= totaljh + totalj %></td>
+                            <% } %>
+                        <% } %>
+                </tr>
+
+                <% i = i + 1;
+                }) } else { %>
+                    <td></td>
+                    <td>0</td>
 
 
 
+                    <td>0</td>
 
-            <!--------------------------------footer--------------------------------->
-            <footer>
-                <p>copyrygth MI 2020</p>
-            </footer>
-            <!--------------------------------footer--------------------------------->
-    </div>
 
- <!-----------------------------Jquery Library file---------------------------->
- <script src="/js/Jquery3.4.1.min.js"></script>
+                    <td>0</td>
 
- <!-----------------------------Custom javascript file------------------------->
- <script src="/js/main-main.js"></script>
+
+                    <td>0</td>
+
+
+                    <td>0</td>
+
+
+                    <td>0</td>
+
+
+                    <td>0</td>
+
+
+
+                    <td>0</td>
+
+                    <td>0</td>
+
+                    <td>0</td>
+
+
+                    <td>0</td>
+
+                    </tr>
+                <% } %>
+            </table>
+
+
+</div>
+</section>
+
+</main>
+
+
+<!--------------------------------footer--------------------------------->
+<footer>
+    <p>copyrygth MI 2020</p>
+</footer>
+<!--------------------------------footer--------------------------------->
+</div>
+
+<!-----------------------------Jquery Library file---------------------------->
+<script src="/js/Jquery3.4.1.min.js"></script>
+
+<!-----------------------------Custom javascript file------------------------->
+<script src="/js/main-main.js"></script>
 
 </body>
 
