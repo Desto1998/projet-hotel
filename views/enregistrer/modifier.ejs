@@ -57,21 +57,14 @@
 
 
 <section class="container">
-    <div class="content">
-        <!--        <form method="post" action="/client/rechercher">-->
-        <!--            <h2><strong>Enregistrement des clients</strong></h2>-->
 
-        <!--            <div class="bar_de_recherche">-->
-        <!--                <input type="search" name="rechercher" id="Recherche" require="Entrer le numéro de CNI" placeholder="Rechercher un clien..." class="recherche">-->
-        <!--                <button type="submit"  class="boutton_recherche"><strong>Recherche</strong></button>-->
-        <!--            </div>-->
-        <!--        </form>-->
-
-    </div>
 
     <div class="champ">
+
+        <% if ( infos[0] != undefined){%>
+
         <h3><strong>Information du client</strong></h3><br>
-        <h2><strong><%= infos[0].nom %> <%= infos[0].prenom %></strong></h2>
+        <h2><strong><%= infos[0].nom  %> <%= infos[0].prenom %></strong></h2>
         <div class="contenu">
             <!--            <div class="nom_num">-->
             <!--                <div class="nom">-->
@@ -104,6 +97,7 @@
 
                 <div class="chambre_standart">
                     <p>Chambre standart</p>
+
                     <% row.forEach(function(r){
 
                     if(r.categorie === 'chambre standart'){
@@ -158,6 +152,7 @@
                     <input type="checkbox" class="back" id="gap" name="chambre" value="<%= r.id_chambre %>" class="b">
                     <% }
                     }) %>
+
                     <!--                    <button class="back" id="gap">1</button>-->
                     <!--                    <button class="back">2</button>-->
                 </div>
@@ -165,6 +160,13 @@
 
             <button type="submit" class="checked_in">Enregistrer</button>
         </form>
+            <%}else{ %>
+                <div class="col-md-4 text-center bg-danger">
+                    <h2>Aucun resultat trouvé</h2>
+                    <h3>Le client n'exite pas veillez l'enregistrer.</h3><br>
+                    Cliquez<a href="/receptioniste/client">ici</a>
+                </div>
+            <%}%>
     </div>
 </section>
 
