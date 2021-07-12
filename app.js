@@ -359,14 +359,25 @@ app.post('/client/rechercher', urlencodedParser,[],(req, res) => {
                     row,
                     infos
                 });
+<<<<<<< HEAD
+
+            });
+        }
+        else{
+            res.render('enregistrer/erreurs');
+=======
+>>>>>>> 012cf7b (facture)
 
             });
         }
         else{
             res.render('enregistrer/erreurs');
 
+<<<<<<< HEAD
+=======
         }
 
+>>>>>>> 012cf7b (facture)
 
     });
 });
@@ -1187,6 +1198,10 @@ app.get("/admin/genererFacture/:id", (req, res) => {
                     let factDate = day + "_" + month + "_" + year + "__" + hour + "h_" + minute + "min_" + second;
                     let imageP=path.resolve('public','image/Logo-atitle-hotel.png');
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 012cf7b (facture)
                     ejs.renderFile(path.join('./views', "facture.ejs"), { client: client, commande: commande, chambreclient: chambreclient,factname: factname,image: base(imageP) }, (err, data) => {
                         // ejs.renderFile(path.join('./views/', "index.ejs"), (err, data) => {
                         if (err) {
@@ -1202,7 +1217,11 @@ app.get("/admin/genererFacture/:id", (req, res) => {
                                     "height": "20mm",
                                 },
                             };
+<<<<<<< HEAD
                             htmlPdf.create(data, options).toFile(path.join('./public/factures/', factname + factDate + ".pdf"), function(err, data) {
+=======
+                            htmlPdf.create(data, options).toFile(path.join('./public/factures/', factname + ".pdf"), function(err, data) {
+>>>>>>> 012cf7b (facture)
 
                                 if (err) {
                                     res.send(err);
