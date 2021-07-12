@@ -96,6 +96,7 @@
 
                 <form action="/receptioniste/main_courant" method="POST">
 
+
                     <div class="date">
                         <label for="date">Selectionner la date ici</label>
                         <input type="date" name="date" id="date" class="date_color">
@@ -103,97 +104,124 @@
                     </div>
                 </form>
             </div>
-        </section>
+       
+<section>
+    <% var i=0;
+    var totalj=0;
+    var totaljh=0;
+    var totalg=0;
+    var Tlinge = 0;
+    var Trestaurant = 0;
+    var TpetitD = 0;
+    var Tbar = 0;
+    var Tdivers = 0;
+   
+    var Total = 0;
+    if(commande.length>=1){
+     client.forEach(function(row){ %>
+    <% commande.forEach(function(r){%>
+        <% if(r.lieu==='Restaurant' && r.id_client===row.id_client){  Trestaurant = Trestaurant + r.montant;%>
+        
+        <%}})%>
+        <% commande.forEach(function(r){%>
+            <% if(r.lieu==='Divers' && r.id_client===row.id_client){  Tdivers = Tdivers+ r.montant;%>
+            
+            <%}})%>
+            <% commande.forEach(function(r){%>
+                <% if(r.lieu==='Linge' && r.id_client===row.id_client){  Tlinge = Tlinge+ r.montant;%>
+                
+                <%}})%>
+                <% commande.forEach(function(r){%>
+                    <% if(r.lieu==='Bar' && r.id_client===row.id_client){  Tbar = Tbar+ r.montant;%>
+                    
+                    <%}})%>
+                    <%}) }%>
+<table class="table table-borderless">
+    <thead class="forme">
+        <tr>
+            <th>Nom</th>
+            <th>N°chambre</th>
+            <th>Petit déjeuner</th>
+            <th>Restaurant</th>
+            <th>Bar</th>
+            <th>Linge</th>
+            <th>Divers</th>
+            <th>Total jour</th>
+            <th>Rpport veille</th>
+            <th>Total général</th>
+            <th>Règlement</th>
+            <th>A raporter</th>
+        </tr>
+    </thead>
 
-
-        <section>
-            <table class="table table-borderless">
-                <thead class="forme">
                 <tr>
-                    <th>Nom</th>
-                    <th>N°chambre</th>
-                    <th>Petit déjeuner</th>
-                    <th>Restaurant</th>
-                    <th>Bar</th>
-                    <th>Linge</th>
-                    <th>Divers</th>
-                    <th>Total jour</th>
-                    <th>Rpport veille</th>
-                    <th>Total général</th>
-                    <th>Règlement</th>
-                    <th>A raporter</th>
-                </tr>
-                </thead>
-
-                <tr>
-                    <% var i = 0;
-                    var totalj = 0;
-                    var totaljh = 0;
-                    var totalg = 0;
-                    if(commande.length >= 1){
-                    client.forEach(function(row){ %>
+                    <% 
+                        if(commande.length>=1){
+                         client.forEach(function(row){ %>
                         <td><%= row.nom %></td>
-                        <% if(i <= chambreclient.length - 1) {
-                        %>
-                            <td><%= chambreclient[i].id_chambre %>   </td>
-                            <% if(i <= commande.length - 1) {
-                            %>
-
-                                <% if(commande[i].lieu === 'Petit dejeune' && commande[i].id_client == row.id_client){ %>
-                                    <td><%= commande[i].montant %></td>
-                                <% }else{ %>
-                                    <td>0</td>
-                                <% } %>
-                                <% if(commande[i].lieu === 'Restaurant' && commande[i].id_client === row.id_client){ %>
-                                    <td><%= commande[i].montant %></td>
-                                <% }else{ %>
-                                    <td>0</td>
-                                <% } %>
-                                <% if(commande[i].lieu === 'Bar' && commande[i].id_client === row.id_client){ %>
-                                    <td><%= commande[i].montant %></td>
-                                <% }else{ %>
-                                    <td>0</td>
-                                <% } %>
-                                <% if(commande[i].lieu === 'Linge' && commande[i].id_client === row.id_client){ %>
-                                    <td><%= commande[i].montant %></td>
-                                <% } else{ %>
-                                    <td>0</td>
-                                <% } %>
-                                <% if(commande[i].lieu === 'Divers' && commande[i].id_client === row.id_client){ %>
-                                    <td><%= commande[i].montant %></td>
-                                <% } else{ %>
-                                    <td>0</td>
-                                <% } %>
-                                <% if( commande[i].id_client === row.id_client){
-                                    totalj = commande[i].montant * commande[i].nombre; %>
-                                <td><%= totalj %></td>
-                                <% }  else{ %>
-                                    <td>0</td>
-                                <% } %>
-
-                                <% if(i <= commandeh.length - 1) {
-                                %>
-                                    <% if( commandeh[i].id_client === row.id_client){ totaljh = commandeh[i].montant * commandeh[i].nombre;
-                                    %>
-                                    <td><%= totaljh %></td>
-                                    <% }  else{ %>
-                                        <td>0</td>
-                                    <% } %>
-                                <% } else{ %>
-                                    <td>0</td>
-                                <% } %>
-                                <td><%= totaljh + totalj %></td>
-                                <% if( status[i].id_client === row.id_client){ %>
-
-                                    <td><%= status[i].montant * status[i].nombre %></td>
-                                <% }  else{ %>
-                                    <td>0</td>
-                                <% } %>
-
-                                <td> <%= totaljh + totalj %></td>
+                       
+                        <td><%= chambreclient[i].id_chambre %>   </td>
+                        <% var j= commande.length  %>
+                         
+                               
+                                
+                               
+                        <% if(commande[i].lieu==='Petit dejeune' ){ %>
+                        <td><%= commande[i].montant %></td>
+                        <% }else{%>
+                            <td>0</td>
                             <% } %>
-                        <% } %>
-                </tr>
+                        <% if(commande[i].lieu==='Restaurant' ){ %>
+                            <td><%= Trestaurant %></td>
+                            <% }else{%>
+                                <td>0</td>
+                                <% } %>
+                            <% if(commande[i].lieu==='Bar' ){ %>
+                                <td><%= Tbar %></td>
+                                <% }else{%>
+                                    <td>0</td>
+                                    <% } %>
+                                <% if(commande[i].lieu==='Linge' ){ %>
+                                    <td><%= Tlinge %></td>
+                                    <% } else{%>
+                                        <td>0</td>
+                                        <% } %>
+                                    <% if(commande[i].lieu==='Divers'){ %>
+                                        <td><%= Tdivers %></td>
+                                        <% } else{%>
+                                            <td>0</td>
+                                            <% } %>
+                                            <%Total = Tlinge  + TpetitD + Tbar + Trestaurant + Tdivers;%>
+                                            <%   if( commande[i].id_client===row.id_client){ 
+                                                totalj=commande[i].montant * commande[i].nombre; %>
+                        <td><%= totalj %></td>
+                        <% }  else{%>
+                            <td>0</td>
+                            <% } %>
+                        
+                       
+                        <%   if( commandeh[i].id_client===row.id_client){ totaljh=commandeh[i].montant * commandeh[i].nombre;
+                            %>
+                            <td><%= totaljh  %></td>
+                            <% }  else{%>
+                                <td>0</td>
+                                <% } %>
+                                
+                        <td><%= (totaljh+chambreclient[i].prix)  %></td>
+                        <%   if( facture[i].id_client===row.id_client && chambreclient[i].id_client==facture[i].id_client){  %>
+                        
+                        <td><%= facture[i].reglement %></td>
+                        <td> <%= (totaljh+chambreclient[i].prix)-facture[i].reglement  %></td>
+                       
+                       
+                        <% }  else{%>
+                            <td>0</td>
+                            <% } %>
+                           
+                        
+                       
+                    </tr>
+
 
                 <% i = i + 1;
                 }) } else { %>
