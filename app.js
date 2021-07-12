@@ -92,6 +92,16 @@ router.get('/logout', (req, res) => {
 app.get('/register', (req, res) => {
     res.render('register')
 });
+
+app.get('/receptioniste/client/autre_entree', (req, res) => {
+    res.render('entree')
+});
+app.get('/receptioniste/client/autre_sortie', (req, res) => {
+    res.render('entree')
+});
+
+
+
 app.use('/', router);
 app.get('/delete', (req, res) => {
     res.render('delete')
@@ -680,7 +690,91 @@ app.post('/admin/client', urlencodedParser, [
     }
 });
 
+
+
 app.post('/receptioniste/client/autre_entree', urlencodedParser, [
+    check('name', 'nom trop grand')
+    .exists()
+    .isLength({ max: 45 }),
+
+], (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        //return res.status(422).jsonp(errors.array())
+        const alert = errors.array()
+        res.render('clients', {
+            alert
+        })
+
+    } else {
+
+        var sql = "insert into entree values(null,'" + req.body.name + "'," + req.body.prix + "," + req.body.nombre + "," + id + ")";
+        mysqlConnection.query(sql, (err, rows, fields) => {
+            console.log(id);
+        })
+    }
+});
+
+app.post('/admin/facture_admin', urlencodedParser, [], (req, res) => {
+
+    var nom;
+    var row;
+    var sql = "select * from facture ";
+    mysqlConnection.query(sql, (err, rows, fields) => {
+
+
+        row = rows;
+        var l = rows.length;
+        if (l >= 1) {
+            var sql = "select nom from client ";
+            mysqlConnection.query(sql, (err, rows, fields) => {
+
+
+                nom = rows;
+
+
+                res.render('facture_admin.ejs', {
+                    row,
+                    nom,
+                    l
+                })
+            })
+        } else {
+            res.render('facture_admin.ejs', {
+                l
+            })
+        }
+    })
+
+    if (req.body.mod != undefined) {
+
+    }
+
+    if (req.body.sup != undefined) {
+        var sql = "select * from facture where id_facture = " + req.body.sup + "";
+        mysqlConnection.query(sql, (err, rows, fields) => {
+            var id = rows[0].id_client;
+            console.log(id);
+            var sql = "delete from facture where id_facture = " + req.body.sup + " ";
+            mysqlConnection.query(sql, (err, rows, fields) => {
+                console.log(id);
+                var sql = "delete from client where id_client = " + id + "";
+                mysqlConnection.query(sql, (err, rows, fields) => {
+                    res.render('facture_admin')
+                })
+
+            })
+
+        })
+
+    }
+
+});
+
+
+
+
+app.post('/receptioniste/client/autre_sortie', urlencodedParser, [
     check('name', 'nom trop grand')
     .exists()
     .isLength({ max: 45 }),
