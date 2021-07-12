@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=, initial-scale=1.0">
-<<<<<<< HEAD
+
 <!--    <link rel="stylesheet" href="/css/style_f.css">-->
 <!--    <link rel="stylesheet" href="./public/css/bootstrap.min.css">-->
     <title>Facture</title>
 
-=======
+
    
     <link rel="stylesheet" href="/css/style_f.css">
     <title>Document</title>
     
->>>>>>> 012cf7b (facture)
+
     <style>
         body {
             margin: 0px 50px 0px 50px;
@@ -37,134 +37,105 @@
     </style>
 </head>
 <body>
-<<<<<<< HEAD
-<table class="tableau1">
-    <tr>
-        <td>
-            <div class="en-tete">
-                <div class="img">
-                    <img src="http://localhost:3000/public/image/Logo-atitle-hotel.png" alt="logo" style="width: 50px; height: 50px;">
+
+
+    <table class="tableau1">
+        <tr>
+            <td>
+                <div class="en-tete">
+                    <div class="img">
+                        <img src="http://localhost:3000/public/image/Logo-atitle-hotel.png" alt="logo" style="width: 50px; height: 50px;">
+                    </div>
+                    <span class="nom-hotel"> HOTEL ALTITEL</span>
                 </div>
-                <span class="nom-hotel"> HOTEL ALTITEL</span>
-=======
-    <nav class="nav-en-tete row">
-       <div class="en-tete col-md-6">
-            <div class="img">
-                <img src="file://<%=image%>" alt="logo"  style="width: 50px; height: 50px;">      
-            </div>          
-            <span class="nom-hotel"> HOTEL ALTITEL</span>
-       </div>
-      <div class="col-md-6">
-           <p>
-               Mobile:(+237) 677 76 90 08 <br>
-               Fax:(+237) 233 44 50 93 <br>
-               Tel:(+237) 233 44 51 11 <br>
-               B.p. 870 Bafoussam
-           </p>
-        </div>
-    </nav>
-
-
- <section class="contenair">
-
-    <div class="info-client">
-
-            <div class="espace1">
-                <h2 class="ecart">Date: <%= toDay %></h2>
-                <h2>Nom du client: <%=client[0].nom %> <%= client[0].prenom %></h2>      
-            </div>
-        
-            <div class="espace2">
-                <h2>Numero de chambre : <% chambreclient.forEach(function(r){ %>  <%=r.id_chambre %>, <% }) %> </h2>
->>>>>>> 012cf7b (facture)
-            </div>
-
-        </td>
-        <td style="margin-left: 150px!important;">
-            <p>
-                Mobile:(+237) 677 76 90 08 <br>
-                Fax:(+237) 233 44 50 93 <br>
-                Tel:(+237) 233 44 51 11 <br>
-                B.p. 870 Bafoussam
-            </p>
-        </td>
-    </tr>
-
-</table>
-<br>
-<table class="tableau2">
-    <tr>
-        <th></th>
-        <th></th>
-    </tr>
-    <tr>
-        <td>
-
-
-            <h4 class="ecart"> Date: <%= toDay %></h4>
-
-        </td>
-        <td>
-
-            <h4>Nom du client: <%= client[0].nom %> <%= client[0].prenom %></h4>
-
-        </td>
-
-    </tr>
-    <tr>
-
-        <td>
-
-            <h4>Numero de chambre :
-                   <% chambreclient.forEach(function(r){ %>
-                    <%= r.id_chambre %>,
-                <% }) %>
-            </h4>
-
-        </td>
-        <td></td>
-    </tr>
-
-</table>
-<br>
-<table class="tableau3">
-    <tr>
-        <td><p><strong>Services</strong> </p></td>
-        <td><p><strong>Montants</strong></p></td>
-    </tr>
-
-    <% var lieu, total1 , com = 0; commande.forEach(function(r){  lieu = r.lieu;   total1 = r.montant * r.nombre; com = com + total1; %>
-
-    <tr>
-        <td><%= lieu %></td>
-        <td><%= total1 %></td>
-    </tr>
-
-    <% }) %>
-
-    <% var cha = 0; chambreclient.forEach(function (r) { cha = cha + r.prix %>
-
-    <tr>
-        <td>chambre <%= r.categorie %> </td>
-        <td>   <%= r.prix %></td>
-    </tr>
-   <% }) %>
-</table>
-<hr>
-<br>
-<table class="tableau4">
-    <tr>
-      <td> Signature</td>
-        <td><strong>Total</strong></td>
-    </tr>
-
-    <tr>
-        <% var total = com + cha; %>
-        <td></td>
-        <td><%= total %></td>
-    </tr>
-
-</table>
+    
+            </td>
+            <td style="margin-left: 150px!important;">
+                <p>
+                    Mobile:(+237) 677 76 90 08 <br>
+                    Fax:(+237) 233 44 50 93 <br>
+                    Tel:(+237) 233 44 51 11 <br>
+                    B.p. 870 Bafoussam
+                </p>
+            </td>
+        </tr>
+    
+    </table>
+    <br>
+    <table class="tableau2">
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>
+    
+    
+                <h4 class="ecart"> Date: <%= toDay %></h4>
+    
+            </td>
+            <td>
+    
+                <h4>Nom du client: <%= client[0].nom %> <%= client[0].prenom %></h4>
+    
+            </td>
+    
+        </tr>
+        <tr>
+    
+            <td>
+    
+                <h4>Numero de chambre :
+                       <% chambreclient.forEach(function(r){ %>
+                        <%= r.id_chambre %>,
+                    <% }) %>
+                </h4>
+    
+            </td>
+            <td></td>
+        </tr>
+    
+    </table>
+    <br>
+    <table class="tableau3">
+        <tr>
+            <td><p><strong>Services</strong> </p></td>
+            <td><p><strong>Montants</strong></p></td>
+        </tr>
+    
+        <% var lieu, total1 , com = 0; commande.forEach(function(r){  lieu = r.lieu;   total1 = r.montant * r.nombre; com = com + total1; %>
+    
+        <tr>
+            <td><%= lieu %></td>
+            <td><%= total1 %></td>
+        </tr>
+    
+        <% }) %>
+    
+        <% var cha = 0; chambreclient.forEach(function (r) { cha = cha + r.prix %>
+    
+        <tr>
+            <td>chambre <%= r.categorie %> </td>
+            <td>   <%= r.prix %></td>
+        </tr>
+       <% }) %>
+    </table>
+    <hr>
+    <br>
+    <table class="tableau4">
+        <tr>
+          <td> Signature</td>
+            <td><strong>Total</strong></td>
+        </tr>
+    
+        <tr>
+            <% var total = com + cha; %>
+            <td></td>
+            <td><%= total %></td>
+        </tr>
+    
+    </table>
+    
 
 <br>
 <hr>
