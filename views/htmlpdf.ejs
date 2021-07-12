@@ -101,6 +101,44 @@
 
   </div>
  </section>
- <a href="/admin/genererFacture/<%=id%>" class="btn btn-primary" >imprimer</a>
+<!-- <a href="/admin/genererFacture/<%=id%>"   class="btn btn-primary" >imprimer</a>-->
+    <a href="javascript:void(0);" id="printbtn" onClick="genererFunc(<%=id%>)" data-toggle="tooltip" class=" btn btn-primary">Générer</a>
+    <a id="print-a" class="btn btn-success m-2">Imprimer</a>
+
+<!--    <a href="#" id="imprimer"   class="btn btn-primary" >print</a>-->
+<!--    <button class="imprimer">print</button>-->
+    <script src="../public/enregistrer/js/Jquery3.4.1.min.js"></script>
+<script>
+$('#print-a').hide();
+    function genererFunc(id) {
+
+console.log(id);
+
+        $.ajax({
+            type: "GET",
+            url: "/admin/genererFacture/"+id,
+            data: {id: id},
+            dataType: 'json',
+            success: function (res) {
+                // console.log(res);
+                var num_chambre = res.pdffulname;
+                console.log(res.pdffulname);
+                facturepdf = '/public/factures/'+res.pdffulname+'#facture';
+                // $('#imprimer-block').html('<a href="./public/factures/12_6_2021__10h_4min_24Russelle.pdf#facture"></a>');
+                $('#print-a').show();
+                $('#print-a').attr("href",facturepdf);
+                window.open('../public/factures/'+res.pdffulname);
+                // window.print('<a href="./public/factures/"+res.pdffulname+"#page"></a>');
+
+                // $('#state').append($('<option>', {value:k, text:v}));
+
+            }
+        });
+    }
+    $('#imprimer').click(function (){
+       window.print();
+        // window.open();
+    });
+</script>
 </body>
 </html>

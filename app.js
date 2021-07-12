@@ -66,7 +66,7 @@ router.get('/', (req, res) => {
     if (!req.session.username) {
         res.render('login/login')
     } else {
-        res.redirect('');
+        res.redirect('/acceuil/clients');
     }
 
 });
@@ -153,7 +153,7 @@ app.get('/admin/facture_admin', (req, res) => {
 
                 nom = rows;
 
-                console.log(l);
+                // console.log(l);
                 res.render('facture_admin.ejs', {
                     row,
                     nom,
@@ -426,7 +426,7 @@ app.post('/login', urlencodedParser, [
         if (req.body.username != undefined && req.body.password != undefined) {
             var sql = "select * from utilisateur where nom ='" + req.body.username + "' and password = '" + req.body.password + "'";
             mysqlConnection.query(sql, (err, rows, fields) => {
-                console.log(err);
+                // console.log(err);
                 if (!err) {
 
                     if (rows.length == 1) {
@@ -471,7 +471,7 @@ app.post('/login', urlencodedParser, [
                                             req.session.username = userData[0].nom;
                                             req.session.role = role;
                                             req.session.userid = userData.id_user;
-                                            console.log(req.session);
+                                            // console.log(req.session);
                                             res.render('client/client', {
                                                 client,
                                                 chambre
@@ -500,7 +500,7 @@ app.post('/login', urlencodedParser, [
             })
         }
     } else {
-        res.redirect('/client/client')
+        res.redirect('/acceuil/clients')
     }
 
 });
@@ -827,7 +827,7 @@ app.get("/generateReport2/:id", (req, res) => {
             var sql = "select * from commande where  id_client="+id+"  ORDER BY id_client ASC ";
             mysqlConnection.query(sql, (err, rows, fields) => {
                 commande = rows;
-    console.log(commande)
+    // console.log(commande)
                 var sql = "select c.id_chambre, ch.categorie, ch.prix from chambreclient c,chambre ch where c.id_client="+id+" and c.id_chambre=ch.id_chambre ORDER BY id_client ASC";
                 mysqlConnection.query(sql, (err, rows, fields) => {
                     chambreclient = rows;
@@ -942,7 +942,7 @@ app.post('/receptioniste/commande/:id', urlencodedParser, [
                                     })
                                     reg = s + rows[0].reporter;
                                     to = s + rows[0].total;
-                                    console.log(rows);
+                                    // console.log(rows);
                                     var sql1 = "UPDATE `facture` SET `reporter` = " + reg + ", `total` = " + to + " WHERE `facture`.`id_client`= " + id + "";
                                     mysqlConnection.query(sql1, (err, rows, fields) => {
 
@@ -1019,11 +1019,14 @@ app.get("/acceuil/clients", (req, res) => {
 });
 app.get("/admin/genererFacture/:id", (req, res) => {
     if (req.session.role === 'admin' || req.session.role === 'receptioniste' && req.session.username) {
-        var id = req.params.id;
+         var id = req.query.id;
+        // var id = req.params.id;
         var commandes;
         var infos;
         var chambres;
-        var idClient = req.params.id;
+        // var idClient = req.params.id;
+        var idClient = req.query.id;
+        console.log(id);
         var sql1 = "select * from client where id_client = " + idClient + "";
         mysqlConnection.query(sql1, (err, rows, fields) => {
             client = rows;
@@ -1072,8 +1075,15 @@ app.get("/admin/genererFacture/:id", (req, res) => {
                                     const factPath = path.join('./public/factures/',  factname + ".pdf");
                                     // res.render("factPath");
                                     // require(factPath);
+                                    // res.setHeader('Content-Type', 'application/pdf')
+                                    // res.setHeader('Content-Disposition', 'inline;filename='+factname+'.pdf')
+                                    //
+                                   pdffulname = factDate + factname +'.pdf';
+                                    console.log(pdffulname);
+                                    res.json({pdffulname  });
+                                    // res.json({  Infos,Total , Tlinge , Tchambre , TpetitD , Tbar , Trestaurant,Tdivers});
 
-                                    res.send("Facture creee avec success");
+                                    // res.send("Facture creee avec success");
                                 }
                             });
                         }
