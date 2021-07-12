@@ -352,3 +352,8 @@ form {
         width: 100px;
     }
 }
+#poste{
+    font-size: 15px!important;
+    line-height: 1!important;
+    font-weight: 100!important;
+}
