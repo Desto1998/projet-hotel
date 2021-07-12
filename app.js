@@ -1068,7 +1068,6 @@ app.get("/admin/genererFacture/:id", (req, res) => {
         var chambres;
         // var idClient = req.params.id;
         var idClient = req.query.id;
-        console.log(id);
         var sql1 = "select * from client where id_client = " + idClient + "";
         mysqlConnection.query(sql1, (err, rows, fields) => {
             client = rows;
@@ -1092,7 +1091,7 @@ app.get("/admin/genererFacture/:id", (req, res) => {
                     let minute = MyDate.getMinutes();
                     let second = MyDate.getSeconds();
                     let factDate = day + "_" + month + "_" + year + "__" + hour + "h_" + minute + "min_" + second;
-
+                    let imageP=path.resolve('public','image/Logo-atitle-hotel.png');
 
                     ejs.renderFile(path.join('./views', "facture.ejs"), { client: client, commande: commande, chambreclient: chambreclient,factname: factname,image: base(imageP) }, (err, data) => {
                         // ejs.renderFile(path.join('./views/', "index.ejs"), (err, data) => {
@@ -1109,7 +1108,7 @@ app.get("/admin/genererFacture/:id", (req, res) => {
                                     "height": "20mm",
                                 },
                             };
-                            htmlPdf.create(data, options).toFile(path.join('./public/factures/', factname + ".pdf"), function(err, data) {
+                            htmlPdf.create(data, options).toFile(path.join('./public/factures/', factname + factDate + ".pdf"), function(err, data) {
 
                                 if (err) {
                                     res.send(err);
@@ -1120,8 +1119,8 @@ app.get("/admin/genererFacture/:id", (req, res) => {
                                     // res.setHeader('Content-Type', 'application/pdf')
                                     // res.setHeader('Content-Disposition', 'inline;filename='+factname+'.pdf')
                                     //
-                                   pdffulname = factDate + factname +'.pdf';
-                                    console.log(pdffulname);
+                                   pdffulname =  factname +factDate +'.pdf';
+                                    // console.log(pdffulname);
                                     res.json({pdffulname  });
                                     // res.json({  Infos,Total , Tlinge , Tchambre , TpetitD , Tbar , Trestaurant,Tdivers});
 

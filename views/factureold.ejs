@@ -94,3 +94,167 @@
 
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style_f.css">
+    <title>Document</title>
+
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .nav-en-tete {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .nav-en-tete .en-tete {
+            display: flex;
+            margin: 1.5rem 2rem;
+        }
+
+        .nav-en-tete .en-tete .nom-hotel{
+            margin: 0.8rem .9rem;
+            color: #273486;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .nav-en-tete p{
+            margin: 2rem 2rem;
+        }
+
+        .contenair{
+            margin: 2% 25%;
+        }
+
+
+        .contenair .info-client{
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+
+        }
+
+        .contenair .valeur {
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+
+        }
+
+        .contenair .info-client .espace1{
+            display: flex;
+
+        }
+
+        .info-client .espace .bleu{
+            color: #273486;
+            font-weight: bold;
+        }
+
+        .info-client .espace .black{
+            color: black;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .contenair .info-client .espace1 .ecart{
+            margin-right: 5rem;
+        }
+        h3{
+            margin-top: 10%;
+        }
+
+        .contenair .valeur .service-montant{
+            width: 28%;
+        }
+
+        .contenair .valeur .service-montant .montant{
+            margin-top: 1.5rem;
+            color: #273486;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<nav class="nav-en-tete">
+    <div class="en-tete">
+        <div class="img">
+            <img src="./public/image/Logo-atitle-hotel.png" alt="logo"  style="width: 50px; height: 50px;">
+        </div>
+        <span class="nom-hotel"> HOTEL ALTITEL</span>
+    </div>
+
+    <p>
+        Mobile:(+237) 677 76 90 08 <br>
+        Fax:(+237) 233 44 50 93 <br>
+        Tel:(+237) 233 44 51 11 <br>
+        B.p. 870 Bafoussam
+    </p>
+</nav>
+
+
+<section class="contenair">
+
+    <div class="info-client">
+
+        <div class="espace1">
+            <h2 class="ecart">Date: <%= toDay %></h2>
+            <h2>Nom du client: <%=client[0].nom %> <%= client[0].prenom %></h2>
+        </div>
+
+        <div class="espace2">
+            <h2>Numero de chambre : <% chambreclient.forEach(function(r){ %>  <%=r.id_chambre %>, <% }) %> </h2>
+        </div>
+    </div>
+
+    <div class="valeur">
+
+        <div class="service-montant">
+            <h3>Service</h3>
+            <div class="montant">
+                <% commande.forEach(function(r){ var lieu=r.lieu  %>
+
+                <p><%=lieu%></p>
+                <%})%>
+                <% chambreclient.forEach(function(r){ %> <p>   chambre <%=r.categorie %> </p><% }) %>
+            </div>
+        </div>
+
+        <div class="service-montant">
+            <h3>montant</h3>
+            <div class="montant">
+                <% var com=0; commande.forEach(function(r){ var total1=r.montant*r.nombre; com=com+total1; %>
+                <p><%=total1%></p>
+                <% })%>
+                <% var cha=0; chambreclient.forEach(function(r){ cha=cha+r.prix %> <p>   <%=r.prix %> </p><% }) %>
+            </div>
+        </div>
+    </div>
+    <br>
+    <hr><br>
+
+    <div class="info-client">
+        <div class="espace">
+            <p>Signature</p>
+        </div>
+
+        <div class="espace">
+            <p><span class="black"> Total :</span> <span class="bleu"> <% var total=com+cha; %>
+            <p><%=total%></p>
+            </span></p>
+        </div>
+
+    </div>
+</section>
+
+</body>
+</html>

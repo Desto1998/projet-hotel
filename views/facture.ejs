@@ -4,162 +4,230 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=, initial-scale=1.0">
-   
-    <link rel="stylesheet" href="/css/style_f.css">
-    <title>Document</title>
-    
+<!--    <link rel="stylesheet" href="/css/style_f.css">-->
+<!--    <link rel="stylesheet" href="./public/css/bootstrap.min.css">-->
+    <title>Facture</title>
+
     <style>
-        *{
-    margin: 0px;
-    padding: 0px;
-}
-
-.nav-en-tete {
-    display: flex;
-    justify-content: space-between;
-}
-
-.nav-en-tete .en-tete {
-    display: flex;
-    margin: 1.5rem 2rem;
-}
-
-.nav-en-tete .en-tete .nom-hotel{
-    margin: 0.8rem .9rem;
-    color: #273486;
-    font-weight: bold;
-    font-size: 1.2rem;
-}
-
-.nav-en-tete p{
-    margin: 2rem 2rem;
-}
-
-.contenair{
-    margin: 2% 25%;
-}
+        body {
+            margin: 0px 50px 0px 50px;
+        }
+        .tableau1{
+            width: 1470px;
+            /*position: absolute;*/
+        }
+        .tableau2{
+            width: 1000px;
+            /*position: absolute;*/
+        }
+        .tableau3,.tableau4{
+            /*position: absolute;*/
+            width: 900px;
+            margin-left: 30px;
+        }
 
 
-.contenair .info-client{
-   display: flex;
-   justify-content: space-between;
-   text-align: center;
-  
-}
-
-.contenair .valeur {
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
-   
- }
-
- .contenair .info-client .espace1{
-    display: flex;
-    
-}
-
-.info-client .espace .bleu{
-    color: #273486;
-    font-weight: bold;
-}
-
-.info-client .espace .black{
-    color: black;
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-
-.contenair .info-client .espace1 .ecart{
-    margin-right: 5rem;
-}
-h3{
-    margin-top: 10%;
-}
-
-.contenair .valeur .service-montant{
-    width: 28%;
-}
-
-.contenair .valeur .service-montant .montant{
-    margin-top: 1.5rem;
-    color: #273486;
-    font-weight: bold;
-}
     </style>
 </head>
 <body>
-    <nav class="nav-en-tete row">
-       <div class="en-tete col-md-6">
-            <div class="img">
-                <img src="file://<%=image%>" alt="logo"  style="width: 50px; height: 50px;">      
-            </div>          
-            <span class="nom-hotel"> HOTEL ALTITEL</span>
-       </div>
-      <div class="col-md-6">
-           <p>
-               Mobile:(+237) 677 76 90 08 <br>
-               Fax:(+237) 233 44 50 93 <br>
-               Tel:(+237) 233 44 51 11 <br>
-               B.p. 870 Bafoussam
-           </p>
-        </div>
-    </nav>
-
-
- <section class="contenair">
-
-    <div class="info-client">
-
-            <div class="espace1">
-                <h2 class="ecart">Date: <%= toDay %></h2>
-                <h2>Nom du client: <%=client[0].nom %> <%= client[0].prenom %></h2>      
+<table class="tableau1">
+    <tr>
+        <td>
+            <div class="en-tete">
+                <div class="img">
+                    <img src="http://localhost:3000/public/image/Logo-atitle-hotel.png" alt="logo" style="width: 50px; height: 50px;">
+                </div>
+                <span class="nom-hotel"> HOTEL ALTITEL</span>
             </div>
-        
-            <div class="espace2">
-                <h2>Numero de chambre : <% chambreclient.forEach(function(r){ %>  <%=r.id_chambre %>, <% }) %> </h2>
+
+        </td>
+        <td style="margin-left: 150px!important;">
+            <p>
+                Mobile:(+237) 677 76 90 08 <br>
+                Fax:(+237) 233 44 50 93 <br>
+                Tel:(+237) 233 44 51 11 <br>
+                B.p. 870 Bafoussam
+            </p>
+        </td>
+    </tr>
+
+</table>
+<br>
+<table class="tableau2">
+    <tr>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+        <td>
+
+
+            <h4 class="ecart"> Date: <%= toDay %></h4>
+
+        </td>
+        <td>
+
+            <h4>Nom du client: <%= client[0].nom %> <%= client[0].prenom %></h4>
+
+        </td>
+
+    </tr>
+    <tr>
+
+        <td>
+
+            <h4>Numero de chambre :
+                   <% chambreclient.forEach(function(r){ %>
+                    <%= r.id_chambre %>,
+                <% }) %>
+            </h4>
+
+        </td>
+        <td></td>
+    </tr>
+
+</table>
+<br>
+<table class="tableau3">
+    <tr>
+        <td><p><strong>Services</strong> </p></td>
+        <td><p><strong>Montants</strong></p></td>
+    </tr>
+
+    <% var lieu, total1 , com = 0; commande.forEach(function(r){  lieu = r.lieu;   total1 = r.montant * r.nombre; com = com + total1; %>
+
+    <tr>
+        <td><%= lieu %></td>
+        <td><%= total1 %></td>
+    </tr>
+
+    <% }) %>
+
+    <% var cha = 0; chambreclient.forEach(function (r) { cha = cha + r.prix %>
+
+    <tr>
+        <td>chambre <%= r.categorie %> </td>
+        <td>   <%= r.prix %></td>
+    </tr>
+   <% }) %>
+</table>
+<hr>
+<br>
+<table class="tableau4">
+    <tr>
+      <td> Signature</td>
+        <td><strong>Total</strong></td>
+    </tr>
+
+    <tr>
+        <% var total = com + cha; %>
+        <td></td>
+        <td><%= total %></td>
+    </tr>
+
+</table>
+
+<br>
+<hr>
+<br>
+
+
+<table class="tableau1">
+    <tr>
+        <td>
+            <div class="en-tete">
+                <div class="img">
+                    <img src="http://localhost:3000/public/image/Logo-atitle-hotel.png" alt="logo" style="width: 50px; height: 50px;">
+                </div>
+                <span class="nom-hotel"> HOTEL ALTITEL</span>
             </div>
-    </div>
 
-    <div class="valeur">
+        </td>
+        <td style="margin-left: 150px!important;">
+            <p>
+                Mobile:(+237) 677 76 90 08 <br>
+                Fax:(+237) 233 44 50 93 <br>
+                Tel:(+237) 233 44 51 11 <br>
+                B.p. 870 Bafoussam
+            </p>
+        </td>
+    </tr>
 
-        <div class="service-montant">
-            <h3>Service</h3>
-            <div class="montant">
-                <% commande.forEach(function(r){ var lieu=r.lieu  %>
-                   
-                <p><%=lieu%></p>
-               <%})%>
-               <% chambreclient.forEach(function(r){ %> <p>   chambre <%=r.categorie %> </p><% }) %> 
-            </div>
-        </div>
+</table>
+<br>
+<table class="tableau2">
+    <tr>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+        <td>
 
-        <div class="service-montant">
-            <h3>montant</h3>
-           <div class="montant"> 
-            <% var com=0; commande.forEach(function(r){ var total1=r.montant*r.nombre; com=com+total1; %>
-                <p><%=total1%></p>
-               <% })%>
-               <% var cha=0; chambreclient.forEach(function(r){ cha=cha+r.prix %> <p>   <%=r.prix %> </p><% }) %> 
-           </div>
-        </div>
-      </div>
-    <br>   
-<hr><br>
 
-  <div class="info-client">
-      <div class="espace">
-          <p>Signature</p>
-      </div>
+            <h4 class="ecart"> Date: <%= toDay %></h4>
 
-      <div class="espace">
-        <p><span class="black"> Total :</span> <span class="bleu"> <% var total=com+cha; %>
-            <p><%=total%></p>
-           </span></p>
-    </div>
+        </td>
+        <td>
 
-  </div>
- </section>
- 
+            <h4>Nom du client: <%= client[0].nom %> <%= client[0].prenom %></h4>
+
+        </td>
+
+    </tr>
+    <tr>
+
+        <td>
+
+            <h4>Numero de chambre :
+                   <% chambreclient.forEach(function(r){ %>
+                    <%= r.id_chambre %>,
+                <% }) %>
+            </h4>
+
+        </td>
+        <td></td>
+    </tr>
+
+</table>
+<br>
+<table class="tableau3">
+    <tr>
+        <td><p><strong>Services</strong> </p></td>
+        <td><p><strong>Montants</strong></p></td>
+    </tr>
+
+    <% var lieu, total1 , com = 0; commande.forEach(function(r){  lieu = r.lieu;   total1 = r.montant * r.nombre; com = com + total1; %>
+
+    <tr>
+        <td><%= lieu %></td>
+        <td><%= total1 %></td>
+    </tr>
+
+    <% }) %>
+
+    <% var cha = 0; chambreclient.forEach(function (r) { cha = cha + r.prix %>
+
+    <tr>
+        <td>chambre <%= r.categorie %> </td>
+        <td>   <%= r.prix %></td>
+    </tr>
+   <% }) %>
+</table>
+<hr>
+<br>
+<table class="tableau4">
+    <tr>
+      <td> Signature</td>
+        <td><strong>Total</strong></td>
+    </tr>
+
+    <tr>
+        <% var total = com + cha; %>
+        <td></td>
+        <td><%= total %></td>
+    </tr>
+
+</table>
+
 </body>
 </html>
