@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/css/all_cm.css">
 
     <title>Commandes</title>
-   
+    <link rel="stylesheet" type="text/css" href="../../public/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../public/fontawesome-5.15.2/css/fontawesome.min.css">
     <link rel="stylesheet" href="../../public/css/style_acceuil.css">
     <link rel="stylesheet" href="../../public/Accueil/css/style.css">
@@ -46,26 +46,14 @@
         <form action="/receptioniste/commande/<%= id %>" method="POST" novalidate>
             <img src="/image/Logo-atitle-hotel.png">
             <h2 class="title">
-                <% if(typeof alert != 'undefined'){%>
-                    <% alert.forEach(function(error){%>
-                       
-                            <div class=" alert-danger">
-                            <%= error.msg %>
-                              
-                        </button>
-                        </div>
-                        
-                        <% }) %>
-        
-                            <% } %>
                 <div class="liste_deroulante">
                     <label for="poste"> <b> <i>Service</i> </b></label>
                     <select id="poste" name="poste" id="validationCustom01" required>
                             <option value="">Sélectionnez une option</option>
                             <option value="Reglement">Règlement</option>
-                            <option value="Petit dejeune">Petit dejeuné</option>
+                            <option value="Restaurant">Petit dejeuné</option>
                             <option value="Restaurant">Restaurant</option>
-                            <option value="Bar">Bar</option>
+                            <option value="Divers">Bar</option>
                             <option value="Linge">Linge</option>
                             <option value="Restaurant">Divers</option>
                             </select>
@@ -74,7 +62,7 @@
                     veuillez remplir tous les champs
                   </div>
             </h2>
-           
+            <div class="btn-danger">veuillez remplir tous les champs</div>
             <div class="input-div one">
                 <div class="i">
                     <i class="fas fa-user"></i>

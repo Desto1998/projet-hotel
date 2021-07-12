@@ -90,7 +90,7 @@
 
             <div class="title-date">
                 <div class="title">
-                    <h2>Main courant réception</h2>
+                    <h2>Main courante réception</h2>
                 </div>
 
 
@@ -199,14 +199,16 @@
                             <td>0</td>
                             <% } %>
                         
-                       
+                       <% if(commandeh.length>=1){%>
                         <%   if( commandeh[i].id_client===row.id_client){ totaljh=commandeh[i].montant * commandeh[i].nombre;
                             %>
                             <td><%= totaljh  %></td>
                             <% }  else{%>
                                 <td>0</td>
                                 <% } %>
-                                
+                                <%} else{ totaljh=0%>
+                                    <td>0</td>
+                                    <% } %>%>
                         <td><%= (totaljh+chambreclient[i].prix)  %></td>
                         <%   if( facture[i].id_client===row.id_client && chambreclient[i].id_client==facture[i].id_client){  %>
                         
