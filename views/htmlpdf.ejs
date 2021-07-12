@@ -6,19 +6,39 @@
     <meta name="viewport" content="width=, initial-scale=1.0">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style_f.css">
-    <title>Document</title>
+    <title>Facture</title>
 
-  
+    <script>
+        function print() {
+            var frame = document.getElementById('frame');
+            frame.contentWindow.focus();
+            frame.contentWindow.print();
+        }
+    </script>
+    <script>
+        function print(pdf) {
+            // Créer un IFrame.
+            var iframe = document.createElement('iframe');
+            // Cacher le IFrame.
+            iframe.style.visibility = "hidden";
+            // Définir la source.
+            iframe.src = pdf;
+            // Ajouter le IFrame sur la page Web.
+            document.body.appendChild(iframe);
+            iframe.contentWindow.focus();
+            iframe.contentWindow.print(); // Imprimer.
+        }
+    </script>
 </head>
 <body>
     <nav class="nav-en-tete">
        <div class="en-tete">
             <div class="img">
-                <img src="/image/Logo-atitle-hotel.png" alt="logo"  style="width: 50px; height: 50px;">      
-            </div>          
+                <img src="/image/Logo-atitle-hotel.png" alt="logo"  style="width: 50px; height: 50px;">
+            </div>
             <span class="nom-hotel"> HOTEL ALTITEL</span>
        </div>
-      
+
            <p>
                Mobile:(+237) 677 76 90 08 <br>
                Fax:(+237) 233 44 50 93 <br>
@@ -34,9 +54,9 @@
 
             <div class="espace1">
                 <h2 class="ecart">Date: <%= toDay %></h2>
-                <h2>Nom du client: <%=client[0].nom %> <%= client[0].prenom %></h2>      
+                <h2>Nom du client: <%=client[0].nom %> <%= client[0].prenom %></h2>
             </div>
-        
+
             <div class="espace2">
                 <h2>Numero de chambre : <% chambreclient.forEach(function(r){ %>  <%=r.id_chambre %>, <% }) %> </h2>
             </div>
@@ -48,24 +68,24 @@
             <h3>Service</h3>
             <div class="montant">
                 <% commande.forEach(function(r){ var lieu=r.lieu  %>
-                   
+
                 <p><%=lieu%></p>
                <%})%>
-               <% chambreclient.forEach(function(r){ %> <p>   chambre <%=r.categorie %> </p><% }) %> 
+               <% chambreclient.forEach(function(r){ %> <p>   chambre <%=r.categorie %> </p><% }) %>
             </div>
         </div>
 
         <div class="service-montant">
             <h3>montant</h3>
-           <div class="montant"> 
+           <div class="montant">
             <% var com=0; commande.forEach(function(r){ var total1=r.montant*r.nombre; com=com+total1; %>
                 <p><%=total1%></p>
                <% })%>
-               <% var cha=0; chambreclient.forEach(function(r){ cha=cha+r.prix %> <p>   <%=r.prix %> </p><% }) %> 
+               <% var cha=0; chambreclient.forEach(function(r){ cha=cha+r.prix %> <p>   <%=r.prix %> </p><% }) %>
            </div>
         </div>
       </div>
-    <br>   
+    <br>
 <hr><br>
 
   <div class="info-client">
@@ -81,8 +101,41 @@
 
   </div>
  </section>
+    <a href="/public/factures/<%= factname%>.pdf"  class="btn btn-primary imprimer-1" target="_blank">Imprimer</a>
 
- <a href="/public/factures/<%=factname%>.pdf" class="btn btn-primary" target="_blank">imprimer</a>
+<!--     <a href="/admin/genererFacture/<%=id%>"   class="btn btn-primary" >imprimer</a>-->
+    <a href="javascript:void(0);" id="printbtn" onClick="genererFunc(<%=id%>)" data-toggle="tooltip" class=" btn btn-primary imprimer-1">Générer</a>
+    <a id="print-a" class="btn btn-success m-2" target="_blank">Imprimer</a>
 
+    <script src="../public/enregistrer/js/Jquery3.4.1.min.js"></script>
+<script>
+$('#print-a').hide();
+    function genererFunc(id) {
+
+console.log(id);
+
+        $.ajax({
+            type: "GET",
+            url: "/admin/genererFacture/"+id,
+            data: {id: id},
+            dataType: 'json',
+            success: function (res) {
+                // console.log(res);
+                var num_chambre = res.pdffulname;
+                console.log(res.pdffulname);
+                facturepdf = '/public/factures/'+res.pdffulname+'#facture';
+                // $('#imprimer-block').html('<a href="./public/factures/12_6_2021__10h_4min_24Russelle.pdf#facture"></a>');
+                $('#print-a').show();
+                $('.imprimer-1').hide(100);
+                $('#print-a').attr("href",facturepdf);
+                window.open('/public/factures/'+res.pdffulname);
+                // window.print('<a href="./public/factures/"+res.pdffulname+"#page"></a>');
+
+                // $('#state').append($('<option>', {value:k, text:v}));
+
+            }
+        });
+    }
+</script>
 </body>
 </html>
