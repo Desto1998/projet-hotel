@@ -18,7 +18,6 @@ body {
 .logo {
     width: 45px !important;
     height: 45px !important;
-    position: absolute;
     margin-left: 1%;
 }
 
@@ -87,7 +86,7 @@ li a:hover,
     .logo {
         width: 45px;
         height: 45px;
-        position: absolute;
+        position: fixed;
     }
 }
 
