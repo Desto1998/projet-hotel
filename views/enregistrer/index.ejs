@@ -80,6 +80,19 @@
    
 
       <section class="container">
+        <% if(typeof alert != 'undefined'){%>
+            <% alert.forEach(function(error){%>
+                <div class="champ justify-content-center text-center d-flex">
+                    <div class="col-md-8 p-2 text-center  alert-danger">
+                    <%= error.msg %>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                </div>
+                <% }) %>
+
+                    <% } %>
           <div class="content">
               <form method="post" action="/client/rechercher">
                   <h2><strong>Enregistrement des clients</strong></h2>
@@ -90,14 +103,15 @@
               </form>
 
           </div>
-          
+         
+          <form method="post" action="/receptioniste/client">
           <div class="champ">
             <h3><strong>Information du client</strong></h3>
             <div class="contenu">
             <div class="nom_num">
                 <div class="nom">
                     <p>Nom du client</p>
-                    <input type="text" id="nom" name="nom">
+                    <input type="text" id="nom" name="name">
                 </div>
                 <div class="nom">
                     <p>Numero de téléphone</p>
@@ -183,6 +197,7 @@
 
            <button type="submit" class="checked_in">Enregistrer</button>
           </div>
+        </form>
       </section>
 
 
