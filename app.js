@@ -208,10 +208,11 @@ app.get('/receptioniste/main_courant', (req, res) => {
 
 
     let hier = MyDate + " 00:00:00";
+    let hiers = MyDate + " 23:59:59";
 
     var day = toDay.toISOString().slice(0, 10) + " 00:00:00";
 
-
+var alert;
     var sql = "select * from client  ORDER BY id_client DESC";
     mysqlConnection.query(sql, (err, rows, fields) => {
         client = rows;
@@ -221,7 +222,7 @@ app.get('/receptioniste/main_courant', (req, res) => {
             var sql = "select ch.prix,c.id_chambre,c.id_client from chambreclient c, chambre ch where c.id_chambre=ch.id_chambre ORDER BY id_client DESC";
             mysqlConnection.query(sql, (err, rows, fields) => {
                 chambreclient = rows;
-                var sql = "select * from commande  ORDER BY id_client DESC ";
+                var sql = "select * from commande where date_commande>='"+hier+"' and date_ajout<='"+hiers+"'  ORDER BY id_client DESC ";
                 mysqlConnection.query(sql, (err, rows, fields) => {
                     commandeh = rows;
                     var sql = "select * from facture  ORDER BY id_client DESC ";
@@ -236,7 +237,9 @@ app.get('/receptioniste/main_courant', (req, res) => {
                             client,
                             chambreclient,
                             commande,
-                            facture
+                            facture,
+                            commandeh,
+                            alert
 
                         })
                     })
@@ -369,7 +372,7 @@ if (!errors.isEmpty()) {
         });
     
 })
-}
+}else{
     var  cni = req.body.rechercher;
 
     var sql = "SELECT * FROM client WHERE cni = "+ cni + "";
@@ -401,13 +404,70 @@ if (!errors.isEmpty()) {
         }
       
 
-
+    
 
     });
+}
 });
 
-app.post('/receptioniste/main_courant/date/', urlencodedParser, (req, res) => {
+app.post('/receptioniste/main_courant/', urlencodedParser,[ check('date', 'inserer la date')
+.exists()
+.isLength({ min: 10 }),
+], (req, res) => {
+const errors = validationResult(req);
+if (!errors.isEmpty()) {
+    //return res.status(422).jsonp(errors.array())
+    const alert = errors.array()
+    let date = Date.now();
+    var yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
+    let MyDate = yesterday.toISOString().slice(0, 10);
+    let toDay = new Date(date);
 
+
+    let hier = MyDate + " 00:00:00";
+    let hiers = MyDate + " 23:59:59";
+
+    var day = toDay.toISOString().slice(0, 10) + " 00:00:00";
+
+
+    var sql = "select * from client  ORDER BY id_client DESC";
+    mysqlConnection.query(sql, (err, rows, fields) => {
+        client = rows;
+        var sql = "select c.lieu,c.nombre,c.montant,c.id_client from commande c,client cl where c.id_client=cl.id_client   ORDER BY id_client DESC ";
+        mysqlConnection.query(sql, (err, rows, fields) => {
+            commande = rows;
+            var sql = "select ch.prix,c.id_chambre,c.id_client from chambreclient c, chambre ch where c.id_chambre=ch.id_chambre ORDER BY id_client DESC";
+            mysqlConnection.query(sql, (err, rows, fields) => {
+                chambreclient = rows;
+                var sql = "select * from commande where date_commande>='"+hier+"' and date_ajout<='"+hiers+"'  ORDER BY id_client DESC ";
+                mysqlConnection.query(sql, (err, rows, fields) => {
+                    commandeh = rows;
+                    var sql = "select * from facture  ORDER BY id_client DESC ";
+                    mysqlConnection.query(sql, (err, rows, fields) => {
+                        facture = rows;
+                    var sql = "select * from commande where status= '0' ORDER BY id_client DESC ";
+                    mysqlConnection.query(sql, (err, rows, fields) => {
+                        status = rows;
+                        // console.log(status);
+
+                        res.render('main_courante/index', {
+                            client,
+                            chambreclient,
+                            commande,
+                            facture,
+                            commandeh,
+                            alert
+
+                        })
+                    })
+                });
+            })
+        })
+        })
+    });
+    
+
+}else{
     let date = Date.now();
     var yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
     let MyDate = yesterday.toISOString().slice(0, 10);
@@ -424,11 +484,12 @@ app.post('/receptioniste/main_courant/date/', urlencodedParser, (req, res) => {
     var sql = "select * from client where date_ajout >= '" + day + "' and date_ajout <= '" + days + "' ORDER BY id_client DESC";
     mysqlConnection.query(sql, (err, rows, fields) => {
         client = rows;
+        
         var sql = "select * from commande where date_commande >= '" + day + "' and date_commande <= '" + days + "'  ORDER BY id_client DESC ";
         mysqlConnection.query(sql, (err, rows, fields) => {
             commande = rows;
-
-            var sql = "select * from chambreclient where date >= '" + day + "' and date <= '" + days + "' ORDER BY id_client DESC";
+            console.log(day)
+            var sql = "select c.id_chambre,c.id_client,ch.prix from chambreclient c, chambre ch where date >= '" + day + "' and date <= '" + days + "' and c.id_chambre=ch.id_chambre ORDER BY id_client DESC";
             mysqlConnection.query(sql, (err, rows, fields) => {
                 chambreclient = rows;
 
@@ -438,19 +499,24 @@ app.post('/receptioniste/main_courant/date/', urlencodedParser, (req, res) => {
                     var sql = "select * from commande where status= '0' ORDER BY id_client DESC ";
                     mysqlConnection.query(sql, (err, rows, fields) => {
                         status = rows;
-                        // console.log(status);
-                    // console.log(client,chambreclient, commande);
+                        var sql = "select * from facture  ORDER BY id_client DESC ";
+                    mysqlConnection.query(sql, (err, rows, fields) => {
+                       facture=rows
                         res.render('main_courante/index', {
                             client,
                             chambreclient,
                             commande,
+                            commandeh,
+                            facture
 
                         })
                     })
                 });
             })
         })
+        })
     });
+}
 });
 
 app.post('/login', urlencodedParser, [
@@ -593,18 +659,18 @@ app.post('/receptioniste/client', urlencodedParser, [
         })
     })
     }else{
-var b=1;
-    let date = Date.now();
-    let MyDate = new Date(date);
-    let day = MyDate.getDate();
-    let month = MyDate.getMonth();
-    let year = MyDate.getFullYear();
-    let hour = MyDate.getHours();
-    let minute = MyDate.getMinutes();
-    let second = MyDate.getSeconds();
-    let clientDate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+        let date = Date.now();
+      
+        let Days = new Date(date);
+    
+    
+       
+    let hour = Days.getHours();
+    let minute = Days.getMinutes();
+    let second = Days.getSeconds();
+    
     //let clientD = year + "-" + month + "-" + day ;
-    toDay = MyDate.toISOString().slice(0, 10) + " " + hour + ":" + minute + ":" + second;
+    toDay = Days.toISOString().slice(0, 10) + " " + hour + ":" + minute + ":" + second;
     var sql = "select * from client";
     mysqlConnection.query(sql, (err, rows, fields) => {
         row = rows;
@@ -1186,15 +1252,19 @@ app.post('/receptioniste/commande/:id', urlencodedParser, [
     if (req.session.role === 'admin' || req.session.role === 'receptioniste' && req.session.username) {
       
         let date = Date.now();
-        let MyDate = new Date(date);
-        let day = MyDate.getDate();
-        let month = MyDate.getMonth();
-        let year = MyDate.getFullYear();
-        let hour = MyDate.getHours();
-        let minute = MyDate.getMinutes();
-        let second = MyDate.getSeconds();
-        let clientDate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
-        let clientD = year + "-" + month + "-" + day;
+      
+        let Days = new Date(date);
+    
+    
+       
+    let hour = Days.getHours();
+    let minute = Days.getMinutes();
+    let second = Days.getSeconds();
+    
+    //let clientD = year + "-" + month + "-" + day ;
+   
+        let clientDate = Days.toISOString().slice(0, 10) + " " + hour + ":" + minute + ":" + second;
+        
         console.log(req.body.length);
 
     
