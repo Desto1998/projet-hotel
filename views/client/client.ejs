@@ -113,7 +113,8 @@
 
                         </tr>
                     </thead>
-                    <% var i = 0%>
+                    <% var i = 0; var num=','%>
+                   
                         <% client.forEach(function(r){  %>
                             <tr>
                                 <td>
@@ -122,8 +123,11 @@
 
                                 </td>
                                 <td>
-
-                                    <%=chambre[i].id_chambre %>
+                                    <% chambre.forEach(function(row){  
+                                        if(r.id_client==row.id_client){%>
+                                        <%=row.id_chambre %>,
+                                        <%}})%>
+                                   
 
 
                                 </td>
@@ -238,8 +242,14 @@
                 data: {id: id},
                 dataType: 'json',
                 success: function (res) {
-                    // console.log(res);
-                    var num_chambre = res.Infos[0].id_chambre;
+                   // console.log(res);
+                    var num_chambre='';
+                    for(var i=0;i<res.Infos.length;i++){
+                        
+                        num_chambre=num_chambre+res.Infos[i].id_chambre+",";
+                        console.log(num_chambre)
+                    }
+                   
                     // $('#state').append($('<option>', {value:k, text:v}));
                     $('#numchambre').html(num_chambre);
                     $('#facture_pd').html(res.TpetitD);

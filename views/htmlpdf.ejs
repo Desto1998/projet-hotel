@@ -58,44 +58,81 @@
             </div>
 
             <div class="espace2">
-                <h2>Numero de chambre : <% chambreclient.forEach(function(r){ %>  <%=r.id_chambre %>, <% }) %> </h2>
+                <h2>Numero de chambre : <% Infos.forEach(function(r){ %>  <%=r.id_chambre %>, <% }) %> </h2>
             </div>
     </div>
 
-    <div class="valeur">
+    <div class="valeur row">
 
-        <div class="service-montant">
+        <div class="service-montant col-md-6">
             <h3>Service</h3>
             <div class="montant">
-                <% commande.forEach(function(r){ var lieu=r.lieu  %>
-
-                <p><%=lieu%></p>
-               <%})%>
-               <% chambreclient.forEach(function(r){ %> <p>   chambre <%=r.categorie %> </p><% }) %>
-            </div>
+                <p> Facture Petit déjeuner : 
+                   
+                </p>
+                <p>Facture Restaurant : 
+                    
+                    
+                </p>
+                <p>  Facture Bar : 
+                   
+                    
+                </p>
+                <p>Facture Linge   : 
+                   
+                    
+                    </td>
+                <p>  Facture Divers  :  
+                   
+                    
+                </p>
+               
+                   
+                <p>Facture Chambre :  </p>
+        </div>
         </div>
 
-        <div class="service-montant">
+        <div class="service-montant col-md-6">
             <h3>montant</h3>
            <div class="montant">
-            <% var com=0; commande.forEach(function(r){ var total1=r.montant*r.nombre; com=com+total1; %>
-                <p><%=total1%></p>
-               <% })%>
-               <% var cha=0; chambreclient.forEach(function(r){ cha=cha+r.prix %> <p>   <%=r.prix %> </p><% }) %>
+           
+            <p> 
+                <%=TpetitD %> 
+            </p>
+            <p>
+                <%= Trestaurant %>
+                
+            </p>
+            <p>  
+                <%=Tbar %>
+                
+            </p>
+            <p>
+                <%= Tlinge %>
+                
+                </td>
+            <p> 
+                <%=Tdivers %>
+                
+            </p>
+           
+               
+            <p><%=Tchambre%>  </p>
+              
            </div>
         </div>
       </div>
     <br>
 <hr><br>
 
-  <div class="info-client">
-      <div class="espace">
+  <div class="info-client row">
+      <div class="espace col-md-6">
           <p>Signature</p>
       </div>
 
-      <div class="espace">
-        <p><span class="black"> Total :</span> <span class="bleu"> <% var total=com+cha; %>
-            <p><%=total%></p>
+      <div class="espace col-md-6">
+        <p><span class="black"> Total :<%= Total %></span> <span class="bleu"> 
+            <p></p>
            </span></p>
     </div>
 
