@@ -212,22 +212,22 @@ app.get('/receptioniste/main_courant', (req, res) => {
     var day = toDay.toISOString().slice(0, 10) + " 00:00:00";
 
 
-    var sql = "select * from client  ORDER BY id_client ASC";
+    var sql = "select * from client  ORDER BY id_client DESC";
     mysqlConnection.query(sql, (err, rows, fields) => {
         client = rows;
-        var sql = "select c.lieu,c.nombre,c.montant,c.id_client from commande c,client cl where c.id_client=cl.id_client   ORDER BY id_client ASC ";
+        var sql = "select c.lieu,c.nombre,c.montant,c.id_client from commande c,client cl where c.id_client=cl.id_client   ORDER BY id_client DESC ";
         mysqlConnection.query(sql, (err, rows, fields) => {
             commande = rows;
-            var sql = "select ch.prix,c.id_chambre,c.id_client from chambreclient c, chambre ch where c.id_chambre=ch.id_chambre ORDER BY id_client ASC";
+            var sql = "select ch.prix,c.id_chambre,c.id_client from chambreclient c, chambre ch where c.id_chambre=ch.id_chambre ORDER BY id_client DESC";
             mysqlConnection.query(sql, (err, rows, fields) => {
                 chambreclient = rows;
-                var sql = "select * from commande  ORDER BY id_client ASC ";
+                var sql = "select * from commande  ORDER BY id_client DESC ";
                 mysqlConnection.query(sql, (err, rows, fields) => {
                     commandeh = rows;
-                    var sql = "select * from facture  ORDER BY id_client ASC ";
+                    var sql = "select * from facture  ORDER BY id_client DESC ";
                     mysqlConnection.query(sql, (err, rows, fields) => {
                         facture = rows;
-                    var sql = "select * from commande where status= '0' ORDER BY id_client ASC ";
+                    var sql = "select * from commande where status= '0' ORDER BY id_client DESC ";
                     mysqlConnection.query(sql, (err, rows, fields) => {
                         status = rows;
                         // console.log(status);
@@ -402,7 +402,7 @@ if (!errors.isEmpty()) {
     });
 });
 
-app.post('/receptioniste/main_courant', urlencodedParser, (req, res) => {
+app.post('/receptioniste/main_courant/date/', urlencodedParser, (req, res) => {
 
     let date = Date.now();
     var yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
@@ -417,29 +417,29 @@ app.post('/receptioniste/main_courant', urlencodedParser, (req, res) => {
     var days = req.body.date + " 23:59:59"
 
 
-    var sql = "select * from client where date_ajout >= '" + day + "' and date_ajout <= '" + days + "' ORDER BY id_client ASC";
+    var sql = "select * from client where date_ajout >= '" + day + "' and date_ajout <= '" + days + "' ORDER BY id_client DESC";
     mysqlConnection.query(sql, (err, rows, fields) => {
         client = rows;
-        var sql = "select * from commande where date_commande >= '" + day + "' and date_commande <= '" + days + "'  ORDER BY id_client ASC ";
+        var sql = "select * from commande where date_commande >= '" + day + "' and date_commande <= '" + days + "'  ORDER BY id_client DESC ";
         mysqlConnection.query(sql, (err, rows, fields) => {
             commande = rows;
 
-            var sql = "select * from chambreclient where date >= '" + day + "' and date <= '" + days + "' ORDER BY id_client ASC";
+            var sql = "select * from chambreclient where date >= '" + day + "' and date <= '" + days + "' ORDER BY id_client DESC";
             mysqlConnection.query(sql, (err, rows, fields) => {
                 chambreclient = rows;
 
-                var sql = "select * from commande where date_commande >= '" + hier + "' and date_commande <= '" + hiers + "'   ORDER BY id_client ASC ";
+                var sql = "select * from commande where date_commande >= '" + hier + "' and date_commande <= '" + hiers + "'   ORDER BY id_client DESC ";
                 mysqlConnection.query(sql, (err, rows, fields) => {
                     commandeh = rows;
-                    var sql = "select * from commande where status= '0' ORDER BY id_client ASC ";
+                    var sql = "select * from commande where status= '0' ORDER BY id_client DESC ";
                     mysqlConnection.query(sql, (err, rows, fields) => {
                         status = rows;
                         // console.log(status);
-
+                    // console.log(client,chambreclient, commande);
                         res.render('main_courante/index', {
                             client,
                             chambreclient,
-                            commande
+                            commande,
 
                         })
                     })
