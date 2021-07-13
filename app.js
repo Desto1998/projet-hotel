@@ -376,7 +376,8 @@ if (!errors.isEmpty()) {
     mysqlConnection.query(sql, (err, rows, fields) => {
         infos = rows;
         var alert;
-        if((infos !== undefined)){
+       
+        if(infos.length>=1){
             var sql = "select * from chambre where status = 'libre'";
             mysqlConnection.query(sql, (err, rows, fields) => {
                 row = rows;
@@ -390,8 +391,11 @@ if (!errors.isEmpty()) {
             });
         }
         else{
+            var sql = "select * from chambre where status = 'libre'";
+            mysqlConnection.query(sql, (err, rows, fields) => {
+                row = rows;
             res.render('enregistrer/erreurs');
-
+            })
 
            
         }

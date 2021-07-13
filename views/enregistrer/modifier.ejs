@@ -103,7 +103,8 @@
               </form>
 
           </div>
-         <% if((infos !== undefined)){%>
+         <% if(typeof infos != 'undefined'){
+            infos.forEach(function(r){%>
           <form method="post" action="/receptioniste/client">
           <div class="champ">
             <h3><strong>Information du client</strong></h3>
@@ -111,26 +112,26 @@
             <div class="nom_num">
                 <div class="nom">
                     <p>Nom du client</p>
-                    <input type="text" id="nom" name="name" value="<%= infos[0].nom%>">
+                    <input type="text" id="nom" name="name" value="<%= r.nom%>">
                 </div>
                 <div class="nom">
                     <p>Numero de téléphone</p>
-                    <input type="text" id="phone" name="phone" value="<%= infos[0].tel%>">
+                    <input type="text" id="phone" name="phone" value="<%= r.tel%>">
                 </div>
             </div>
 
             <div class="prenom_cin">
                 <div class="nom">
                     <p>Prenom du client</p>
-                    <input type="text" id="prenom" name="prenom" value="<%= infos[0].prenom%>">
+                    <input type="text" id="prenom" name="prenom" value="<%= r.prenom%>">
                 </div>
                 <div class="nom">
                     <p>Numero de CIN</p>
-                    <input type="text" id="cni" name="cni" value="<%= infos[0].cni%>">
+                    <input type="text" id="cni" name="cni" value="<%= r.cni%>">
                 </div>
             </div>
         </div>
-        <%}%>
+        <%})}%>
             <h2>Chambre(s) disponible(s)</h2>
 
            <div class="etat">
