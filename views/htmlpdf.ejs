@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,152 +31,165 @@
         }
     </script>
 </head>
+
 <body>
     <nav class="nav-en-tete">
-       <div class="en-tete">
+        <div class="en-tete">
             <div class="img">
-                <img src="/image/Logo-atitle-hotel.png" alt="logo"  style="width: 50px; height: 50px;">
+                <img src="/image/Logo-atitle-hotel.png" alt="logo" style="width: 50px; height: 50px;">
             </div>
             <span class="nom-hotel"> HOTEL ALTITEL</span>
-       </div>
+        </div>
 
-           <p>
-               Mobile:(+237) 677 76 90 08 <br>
-               Fax:(+237) 233 44 50 93 <br>
-               Tel:(+237) 233 44 51 11 <br>
-               B.p. 870 Bafoussam
-           </p>
+        <p>
+            Mobile:(+237) 677 76 90 08 <br> Fax:(+237) 233 44 50 93 <br> Tel:(+237) 233 44 51 11 <br> B.p. 870 Bafoussam
+        </p>
     </nav>
 
 
- <section class="contenair">
+    <section class="contenair">
 
-    <div class="info-client">
+        <div class="info-client">
 
             <div class="espace1">
-                <h2 class="ecart">Date: <%= toDay %></h2>
-                <h2>Nom du client: <%=client[0].nom %> <%= client[0].prenom %></h2>
+                <h2 class="ecart">Date:
+                    <%= toDay %>
+                </h2>
+                <h2>Nom du client:
+                    <%=client[0].nom %>
+                        <%= client[0].prenom %>
+                </h2>
             </div>
 
             <div class="espace2">
-                <h2>Numero de chambre : <% Infos.forEach(function(r){ %>  <%=r.id_chambre %>, <% }) %> </h2>
+                <h2>Numero de chambre :
+                    <% Infos.forEach(function(r){ %>
+                        <%=r.id_chambre %>,
+                            <% }) %>
+                </h2>
             </div>
-    </div>
-
-    <div class="valeur row">
-
-        <div class="service-montant col-md-6">
-            <h3>Service</h3>
-            <div class="montant">
-                <p> Facture Petit déjeuner : 
-                   
-                </p>
-                <p>Facture Restaurant : 
-                    
-                    
-                </p>
-                <p>  Facture Bar : 
-                   
-                    
-                </p>
-                <p>Facture Linge   : 
-                   
-                    
-                    </td>
-                <p>  Facture Divers  :  
-                   
-                    
-                </p>
-               
-                   
-                <p>Facture Chambre :  </p>
-        </div>
         </div>
 
-        <div class="service-montant col-md-6">
-            <h3>montant</h3>
-           <div class="montant">
-           
-            <p> 
-                <%=TpetitD %> 
-            </p>
-            <p>
-                <%= Trestaurant %>
-                
-            </p>
-            <p>  
-                <%=Tbar %>
-                
-            </p>
-            <p>
-                <%= Tlinge %>
-                
-                </td>
-            <p> 
-                <%=Tdivers %>
-                
-            </p>
-           
-               
-            <p><%=Tchambre%>  </p>
-              
-           </div>
+        <div class="valeur row">
+
+            <div class="service-montant col-md-6">
+                <h3>Service</h3>
+                <div class="montant">
+                    <p> Facture Petit déjeuner :
+
+                    </p>
+                    <p>Facture Restaurant :
+
+
+                    </p>
+                    <p> Facture Bar :
+
+
+                    </p>
+                    <p>Facture Linge :
+
+
+                        </td>
+                        <p> Facture Divers :
+
+
+                        </p>
+
+
+                        <p>Facture Chambre : </p>
+                </div>
+            </div>
+
+            <div class="service-montant col-md-6">
+                <h3>montant</h3>
+                <div class="montant">
+
+                    <p>
+                        <%=TpetitD %>
+                    </p>
+                    <p>
+                        <%= Trestaurant %>
+
+                    </p>
+                    <p>
+                        <%=Tbar %>
+
+                    </p>
+                    <p>
+                        <%= Tlinge %>
+
+                            </td>
+                            <p>
+                                <%=Tdivers %>
+
+                            </p>
+
+
+                            <p>
+                                <%=Tchambre%>
+                            </p>
+
+                </div>
+            </div>
         </div>
-      </div>
-    <br>
-<hr><br>
+        <br>
+        <hr><br>
 
-  <div class="info-client row">
-      <div class="espace col-md-6">
-          <p>Signature</p>
-      </div>
+        <div class="info-client row">
+            <div class="espace col-md-6">
+                <p>Signature</p>
+            </div>
 
-      <div class="espace col-md-6">
-        <p><span class="black"> Total :<%= Total %></span> <span class="bleu"> 
+            <div class="espace col-md-6">
+                <p><span class="black"> Total :<%= Total %></span> <span class="bleu"> 
             <p></p>
            </span></p>
-    </div>
+            </div>
 
-  </div>
- </section>
+        </div>
+    </section>
 
-<!--    <a href="/public/factures/<%= factname%>.pdf"  class="btn btn-primary imprimer-1" target="_blank">Imprimer</a>-->
+    <!--    <a href="/public/factures/<%= factname%>.pdf"  class="btn btn-primary imprimer-1" target="_blank">Imprimer</a>-->
 
-<!--     <a href="/admin/genererFacture/<%=id%>"   class="btn btn-primary" >imprimer</a>-->
-   
+    <!--     <a href="/admin/genererFacture/<%=id%>"   class="btn btn-primary" >imprimer</a>-->
+
 
     <script src="../public/enregistrer/js/Jquery3.4.1.min.js"></script>
-<script>
-$('#print-a').hide();
-    function genererFunc(id) {
+    <script>
+        $('#print-a').hide();
 
-console.log(id);
+        function genererFunc(id) {
 
-        $.ajax({
-            type: "GET",
-            url: "/admin/genererFacture/"+id,
-            data: {id: id},
-            dataType: 'json',
-            success: function (res) {
-                // console.log(res);
-                var num_chambre = res.pdffulname;
-                console.log(res.pdffulname);
-                facturepdf = '/public/factures/'+res.pdffulname+'#facture';
-                // $('#imprimer-block').html('<a href="./public/factures/12_6_2021__10h_4min_24Russelle.pdf#facture"></a>');
-                $('#print-a').show();
-                $('.imprimer-1').hide(100);
-                $('#print-a').attr("href",facturepdf);
-                window.open('/public/factures/'+res.pdffulname);
-                // window.print('<a href="./public/factures/"+res.pdffulname+"#page"></a>');
+            console.log(id);
 
-                // $('#state').append($('<option>', {value:k, text:v}));
+            $.ajax({
+                type: "GET",
+                url: "/admin/genererFacture/" + id,
+                data: {
+                    id: id
+                },
+                dataType: 'json',
+                success: function(res) {
+                    // console.log(res);
+                    var num_chambre = res.pdffulname;
+                    console.log(res.pdffulname);
+                    facturepdf = '/public/factures/' + res.pdffulname + '#facture';
+                    // $('#imprimer-block').html('<a href="./public/factures/12_6_2021__10h_4min_24Russelle.pdf#facture"></a>');
+                    $('#print-a').show();
+                    $('.imprimer-1').hide(100);
+                    $('#print-a').attr("href", facturepdf);
+                    window.open('/public/factures/' + res.pdffulname);
+                    // window.print('<a href="./public/factures/"+res.pdffulname+"#page"></a>');
 
-            }
-        });
-    }
-</script>
+                    // $('#state').append($('<option>', {value:k, text:v}));
 
- <a href="/public/factures/<%=factname%>.pdf" class="btn btn-primary" target="_blank">imprimer</a>
+                }
+            });
+        }
+    </script>
+
+    <a href="/public/factures/<%=factname%>.pdf" class="btn btn-primary" target="_blank">imprimer</a>
 
 </body>
+
 </html>
