@@ -25,9 +25,8 @@
             <img src="/image/Logo-atitle-hotelJ.png" class="logo" alt="">
             <li class="clientNom" id="nom" style="float:left"> ALTITEL HOTEL</li>
             <li><a href="/logout" class="deconnexion">Déconnexion</a></li>
-            <li class=" main_courante"><a href="/receptioniste/main_courant">Main couran</a></li>
+            <li class=" main_courante"><a href="/receptioniste/main_courant">Main courante</a></li>
             <li class="bilan"><a href="">Bilan</a></li>
-            <li class="facture"><a href="">Facture</a></li>
             <li class=" accueil"><a href="/acceuil/clients">Accueil</a></li>
         </ul>
     </header>
@@ -80,7 +79,7 @@
                         Nouvelle Sortie
                     </h4>
 
-                    <div class="entréesortie"><a href="/receptioniste/client/autre_sortie" ><button class="btnenregistrement">Sortie</button> </a></div>
+                    <div class="entréesortie"><a href="/receptioniste/client/autre_sortie"><button class="btnenregistrement">Sortie</button> </a></div>
                     <hr class="separateur1">
                     <div class="bas1">
                         <div class="marqueur1"></div>
@@ -114,7 +113,7 @@
                         </tr>
                     </thead>
                     <% var i = 0; var num=','%>
-                   
+
                         <% client.forEach(function(r){  %>
                             <tr>
                                 <td>
@@ -123,17 +122,19 @@
 
                                 </td>
                                 <td>
-                                    <% chambre.forEach(function(row){  
-                                        if(r.id_client==row.id_client){%>
-                                        <%=row.id_chambre %>,
-                                        <%}})%>
-                                   
+
+                                    <div class="groupe">
+                                        <a href="" id="btnchambre" onClick="editFunc()"> <button id=""><% chambre.forEach(function(row){  
+                                            if(r.id_client==row.id_client){%>
+                                            <%=row.id_chambre %>,
+                                                <%}})%></button></a>
+                                    </div>
 
 
                                 </td>
                                 <td>
                                     <div class="groupe">
-                                        <a href="javascript:void(0);" id="btnPopup" onClick="editFunc(<%= r.id_client; %>)" data-toggle="tooltip" class="btnPopup btn btn-primary">Détails</a>
+                                        <a href="javascript:void(0);" id="btnPopup" onClick="editFunc(<%= r.id_client; %>)" data-toggle="tooltip" class="btnPopup btn"> <button id="">Détails</button></a>
                                     </div>
                                 </td>
                                 <td>
@@ -167,42 +168,36 @@
             <div class="row">
                 <div class="col-md-5 offset-1 mt-2 mb-2">
                     <p>
-                        Numero de chambre : <span class="gras"><label id="numchambre"></label></span><br>
-                        Facture Petit déjeuner : <span class="gras"><label id="facture_pd"></label></span><br>
-                        Facture Restaurant : <span class="gras"><label id="facture_r"></label></span><br>
-                        Facture Bar : <span class="gras"><label id="facture_bar"></label></span><br>
+                        Numero de chambre : <span class="gras"><label id="numchambre"></label></span><br> Facture Petit déjeuner : <span class="gras"><label id="facture_pd"></label></span><br> Facture Restaurant : <span class="gras"><label id="facture_r"></label></span><br>                        Facture Bar : <span class="gras"><label id="facture_bar"></label></span><br>
                     </p>
                 </div>
                 <div class="col-md-5 offset-1 mt-2 mb-2">
                     <p>
-                        Facture Linge   : <span class="gras"><label id="facture_linge"></label></span><br>
-                        Facture Divers  : <span class="gras"><label id="facture_divers"></label></span><br>
-                        Facture Chambre : <span class="gras"><label id="facture_c"></label></span><br>
-                        Montant total   : <span class="gras"><label id="montantT"></label></span><br>
+                        Facture Linge : <span class="gras"><label id="facture_linge"></label></span><br> Facture Divers : <span class="gras"><label id="facture_divers"></label></span><br> Facture Chambre : <span class="gras"><label id="facture_c"></label></span><br>                        Montant total : <span class="gras"><label id="montantT"></label></span><br>
                         <!--                        Facture Jour : <span class="gras">2</span><br>-->
                         <!--                        Facture Rapport veille : <span class="gras">2</span><br>-->
                     </p>
                 </div>
             </div>
-<!--            <div class="global">-->
+            <!--            <div class="global">-->
 
-<!--                <div class="info1">-->
-<!--                    -->
-<!--                </div>-->
+            <!--                <div class="info1">-->
+            <!--                    -->
+            <!--                </div>-->
 
-<!--                <div class="info1">-->
-<!--                   -->
-<!--                </div>-->
+            <!--                <div class="info1">-->
+            <!--                   -->
+            <!--                </div>-->
 
-<!--                <div class="info1">-->
-<!--                    <p>-->
-<!--                        Facture Général : <span class="gras">2</span><br>-->
-<!--                        Facture Règlement : <span class="gras">2</span><br>-->
-<!--                        Facture A rapporter : <span class="gras">2</span><br>-->
-<!--                    </p>-->
-<!--                </div>-->
+            <!--                <div class="info1">-->
+            <!--                    <p>-->
+            <!--                        Facture Général : <span class="gras">2</span><br>-->
+            <!--                        Facture Règlement : <span class="gras">2</span><br>-->
+            <!--                        Facture A rapporter : <span class="gras">2</span><br>-->
+            <!--                    </p>-->
+            <!--                </div>-->
 
-<!--            </div>-->
+            <!--            </div>-->
         </div>
     </div>
 
@@ -226,30 +221,33 @@
     <script>
         $("#popup").hide();
         $("#overlay").hide();
-        $(".btnClose").click(function (){
+        $(".btnClose").click(function() {
             $("#popup").hide(200);
             $("#overlay").hide(200);
         });
-        $(".btnPopup").click(function (){
+        $(".btnPopup").click(function() {
             $("#popup").show(200);
             $("#overlay").show(200);
         });
+
         function editFunc(id) {
-    
+
             $.ajax({
                 type: "GET",
                 url: "/client/detail",
-                data: {id: id},
+                data: {
+                    id: id
+                },
                 dataType: 'json',
-                success: function (res) {
-                   // console.log(res);
-                    var num_chambre='';
-                    for(var i=0;i<res.Infos.length;i++){
-                        
-                        num_chambre=num_chambre+res.Infos[i].id_chambre+",";
+                success: function(res) {
+                    // console.log(res);
+                    var num_chambre = '';
+                    for (var i = 0; i < res.Infos.length; i++) {
+
+                        num_chambre = num_chambre + res.Infos[i].id_chambre + ",";
                         console.log(num_chambre)
                     }
-                   
+
                     // $('#state').append($('<option>', {value:k, text:v}));
                     $('#numchambre').html(num_chambre);
                     $('#facture_pd').html(res.TpetitD);
@@ -269,7 +267,7 @@
                     //     alert(num_chambre);
                     //     // $('#state').append($('<option>', {value:k, text:v}));
                     // });
-    
+
                 }
             });
         }

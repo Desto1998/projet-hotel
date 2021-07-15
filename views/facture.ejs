@@ -1,41 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=, initial-scale=1.0">
 
-<!--    <link rel="stylesheet" href="/css/style_f.css">-->
-<!--    <link rel="stylesheet" href="./public/css/bootstrap.min.css">-->
+    <!--    <link rel="stylesheet" href="/css/style_f.css">-->
+    <!--    <link rel="stylesheet" href="./public/css/bootstrap.min.css">-->
     <title>Facture</title>
 
 
-   
+
     <link rel="stylesheet" href="/css/style_f.css">
     <title>Document</title>
-    
+
 
     <style>
         body {
             margin: 0px 50px 0px 50px;
         }
-        .tableau1{
+        
+        .tableau1 {
             width: 1640px;
             /*position: absolute;*/
         }
-        .tableau2{
+        
+        .tableau2 {
             width: 1000px;
             /*position: absolute;*/
         }
-        .tableau3,.tableau4{
+        
+        .tableau3,
+        .tableau4 {
             /*position: absolute;*/
             width: 900px;
             margin-left: 30px;
         }
-
-
     </style>
 </head>
+
 <body>
 
 
@@ -44,24 +48,21 @@
             <td>
                 <div class="en-tete">
                     <div class="img">
-                        <img src="http://localhost:3000/public/image/Logo-atitle-hotel.png" alt="logo" style="width: 50px; height: 30px;">
+                        <img src="http://localhost:3000/public/image/Logo-atitle-hotel.png" alt="logo" style="width: 50px; height: 50px;">
                     </div>
                     <span class="nom-hotel"> HOTEL ALTITEL</span>
                 </div>
-    
+
             </td>
             <td style="margin-left: 250px!important;">
                 <p>
-                    Mobile:(+237) 677 76 90 08 <br>
-                    Fax:(+237) 233 44 50 93 <br>
-                    Tel:(+237) 233 44 51 11 <br>
-                    B.p. 870 Bafoussam
+                    Mobile:(+237) 677 76 90 08 <br> Fax:(+237) 233 44 50 93 <br> Tel:(+237) 233 44 51 11 <br> B.p. 870 Bafoussam
                 </p>
             </td>
         </tr>
-    
+
     </table>
-    
+
     <table class="tableau2">
         <tr>
             <th></th>
@@ -69,299 +70,319 @@
         </tr>
         <tr>
             <td>
-    
-    
-                <h4 class="ecart"> Date: <%= toDay %></h4>
-    
+
+
+                <h4 class="ecart"> Date:
+                    <%= toDay %>
+                </h4>
+
             </td>
             <td>
-    
-                <h4>Nom du client: <%= client[0].nom %> <%= client[0].prenom %></h4>
-    
+
+                <h4>Nom du client:
+                    <%= client[0].nom %>
+                        <%= client[0].prenom %>
+                </h4>
+
             </td>
-    
+
         </tr>
         <tr>
-    
+
             <td>
-    
+
                 <h4>Numero de chambre :
-                       <% Infos.forEach(function(r){ %>
+                    <% Infos.forEach(function(r){ %>
                         <%= r.id_chambre %>,
-                    <% }) %>
+                            <% }) %>
                 </h4>
-    
+
             </td>
             <td></td>
         </tr>
-    
+
     </table>
     <table class="tableau3">
         <tr>
-            <td><p><strong>Services</strong> </p></td>
-            <td><p><strong>Montants</strong></p></td>
+            <td>
+                <p><strong>Services</strong> </p>
+            </td>
+            <td>
+                <p><strong>Montants</strong></p>
+            </td>
         </tr>
-    
-       
+
+
 
         <tr>
-           
-            <td> Facture Petit déjeuner : 
-               
-                
-               </td>
-               <td>
+
+            <td> Facture Petit déjeuner :
+
+
+            </td>
+            <td>
             </td>
             <td>
                 <%=TpetitD %>
             </td>
-               </tr>
-               <tr>
+        </tr>
+        <tr>
             <td>
-                Facture Restaurant : 
-                
-               </td>
-               <td>
-               </td>
-               
-               <td>
+                Facture Restaurant :
+
+            </td>
+            <td>
+            </td>
+
+            <td>
                 <%= Trestaurant %>
             </td>
-            </tr>
-            <tr>
-            <td>  
+        </tr>
+        <tr>
+            <td>
                 Facture Bar:
-                
-                </td>
-                <td>  
-                   
-                    
-                    </td>
-                   
-                            <td>  
-                                <%=Tbar %>
-                                
-                                </td>
-            </tr>
-            <tr>
-                            <td>
-                                Facture Linge   : 
-                </td>
-                <td>
-                    </td>
-                   
-                            <td>
-                                <%= Tlinge %>
-                                
-                                </td>
-            </tr>
-<tr>
-            <td>  Facture Divers  :  
-                
-                
-                 </td>
-                 <td>  
-                     </td>
-                     
-                             <td> 
-                                <%=Tdivers %>
-                                
-                                 </td>
-                </tr>
-               <tr>
-            <td>Facture Chambre   </td>
+
+            </td>
+            <td>
+
+
+            </td>
+
+            <td>
+                <%=Tbar %>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Facture Linge :
+            </td>
+            <td>
+            </td>
+
+            <td>
+                <%= Tlinge %>
+
+            </td>
+        </tr>
+        <tr>
+            <td> Facture Divers :
+
+
+            </td>
+            <td>
+            </td>
+
+            <td>
+                <%=Tdivers %>
+
+            </td>
+        </tr>
+        <tr>
+            <td>Facture Chambre </td>
             <td> </td>
 
-            
 
-            <td><%=Tchambre%>  </td>
 
-           
+            <td>
+                <%=Tchambre%>
+            </td>
+
+
         </tr>
-    
-        
-        
-       
+
+
+
+
     </table>
     <hr>
     <table class="tableau4">
         <tr>
-          <td> Signature</td>
-          <td> </td>
+            <td> Signature</td>
+            <td> </td>
             <td><strong>Total: <%= Total %></strong></td>
         </tr>
-    
+
         <tr>
-           
+
             <td></td>
             <td></td>
         </tr>
-    
+
     </table>
-    
-<hr>
 
-<table class="tableau1">
-    <tr>
-        <td>
-            <div class="en-tete">
-                <div class="img">
-                    <img src="http://localhost:3000/public/image/Logo-atitle-hotel.png" alt="logo" style="width: 50px; height: 50px;">
+    <hr>
+
+    <table class="tableau1">
+        <tr>
+            <td>
+                <div class="en-tete">
+                    <div class="img">
+                        <img src="http://localhost:3000/public/image/Logo-atitle-hotel.png" alt="logo" style="width: 50px; height: 50px;">
+                    </div>
+                    <span class="nom-hotel"> HOTEL ALTITEL</span>
                 </div>
-                <span class="nom-hotel"> HOTEL ALTITEL</span>
-            </div>
 
-        </td>
-        <td style="margin-left: 450px!important; ">
-            <p style="text-align: left;">
-                Mobile:(+237) 677 76 90 08 <br>
-                Fax:(+237) 233 44 50 93 <br>
-                Tel:(+237) 233 44 51 11 <br>
-                B.p. 870 Bafoussam
-            </p>
-        </td>
-    </tr>
-
-</table>
-<br>
-<table class="tableau2">
-    <tr>
-        <th></th>
-        <th></th>
-    </tr>
-    <tr>
-        <td>
-
-
-            <h4 class="ecart"> Date: <%= toDay %></h4>
-
-        </td>
-        <td>
-
-            <h4>Nom du client: <%= client[0].nom %> <%= client[0].prenom %></h4>
-
-        </td>
-
-    </tr>
-    <tr>
-
-        <td>
-
-            <h4>Numero de chambre :
-                   <% Infos.forEach(function(r){ %>
-                    <%= r.id_chambre %>,
-                <% }) %>
-            </h4>
-
-        </td>
-        <td></td>
-    </tr>
-
-</table>
-<br>
-<table class="tableau3">
-    <tr>
-        <td><p><strong>Services</strong> </p></td>
-        <td><p><strong>Montants</strong></p></td>
-    </tr>
-
-
-
-    <tr>
-           
-        <td> Facture Petit déjeuner : 
-           
-            
-           </td>
-           <td>
-        </td>
-        <td>
-            <%=TpetitD %>
-        </td>
-           </tr>
-           <tr>
-        <td>
-            Facture Restaurant : 
-            
-           </td>
-           <td>
-           </td>
-           
-           <td>
-            <%= Trestaurant %>
-        </td>
-        </tr>
-        <tr>
-        <td>  
-            Facture Bar:
-            
             </td>
-            <td>  
-               
-                
-                </td>
-               
-                        <td>  
-                            <%=Tbar %>
-                            
-                            </td>
+            <td style="margin-left: 450px!important; ">
+                <p style="text-align: left;">
+                    Mobile:(+237) 677 76 90 08 <br> Fax:(+237) 233 44 50 93 <br> Tel:(+237) 233 44 51 11 <br> B.p. 870 Bafoussam
+                </p>
+            </td>
+        </tr>
+
+    </table>
+    <br>
+    <table class="tableau2">
+        <tr>
+            <th></th>
+            <th></th>
         </tr>
         <tr>
-                        <td>
-                            Facture Linge   : 
+            <td>
+
+
+                <h4 class="ecart"> Date:
+                    <%= toDay %>
+                </h4>
+
             </td>
             <td>
-                </td>
-               
-                        <td>
-                            <%= Tlinge %>
-                            
-                            </td>
+
+                <h4>Nom du client:
+                    <%= client[0].nom %>
+                        <%= client[0].prenom %>
+                </h4>
+
+            </td>
+
         </tr>
-<tr>
-        <td>  Facture Divers  :  
-            
-            
-             </td>
-             <td>  
-                 </td>
-                 
-                         <td> 
-                            <%=Tdivers %>
-                            
-                             </td>
-            </tr>
-           <tr>
-        <td>Facture Chambre   </td>
-        <td> </td>
+        <tr>
 
-        
+            <td>
 
-        <td><%=Tchambre%>  </td>
+                <h4>Numero de chambre :
+                    <% Infos.forEach(function(r){ %>
+                        <%= r.id_chambre %>,
+                            <% }) %>
+                </h4>
 
-       
-    </tr>
+            </td>
+            <td></td>
+        </tr>
 
-    
-        
-    
-       
+    </table>
+    <br>
+    <table class="tableau3">
+        <tr>
+            <td>
+                <p><strong>Services</strong> </p>
+            </td>
+            <td>
+                <p><strong>Montants</strong></p>
+            </td>
+        </tr>
+
+
+
+        <tr>
+
+            <td> Facture Petit déjeuner :
+
+
+            </td>
+            <td>
+            </td>
+            <td>
+                <%=TpetitD %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Facture Restaurant :
+
+            </td>
+            <td>
+            </td>
+
+            <td>
+                <%= Trestaurant %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Facture Bar:
+
+            </td>
+            <td>
+
+
+            </td>
+
+            <td>
+                <%=Tbar %>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Facture Linge :
+            </td>
+            <td>
+            </td>
+
+            <td>
+                <%= Tlinge %>
+
+            </td>
+        </tr>
+        <tr>
+            <td> Facture Divers :
+
+
+            </td>
+            <td>
+            </td>
+
+            <td>
+                <%=Tdivers %>
+
+            </td>
+        </tr>
+        <tr>
+            <td>Facture Chambre </td>
+            <td> </td>
+
+
+
+            <td>
+                <%=Tchambre%>
+            </td>
+
+
+        </tr>
+
+
+
+
+
     </table>
     <hr>
     <br>
     <table class="tableau4">
         <tr>
-          <td> Signature</td>
-          <td> </td>
+            <td> Signature</td>
+            <td> </td>
             <td><strong>Total: <%= Total %></strong></td>
         </tr>
-    
+
         <tr>
-           
+
             <td></td>
             <td></td>
         </tr>
-</table>
+    </table>
 
 </body>
+
 </html>
