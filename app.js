@@ -1144,17 +1144,23 @@ app.get("/generateReport2/:id", (req, res) => {
                             if (err) {
                                 res.send(err);
                             } else {
-                                let options = {
-                                    "height": "11.25in",
-                                    "width": "8.5in",
-                                    "header": {
-                                        "height": "20mm",
-
-                                    },
-                                    "footer": {
-                                        "height": "20mm",
-                                    },
+                                var phantomjs = require('phantomjs');
+                                var options = {
+                                    phantomPath: phantomjs.path,
+                                    filename: './public/factures/' + factname + ".pdf",
+                                    format: 'A4',
+                                    orientation: 'portrait',
+                                    type: "pdf",
+                                    timeout: 30000
                                 };
+                                // var options = {
+                                //     phantomPath: __dirname + "/pathToNodeModules/phantomjs/bin/phantomjs",
+                                //     filename: './public/factures/'+ factname + ".pdf",
+                                //     format: 'A4',
+                                //     orientation: 'portrait',
+                                //     type: "pdf",
+                                //     timeout: 30000
+                                // };
                                 htmlPdf.create(data, options).toFile(path.join('./public/factures/', factname + ".pdf"), function(err, data) {
 
                                     if (err) {
@@ -1438,16 +1444,23 @@ app.get("/admin/genererFacture/:id", (req, res) => {
                         if (err) {
                             res.send(err);
                         } else {
-                            let options = {
-                                "height": "11.25in",
-                                "width": "8.5in",
-                                "header": {
-                                    "height": "20mm"
-                                },
-                                "footer": {
-                                    "height": "20mm",
-                                },
+                            var phantomjs = require('phantomjs');
+                            var options = {
+                                phantomPath: phantomjs.path,
+                                filename: './public/factures/' + factname + ".pdf",
+                                format: 'A4',
+                                orientation: 'portrait',
+                                type: "pdf",
+                                timeout: 30000
                             };
+                            // var options = {
+                            //     phantomPath: __dirname + "/pathToNodeModules/phantomjs/bin/phantomjs",
+                            //     filename: './public/factures/'+ factname + ".pdf",
+                            //     format: 'A4',
+                            //     orientation: 'portrait',
+                            //     type: "pdf",
+                            //     timeout: 30000
+                            // };
 
 
 
