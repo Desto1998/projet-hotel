@@ -46,8 +46,8 @@ mysqlConnection.connect((err) => {
     else
         console.log('DB connection failed \n Error : ' + JSON.stringify(err, undefined, 2));
 });
-app.listen(process.env.PORT || 3000, function() {
-    console.log('Express server is running at port no : 3000');
+app.listen(process.env.PORT || 3001, function() {
+    console.log('Express server is running at port no : 3001');
 });
 
 
