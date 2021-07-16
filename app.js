@@ -37,8 +37,8 @@ var id_user;
 var mysqlConnection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'Hostire1',
-    database: 'hotel'
+    password: 'Hostire1.',
+    database: 'hotels'
 });
 mysqlConnection.connect((err) => {
     if (!err)
