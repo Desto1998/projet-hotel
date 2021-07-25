@@ -125,7 +125,7 @@
                                 <td>
 
                                     <div class="groupe">
-                                        <a href="" id="btnchambre" onClick="editFunc()"> <button id=""><% chambre.forEach(function(row){  
+                                        <a href="" id="btnchambre" onClick="editFunc(<%=r.id_client%>)"> <button id=""><% chambre.forEach(function(row){  
                                             if(r.id_client==row.id_client){%>
                                             <%=row.id_chambre %>,
                                                 <%}})%></button></a>
