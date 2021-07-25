@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,203 +21,210 @@
     <link rel="stylesheet" href="../../public/Accueil/css/all.css">
     <script src="../../public/js/all.min.js"></script>
 </head>
+
 <body>
-<!--------------------------------Navigation------------------------------->
-<header>
-    <ul>
-        <img src="/image/Logo-atitle-hotelJ.png" class="logo" alt="">
-        <li class="clientNom" id="nom" style="float:left"> ALTITEL HOTEL</li>
-        <li><a href="/logout" class="deconnexion">Déconnexion</a></li>
-        <li class=" main_courante"><a href="/receptioniste/main_courant">Main couran</a></li>
-        <li class="bilan"><a href="">Bilan</a></li>
-        <li class="facture"><a href="">Facture</a></li>
-        <li class=" accueil"><a href="/acceuil/clients">Accueil</a></li>
-    </ul>
-</header>
+    <!--------------------------------Navigation------------------------------->
+    <header>
+        <ul>
+            <img src="/image/Logo-atitle-hotelJ.png" class="logo" alt="">
+            <li class="clientNom" id="nom" style="float:left"> ALTITEL HOTEL</li>
+            <li><a href="/logout" class="deconnexion">Déconnexion</a></li>
+            <li class=" main_courante"><a href="/receptioniste/main_courant">Main couran</a></li>
+            <li class="bilan"><a href="">Bilan</a></li>
+            <li class="facture"><a href="">Facture</a></li>
+            <li class=" accueil"><a href="/acceuil/clients">Accueil</a></li>
+        </ul>
+    </header>
 
 
-<!--      <nav class="nav">-->
-<!--          <div class="nav-menu flex-row">-->
-<!--              <div class="nav-brand">-->
-<!--                  <div class="img">-->
-<!--                    <img src="/image/Logo-atitle-hotelJ.png" alt="logo"  style="width: 50px; height: 50px;">-->
-<!--                  </div>          -->
-<!--                    <span> HOTEL ALTITEL</span>-->
-<!--              </div>-->
-<!--              -->
+    <!--      <nav class="nav">-->
+    <!--          <div class="nav-menu flex-row">-->
+    <!--              <div class="nav-brand">-->
+    <!--                  <div class="img">-->
+    <!--                    <img src="/image/Logo-atitle-hotelJ.png" alt="logo"  style="width: 50px; height: 50px;">-->
+    <!--                  </div>          -->
+    <!--                    <span> HOTEL ALTITEL</span>-->
+    <!--              </div>-->
+    <!--              -->
 
-<!--              <div class="toggle-collapse">-->
-<!--                  <div class="toggle-icons">-->
-<!--                      <i class="fas fa-bars"></i>-->
-<!--                  </div>-->
-<!--              </div>-->
+    <!--              <div class="toggle-collapse">-->
+    <!--                  <div class="toggle-icons">-->
+    <!--                      <i class="fas fa-bars"></i>-->
+    <!--                  </div>-->
+    <!--              </div>-->
 
-<!--              <div class="nav-items">-->
-<!--                  <li class="nav-link">-->
-<!--                    <a href="/acceuil/clients">Accueil</a>-->
-<!--                  </li>-->
-<!--                  <li class="nav-link">-->
-<!--                    <a href="/receptioniste/main_courant">Main courant</a>-->
-<!--                  </li>-->
-<!--                  <li class="nav-link">-->
-<!--                    <a href="">Bilan</a>-->
-<!--                  </li>-->
-<!--                  <li class="nav-link">-->
-<!--                    <a href="">Facture</a>-->
-<!--                  </li>-->
-<!--                  <li class="nav-link">-->
-<!--                    <a href="">Contact </a>-->
-<!--                  </li>-->
-<!--              </div>-->
+    <!--              <div class="nav-items">-->
+    <!--                  <li class="nav-link">-->
+    <!--                    <a href="/acceuil/clients">Accueil</a>-->
+    <!--                  </li>-->
+    <!--                  <li class="nav-link">-->
+    <!--                    <a href="/receptioniste/main_courant">Main courant</a>-->
+    <!--                  </li>-->
+    <!--                  <li class="nav-link">-->
+    <!--                    <a href="">Bilan</a>-->
+    <!--                  </li>-->
+    <!--                  <li class="nav-link">-->
+    <!--                    <a href="">Facture</a>-->
+    <!--                  </li>-->
+    <!--                  <li class="nav-link">-->
+    <!--                    <a href="">Contact </a>-->
+    <!--                  </li>-->
+    <!--              </div>-->
 
-<!--              <div class="social text-gray">-->
-<!--                <a href="/logout" class="lien">Déconnexion</a>-->
-<!--              </div>-->
-<!--          </div>-->
-<!--        </nav>-->
+    <!--              <div class="social text-gray">-->
+    <!--                <a href="/logout" class="lien">Déconnexion</a>-->
+    <!--              </div>-->
+    <!--          </div>-->
+    <!--        </nav>-->
 
-      <!-----------------------------End of Navigation--------------------------->
+    <!-----------------------------End of Navigation--------------------------->
 
 
-   
 
-      <section class="container">
-          <div class="content">
-              <form method="post" action="/client/rechercher">
-                  <h2><strong>Enregistrement des clients</strong></h2>
-                 
-    <div class="champ justify-content-center text-center d-flex">
-        <div class="col-md-8 p-2 text-center  alert-danger">
-            <h2 class="">Aucun resultat trouvé</h2>
-            <h3 class="">Le client n'exite pas veillez l'enregistrer.</h3><br>
+
+    <section class="container">
+        <div class="content">
+            <form method="post" action="/client/rechercher">
+                <h2><strong>Enregistrement des clients</strong></h2>
+
+                <div class="champ justify-content-center text-center d-flex">
+                    <div class="col-md-8 p-2 text-center  alert-danger">
+                        <h2 class="">Aucun resultat trouvé</h2>
+                        <h3 class="">Le client n'exite pas veillez l'enregistrer.</h3><br>
+                    </div>
+                </div>
+                <div class="bar_de_recherche">
+                    <input type="search" name="rechercher" id="Recherche" require="Entrer le numéro de CNI" placeholder="Rechercher un clien..." class="recherche">
+                    <button type="submit" class="boutton_recherche"><strong>Recherche</strong></button>
+                </div>
+            </form>
+
         </div>
-</div>
-                  <div class="bar_de_recherche">
-                      <input type="search" name="rechercher" id="Recherche" require="Entrer le numéro de CNI" placeholder="Rechercher un clien..." class="recherche">
-                      <button type="submit"  class="boutton_recherche"><strong>Recherche</strong></button>
-                  </div>
-              </form>
-
-          </div>
-          <% if(typeof alert != 'undefined'){%>
+        <% if(typeof alert != 'undefined'){%>
             <% alert.forEach(function(error){%>
                 <div class="champ justify-content-center text-center d-flex">
                     <div class="col-md-8 p-2 text-center  alert-danger">
-                    <%= error.msg %>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                        <%= error.msg %>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                </div>
+                    </div>
                 </div>
                 <% }) %>
 
                     <% } %>
-          <form method="post" action="/receptioniste/client">
-          <div class="champ">
-            <h3><strong>Information du client</strong></h3>
-            <div class="contenu">
-            <div class="nom_num">
-                <div class="nom">
-                    <p>Nom du client</p>
-                    <input type="text" id="nom" name="name">
-                </div>
-                <div class="nom">
-                    <p>Numero de téléphone</p>
-                    <input type="text" id="phone" name="phone">
-                </div>
-            </div>
+                        <form method="post" action="/receptioniste/client">
+                            <div class="champ">
+                                <h3><strong>Information du client</strong></h3>
+                                <div class="contenu">
+                                    <div class="nom_num">
+                                        <div class="nom">
+                                            <p>Nom du client</p>
+                                            <input type="text" id="nom" name="name">
+                                        </div>
+                                        <div class="nom">
+                                            <p>Numero de téléphone</p>
+                                            <input type="text" id="phone" name="phone">
+                                        </div>
+                                    </div>
 
-            <div class="prenom_cin">
-                <div class="nom">
-                    <p>Prenom du client</p>
-                    <input type="text" id="prenom" name="prenom">
-                </div>
-                <div class="nom">
-                    <p>Numero de CIN</p>
-                    <input type="text" id="cni" name="cni">
-                </div>
-            </div>
-        </div>
-            <h2>Chambre(s) disponible(s)</h2>
+                                    <div class="prenom_cin">
+                                        <div class="nom">
+                                            <p>Prenom du client</p>
+                                            <input type="text" id="prenom" name="prenom">
+                                        </div>
+                                        <div class="nom">
+                                            <p>Numero de CIN</p>
+                                            <input type="text" id="cni" name="cni">
+                                        </div>
+                                    </div>
+                                </div>
+                                <h2>Chambre(s) disponible(s)</h2>
 
-           <div class="etat">
-        
-                <div class="chambre_standart">
-                    <p>Chambre standart</p>
-                    <% row.forEach(function(r){
+                                <div class="etat">
+
+                                    <div class="chambre_standart">
+                                        <p>Chambre standart</p>
+                                        <% row.forEach(function(r){
 
                     if(r.categorie==='chambre standart'){
                     %>
-                    N° <%=r.id_chambre%>
-                    <input type="checkbox" class="back" id="gap" name="chambre" value="<%=r.id_chambre%>" class="b">
-                    <% }
+                                            N°
+                                            <%=r.id_chambre%>
+                                                <input type="checkbox" class="back" id="gap" name="chambre" value="<%=r.id_chambre%>" class="b">
+                                                <% }
                     }) %>
 
-                </div>
-                <div class="chambre_standart">
-                    <p>Chambre climatisée</p>
-                    <% row.forEach(function(r){
+                                    </div>
+                                    <div class="chambre_standart">
+                                        <p>Chambre climatisée</p>
+                                        <% row.forEach(function(r){
 
-                    if(r.categorie==='climatise'){
+                    if(r.categorie==='chambre confort'){
                     %>
-                    N° <%=r.id_chambre%>
-                    <input type="checkbox" class="back" id="gap" name="chambre" value="<%=r.id_chambre%>" class="b">
-                    <% }
+                                            N°
+                                            <%=r.id_chambre%>
+                                                <input type="checkbox" class="back" id="gap" name="chambre" value="<%=r.id_chambre%>" class="b">
+                                                <% }
                     }) %>
 
-                </div>
-                <div class="chambre_standart">
-                    <p>Salle de réunion</p>
-                    <% row.forEach(function(r){
+                                    </div>
+                                    <div class="chambre_standart">
+                                        <p>Salle de réunion</p>
+                                        <% row.forEach(function(r){
                     if(r.categorie==='salle de reunion'){
                     %>
-                    N° <%=r.id_chambre%>
-                    <input type="checkbox" class="back" id="gap" name="chambre" value="<%=r.id_chambre%>" class="b">
-                    <% }
+                                            N°
+                                            <%=r.id_chambre%>
+                                                <input type="checkbox" class="back" id="gap" name="chambre" value="<%=r.id_chambre%>" class="b">
+                                                <% }
                     }) %>
 
-                </div>
-                <div class="chambre_standart">
-                    <p>Chambre double</p>
-                    <% row.forEach(function(r){
+                                    </div>
+                                    <div class="chambre_standart">
+                                        <p>Chambre double</p>
+                                        <% row.forEach(function(r){
                     if(r.categorie==='chambre double'){
                     %>
-                    N° <%=r.id_chambre%>
-                    <input type="checkbox" class="back" id="gap" name="chambre" value="<%=r.id_chambre%>" class="b">
-                    <% }
+                                            N°
+                                            <%=r.id_chambre%>
+                                                <input type="checkbox" class="back" id="gap" name="chambre" value="<%=r.id_chambre%>" class="b">
+                                                <% }
                     }) %>
 
-                </div>
-                <div class="chambre_standart">
-                    <p>Appartement</p>
-                    <% row.forEach(function(r){
-                    if(r.categorie==='appartement'){
+                                    </div>
+                                    <div class="chambre_standart">
+                                        <p>Appartement</p>
+                                        <% row.forEach(function(r){
+                    if(r.categorie==='suite'){
                     %>
 
-                    N° <%=r.id_chambre%>
-                    <input type="checkbox" class="back" id="gap" name="chambre" value="<%=r.id_chambre%>" class="b">
-                    <% }
+                                            N°
+                                            <%=r.id_chambre%>
+                                                <input type="checkbox" class="back" id="gap" name="chambre" value="<%=r.id_chambre%>" class="b">
+                                                <% }
                     }) %>
-<!--                    <button class="back" id="gap">1</button>-->
-<!--                    <button class="back">2</button>-->
-                </div>
-           </div>
+                                                    <!--                    <button class="back" id="gap">1</button>-->
+                                                    <!--                    <button class="back">2</button>-->
+                                    </div>
+                                </div>
 
-           <button type="submit" class="checked_in">Enregistrer</button>
-          </div>
-        </form>
-      </section>
-
-
-      
+                                <button type="submit" class="checked_in">Enregistrer</button>
+                            </div>
+                        </form>
+    </section>
 
 
-      <!-----------------------------Jquery Library file---------------------------->
-      <script src="../../public/enregistrer/js/Jquery3.4.1.min.js"></script>
 
-      <!-----------------------------Custom javascript file------------------------->
+
+
+    <!-----------------------------Jquery Library file---------------------------->
+    <script src="../../public/enregistrer/js/Jquery3.4.1.min.js"></script>
+
+    <!-----------------------------Custom javascript file------------------------->
     <script src="../../public/enregistrer/js/main.js"></script>
 </body>
+
 </html>
 
 
@@ -231,4 +239,5 @@
 <!-----------------------------Custom javascript file------------------------->
 <script src="../../public/enregistrer/js/main.js"></script>
 </body>
+
 </html>

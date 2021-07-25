@@ -183,9 +183,7 @@ form {
 }
 
 .login-content h2 {
-    margin-right: 80px;
     margin-bottom: 30px;
-    font-size: 2.9rem;
 }
 
 .login-content .input-div {
@@ -264,21 +262,32 @@ form {
     margin-bottom: 4px;
 }
 
+.btn:hover {
+    background-color: #337ad8 !important;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
 .btn {
     display: block;
     width: 100%;
     height: 50px;
-    border-radius: 25px;
+    border-radius: 30px !important;
     outline: none;
     border: none;
-    background-color: #273486;
+    background-color: #273486 !important;
     font-size: 1.2rem;
-    color: #fff;
+    color: #fff !important;
     font-family: 'Poppins', sans-serif;
     text-transform: uppercase;
     margin: 2rem 0;
     cursor: pointer;
     transition: .5s;
+}
+
+.action {
+    font-weight: bold;
+    color: #273486;
 }
 
 @media screen and (max-width: 916px) {
@@ -352,7 +361,8 @@ form {
         width: 100px;
     }
 }
-#poste{
+
+#poste {
     font-size: 15px!important;
     line-height: 1!important;
     font-weight: 100!important;

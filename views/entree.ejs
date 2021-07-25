@@ -1,53 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
 
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<link rel="stylesheet" type="text/css" href="style.css">
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style_cm.css">
+    <!---------------------------------Font icons------------------------------->
+    <link rel="stylesheet" href="/css/all_cm.css">
 
-        <title>Formulaire</title>
-	</head>
-	<body>
-<div class="container">
-    <h1> Register</h1>
+    <title>Commandes</title>
 
-    <% if(typeof alert != 'undefined'){%>
-        <% alert.forEach(function(error){%>
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <%= error.msg %>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+    <link rel="stylesheet" type="text/css" href="../../public/fontawesome-5.15.2/css/fontawesome.min.css">
+    <link rel="stylesheet" href="../../public/css/style_acceuil.css">
+    <link rel="stylesheet" href="../../public/Accueil/css/style.css">
+    <!---------------------------------boostrap------------------------------->
+    <link rel="stylesheet" href="../../public/Accueil/css/bootstrap.min.css">
+    <!--------------------------And of boostrap------------------------------>
+
+    <!---------------------------------Font icons------------------------------->
+    <link rel="stylesheet" href="../../public/Accueil/css/all.css">
+    <script src="../../public/js/all.min.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <ul>
+            <img src="/image/Logo-atitle-hotelJ.png" class="logo" alt="">
+            <li class="clientNom" id="nom" style="float:left"> HOTEL ALTITEL</li>
+            <li><a href="/logout" class="deconnexion">Déconnexion</a></li>
+            <li class=" main_courante"><a href="/receptioniste/main_courant">Main courante</a></li>
+            <li class="bilan"><a href="">Bilan</a></li>
+            <li class=" accueil"><a href="/acceuil/clients">Accueil</a></li>
+        </ul>
+    </header>
+    <!------------------------header--------------------------------->
+
+
+    <!--------------------End of header--------------------------------->
+
+
+
+    <div class="login-content">
+
+        <form action="/receptioniste/commande/" method="POST" novalidate>
+
+            <img src="/image/Logo-atitle-hotel.png">
+            <h2 class="action">Nouvelle entrée</h2>
+            <h2 class="title">
+                <% if(typeof alert != 'undefined'){%>
+                    <% alert.forEach(function(error){%>
+
+                        <div class=" alert-danger">
+                            <%= error.msg %>
+                        </div>
+
+                        <% }) %>
+
+                            <% } %>
+                                <div class="liste_deroulante">
+                                    <label for="poste"> <b> <i>Service</i> </b></label>
+                                    <select id="poste" name="poste" id="validationCustom01" required>
+                            <option value="">Sélectionnez une option</option>
+                            <option value="reglement">Hébergement</option>
+                            <option value="Restaurant">Restaurant</option>
+                            <option value="Bar">Bar</option>
+                            <option value="Divers">Divers</option>
+                            </select>
+                                </div>
+                                <div class="valid-feedback">
+                                    veuillez remplir tous les champs
+                                </div>
+            </h2>
+
+            <div class="input-div one">
+                <div class="i">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="div">
+                    <h5>Montant</h5>
+                    <input type="text" class="input" id="validationCustom01" name="montant" required>
+                    <div class="valid-feedback">
+                        veuillez remplir tous les champs
+                    </div>
+                </div>
             </div>
-            <% }) %>
+            <input type="submit" class="btn" value="Enregistrer" style="font-weight: bold;">
+        </form>
+    </div>
 
-    <% } %>
-   
-    
+    <!--------------------End of container--------------------------------->
 
-
-
-
-    <form action="/receptioniste/client/commande" method="POST">
-        <div class="form-group">
-          <label for="username" class="form-label">name</label>
-          <input type="text" class="form-control" name="name" id="name">
-          
+    <!--------------------------------footer--------------------------------->
+    <footer>
+        <div class="footer">
+            copyrygth MI 2020
         </div>
-        <div class="form-group">
-          <label for="prix" class="form-label">prix</label>
-          <input type="number" class="form-control" id="prix" name="prix">
-        </div>
-        <div class="form-group">
-            <label for="nombre" class="form-label">nombre</label>
-            <input type="number" class="form-control" id="nombre" name="nombre">
-          </div>
-          
-       
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
 
-</div>
+    </footer>
+    <!--------------------------------footer--------------------------------->
 
+
+
+    <!-----------------------------Jquery Library file---------------------------->
+    <script src="/js/Jquery3.4.1.min.js"></script>
+
+    <!-----------------------------Custom javascript file------------------------->
+    <script src="./js/main_cm.js"></script>
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
 </body>
+
 </html>

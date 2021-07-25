@@ -147,7 +147,7 @@ li a:hover,
 
 /*-------------------------site-content----------------*/
 
-@media only screen and (min-width: 868px) {
+@media only screen and (min-width: 468px) {
     .corps {
         display: grid;
         margin-top: 3%;

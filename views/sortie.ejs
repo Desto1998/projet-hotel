@@ -42,16 +42,17 @@
 
 
     <div class="login-content">
-        <form action="/receptioniste/commande/<%= id %>" method="POST" novalidate>
+
+        <form action="/receptioniste/commande/" method="POST" novalidate>
+
             <img src="/image/Logo-atitle-hotel.png">
+            <h2 class="action">Nouvelle sortie</h2>
             <h2 class="title">
                 <% if(typeof alert != 'undefined'){%>
                     <% alert.forEach(function(error){%>
 
                         <div class=" alert-danger">
                             <%= error.msg %>
-
-                                </button>
                         </div>
 
                         <% }) %>
@@ -61,11 +62,9 @@
                                     <label for="poste"> <b> <i>Service</i> </b></label>
                                     <select id="poste" name="poste" id="validationCustom01" required>
                             <option value="">Sélectionnez une option</option>
-                            <option value="reglement">Règlement</option>
-                            <option value="Petit dejeune">Petit dejeuné</option>
+                            <option value="reglement">Hébergement</option>
                             <option value="Restaurant">Restaurant</option>
                             <option value="Bar">Bar</option>
-                            <option value="Linge">Linge</option>
                             <option value="Divers">Divers</option>
                             </select>
                                 </div>
@@ -86,16 +85,6 @@
                     </div>
                 </div>
             </div>
-            <div class="input-div pass">
-                <div class="i">
-                    <i class="fas fa-lock"></i>
-                </div>
-                <div class="div">
-                    <h5>Nombre</h5>
-                    <input type="text" class="input" name="nombre">
-                </div>
-            </div>
-
             <input type="submit" class="btn" value="Enregistrer" style="font-weight: bold;">
         </form>
     </div>
