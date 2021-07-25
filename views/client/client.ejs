@@ -4,6 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+  
+    <!-- Import jquery cdn -->
+    <script src="/js/Jquery3.4.1.min.js"></script>
+      
+    <script src=
+"https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity=
+"sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous">
+    </script>
     <link rel="stylesheet" type="text/css" href="../../public/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../public/fontawesome-5.15.2/css/fontawesome.min.css">
     <link rel="stylesheet" href="../../public/css/style_acceuil.css">
@@ -23,11 +34,10 @@
     <header>
         <ul>
             <img src="/image/Logo-atitle-hotelJ.png" class="logo" alt="">
-            <li class="clientNom" id="nom" style="float:left"> HOTEL ALTITEL</li>
+            <li class="clientNom" id="nom" style="float:left"> ALTITEL HOTEL</li>
             <li><a href="/logout" class="deconnexion">Déconnexion</a></li>
             <li class=" main_courante"><a href="/receptioniste/main_courant">Main courante</a></li>
             <li class="bilan"><a href="">Bilan</a></li>
-            <li class="facture"><a href="">Facture</a></li>
             <li class=" accueil"><a href="/acceuil/clients">Accueil</a></li>
         </ul>
     </header>
@@ -100,7 +110,61 @@
                 <h4 class="titreListe titre1">Liste des clients présent à l'hotel</h4>
             </div>
             <div class="table-responsive">
-
+                <div class="container mt-2">
+  
+                    <!-- Input field to accept user input -->
+                
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" 
+                        tabindex="-1" 
+                        aria-labelledby="exampleModalLabel" 
+                        aria-hidden="true">
+                          
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" 
+                                        id="exampleModalLabel">
+                                        Confirmation
+                                    </h5>
+                                      
+                                    <button type="button" 
+                                        class="close" 
+                                        data-dismiss="modal" 
+                                        aria-label="Close">
+                                        <span aria-hidden="true">
+                                            ×
+                                        </span>
+                                    </button>
+                                </div>
+              
+                                <div class="modal-body">
+              
+                                    <!-- Data passed is displayed 
+                                        in this part of the 
+                                        modal body -->
+                                        <div class="row">
+                                            <div class="col-md-8 offset-1 mt-2 mb-2">
+                                                <p>
+                                                    Numero de chambre : <span class="gras"><label id="numchambre"></label></span> 
+                                                    <form action="/receptioniste/client/Liberer" method="POST" >
+                                                    <input type="text" name="numero" 
+                                                     placeholder="numero chambre"  />                 
+                                                </p>
+                                            </div>
+                                            <button type="submit" 
+                                        class="btn btn-primary" 
+                                        >
+                                       valider
+                                    </button>
+                                </form>
+                                        </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <table class="table table-borderless tableau">
 
                     <thead class="forme">
@@ -113,43 +177,69 @@
 
                         </tr>
                     </thead>
-                    <% var i = 0; var num=','%>
+                    <% var i = 0; var num=',';var n=0; var nom ='';%>
 
                         <% client.forEach(function(r){  %>
                             <tr>
                                 <td>
 
-                                    <%=r.nom %>
-
+                                    
+                                    <% chambre.forEach(function(rs){  
+                                        if(r.id_client==rs.id_client){%>
+                                       
+                                        <% chambrec.forEach(function(row){  
+                                            if(rs.id_chambre==row.id_chambre){
+                                                if(row.status=='occupé'){%>
+                                                    <%nom=r.nom %>
+                                                    <%n=r.id_client %>
+                                                <%}}})%>
+                                            <%}})%>
+                                            <%=nom %>
                                 </td>
                                 <td>
 
                                     <div class="groupe">
-                                        <a href="" id="btnchambre" onClick="editFunc(<%=r.id_client%>)"> <button id=""><% chambre.forEach(function(row){  
-                                            if(r.id_client==row.id_client){%>
-                                            <%=row.id_chambre %>,
-                                                <%}})%></button></a>
+                                
+                                        
+                                        <button type="button" class="btn btn-primary 
+                                        btn-sm" data-toggle="modal" 
+                                        data-target="#exampleModal"
+                                        id="submit" onClick="editFunc(<%=n; %>)">
+                                        <% chambre.forEach(function(rs){  
+                                            if(r.id_client==rs.id_client){%>
+                                           
+                                            <% chambrec.forEach(function(row){  
+                                                if(rs.id_chambre==row.id_chambre){
+                                                    if(row.status=='occupé'){%>
+                                                        <%num=num+rs.id_chambre+',' %>
+                                                    <%}}})%>
+                                                <%}})%>
+                                                <%=num%>
+                                    </button>
+                                                
+                                                        
                                     </div>
 
 
                                 </td>
                                 <td>
                                     <div class="groupe">
-                                        <a href="javascript:void(0);" id="btnPopup" onClick="editFunc(<%= r.id_client; %>)" data-toggle="tooltip" class="btnPopup btn"> <button id="">Détails</button></a>
+                                        <a href="javascript:void(0);" id="btnPopup" onClick="editFunc(<%=n; %>)" data-toggle="tooltip" class="btnPopup btn"> <button id="">Détails</button></a>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="groupe">
-                                        <a href="/receptioniste/commande/<%=r.id_client %>"><button  id="couleur0">Ajouter</button></a>
+                                        <a href="/receptioniste/commande/<%=n %>"><button  id="couleur0">Ajouter</button></a>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="groupe">
-                                        <a href="/generateReport2/<%=r.id_client %>"><button id="couleur1">Client</button></a>
+                                        <a href="/generateReport2/<%=n %>"><button id="couleur1">Client</button></a>
                                     </div>
                                 </td>
                             </tr>
                             <% i=i+1 %>
+                            <%num=''%>
                                 <% }) %>
 
 
@@ -180,6 +270,11 @@
                     </p>
                 </div>
             </div>
+
+           
+
+
+                   
             <!--            <div class="global">-->
 
             <!--                <div class="info1">-->
@@ -242,11 +337,12 @@
                 dataType: 'json',
                 success: function(res) {
                     // console.log(res);
-                    var num_chambre = '';
+                    var num_chambre = ',';
                     for (var i = 0; i < res.Infos.length; i++) {
 
                         num_chambre = num_chambre + res.Infos[i].id_chambre + ",";
                         console.log(num_chambre)
+                        
                     }
 
                     // $('#state').append($('<option>', {value:k, text:v}));
@@ -273,6 +369,61 @@
             });
         }
     </script>
+
+
+<script type="text/javascript">
+    $("#submit").click(function () {
+
+        
+        var name = $("#name").val();
+        
+        var str = "You Have Entered " 
+            + "Name: " + name ;
+            
+        $("#modal_body").html(str);
+    });
+
+    function editFunc(id) {
+
+$.ajax({
+    type: "GET",
+    url: "/client/detail",
+    data: {
+        id: id
+    },
+    dataType: 'json',
+    success: function(res) {
+        // console.log(res);
+        var num_chambre = ',';
+                    for (var i = 0; i < res.Infos.length; i++) {
+
+                        num_chambre = num_chambre + res.Infos[i].id_chambre + ",";
+                        console.log(res)
+                        
+                    }
+        
+        // $('#state').append($('<option>', {value:k, text:v}));
+        $('#numchambre').html(num_chambre);
+        $('#facture_pd').html(res.TpetitD);
+        $('#facture_bar').html(res.Tbar);
+        $('#facture_divers').html(res.Tdivers);
+        $('#facture_linge').html(res.Tlinge);
+        $('#facture_r').html(res.Trestaurant);
+        $('#facture_c').html(res.Tchambre);
+        $('#montantT').html(res.Total);
+        //
+        // var val;
+        // var key;
+        // console.log(res.Infos[0].id_client);
+        // $.each( res, function(key, val) {
+        //     num_chambre=val['id_client'];
+        //     console.log(val);
+        //     alert(num_chambre);
+        //     // $('#state').append($('<option>', {value:k, text:v}));
+        // });
+
+    }
+</script>
 </body>
 
 </html>
