@@ -42,39 +42,37 @@ CREATE TABLE IF NOT EXISTS `chambre` (
 --
 
 INSERT INTO `chambre` (`id_chambre`, `code_chambre`, `categorie`, `prix`, `status`) VALUES
-(1, 'A001', 'climatise', 35000, 'libre'),
-(2, 'A002', 'chambre standart', 27000, 'libre'),
-(3, 'A003', 'salle de reunion', 16000, 'libre'),
-(4, 'A004', 'chambre double', 3000, 'occupé'),
-(5, 'A005', 'salle de reunion', 16000, 'libre'),
-(6, 'A006', 'chambre standart', 27000, 'libre'),
-(7, 'A007', 'chambre standart', 27000, 'libre'),
-(8, 'A007', 'chambre standart', 27000, 'libre'),
-(9, 'A007', 'chambre standart', 27000, 'libre'),
-(10, 'A008', 'chambre standart', 27000, 'libre'),
-(11, 'A009', 'chambre standart', 27000, 'libre'),
-(12, 'A0010', 'chambre standart', 27000, 'libre'),
-(13, 'A0011', 'chambre standart', 27000, 'libre'),
-(14, 'A0012', 'chambre standart', 27000, 'libre'),
-(15, 'A0013', 'chambre standart', 27000, 'libre'),
-(16, 'A0014', 'chambre standart', 27000, 'libre'),
-(17, 'A0015', 'chambre standart', 27000, 'libre'),
-(18, 'A0016', 'chambre standart', 27000, 'libre'),
-(19, 'A0017', 'chambre standart', 27000, 'libre'),
-(20, 'A0018', 'climatise', 35000, 'libre'),
-(21, 'A0019', 'climatise', 35000, 'libre'),
-(22, 'A0020', 'climatise', 35000, 'libre'),
-(23, 'A0021', 'climatise', 35000, 'libre'),
-(24, 'A0022', 'climatise', 35000, 'libre'),
-(25, 'A0023', 'climatise', 35000, 'libre'),
-(26, 'A0024', 'climatise', 35000, 'libre'),
-(27, 'A0025', 'climatise', 35000, 'libre'),
-(28, 'A0026', 'climatise', 35000, 'libre'),
-(29, 'A0027', 'climatise', 35000, 'libre'),
-(30, 'A0028', 'climatise', 35000, 'libre'),
-(31, 'A0029', 'appartement', 16000, 'libre'),
-(32, 'A0030', 'appartement', 16000, 'libre'),
-(33, 'A0031', 'appartement', 16000, 'libre');
+(1, 'A003', 'salle de reunion', 150000, 'libre'),
+(2, 'A005', 'salle de reunion', 35000, 'libre'),
+(102, 'A002', 'chambre standart', 27000, 'libre'),
+(109, 'A006', 'chambre standart', 27000, 'libre'),
+(201, 'A007', 'chambre standart', 27000, 'libre'),
+(202, 'A007', 'chambre standart', 27000, 'libre'),
+(204, 'A007', 'chambre standart', 27000, 'libre'),
+(205, 'A008', 'chambre standart', 27000, 'libre'),
+(206, 'A009', 'chambre standart', 27000, 'libre'),
+(207, 'A0010', 'chambre standart', 27000, 'libre'),
+(208, 'A0011', 'chambre standart', 27000, 'libre'),
+(209, 'A0012', 'chambre standart', 27000, 'libre'),
+(107, 'A0013', 'chambre standart', 27000, 'libre'),
+(105, 'A0014', 'chambre standart', 27000, 'libre'),
+(103, 'A0015', 'chambre standart', 27000, 'libre'),
+(101, 'A001', 'chambre confort', 35000, 'libre'),
+(104, 'A0018', 'chambre confort', 35000, 'libre'),
+(203, 'A0019', 'chambre confort', 35000, 'libre'),
+(210, 'A0020', 'chambre confort', 35000, 'libre'),
+(212, 'A0021', 'chambre confort', 35000, 'libre'),
+(214, 'A0022', 'chambre confort', 35000, 'libre'),
+(301, 'A0023', 'chambre confort', 35000, 'libre'),
+(307, 'A0024', 'chambre confort', 35000, 'libre'),
+(308, 'A0025', 'chambre confort', 35000, 'libre'),
+(303, 'A0026', 'chambre confort', 35000, 'libre'),
+(304, 'A0027', 'chambre confort', 35000, 'libre'),
+(305, 'A0028', 'chambre confort', 35000, 'libre'),
+(306, 'A0016', 'chambre confort', 35000, 'libre'),
+(302, 'A0029', 'suite', 60000, 'libre'),
+(309, 'A0030', 'suite', 60000, 'libre'),
+(310, 'A0031', 'suite', 60000, 'libre');
 
 -- --------------------------------------------------------
 
@@ -257,7 +255,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 INSERT INTO `utilisateur` (`id_user`, `nom`, `password`, `tel`, `cni`, `email`) VALUES
 (1, 'russelle', 'cool', 698375118, 0, ''),
 (2, 'chritelle', 'cool', 658312548, 0, '');
-COMMIT;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
