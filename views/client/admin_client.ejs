@@ -31,15 +31,14 @@
 </head>
 
 <body>
-<header>
-    <ul>
-        <img src="/image/Logo-atitle-hotelJ.png" class="logo" alt="">
-        <li class="clientNom" id="nom" style="float:left"> ALTITEL HOTEL</li>
-        <li><a href="/logout" class="deconnexion">Déconnexion</a></li>
-        <li class=" main_courante"><a href="/receptioniste/main_courant">Main courante</a></li>
-        <li class="bilan"><a href="">Bilan</a></li>
-        <li class=" accueil"><a href="/acceuil/clients">Accueil</a></li>
-    </ul>
+<ul>
+    <img src="/image/Logo-atitle-hotelJ.png" class="logo" alt="">
+    <li class="clientNom" id="nom" style="float:left"> ALTITEL HOTEL</li>
+    <li><a href="/logout" class="deconnexion">Déconnexion</a></li>
+    <li class=" main_courante"><a href="/receptioniste/main_courant">Main courante</a></li>
+    <li class="bilan"><a href="">Bilan</a></li>
+    <li class=" accueil"><a href="/admin/acceuil">Accueil</a></li>
+</ul>
 </header>
 <!--------------------------End of Tableau---------------------->
 
@@ -181,10 +180,10 @@
                     <td>voir plus</td>
                     <td>Passer<br>commande</td>
                     <td>Consulter<br>facture</td>
-
+                    <td>Statut</td>
                 </tr>
                 </thead>
-                <% var i = 0; var num = '';var n = 0; var nom = ''; var hasOcuppe = 0; %>
+                <% var i = 0; var num = '';var n = 0; var nom = ''; var hasOcuppe = 0; var status_ch = 0; var j = 0; let idCC = []; %>
 
                 <% client.forEach(function(r){ %>
                     <% chambre.forEach(function(rs){
@@ -193,60 +192,92 @@
                         <% chambrec.forEach(function(row){
                         if(rs.id_chambre == row.id_chambre){
                         if(row.status == 'occupé'){ %>
-                            <% nom = r.nom ; hasOcuppe++; %>
+                            <% nom = r.nom; hasOcuppe++; status_ch = rs.status_ch; idCC[j] = rs.idchambreClient %>
                             <% n = r.id_client %>
-                            <% num = num + rs.id_chambre + ',' %>
+                            <% num = num + rs.id_chambre + ',';j++; %>
                         <% }}}) %>
                     <% }}) %>
                     <% if (hasOcuppe > 0){ %>
-                            <tr>
-                                <td>
-                                    <%= nom %>
-                                </td>
-                                <td>
+                        <tr class="<%= status_ch == 1 ? '' : 'bg-danger'; %>">
+                            <td>
+                                <%= nom %>
+                            </td>
+                            <td>
 
-                                    <div class="groupe">
+                                <div class="groupe">
 
 
-                                        <button type="button" class="btn btn-primary
+                                    <button type="button" class="btn btn-primary
                                         btn-sm" data-toggle="modal"
-                                                data-target="#exampleModal"
-                                                id="submit" onClick="editFunc1(<%= n; %>)">
+                                            data-target="#exampleModal"
+                                            id="submit" onClick="editFunc1(<%= n; %>)">
 
-                                            <%= num %>
-                                        </button>
-
-
-                                    </div>
+                                        <%= num %>
+                                    </button>
 
 
-                                </td>
-                                <td>
+                                </div>
+
+
+                            </td>
+                            <td>
+                                <div class="groupe">
+                                    <a href="javascript:void(0);" id="btnPopup" onClick="editFunc(<%= n; %>)"
+                                       data-toggle="tooltip" class="btnPopup btn">
+                                        <button id="">Détails</button>
+                                    </a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="groupe">
+                                    <a href="/receptioniste/commande/<%= n %>">
+                                        <button id="couleur0">Ajouter</button>
+                                    </a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="groupe">
+                                    <a href="/generateReport2/<%= n %>">
+                                        <button id="couleur1">Client</button>
+                                    </a>
+                                </div>
+                            </td>
+
+                            <td>
+                                <form id="validerForm<%= n %>">
+                                    <% for (var k = 0 ; k < idCC.length; k++){ %>
+                                    <input type="hidden" name="id_cc[]" value="<%= idCC[k] %>">
+                                    <% } %>
+
+                                    <input type="hidden" name="id_client" value="<%= n %>">
+                                </form>
+                                <% if (status_ch == 1){ %>
                                     <div class="groupe">
-                                        <a href="javascript:void(0);" id="btnPopup" onClick="editFunc(<%= n; %>)"
-                                           data-toggle="tooltip" class="btnPopup btn">
-                                            <button id="">Détails</button>
+                                        <a href="javascript:void(0);" onClick="blockerFunc(<%= n; %>)">
+                                            <button id="btn-valider" class="btn btn-danger btn-valider"
+                                                    title="Cliquez pour blocker">Blocker
+                                            </button>
                                         </a>
                                     </div>
-                                </td>
-                                <td>
+
+                                <% }else { %>
+
                                     <div class="groupe">
-                                        <a href="/receptioniste/commande/<%= n %>">
-                                            <button id="couleur0">Ajouter</button>
+                                        <a href="javascript:void(0);" onClick="validerFunc(<%= n %>)"
+                                           data-toggle="tooltip">
+                                            <button id="btn-blocker" class="btn-success btn-blocker"
+                                                    title="Cliquez pour valider">Valider
+                                            </button>
                                         </a>
                                     </div>
-                                </td>
-                                <td>
-                                    <div class="groupe">
-                                        <a href="/generateReport2/<%= n %>">
-                                            <button id="couleur1">Client</button>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
+                                <% } %>
+
+                            </td>
+
+                        </tr>
                     <% } %>
-                    <% i = i + 1 %>
-                    <% num = ''; hasOcuppe = 0; %>
+                    <% i = i + 1; j = 0; %>
+                    <% num = ''; hasOcuppe = 0; status_ch = 0;idCC = []; %>
                 <% }) %>
 
             </table>
@@ -283,26 +314,6 @@
             </div>
         </div>
 
-
-        <!--            <div class="global">-->
-
-        <!--                <div class="info1">-->
-        <!--                    -->
-        <!--                </div>-->
-
-        <!--                <div class="info1">-->
-        <!--                   -->
-        <!--                </div>-->
-
-        <!--                <div class="info1">-->
-        <!--                    <p>-->
-        <!--                        Facture Général : <span class="gras">2</span><br>-->
-        <!--                        Facture Règlement : <span class="gras">2</span><br>-->
-        <!--                        Facture A rapporter : <span class="gras">2</span><br>-->
-        <!--                    </p>-->
-        <!--                </div>-->
-
-        <!--            </div>-->
     </div>
 </div>
 
@@ -346,7 +357,6 @@
             success: function (res) {
                 // console.log(res);
                 var num_chambre = '';
-                console.log(res);
                 for (var i = 0; i < res.Infos.length; i++) {
 
                     num_chambre = num_chambre + res.Infos[i].id_chambre + ",";
@@ -362,16 +372,7 @@
                 $('#facture_r').html(res.Trestaurant);
                 $('#facture_c').html(res.Tchambre);
                 $('#montantT').html(res.Total);
-                //
-                // var val;
-                // var key;
-                // console.log(res.Infos[0].id_client);
-                // $.each( res, function(key, val) {
-                //     num_chambre=val['id_client'];
-                //     console.log(val);
-                //     alert(num_chambre);
-                //     // $('#state').append($('<option>', {value:k, text:v}));
-                // });
+
 
             }
         });
@@ -390,9 +391,10 @@
 
         $("#modal_body").html(str);
     });
+
     //
     function editFunc1(id) {
-
+        // $("#exampleModal").show(100);
         $.ajax({
             type: "GET",
             url: "/client/detail",
@@ -406,32 +408,71 @@
                 for (var i = 0; i < res.Infos.length; i++) {
 
                     num_chambre = num_chambre + res.Infos[i].id_chambre + ",";
-                    console.log(res)
 
                 }
-
-                // $('#state').append($('<option>', {value:k, text:v}));
                 $('#numchambre').html(num_chambre);
-                // $('#facture_pd').html(res.TpetitD);
-                // $('#facture_bar').html(res.Tbar);
-                // $('#facture_divers').html(res.Tdivers);
-                // $('#facture_linge').html(res.Tlinge);
-                // $('#facture_r').html(res.Trestaurant);
-                // $('#facture_c').html(res.Tchambre);
-                // $('#montantT').html(res.Total);
-                //
-                // var val;
-                // var key;
-                // console.log(res.Infos[0].id_client);
-                // $.each( res, function(key, val) {
-                //     num_chambre=val['id_client'];
-                //     console.log(val);
-                //     alert(num_chambre);
-                //     // $('#state').append($('<option>', {value:k, text:v}));
-                // });
 
             }
         })
+    }
+
+    function validerFunc(id) {
+        var form = $("#validerForm" + id).serialize();
+        // var form = $("#validerForm"+id).serialize().this;
+        console.log(form);
+        $.ajax({
+            type: "get",
+            url: "/admin/valider",
+            data: $("#validerForm" + id).serialize(),
+
+            // dataType: 'json',
+            // beforeSend: function () {
+            //     $('.savebtn').disabled = true;
+            // },
+            success: function (res) {
+                // console.log(res);
+                if (res) {
+                    alert("Valider avec succès");
+                    window.location.reload();
+                } else {
+                    alert("Erreur! Veillez recommencer.");
+                    window.location.reload();
+
+                    // window.location.redirect("/");
+                }
+            }
+
+        })
+    }
+
+    function blockerFunc(id) {
+        if (confirm("Voulez vous  bloquer cette commande ? ") == true) {
+            var form = $("#validerForm" + id).serialize();
+            // var form = $("#validerForm"+id).serialize().this;
+            console.log(form);
+            $.ajax({
+                type: "get",
+                url: "/admin/blocker",
+                data: $("#validerForm" + id).serialize(),
+
+                // dataType: 'json',
+                beforeSend: function () {
+                    $('.btn-valider').disabled = true;
+                },
+                success: function (res) {
+                    // console.log(res);
+                    if (res) {
+                        alert("Valider avec succès");
+                        window.location.reload();
+                    } else {
+                        alert("Erreur! Veillez recommencer.");
+                        window.location.reload();
+
+                    }
+
+                }
+            })
+        }
     }
 </script>
 </body>

@@ -1,114 +1,65 @@
-<head>
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <!-- Import jquery cdn -->
+    <script src="/js/Jquery3.4.1.min.js"></script>
+
+    <script src=
+            "https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+            integrity=
+            "sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+            crossorigin="anonymous">
+    </script>
     <link rel="stylesheet" type="text/css" href="../public/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../public/fontawesome-5.15.2/css/fontawesome.min.css">
-    <link rel="stylesheet" href="../public/css/style_client.css">
-    <!-- <style>
-        .header {
-            display: flex;
-            height: 75px;
-            background-color: #273486;
-        }
-        
-        .header .logo_nom {
-            display: flex;
-            margin: 0px;
-            padding-left: 30px;
-            padding-top: 10px;
-        }
-        
-        .header .logo_nom h2 {
-            padding-left: 20px;
-            color: #fff;
-        }
-        
-        .header .manu_a {
-            float: left;
-        }
-        
-        .header .manu_a ul {
-            position: absolute;
-            display: flex;
-            list-style-type: none;
-            margin-left: 400px;
-            top: -15px;
-        }
-        
-        .header .manu_a li {
-            padding: 30px;
-        }
-        
-        .header a {
-            text-decoration: none;
-            color: #fff;
-            font-weight: bold;
-        }
-        
-        .header .déconnexion .lien {
-            display: block;
-            padding: 24px 50px;
-            margin-left: 822.5px;
-            font-size: 25px;
-            text-decoration: none;
-            background-color: #fff;
-        }
-    </style> -->
+    <link rel="stylesheet" href="../public/css/style_acceuil.css">
+    <link rel="stylesheet" href="../public/Accueil/css/style.css">
+    <!---------------------------------boostrap------------------------------->
+    <link rel="stylesheet" href="../public/Accueil/css/bootstrap.min.css">
+    <!--------------------------And of boostrap------------------------------>
+
+    <!---------------------------------Font icons------------------------------->
+    <link rel="stylesheet" href="../public/Accueil/css/all.css">
+    <script src="../public/js/all.min.js"></script>
+
+    <title>Clients</title>
 </head>
 
-
-<!-- <div class=" header ">
-        <div class="logo_nom ">
-            <img src="/public/image/Logo-atitle-hotel.png " alt="logo " class="image " style="width: 60px; height: 60px; ">
-            <h2>HOTEL ALTITEL</h2>
-        </div>
-        <div class="manu_a ">
-            <ul>
-                <li><a href=" " class="lien_menu ">Accueil</a></li>
-                <li><a href="../views/main_courante/index.html " class="lien_menu ">Main courant</a></li>
-                <li><a href="/admin/client" class="lien_menu ">Clients</a></li>
-                <li><a href="/receptioniste/client/autre_entree" class="lien_menu ">Entrée/Sortie</a></li>
-                <li><a href="admin/client" class="lien_menu ">Bilan</a></li>
-            </ul>
-        </div>
-
-        <div class="déconnexion ">
-            <a href=" " class="lien " style="color: rgb(32, 3, 65); "><span class="couleur ">Deconnexion</span></a>
-        </div>
-    </div>
-
-    <title>Document</title> -->
+<body>
+<header>
+    <ul>
+        <img src="/image/Logo-atitle-hotelJ.png" class="logo" alt="">
+        <li class="clientNom" id="nom" style="float:left"> ALTITEL HOTEL</li>
+        <li><a href="/logout" class="deconnexion">Déconnexion</a></li>
+        <li class=" main_courante"><a href="/receptioniste/main_courant">Main courante</a></li>
+        <li class="bilan"><a href="">Bilan</a></li>
+        <li class=" accueil"><a href="/acceuil/clients">Accueil</a></li>
+    </ul>
+</header>
+<!--------------------------End of Tableau---------------------->
 
 
-<div class="container-fluid">
-    <header>
-        <div class="container-fluid offset">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="header">
-                        <div class="logo_nom col-md-4">
-                            <img src="/image/Logo-atitle-hotelJ.png" alt="logo" class="image" style="width: 60px; height: 60px;">
-                            <h2>HOTEL ALTITEL</h2>
-                        </div>
-                        <div class="manu_a col-md-6 offset-0">
-                            <ul>
-                                <div class="col-md-2">
-                                    <li><a href="" class="lien_menu">Accueil</a></li>
-                                </div>
-                                <div class="col-md-4">
-                                    <li><a href="/" class="lien_menu">Main courant</a></li>
-                                </div>
-                                <div class="col-md-2">
-                                    <li><a href="" class="lien_menu">Bilan</a></li>
-                                </div>
-                            </ul>
-                        </div>
+<!--------------------------------footer--------------------------------->
+<!--<footer>-->
+<!--    <div class="footer">-->
+<!--        copyrygth MI 2020-->
+<!--    </div>-->
 
-                        <div class="deconnexion col-md-2">
-                            <a href="" class="lien" style="color: rgb(32, 3, 65);"><span class="couleur">Deconnexion</span></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-</div>
+<!--</footer>-->
+<!--------------------------------footer--------------------------------->
+
+<!-----------------------------Jquery Library file---------------------------->
+<script src="/js/Jquery3.4.1.min.js"></script>
+
+<!-----------------------------Custom javascript file------------------------->
+<script src="/js/main_ac.js"></script>
+<script type="text/javascript" src="../../public/fontawesome-5.15.2/js/fontawesome.js"></script>
+
+</body>
+
+</html>
