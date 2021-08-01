@@ -16,7 +16,7 @@ const bodyParser = require('body-parser');
 const { info } = require('console');
 
 app.use(bodyParser.json());
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname));
 //app.use(methodeOverride('_methode'))
@@ -357,7 +357,7 @@ if (!errors.isEmpty()) {
     var sql = "select * from client order by id_client asc";
                                     mysqlConnection.query(sql, (err, rows, fields) => {
                                         client = rows;
-                                        var sql = "select * from chambreclient order by id_client asc";
+                                        var sql = "select * from chambre INNER JOIN chambreclient ON   chambre.id_chambre = chambreclient.id_chambre order by id_client asc";
                                         // var sql = "SELECT client.*, commande.*, chambreclient.id_chambre FROM client, commande, chambreclient WHERE client.id_client = commande.id_client
                                         // AND client.id_client = chambreclient.id_client;";
                                         mysqlConnection.query(sql, (err, rows, fields) => {
@@ -386,7 +386,7 @@ if (!errors.isEmpty()) {
         var sql = "select * from client order by id_client asc";
         mysqlConnection.query(sql, (err, rows, fields) => {
             client = rows;
-            var sql = "select * from chambreclient order by id_client asc";
+            var sql = "select * from chambre INNER JOIN chambreclient ON   chambre.id_chambre = chambreclient.id_chambre order by id_client asc";
             // var sql = "SELECT client.*, commande.*, chambreclient.id_chambre FROM client, commande, chambreclient WHERE client.id_client = commande.id_client
             // AND client.id_client = chambreclient.id_client;";
             mysqlConnection.query(sql, (err, rows, fields) => {
@@ -632,25 +632,26 @@ app.post('/login', urlencodedParser, [
                             if (!err) {
                                 var role = rows[0].role;
                                 if (role == 'admin') {
-
+                                    // console.log('addmin'); exit();
+                                    req.session.username = userData[0].nom;
+                                    req.session.userid = userData[0].id_user;
+                                    req.session.role = role;
                                     var sql = "select * from client order by id_client asc";
                                     mysqlConnection.query(sql, (err, rows, fields) => {
                                         client = rows;
-                                        var sql = "select * from chambreclient order by id_client asc";
+                                        var sql = "select chambre.*, chambreclient.*  from chambre, chambreclient where   chambre.id_chambre = chambreclient.id_chambre  order by id_client asc";
                                         // var sql = "SELECT client.*, commande.*, chambreclient.id_chambre FROM client, commande, chambreclient WHERE client.id_client = commande.id_client
                                         // AND client.id_client = chambreclient.id_client;";
+
                                         mysqlConnection.query(sql, (err, rows, fields) => {
                                             chambre = rows;
                                             var sql = "select * from chambre order by id_chambre asc";
                                             mysqlConnection.query(sql, (err, rows, fields) => {
                                             sess = req.session;
                                             chambrec = rows;
-                                            req.session.username = userData[0].nom;
-                                            req.session.userid = userData[0].id_user;
-                                            req.session.role = role;
-                                            req.userid = userData[0].id_user;
+
                                             // console.log(req.session);
-                                            res.render('client/client', {
+                                            res.render('client/admin_client', {
                                                 client,
                                                 chambre,
                                                 chambrec
@@ -660,10 +661,13 @@ app.post('/login', urlencodedParser, [
                                 })
                                 }
                                 if (role == 'receptioniste') {
+                                    req.session.username = userData[0].nom;
+                                    req.session.userid = userData[0].id_user;
+                                    req.session.role = role;
                                     var sql = "select * from client order by id_client asc";
                                     mysqlConnection.query(sql, (err, rows, fields) => {
                                         client = rows;
-                                        var sql = "select * from chambreclient order by id_client asc";
+                                        var sql = "select * from chambre INNER JOIN chambreclient ON   chambre.id_chambre = chambreclient.id_chambre where chambreclient.status = 1 order by id_client asc";
                                         // var sql = "SELECT client.*, commande.*, chambreclient.id_chambre FROM client, commande, chambreclient WHERE client.id_client = commande.id_client
                                         // AND client.id_client = chambreclient.id_client;";
                                         mysqlConnection.query(sql, (err, rows, fields) => {
@@ -672,10 +676,7 @@ app.post('/login', urlencodedParser, [
                                             mysqlConnection.query(sql, (err, rows, fields) => {
                                             sess = req.session;
                                             chambrec = rows;
-                                            req.session.username = userData[0].nom;
-                                            req.session.userid = userData[0].id_user;
-                                            req.session.role = role;
-                                            req.userid = userData[0].id_user;
+
                                             // console.log(req.session);
                                             res.render('client/client', {
                                                 client,
@@ -1305,12 +1306,14 @@ app.get("/generateReport2/:id", (req, res) => {
                             } else {
                                 var phantomjs = require('phantomjs');
                                 var options = {
-                                    phantomPath: phantomjs.path,
+                                    // phantomPath: phantomjs.path,
                                     filename: './public/factures/' + factname + ".pdf",
                                     format: 'A4',
                                     orientation: 'portrait',
                                     type: "pdf",
-                                    timeout: 30000
+                                    timeout: 30000,
+                                    border: "0",
+                                    quality: "75"
                                 };
                                 // var options = {
                                 //     phantomPath: __dirname + "/pathToNodeModules/phantomjs/bin/phantomjs",
@@ -1548,10 +1551,11 @@ app.get("/acceuil/clients", (req, res) => {
         var sql = "select * from client ORDER BY id_client ASC";
         mysqlConnection.query(sql, (err, rows, fields) => {
             client = rows;
-            var sql = "select * from chambreclient ORDER BY id_client ASC";
+            var sql = "select * from chambre INNER JOIN chambreclient ON   chambre.id_chambre = chambreclient.id_chambre  ORDER BY id_client ASC";
             mysqlConnection.query(sql, (err, rows, fields) => {
                 chambre = rows;
                 res.render('client/client', {
+
                     client,
                     chambre
                 });
@@ -1559,6 +1563,67 @@ app.get("/acceuil/clients", (req, res) => {
         })
     } else {
         res.redirect('/');
+    }
+});
+app.get("/admin/acceuil", (req, res) => {
+    if (req.session.role === 'admin') {
+        var sql = "select * from client ORDER BY id_client ASC";
+        mysqlConnection.query(sql, (err, rows, fields) => {
+            client = rows;
+            var sql = "select * from chambre INNER JOIN chambreclient ON   chambre.id_chambre = chambreclient.id_chambre  ORDER BY id_client ASC";
+            mysqlConnection.query(sql, (err, rows, fields) => {
+                chambre = rows;
+                res.render('client/admin_client', {
+
+                    client,
+                    chambre
+                });
+            })
+        })
+    } else {
+        res.redirect('/');
+    }
+});
+app.get("/admin/blocker", (req, res) => {
+    var id_client = req.query.id_client;
+    var id_cc = req.query.id_cc;
+    // var id_ch = req.query.id;
+    if (req.session.role === 'admin') {
+        const userid = req.session.userid;
+        id_cc.forEach (id =>{
+            var data = '';
+                    var sql = "update chambreclient set status_ch=0, id_user =" +userid + ' '+ " where id_client = "  +id_client + ' ' + " and idchambreClient = " + id + " ";
+                    mysqlConnection.query(sql, (err, rows, fields) => {
+                        data = rows;
+
+                    })
+
+        });
+
+            res.json('success');
+
+    } else {
+        res.send('Vous ne pouvez effectuer cet action.');
+    }
+});
+app.get("/admin/valider", (req, res) => {
+    var id_client = req.query.id_client;
+    var id_cc = req.query.id_cc;
+    if (req.session.role === 'admin') {
+        const userid = req.session.userid;
+        id_cc.forEach (id =>{
+            var data = '';
+            var sql = "update chambreclient set status_ch=1, id_user =" +userid + ' '+ " where id_client = "  +id_client + ' ' + " and idchambreClient = " + id + " ";
+            mysqlConnection.query(sql, (err, rows, fields) => {
+                data = rows;
+            })
+
+        });
+
+        res.json('success');
+
+    } else {
+        res.send('Vous ne pouvez effectuer cet action.');
     }
 });
 app.get("/admin/genererFacture/:id", (req, res) => {

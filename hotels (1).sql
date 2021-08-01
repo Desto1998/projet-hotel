@@ -20,7 +20,21 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `hotels`
 --
+--
+-- Structure de la table `utilisateur`
+--
 
+DROP TABLE IF EXISTS `utilisateur`;
+CREATE TABLE IF NOT EXISTS `utilisateur` (
+    `id_user` int(11) NOT NULL,
+    `nom` varchar(45) NOT NULL,
+    `password` varchar(45) NOT NULL,
+    `tel` int(11) NOT NULL,
+    `cni` int(11) NOT NULL,
+    `email` varchar(45) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 -- --------------------------------------------------------
 
 --
@@ -34,7 +48,9 @@ CREATE TABLE IF NOT EXISTS `chambre` (
   `categorie` varchar(45) DEFAULT NULL,
   `prix` int(11) DEFAULT NULL,
   `status` varchar(10) NOT NULL,
-  PRIMARY KEY (`id_chambre`)
+  PRIMARY KEY (`id_chambre`),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 
 --
@@ -87,8 +103,14 @@ CREATE TABLE IF NOT EXISTS `chambreclient` (
   `idchambreClient` int(11) NOT NULL AUTO_INCREMENT,
   `id_client` int(11) NOT NULL,
   `id_chambre` int(11) NOT NULL,
+  `status_ch` int(11) NOT NULL,
+  `montant` float  NULL,
   `date` datetime NOT NULL,
-  PRIMARY KEY (`idchambreClient`)
+  PRIMARY KEY (`idchambreClient`),
+  `id_user` int NOT NULL,
+  foreign key (id_user) references utilisateur(id_user),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 
 --
@@ -118,7 +140,11 @@ CREATE TABLE IF NOT EXISTS `client` (
   `cni` int(11) NOT NULL,
   `date_ajout` datetime NOT NULL,
   PRIMARY KEY (`id_client`),
-  UNIQUE KEY `tel` (`tel`,`cni`)
+  UNIQUE KEY `tel` (`tel`,`cni`),
+  `id_user` int NOT NULL,
+ foreign key (id_user) references utilisateur(id_user),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 
 --
@@ -146,7 +172,11 @@ CREATE TABLE IF NOT EXISTS `commande` (
   `id_client` int(11) NOT NULL,
   `date_commande` datetime NOT NULL,
   `nombre` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_commande`)
+  PRIMARY KEY (`id_commande`),
+  `id_user` int NOT NULL,
+  foreign key (id_user) references utilisateur(id_user),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
 
 --
@@ -172,7 +202,11 @@ CREATE TABLE IF NOT EXISTS `entree` (
   `nom` varchar(45) NOT NULL,
   `prix` int(11) NOT NULL,
   `date` datetime NOT NULL,
-  PRIMARY KEY (`id_entree`)
+  PRIMARY KEY (`id_entree`),
+    `id_user` int NOT NULL,
+    foreign key (id_user) references utilisateur(id_user),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
@@ -197,7 +231,11 @@ CREATE TABLE IF NOT EXISTS `facture` (
   `reglement` float NOT NULL,
   `total` float NOT NULL,
   `id_client` int(11) NOT NULL,
-  PRIMARY KEY (`id_facture`)
+  PRIMARY KEY (`id_facture`),
+    `id_user` int NOT NULL,
+    foreign key (id_user) references utilisateur(id_user),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
 --
@@ -219,7 +257,9 @@ DROP TABLE IF EXISTS `profil`;
 CREATE TABLE IF NOT EXISTS `profil` (
   `id_profil` int(11) NOT NULL,
   `role` varchar(45) DEFAULT NULL,
-  `id_user` int(11) DEFAULT NULL
+  `id_user` int(11) DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -242,7 +282,11 @@ CREATE TABLE IF NOT EXISTS `sortie` (
   `libelle` varchar(45) NOT NULL,
   `prix` int(11) NOT NULL,
   `date` datetime NOT NULL,
-  PRIMARY KEY (`id_sortie`)
+  PRIMARY KEY (`id_sortie`),
+    `id_user` int NOT NULL,
+    foreign key (id_user) references utilisateur(id_user),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
@@ -254,20 +298,8 @@ INSERT INTO `sortie` (`id_sortie`, `libelle`, `prix`, `date`) VALUES
 
 -- --------------------------------------------------------
 
---
--- Structure de la table `utilisateur`
---
 
-DROP TABLE IF EXISTS `utilisateur`;
-CREATE TABLE IF NOT EXISTS `utilisateur` (
-  `id_user` int(11) NOT NULL,
-  `nom` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
-  `tel` int(11) NOT NULL,
-  `cni` int(11) NOT NULL,
-  `email` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
+ALTER TABLE `commande` CHANGE `status` `status` BOOLEAN NOT NULL DEFAULT TRUE;
 --
 -- Déchargement des données de la table `utilisateur`
 --
