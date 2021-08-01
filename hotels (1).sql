@@ -58,39 +58,37 @@ CREATE TABLE IF NOT EXISTS `chambre` (
 --
 
 INSERT INTO `chambre` (`id_chambre`, `code_chambre`, `categorie`, `prix`, `status`) VALUES
-(1, 'A001', 'climatise', 35000, 'occupé'),
-(2, 'A002', 'chambre standart', 27000, 'occupé'),
-(3, 'A003', 'salle de reunion', 16000, 'libre'),
-(4, 'A004', 'chambre double', 3000, 'occupé'),
-(5, 'A005', 'salle de reunion', 16000, 'libre'),
-(6, 'A006', 'chambre standart', 27000, 'occupé'),
-(7, 'A007', 'chambre standart', 27000, 'occupé'),
-(8, 'A007', 'chambre standart', 27000, 'occupé'),
-(9, 'A007', 'chambre standart', 27000, 'occupé'),
-(10, 'A008', 'chambre standart', 27000, 'occupé'),
-(11, 'A009', 'chambre standart', 27000, 'libre'),
-(12, 'A0010', 'chambre standart', 27000, 'libre'),
-(13, 'A0011', 'chambre standart', 27000, 'libre'),
-(14, 'A0012', 'chambre standart', 27000, 'libre'),
-(15, 'A0013', 'chambre standart', 27000, 'occupé'),
-(16, 'A0014', 'chambre standart', 27000, 'libre'),
-(17, 'A0015', 'chambre standart', 27000, 'occupé'),
-(18, 'A0016', 'chambre standart', 27000, 'libre'),
-(19, 'A0017', 'chambre standart', 27000, 'libre'),
-(20, 'A0018', 'climatise', 35000, 'libre'),
-(21, 'A0019', 'climatise', 35000, 'occupé'),
-(22, 'A0020', 'climatise', 35000, 'occupé'),
-(23, 'A0021', 'climatise', 35000, 'occupé'),
-(24, 'A0022', 'climatise', 35000, 'libre'),
-(25, 'A0023', 'climatise', 35000, 'libre'),
-(26, 'A0024', 'climatise', 35000, 'libre'),
-(27, 'A0025', 'climatise', 35000, 'libre'),
-(28, 'A0026', 'climatise', 35000, 'libre'),
-(29, 'A0027', 'climatise', 35000, 'libre'),
-(30, 'A0028', 'climatise', 35000, 'libre'),
-(31, 'A0029', 'appartement', 16000, 'libre'),
-(32, 'A0030', 'appartement', 16000, 'libre'),
-(33, 'A0031', 'appartement', 16000, 'libre');
+(1, 'A003', 'salle de reunion', 150000, 'libre'),
+(2, 'A005', 'salle de reunion', 35000, 'libre'),
+(102, 'A002', 'chambre standart', 27000, 'libre'),
+(109, 'A006', 'chambre standart', 27000, 'libre'),
+(201, 'A007', 'chambre standart', 27000, 'libre'),
+(202, 'A007', 'chambre standart', 27000, 'libre'),
+(204, 'A007', 'chambre standart', 27000, 'libre'),
+(205, 'A008', 'chambre standart', 27000, 'libre'),
+(206, 'A009', 'chambre standart', 27000, 'libre'),
+(207, 'A0010', 'chambre standart', 27000, 'libre'),
+(208, 'A0011', 'chambre standart', 27000, 'libre'),
+(209, 'A0012', 'chambre standart', 27000, 'libre'),
+(107, 'A0013', 'chambre standart', 27000, 'libre'),
+(105, 'A0014', 'chambre standart', 27000, 'libre'),
+(103, 'A0015', 'chambre standart', 27000, 'libre'),
+(101, 'A001', 'chambre confort', 35000, 'libre'),
+(104, 'A0018', 'chambre confort', 35000, 'libre'),
+(203, 'A0019', 'chambre confort', 35000, 'libre'),
+(210, 'A0020', 'chambre confort', 35000, 'libre'),
+(212, 'A0021', 'chambre confort', 35000, 'libre'),
+(214, 'A0022', 'chambre confort', 35000, 'libre'),
+(301, 'A0023', 'chambre confort', 35000, 'libre'),
+(307, 'A0024', 'chambre confort', 35000, 'libre'),
+(308, 'A0025', 'chambre confort', 35000, 'libre'),
+(303, 'A0026', 'chambre confort', 35000, 'libre'),
+(304, 'A0027', 'chambre confort', 35000, 'libre'),
+(305, 'A0028', 'chambre confort', 35000, 'libre'),
+(306, 'A0016', 'chambre confort', 35000, 'libre'),
+(302, 'A0029', 'suite', 60000, 'libre'),
+(309, 'A0030', 'suite', 60000, 'libre'),
+(310, 'A0031', 'suite', 60000, 'libre');
 
 -- --------------------------------------------------------
 
@@ -108,7 +106,6 @@ CREATE TABLE IF NOT EXISTS `chambreclient` (
   `date` datetime NOT NULL,
   PRIMARY KEY (`idchambreClient`),
   `id_user` int NOT NULL,
-  foreign key (id_user) references utilisateur(id_user),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
@@ -117,13 +114,13 @@ CREATE TABLE IF NOT EXISTS `chambreclient` (
 -- Déchargement des données de la table `chambreclient`
 --
 
-INSERT INTO `chambreclient` (`idchambreClient`, `id_client`, `id_chambre`, `date`) VALUES
-(27, 27, 20, '2021-07-13 09:30:31'),
-(28, 27, 21, '2021-07-13 09:30:31'),
-(29, 27, 7, '2021-07-13 09:30:54'),
-(30, 28, 8, '2021-07-13 14:04:14'),
-(31, 29, 1, '2021-07-13 14:40:19'),
-(32, 29, 1, '2021-07-13 14:40:19');
+INSERT INTO `chambreclient` (`idchambreClient`, `id_client`, `id_chambre`, `date`,`id_user`) VALUES
+(27, 27, 20, '2021-07-13 09:30:31',1),
+(28, 27, 21, '2021-07-13 09:30:31',1),
+(29, 27, 7, '2021-07-13 09:30:54',1),
+(30, 28, 8, '2021-07-13 14:04:14',1),
+(31, 29, 1, '2021-07-13 14:40:19',1),
+(32, 29, 1, '2021-07-13 14:40:19',1);
 
 -- --------------------------------------------------------
 
@@ -142,7 +139,6 @@ CREATE TABLE IF NOT EXISTS `client` (
   PRIMARY KEY (`id_client`),
   UNIQUE KEY `tel` (`tel`,`cni`),
   `id_user` int NOT NULL,
- foreign key (id_user) references utilisateur(id_user),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
@@ -151,10 +147,10 @@ CREATE TABLE IF NOT EXISTS `client` (
 -- Déchargement des données de la table `client`
 --
 
-INSERT INTO `client` (`id_client`, `nom`, `prenom`, `tel`, `cni`, `date_ajout`) VALUES
-(27, 'CHOMBONG', 'Russelle', 698375118, 123456, '2021-07-13 09:30:31'),
-(28, 'simeu', 'Thibaut', 789456123, 3366995, '2021-07-13 14:04:14'),
-(29, 'totos', 'tatas', 456321789, 157963, '2021-07-13 14:40:19');
+INSERT INTO `client` (`id_client`, `nom`, `prenom`, `tel`, `cni`, `date_ajout`,`id_user`) VALUES
+(27, 'CHOMBONG', 'Russelle', 698375118, 123456, '2021-07-13 09:30:31',1),
+(28, 'simeu', 'Thibaut', 789456123, 3366995, '2021-07-13 14:04:14',1),
+(29, 'totos', 'tatas', 456321789, 157963, '2021-07-13 14:40:19',1);
 
 -- --------------------------------------------------------
 
@@ -174,7 +170,6 @@ CREATE TABLE IF NOT EXISTS `commande` (
   `nombre` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_commande`),
   `id_user` int NOT NULL,
-  foreign key (id_user) references utilisateur(id_user),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
@@ -183,12 +178,12 @@ CREATE TABLE IF NOT EXISTS `commande` (
 -- Déchargement des données de la table `commande`
 --
 
-INSERT INTO `commande` (`id_commande`, `nom_commande`, `lieu`, `montant`, `status`, `id_client`, `date_commande`, `nombre`) VALUES
-(36, '', 'Restaurant', 700, 0, 28, '2021-07-13 14:04:44', 2),
-(37, '', 'Linge', 10000, 0, 28, '2021-07-13 14:04:59', 1),
-(38, '', 'Restaurant', 500, 0, 28, '2021-07-13 14:05:26', 1),
-(39, '', 'Restaurant', 700, 0, 27, '2021-07-13 14:08:01', 2),
-(40, '', 'Divers', 500, 0, 27, '2021-07-13 14:09:53', 2);
+INSERT INTO `commande` (`id_commande`, `nom_commande`, `lieu`, `montant`, `status`, `id_client`, `date_commande`, `nombre`,`id_user`) VALUES
+(36, '', 'Restaurant', 700, 0, 28, '2021-07-13 14:04:44', 2,1),
+(37, '', 'Linge', 10000, 0, 28, '2021-07-13 14:04:59', 1,1),
+(38, '', 'Restaurant', 500, 0, 28, '2021-07-13 14:05:26', 1,1),
+(39, '', 'Restaurant', 700, 0, 27, '2021-07-13 14:08:01', 2,1),
+(40, '', 'Divers', 500, 0, 27, '2021-07-13 14:09:53', 2,1);
 
 -- --------------------------------------------------------
 
@@ -204,7 +199,6 @@ CREATE TABLE IF NOT EXISTS `entree` (
   `date` datetime NOT NULL,
   PRIMARY KEY (`id_entree`),
     `id_user` int NOT NULL,
-    foreign key (id_user) references utilisateur(id_user),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
@@ -213,10 +207,10 @@ CREATE TABLE IF NOT EXISTS `entree` (
 -- Déchargement des données de la table `entree`
 --
 
-INSERT INTO `entree` (`id_entree`, `nom`, `prix`, `date`) VALUES
-(1, 'reglement', 500, '2021-07-25 18:01:23'),
-(2, 'reglement', 500, '2021-07-25 18:03:51'),
-(3, 'reglement', 500, '2021-07-25 18:05:13');
+INSERT INTO `entree` (`id_entree`, `nom`, `prix`, `date`,`id_user`) VALUES
+(1, 'reglement', 500, '2021-07-25 18:01:23',1),
+(2, 'reglement', 500, '2021-07-25 18:03:51',1),
+(3, 'reglement', 500, '2021-07-25 18:05:13',1);
 
 -- --------------------------------------------------------
 
@@ -233,7 +227,6 @@ CREATE TABLE IF NOT EXISTS `facture` (
   `id_client` int(11) NOT NULL,
   PRIMARY KEY (`id_facture`),
     `id_user` int NOT NULL,
-    foreign key (id_user) references utilisateur(id_user),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
@@ -242,10 +235,10 @@ CREATE TABLE IF NOT EXISTS `facture` (
 -- Déchargement des données de la table `facture`
 --
 
-INSERT INTO `facture` (`id_facture`, `reporter`, `reglement`, `total`, `id_client`) VALUES
-(21, 16200, 10000, 6200, 27),
-(22, 24700, 0, 24700, 28),
-(23, 0, 0, 0, 29);
+INSERT INTO `facture` (`id_facture`, `reporter`, `reglement`, `total`, `id_client`,`id_user`) VALUES
+(21, 16200, 10000, 6200, 27,1),
+(22, 24700, 0, 24700, 28,1),
+(23, 0, 0, 0, 29,1);
 
 -- --------------------------------------------------------
 
@@ -284,7 +277,6 @@ CREATE TABLE IF NOT EXISTS `sortie` (
   `date` datetime NOT NULL,
   PRIMARY KEY (`id_sortie`),
     `id_user` int NOT NULL,
-    foreign key (id_user) references utilisateur(id_user),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
@@ -293,8 +285,8 @@ CREATE TABLE IF NOT EXISTS `sortie` (
 -- Déchargement des données de la table `sortie`
 --
 
-INSERT INTO `sortie` (`id_sortie`, `libelle`, `prix`, `date`) VALUES
-(1, 'Bar', 500, '2021-07-25 18:05:47');
+INSERT INTO `sortie` (`id_sortie`, `libelle`, `prix`, `date`,`id_user`) VALUES
+(1, 'Bar', 500, '2021-07-25 18:05:47',1);
 
 -- --------------------------------------------------------
 

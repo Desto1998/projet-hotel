@@ -23,201 +23,251 @@
 </head>
 
 <body>
-    <!--------------------------------Navigation------------------------------->
-    <header>
-        <ul>
-            <img src="/image/Logo-atitle-hotelJ.png" class="logo" alt="">
-            <li class="clientNom" id="nom" style="float:left"> ALTITEL HOTEL</li>
-            <li><a href="/logout" class="deconnexion">Déconnexion</a></li>
-            <li class=" main_courante"><a href="/receptioniste/main_courant">Main couran</a></li>
-            <li class="bilan"><a href="">Bilan</a></li>
-            <li class="facture"><a href="">Facture</a></li>
-            <li class=" accueil"><a href="/acceuil/clients">Accueil</a></li>
-        </ul>
-    </header>
+<!--------------------------------Navigation------------------------------->
+<header>
+    <ul>
+        <img src="/image/Logo-atitle-hotelJ.png" class="logo" alt="">
+        <li class="clientNom" id="nom" style="float:left"> ALTITEL HOTEL</li>
+        <li><a href="/logout" class="deconnexion">Déconnexion</a></li>
+        <li class=" main_courante"><a href="/receptioniste/main_courant">Main couran</a></li>
+        <li class="bilan"><a href="">Bilan</a></li>
+        <li class="facture"><a href="">Facture</a></li>
+        <li class=" accueil"><a href="/acceuil/clients">Accueil</a></li>
+    </ul>
+</header>
 
-    <!--      <nav class="nav">-->
-    <!--          <div class="nav-menu flex-row">-->
-    <!--              <div class="nav-brand">-->
-    <!--                  <div class="img">-->
-    <!--                    <img src="/image/Logo-atitle-hotelJ.png" alt="logo"  style="width: 50px; height: 50px;">-->
-    <!--                  </div>          -->
-    <!--                    <span> HOTEL ALTITEL</span>-->
-    <!--              </div>-->
-    <!--              -->
+<!--      <nav class="nav">-->
+<!--          <div class="nav-menu flex-row">-->
+<!--              <div class="nav-brand">-->
+<!--                  <div class="img">-->
+<!--                    <img src="/image/Logo-atitle-hotelJ.png" alt="logo"  style="width: 50px; height: 50px;">-->
+<!--                  </div>          -->
+<!--                    <span> HOTEL ALTITEL</span>-->
+<!--              </div>-->
+<!--              -->
 
-    <!--              <div class="toggle-collapse">-->
-    <!--                  <div class="toggle-icons">-->
-    <!--                      <i class="fas fa-bars"></i>-->
-    <!--                  </div>-->
-    <!--              </div>-->
+<!--              <div class="toggle-collapse">-->
+<!--                  <div class="toggle-icons">-->
+<!--                      <i class="fas fa-bars"></i>-->
+<!--                  </div>-->
+<!--              </div>-->
 
-    <!--              <div class="nav-items">-->
-    <!--                  <li class="nav-link">-->
-    <!--                    <a href="/acceuil/clients">Accueil</a>-->
-    <!--                  </li>-->
-    <!--                  <li class="nav-link">-->
-    <!--                    <a href="/receptioniste/main_courant">Main courant</a>-->
-    <!--                  </li>-->
-    <!--                  <li class="nav-link">-->
-    <!--                    <a href="">Bilan</a>-->
-    <!--                  </li>-->
-    <!--                  <li class="nav-link">-->
-    <!--                    <a href="">Facture</a>-->
-    <!--                  </li>-->
-    <!--                  <li class="nav-link">-->
-    <!--                    <a href="">Contact </a>-->
-    <!--                  </li>-->
-    <!--              </div>-->
+<!--              <div class="nav-items">-->
+<!--                  <li class="nav-link">-->
+<!--                    <a href="/acceuil/clients">Accueil</a>-->
+<!--                  </li>-->
+<!--                  <li class="nav-link">-->
+<!--                    <a href="/receptioniste/main_courant">Main courant</a>-->
+<!--                  </li>-->
+<!--                  <li class="nav-link">-->
+<!--                    <a href="">Bilan</a>-->
+<!--                  </li>-->
+<!--                  <li class="nav-link">-->
+<!--                    <a href="">Facture</a>-->
+<!--                  </li>-->
+<!--                  <li class="nav-link">-->
+<!--                    <a href="">Contact </a>-->
+<!--                  </li>-->
+<!--              </div>-->
 
-    <!--              <div class="social text-gray">-->
-    <!--                <a href="/logout" class="lien">Déconnexion</a>-->
-    <!--              </div>-->
-    <!--          </div>-->
-    <!--        </nav>-->
+<!--              <div class="social text-gray">-->
+<!--                <a href="/logout" class="lien">Déconnexion</a>-->
+<!--              </div>-->
+<!--          </div>-->
+<!--        </nav>-->
 
-    <!-----------------------------End of Navigation--------------------------->
-
-
+<!-----------------------------End of Navigation--------------------------->
 
 
-    <section class="container">
-        <% if(typeof alert != 'undefined'){%>
-            <% alert.forEach(function(error){%>
-                <div class="champ justify-content-center text-center d-flex">
-                    <div class="col-md-8 p-2 text-center  alert-danger">
-                        <%= error.msg %>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+<section class="container">
+    <% if(typeof alert != 'undefined'){ %>
+        <% alert.forEach(function(error){ %>
+            <div class="champ justify-content-center text-center d-flex">
+                <div class="col-md-8 p-2 text-center  alert-danger">
+                    <%= error.msg %>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        <% }) %>
+
+    <% } %>
+    <div class="content">
+        <form method="post" action="/client/rechercher">
+            <h2><strong>Enregistrement des clients</strong></h2>
+            <div class="bar_de_recherche">
+                <input type="search" name="rechercher" id="Recherche" require="Entrer le numéro de CNI"
+                       placeholder="Rechercher un clien..." class="recherche">
+                <button type="submit" class="boutton_recherche"><strong>Recherche</strong></button>
+            </div>
+        </form>
+
+    </div>
+    <% if(typeof infos != 'undefined'){
+    infos.forEach(function(r){ %>
+    <form method="post" action="/receptioniste/client">
+        <div class="champ">
+            <h3><strong>Information du client</strong></h3>
+            <div class="contenu">
+                <div class="nom_num">
+                    <div class="nom">
+                        <p>Nom du client</p>
+                        <input type="text" id="nom" name="nom" value="<%= r.nom %>">
+                        <input type="hidden" id="nom" name="nom" value="<%= r.id_client %>">
+                    </div>
+                    <div class="nom">
+                        <p>Numero de téléphone</p>
+                        <input type="text" id="phone" name="phone" value="<%= r.tel %>">
                     </div>
                 </div>
-                <% }) %>
 
-                    <% } %>
-                        <div class="content">
-                            <form method="post" action="/client/rechercher">
-                                <h2><strong>Enregistrement des clients</strong></h2>
-                                <div class="bar_de_recherche">
-                                    <input type="search" name="rechercher" id="Recherche" require="Entrer le numéro de CNI" placeholder="Rechercher un clien..." class="recherche">
-                                    <button type="submit" class="boutton_recherche"><strong>Recherche</strong></button>
-                                </div>
-                            </form>
+                <div class="prenom_cin">
+                    <div class="nom">
+                        <p>Prenom du client</p>
+                        <input type="text" id="prenom" name="prenom" value="<%= r.prenom %>">
+                    </div>
+                    <div class="nom">
+                        <p>Numero de CIN</p>
+                        <input type="text" id="cni" name="cni" value="<%= r.cni %>">
+                    </div>
+                </div>
+            </div>
+            <% })} %>
+            <h2>Chambre(s) disponible(s)</h2>
 
-                        </div>
-                        <% if(typeof infos != 'undefined'){
-            infos.forEach(function(r){%>
-                            <form method="post" action="/receptioniste/client">
-                                <div class="champ">
-                                    <h3><strong>Information du client</strong></h3>
-                                    <div class="contenu">
-                                        <div class="nom_num">
-                                            <div class="nom">
-                                                <p>Nom du client</p>
-                                                <input type="text" id="nom" name="name" value="<%= r.nom%>">
-                                            </div>
-                                            <div class="nom">
-                                                <p>Numero de téléphone</p>
-                                                <input type="text" id="phone" name="phone" value="<%= r.tel%>">
-                                            </div>
-                                        </div>
+            <div class="etat">
+                <div class="col-md-12 col-ms-12 col-xl-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-md-4 col-lg-4 col-xl-4">
+                            <div class="chambre_standart">
+                                <p>Chambre standart</p>
 
-                                        <div class="prenom_cin">
-                                            <div class="nom">
-                                                <p>Prenom du client</p>
-                                                <input type="text" id="prenom" name="prenom" value="<%= r.prenom%>">
-                                            </div>
-                                            <div class="nom">
-                                                <p>Numero de CIN</p>
-                                                <input type="text" id="cni" name="cni" value="<%= r.cni%>">
-                                            </div>
-                                        </div>
+
+                                <% row.forEach(function(r){
+
+                                if(r.categorie==='chambre standart'){
+                                %>
+                                <div class="row">
+                                    <div class="col-md-4 col-lg-4">
+                                        N°
+                                        <%=r.id_chambre%>
+                                        <input type="checkbox" class="back" onchange="showMontant(<%=r.id_chambre%>)" id="chambre<%=r.id_chambre%>" name="chambre[]" value="<%=r.id_chambre%>" >
+
                                     </div>
-                                    <%})}%>
-                                        <h2>Chambre(s) disponible(s)</h2>
-
-                                        <div class="etat">
-
-                                            <div class="chambre_standart">
-                                                <p>Chambre standart</p>
-                                                <% row.forEach(function(r){
-
-                    if(r.categorie==='chambre standart'){
-                    %>
-                                                    N°
-                                                    <%=r.id_chambre%>
-                                                        <input type="checkbox" class="back" id="gap" name="chambre" value="<%=r.id_chambre%>" class="b">
-                                                        <% }
-                    }) %>
-
-                                            </div>
-                                            <div class="chambre_standart">
-                                                <p>Chambre climatisée</p>
-                                                <% row.forEach(function(r){
-
-                    if(r.categorie==='chambre confort'){
-                    %>
-                                                    N°
-                                                    <%=r.id_chambre%>
-                                                        <input type="checkbox" class="back" id="gap" name="chambre" value="<%=r.id_chambre%>" class="b">
-                                                        <% }
-                    }) %>
-
-                                            </div>
-                                            <div class="chambre_standart">
-                                                <p>Salle de réunion</p>
-                                                <% row.forEach(function(r){
-                    if(r.categorie==='salle de reunion'){
-                    %>
-                                                    N°
-                                                    <%=r.id_chambre%>
-                                                        <input type="checkbox" class="back" id="gap" name="chambre" value="<%=r.id_chambre%>" class="b">
-                                                        <% }
-                    }) %>
-
-                                            </div>
-                                            <div class="chambre_standart">
-                                                <p>Chambre double</p>
-                                                <% row.forEach(function(r){
-                    if(r.categorie==='chambre double'){
-                    %>
-                                                    N°
-                                                    <%=r.id_chambre%>
-                                                        <input type="checkbox" class="back" id="gap" name="chambre" value="<%=r.id_chambre%>" class="b">
-                                                        <% }
-                    }) %>
-
-                                            </div>
-                                            <div class="chambre_standart">
-                                                <p>Appartement</p>
-                                                <% row.forEach(function(r){
-                    if(r.categorie==='suite'){
-                    %>
-
-                                                    N°
-                                                    <%=r.id_chambre%>
-                                                        <input type="checkbox" class="back" id="gap" name="chambre" value="<%=r.id_chambre%>" class="b">
-                                                        <% }
-                    }) %>
-                                                            <!--                    <button class="back" id="gap">1</button>-->
-                                                            <!--                    <button class="back">2</button>-->
-                                            </div>
-                                        </div>
-
-                                        <button type="submit" class="checked_in">Enregistrer</button>
+                                    <div class="col-md-6 col-lg-6" style="display: none" id="montantblock<%=r.id_chambre%>" >
+                                        Montant<input type="number"  disabled  class="back form-control" id="montant<%=r.id_chambre%>" name="montant[]" value="<%=r.prix%>">
+                                    </div>
                                 </div>
-                            </form>
-    </section>
+                                <% }
+                                }) %>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-xl-4">
+                            <div class="chambre_standart">
+                                <p>Chambre climatisée</p>
+                                <% row.forEach(function(r){
+
+                                if(r.categorie==='chambre confort'){
+                                %>
+                                <div class="row">
+                                    <div class="col-md-4 col-lg-4">
+                                        N°
+                                        <%=r.id_chambre%>
+                                        <input type="checkbox" class="back" onchange="showMontant(<%=r.id_chambre%>)" id="chambre<%=r.id_chambre%>" name="chambre[]" value="<%=r.id_chambre%>" >
+                                    </div>
+                                    <div class="col-md-6 col-lg-6" style="display: none" id="montantblock<%=r.id_chambre%>">
+                                        Montant  <input type="number" id="montant<%=r.id_chambre%>" class="back form-control"  name="montant[]" value="<%=r.prix%>" >
+                                    </div>
+
+                                </div>
+
+                                <% }
+                                }) %>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-xl-4">
+                            <div class="chambre_standart">
+                                <p>Salle de réunion</p>
+
+                                <% row.forEach(function(r){
+                                if(r.categorie==='salle de reunion'){
+                                %>
+                                <div class="row">
+                                    <div class="col-md-4 col-lg-4">
+                                        N°
+                                        <%=r.id_chambre%>
+                                        <input type="checkbox" class="back" onchange="showMontant(<%=r.id_chambre%>)" id="chambre<%=r.id_chambre%>" name="chambre" value="<%=r.id_chambre%>" >
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 " style="display: none" id="montantblock<%=r.id_chambre%>">
+                                        Montant<input type="number" class="back" id="montant<%=r.id_chambre%>" name="montant_ru" value="<%=r.prix%>" >
+
+                                    </div>
+                                </div>
+                                <% }
+                                }) %>
+
+                            </div>
+
+                            <div class="chambre_standart">
+                                <p>Appartement</p>
+                                <% row.forEach(function(r){
+                                if(r.categorie==='suite'){
+                                %>
+                                <div class="row">
+                                    <div class="col-md-4 col-lg-4">
+                                        N°
+                                        <%=r.id_chambre%>
+                                        <input type="checkbox" onchange="showMontant(<%=r.id_chambre%>)" class="back" id="chambre<%=r.id_chambre%>" name="chambre[]" value="<%=r.id_chambre%>" >
+                                    </div>
+                                    <div class="col-md-6 col-lg-6" style="display: none" id="montantblock<%=r.id_chambre%>">
+                                        Montant<input type="number" class="back form-control" id="montant<%=r.id_chambre%>" name="montant[]" value="<%=r.prix%>" >
+
+                                    </div>
+                                </div>
+
+                                <% }
+                                }) %>
+                                <!--                    <button class="back" id="gap">1</button>-->
+                                <!--                    <button class="back">2</button>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="checked_in">Enregistrer</button>
+        </div>
+    </form>
+</section>
 
 
+<!-----------------------------Jquery Library file---------------------------->
+<script src="../../public/enregistrer/js/Jquery3.4.1.min.js"></script>
 
+<!-----------------------------Custom javascript file------------------------->
+<script src="../../public/enregistrer/js/main.js"></script>
+<script>
+    function showMontant(id){
+        var id_chambre = $('#chambre'+id).val();
+        if (id_chambre == id){
+            if($("#chambre"+id).is(':checked')){
+                $('#montantblock'+id).show(100);
+                $('#montant'+id).attr('disabled',false);
+                $('#montant'+id).prop('required',true);
+            }else {
+                $('#montant'+id).attr('disabled',true);
+                $('#montantblock'+id).hide(100);
+                $('#montant'+id).prop('required',false);
+            }
 
-
-    <!-----------------------------Jquery Library file---------------------------->
-    <script src="../../public/enregistrer/js/Jquery3.4.1.min.js"></script>
-
-    <!-----------------------------Custom javascript file------------------------->
-    <script src="../../public/enregistrer/js/main.js"></script>
+        }else {
+            $('#montant'+id).attr('disabled',true);
+            $('#montantblock'+id).hide(100);
+            $('#montant'+id).prop('required',false);
+        }
+    }
+</script>
 </body>
 
 </html>

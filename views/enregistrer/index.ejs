@@ -91,25 +91,25 @@
             </form>
 
         </div>
-
+        <form method="post" action="/receptioniste/client/ajouter">
         <div class="champ">
             <h3><strong>Information du client</strong></h3>
             <div class="contenu">
                 <div class="nom_num">
                     <div class="nom">
                         <p>Nom du client</p>
-                        <input type="text" id="nom" name="nom">
+                        <input type="text" id="nom" name="nom" required="Veillez saisir le nom du client" min="3">
                     </div>
                     <div class="nom">
                         <p>Numero de téléphone</p>
-                        <input type="text" id="phone" name="phone">
+                        <input type="text" id="phone" name="phone" required>
                     </div>
                 </div>
 
                 <div class="prenom_cin">
                     <div class="nom">
                         <p>Prenom du client</p>
-                        <input type="text" id="prenom" name="prenom">
+                        <input type="text" id="prenom" name="prenom" >
                     </div>
                     <div class="nom">
                         <p>Addresse</p>
@@ -119,7 +119,7 @@
                 <div class="cni">
                     <div class="nom">
                         <p>Numero de CNI</p>
-                        <input type="text" id="cni" name="cni">
+                        <input type="text" id="cni" name="cni" required="Veillez entrer l'adresse email">
                     </div>
 
                 </div>
@@ -127,71 +127,102 @@
             <h2 style="margin-top: 2%;">Chambre(s) disponible(s)</h2>
 
             <div class="etat">
+            <div class="col-md-12 col-ms-12 col-xl-12 col-lg-12">
+                <div class="row">
+                    <div class="col-md-4 col-lg-4 col-xl-4">
+                        <div class="chambre_standart">
+                            <p>Chambre standart</p>
 
-                <div class="chambre_standart">
-                    <p>Chambre standart</p>
-                    <% row.forEach(function(r){
 
-                    if(r.categorie==='chambre standart'){
-                    %>
-                        N°
-                        <%=r.id_chambre%>
-                            <input type="checkbox" class="back" id="gap" name="chambre" value="<%=r.id_chambre%>" class="b">
+                                <% row.forEach(function(r){
+
+                                if(r.categorie==='chambre standart'){
+                                %>
+                            <div class="row">
+                                <div class="col-md-4 col-lg-4">
+                                    N°
+                                    <%=r.id_chambre%>
+                                    <input type="checkbox" class="back" onchange="showMontant(<%=r.id_chambre%>)" id="chambre<%=r.id_chambre%>" name="chambre" value="<%=r.id_chambre%>" >
+
+                                </div>
+                                <div class="col-md-6 col-lg-6" style="display: none" id="montantblock<%=r.id_chambre%>" >
+                                    Montant<input type="number"  disabled  class="back form-control" id="montant<%=r.id_chambre%>" name="montant" value="<%=r.prix%>">
+                                </div>
+                            </div>
+                                <% }
+                                }) %>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-xl-4">
+                        <div class="chambre_standart">
+                            <p>Chambre climatisée</p>
+                            <% row.forEach(function(r){
+
+                            if(r.categorie==='chambre confort'){
+                            %>
+                            <div class="row">
+                                <div class="col-md-4 col-lg-4">
+                                    N°
+                                    <%=r.id_chambre%>
+                                    <input type="checkbox" class="back" onchange="showMontant(<%=r.id_chambre%>)" id="chambre<%=r.id_chambre%>" name="chambre" value="<%=r.id_chambre%>" >
+                                </div>
+                                <div class="col-md-6 col-lg-6" style="display: none" id="montantblock<%=r.id_chambre%>" >
+                                    Montant<input type="number"  disabled  class="back form-control" id="montant<%=r.id_chambre%>" name="montant" value="<%=r.prix%>">
+                                </div>
+
+                            </div>
+
                             <% }
-                    }) %>
+                            }) %>
 
-                </div>
-                <div class="chambre_standart">
-                    <p>Chambre climatisée</p>
-                    <% row.forEach(function(r){
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-xl-4">
+                        <div class="chambre_standart">
+                            <p>Salle de réunion</p>
 
-                    if(r.categorie==='chambre confort'){
-                    %>
-                        N°
-                        <%=r.id_chambre%>
-                            <input type="checkbox" class="back" id="gap" name="chambre" value="<%=r.id_chambre%>" class="b">
+                                <% row.forEach(function(r){
+                                if(r.categorie==='salle de reunion'){
+                                %>
+                            <div class="row">
+                                <div class="col-md-4 col-lg-4">
+                                    N°
+                                    <%=r.id_chambre%>
+                                    <input type="checkbox" class="back" onchange="showMontant(<%=r.id_chambre%>)" id="chambre<%=r.id_chambre%>" name="chambre" value="<%=r.id_chambre%>" >
+                                </div>
+                                <div class="col-md-6 col-lg-6" style="display: none" id="montantblock<%=r.id_chambre%>" >
+                                    Montant<input type="number"  disabled  class="back form-control" id="montant<%=r.id_chambre%>" name="montant" value="<%=r.prix%>">
+                                </div>
+                            </div>
+                                <% }
+                                }) %>
+
+                        </div>
+
+                        <div class="chambre_standart">
+                            <p>Appartement</p>
+                            <% row.forEach(function(r){
+                            if(r.categorie==='suite'){
+                            %>
+                                <div class="row">
+                                    <div class="col-md-4 col-lg-4">
+                                        N°
+                                        <%=r.id_chambre%>
+                                        <input type="checkbox" onchange="showMontant(<%=r.id_chambre%>)" class="back" id="chambre<%=r.id_chambre%>" name="chambre" value="<%=r.id_chambre%>" >
+                                    </div>
+                                    <div class="col-md-6 col-lg-6" style="display: none" id="montantblock<%=r.id_chambre%>" >
+                                        Montant<input type="number"  disabled  class="back form-control" id="montant<%=r.id_chambre%>" name="montant" value="<%=r.prix%>">
+                                    </div>
+                                </div>
+
                             <% }
-                    }) %>
-
+                            }) %>
+                            <!--                    <button class="back" id="gap">1</button>-->
+                            <!--                    <button class="back">2</button>-->
+                        </div>
+                    </div>
                 </div>
-                <div class="chambre_standart">
-                    <p>Salle de réunion</p>
-                    <% row.forEach(function(r){
-                    if(r.categorie==='salle de reunion'){
-                    %>
-                        N°
-                        <%=r.id_chambre%>
-                            <input type="checkbox" class="back" id="gap" name="chambre" value="<%=r.id_chambre%>" class="b">
-                            <% }
-                    }) %>
-
-                </div>
-                <div class="chambre_standart">
-                    <p>Chambre double</p>
-                    <% row.forEach(function(r){
-                    if(r.categorie==='chambre double'){
-                    %>
-                        N°
-                        <%=r.id_chambre%>
-                            <input type="checkbox" class="back" id="gap" name="chambre" value="<%=r.id_chambre%>" class="b">
-                            <% }
-                    }) %>
-
-                </div>
-                <div class="chambre_standart">
-                    <p>Appartement</p>
-                    <% row.forEach(function(r){
-                    if(r.categorie==='suite'){
-                    %>
-
-                        N°
-                        <%=r.id_chambre%>
-                            <input type="checkbox" class="back" id="gap" name="chambre" value="<%=r.id_chambre%>" class="b">
-                            <% }
-                    }) %>
-                                <!--                    <button class="back" id="gap">1</button>-->
-                                <!--                    <button class="back">2</button>-->
-                </div>
+            </div>
             </div>
 
 
@@ -199,7 +230,9 @@
 
                 <button type="submit" class="checked_in">Enregistrer</button>
             </div>
+
         </div>
+        </form>
     </section>
 
 
@@ -218,6 +251,27 @@
 
     <!-----------------------------Custom javascript file------------------------->
     <script src="../../public/enregistrer/js/main.js"></script>
+<script>
+    function showMontant(id){
+        var id_chambre = $('#chambre'+id).val();
+        if (id_chambre == id){
+            if($("#chambre"+id).is(':checked')){
+                $('#montantblock'+id).show(100);
+                $('#montant'+id).attr('disabled',false);
+                $('#montant'+id).prop('required',true);
+            }else {
+                $('#montant'+id).attr('disabled',true);
+                $('#montantblock'+id).hide(100);
+                $('#montant'+id).prop('required',false);
+            }
+
+        }else {
+            $('#montant'+id).attr('disabled',true);
+            $('#montantblock'+id).hide(100);
+            $('#montant'+id).prop('required',false);
+        }
+    }
+</script>
 </body>
 
 </html>
