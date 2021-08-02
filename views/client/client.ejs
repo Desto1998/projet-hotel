@@ -33,7 +33,7 @@
             <li class="clientNom" id="nom" style="float:left">HOTEL ALTITEL</li>
             <li><a href="/logout" class="deconnexion">Déconnexion</a></li>
             <li class=" main_courante"><a href="/receptioniste/main_courant">Main courante</a></li>
-            <li class="bilan"><a href="">Bilan</a></li>
+            <li class="bilan"><a href="/bilan">Bilan</a></li>
             <li class=" accueil"><a href="/acceuil/clients">Accueil</a></li>
         </ul>
     </header>
@@ -46,9 +46,34 @@
 
             <div class="enregistrer">
 
-                <a href="/receptioniste/client">
-                    <button class="h2">Nouveau client</button>
-                </a>
+            <a href="/receptioniste/client">
+                <button class="h2">Nouveau client</button>
+            </a>
+        </div>
+        <section class="resultatGlobal">
+            <h4 class="titre1">
+                Nombre total de client</h4>
+            <h5 class="sousTitre1">
+                Nombre total de client present dans l'hotel
+            </h5>
+            <p class="nombre_client " id="nombre_client">
+                <% var nbr=0; client.forEach(function(row){
+                <% var nbr=0; chambre.forEach(function(ch){
+                    if(ch.id_client === row.id_client && ch.status=='occupé'){
+                        
+                        nbr += 0;
+                        %>
+                                <%  })} });
+                                
+                                %>
+                                <%=nbr%>
+            </P>
+            <hr class="separateur">
+            <div class="bas">
+                <div class="marqueur"></div>
+                <div class="texte1">
+                    <p>Cette information permet de constater le nombre total de client present dans l'hotel</p>
+                </div>
             </div>
             <section class="resultatGlobal">
                 <h4 class="titre1">

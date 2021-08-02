@@ -36,7 +36,7 @@
             <li class="clientNom" id="nom" style="float:left"> HOTEL ALTITEL</li>
             <li><a href="/logout" class="deconnexion">Déconnexion</a></li>
             <li class=" main_courante"><a href="/receptioniste/main_courant">Main courante</a></li>
-            <li class="bilan"><a href="">Bilan</a></li>
+            <li class="bilan"><a href="/bilan">Bilan</a></li>
             <li class=" accueil"><a href="/acceuil/clients">Accueil</a></li>
         </ul>
     </header>
@@ -110,36 +110,40 @@
                             </tr>
 
                         </thead>
-
+                        <%
+                        if(client.length>=1){
+                        client.forEach(function(row){
+                             totalj=0;
+                             totaljh=0;
+                             totalg=0;
+                             Tlinge = 0;
+                             Trestaurant = 0;
+                             TpetitD = 0;
+                             Tbar = 0;
+                             Tdivers = 0;
+                             Tchambre = 0;
+                             Total = 0;
+                             var num_ch = '';
+                             Veille = 0;
+                             Reglement = 0;
+                        %>
+                        <% if(chambreclient.length>=1){%>
+                            <% chambreclient.forEach(function(ch){
+                    if(ch.id_client === row.id_client && ch.status=='occupé'){
+                        Tchambre += ch.prix;
+                        num_ch += ch.id_chambre + ', ';
+                        %>
+                                <%  } })};
+                                
+                                %>
+                                <% if(num_ch!==''){%>
                         <tr>
-                            <%
-                    if(client.length>=1){
-                    client.forEach(function(row){
-                         totalj=0;
-                         totaljh=0;
-                         totalg=0;
-                         Tlinge = 0;
-                         Trestaurant = 0;
-                         TpetitD = 0;
-                         Tbar = 0;
-                         Tdivers = 0;
-                         Tchambre = 0;
-                         Total = 0;
-                         var num_ch = '';
-                         Veille = 0;
-                         Reglement = 0;
-                    %>
+                           
 
                                 <td>
                                     <%= row.nom %>
                                 </td>
-                                <% if(chambreclient.length>=1){%>
-                                    <% chambreclient.forEach(function(ch){
-                            if(ch.id_client === row.id_client){
-                                Tchambre += ch.prix;
-                                num_ch += ch.id_chambre + ', ';
-                                %>
-                                        <%  } })};%>
+                                
                                             <td>
                                                 <%= num_ch %>
                                             </td>
@@ -215,7 +219,7 @@
                                                                     </td>
                         </tr>
                         <% i = i + 1;
-                }) } else { %>
+               } }) } else { %>
                             <td></td>
                             <td>0</td>
                             <td>0</td>
