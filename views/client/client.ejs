@@ -9,11 +9,7 @@
     <!-- Import jquery cdn -->
     <script src="/js/Jquery3.4.1.min.js"></script>
 
-    <script src=
-            "https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-            integrity=
-            "sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-            crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
     </script>
     <link rel="stylesheet" type="text/css" href="../../public/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../public/fontawesome-5.15.2/css/fontawesome.min.css">
@@ -31,409 +27,397 @@
 </head>
 
 <body>
-<header>
-    <ul>
-        <img src="/image/Logo-atitle-hotelJ.png" class="logo" alt="">
-        <li class="clientNom" id="nom" style="float:left"> ALTITEL HOTEL</li>
-        <li><a href="/logout" class="deconnexion">Déconnexion</a></li>
-        <li class=" main_courante"><a href="/receptioniste/main_courant">Main courante</a></li>
-        <li class="bilan"><a href="">Bilan</a></li>
-        <li class=" accueil"><a href="/acceuil/clients">Accueil</a></li>
-    </ul>
-</header>
-<!--------------------------End of Tableau---------------------->
+    <header>
+        <ul>
+            <img src="/image/Logo-atitle-hotelJ.png" class="logo" alt="">
+            <li class="clientNom" id="nom" style="float:left">HOTEL ALTITEL</li>
+            <li><a href="/logout" class="deconnexion">Déconnexion</a></li>
+            <li class=" main_courante"><a href="/receptioniste/main_courant">Main courante</a></li>
+            <li class="bilan"><a href="">Bilan</a></li>
+            <li class=" accueil"><a href="/acceuil/clients">Accueil</a></li>
+        </ul>
+    </header>
+    <!--------------------------End of Tableau---------------------->
 
-<div class="corps">
+    <div class="corps">
 
-    <section class="gauche">
+        <section class="gauche">
 
 
-        <div class="enregistrer">
+            <div class="enregistrer">
 
-            <a href="/receptioniste/client">
-                <button class="h2">Nouveau client</button>
-            </a>
-        </div>
-        <section class="resultatGlobal">
-            <h4 class="titre1">
-                Nombre total de client</h4>
-            <h5 class="sousTitre1">
-                Nombre total de client present dans l'hotel
-            </h5>
-            <p class="nombre_client " id="nombre_client">
-                <%= client.length %>
-            </P>
-            <hr class="separateur">
-            <div class="bas">
-                <div class="marqueur"></div>
-                <div class="texte1">
-                    <p>Cette information permet de constater le nombre total de client present dans l'hotel</p>
-                </div>
+                <a href="/receptioniste/client">
+                    <button class="h2">Nouveau client</button>
+                </a>
             </div>
-        </section>
-        <section class="StatBrefClient">
-
-            <div class="nombreEnquete" id="liennbrenquetes">
-                <h4 class="titre2">
-                    Nouvelle Entrée
-                </h4>
-                <div class="entréesortie"><a href="/receptioniste/client/autre_entree">
-                        <button class="btnenregistrement">Entrée</button>
-                    </a></div>
-                <hr class="separateur1">
-                <div class="bas1">
-                    <div class="marqueur1"></div>
-                    <div class="texte2">
-                        <p>Cliquez ici pour enregistrer une nouvelle entrée</p>
+            <section class="resultatGlobal">
+                <h4 class="titre1">
+                    Nombre total de client</h4>
+                <h5 class="sousTitre1">
+                    Nombre total de client present dans l'hotel
+                </h5>
+                <p class="nombre_client " id="nombre_client">
+                    <%= client.length %>
+                </P>
+                <hr class="separateur">
+                <div class="bas">
+                    <div class="marqueur"></div>
+                    <div class="texte1">
+                        <p>Cette information permet de constater le nombre total de client present dans l'hotel</p>
                     </div>
                 </div>
-            </div>
+            </section>
+            <section class="StatBrefClient">
 
-            <div class="resultatEnqueteEnCours">
-                <h4 class="titre2">
-                    Nouvelle Sortie
-                </h4>
-
-                <div class="entréesortie"><a href="/receptioniste/client/autre_sortie">
-                        <button class="btnenregistrement">Sortie</button>
-                    </a></div>
-                <hr class="separateur1">
-                <div class="bas1">
-                    <div class="marqueur1"></div>
-                    <div class="texte2">
-                        <p>Cliquez ici pour enregistrer une nouvelle sortie</p>
+                <div class="nombreEnquete" id="liennbrenquetes">
+                    <h4 class="titre2">
+                        Nouvelle Entrée
+                    </h4>
+                    <div class="entréesortie">
+                        <a href="/receptioniste/client/autre_entree">
+                            <button class="btnenregistrement">Entrée</button>
+                        </a>
+                    </div>
+                    <hr class="separateur1">
+                    <div class="bas1">
+                        <div class="marqueur1"></div>
+                        <div class="texte2">
+                            <p>Cliquez ici pour enregistrer une nouvelle entrée</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+
+                <div class="resultatEnqueteEnCours">
+                    <h4 class="titre2">
+                        Nouvelle Sortie
+                    </h4>
+
+                    <div class="entréesortie">
+                        <a href="/receptioniste/client/autre_sortie">
+                            <button class="btnenregistrement">Sortie</button>
+                        </a>
+                    </div>
+                    <hr class="separateur1">
+                    <div class="bas1">
+                        <div class="marqueur1"></div>
+                        <div class="texte2">
+                            <p>Cliquez ici pour enregistrer une nouvelle sortie</p>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
 
         </section>
 
-    </section>
+        <!--------------------------End of enrégistement---------------------->
+        <section class="droite">
+            <div class="titredroit">
+                <h4 class="titreListe titre1">Liste des clients présent à l'hotel</h4>
+            </div>
+            <div class="table-responsive">
+                <div class="container mt-2">
 
-    <!--------------------------End of enrégistement---------------------->
-    <section class="droite">
-        <div class="titredroit">
-            <h4 class="titreListe titre1">Liste des clients présent à l'hotel</h4>
-        </div>
-        <div class="table-responsive">
-            <div class="container mt-2">
+                    <!-- Input field to accept user input -->
 
-                <!-- Input field to accept user input -->
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal"
-                     tabindex="-1"
-                     aria-labelledby="exampleModalLabel"
-                     aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">
+                                        Confirmation
+                                    </h5>
 
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title"
-                                    id="exampleModalLabel">
-                                    Confirmation
-                                </h5>
-
-                                <button type="button"
-                                        class="close"
-                                        data-dismiss="modal"
-                                        aria-label="Close">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">
                                             ×
                                         </span>
                                 </button>
-                            </div>
-
-                            <div class="modal-body">
-
-                                <!-- Data passed is displayed
-                                    in this part of the
-                                    modal body -->
-                                <div class="row">
-                                    <div class="col-md-8 offset-1 mt-2 mb-2">
-                                        <p>
-                                            Numero de chambre : <span class="gras"><label
-                                                        id="numchambre"></label></span>
-                                        <form action="/receptioniste/client/Liberer" method="POST">
-                                            <input type="text" name="numero"
-                                                   placeholder="numero chambre"/>
-
-
-                                            <button type="submit" class="btn btn-primary">
-                                                valider
-                                            </button>
-                                        </form>
-                                        </p>
-                                    </div>
                                 </div>
 
+                                <div class="modal-body">
+
+                                    <!-- Data passed is displayed
+                                    in this part of the
+                                    modal body -->
+                                    <div class="row">
+                                        <div class="col-md-8 offset-1 mt-2 mb-2">
+                                            <p>
+                                                Numero de chambre : <span class="gras"><label
+                                                        id="numchambre"></label></span>
+                                                <form action="/receptioniste/client/Liberer" method="POST">
+                                                    <input type="text" name="numero" placeholder="numero chambre" />
+
+
+                                                    <button type="submit" class="btn btn-primary">
+                                                valider
+                                            </button>
+                                                </form>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <table class="table table-borderless tableau">
+                <table class="table table-borderless tableau">
 
-                <thead class="forme">
-                <tr>
-                    <td>Nom</td>
-                    <td>N° chambre</td>
-                    <td>voir plus</td>
-                    <td>Passer<br>commande</td>
-                    <td>Consulter<br>facture</td>
+                    <thead class="forme">
+                        <tr>
+                            <td>Nom</td>
+                            <td>N° chambre</td>
+                            <td>voir plus</td>
+                            <td>Passer<br>commande</td>
+                            <td>Consulter<br>facture</td>
 
-                </tr>
-                </thead>
-                <% var i = 0; var num = '';var n = 0; var nom = ''; var hasOcuppe = 0; %>
+                        </tr>
+                    </thead>
+                    <% var i = 0; var num = '';var n = 0; var nom = ''; var hasOcuppe = 0; %>
 
-                <% client.forEach(function(r){ %>
-                    <% chambre.forEach(function(rs){
+                        <% client.forEach(function(r){ %>
+                            <% chambre.forEach(function(rs){
                     if(r.id_client == rs.id_client){ %>
 
-                        <% chambrec.forEach(function(row){
+                                <% chambrec.forEach(function(row){
                         if(rs.id_chambre == row.id_chambre){
                         if(row.status == 'occupé'){ %>
-                            <% nom = r.nom ; hasOcuppe++; %>
-                            <% n = r.id_client %>
-                            <% num = num + rs.id_chambre + ',' %>
-                        <% }}}) %>
-                    <% }}) %>
-                    <% if (hasOcuppe > 0){ %>
-                            <tr>
-                                <td>
-                                    <%= nom %>
-                                </td>
-                                <td>
+                                    <% nom = r.nom ; hasOcuppe++; %>
+                                        <% n = r.id_client %>
+                                            <% num = num + rs.id_chambre + ',' %>
+                                                <% }}}) %>
+                                                    <% }}) %>
+                                                        <% if (hasOcuppe > 0){ %>
+                                                            <tr>
+                                                                <td>
+                                                                    <%= nom %>
+                                                                </td>
+                                                                <td>
 
-                                    <div class="groupe">
+                                                                    <div class="groupe">
 
 
-                                        <button type="button" class="btn btn-primary
-                                        btn-sm" data-toggle="modal"
-                                                data-target="#exampleModal"
-                                                id="submit" onClick="editFunc1(<%= n; %>)">
+                                                                        <button type="button" class="btn btn-primary
+                                        btn-sm" data-toggle="modal" data-target="#exampleModal" id="submit" onClick="editFunc1(<%= n; %>)">
 
                                             <%= num %>
                                         </button>
 
 
-                                    </div>
+                                                                    </div>
 
 
-                                </td>
-                                <td>
-                                    <div class="groupe">
-                                        <a href="javascript:void(0);" id="btnPopup" onClick="editFunc(<%= n; %>)"
-                                           data-toggle="tooltip" class="btnPopup btn">
-                                            <button id="">Détails</button>
-                                        </a>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="groupe">
-                                        <a href="/receptioniste/commande/<%= n %>">
-                                            <button id="couleur0">Ajouter</button>
-                                        </a>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="groupe">
-                                        <a href="/generateReport2/<%= n %>">
-                                            <button id="couleur1">Client</button>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                    <% } %>
-                    <% i = i + 1 %>
-                    <% num = ''; hasOcuppe = 0; %>
-                <% }) %>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="groupe">
+                                                                        <a href="javascript:void(0);" id="btnPopup" onClick="editFunc(<%= n; %>)" data-toggle="tooltip" class="btnPopup btn">
+                                                                            <button id="">Détails</button>
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="groupe">
+                                                                        <a href="/receptioniste/commande/<%= n %>">
+                                                                            <button id="couleur0">Ajouter</button>
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="groupe">
+                                                                        <a href="/generateReport2/<%= n %>">
+                                                                            <button id="couleur1">Client</button>
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <% } %>
+                                                                <% i = i + 1 %>
+                                                                    <% num = ''; hasOcuppe = 0; %>
+                                                                        <% }) %>
 
-            </table>
+                </table>
 
-        </div>
-
-    </section>
-
-</div>
-<div id="overlay" class="overlay" style="display: none;">
-    <div id="popup" class="popup">
-        <h2 class="bg-h2">
-            Détails générale
-            <span id="btnClose" class="btnClose">&times;</span>
-        </h2>
-        <div class="row">
-            <div class="col-md-5 offset-1 mt-2 mb-2">
-                <p>
-                    Numero de chambre : <span class="gras"><label id="numchambre"></label></span><br> Facture Petit
-                    déjeuner : <span class="gras"><label id="facture_pd"></label></span><br> Facture Restaurant : <span
-                            class="gras"><label id="facture_r"></label></span><br> Facture Bar : <span
-                            class="gras"><label id="facture_bar"></label></span><br>
-                </p>
             </div>
-            <div class="col-md-5 offset-1 mt-2 mb-2">
-                <p>
-                    Facture Linge : <span class="gras"><label id="facture_linge"></label></span><br> Facture Divers :
-                    <span class="gras"><label id="facture_divers"></label></span><br> Facture Chambre : <span
-                            class="gras"><label id="facture_c"></label></span><br> Montant total : <span
-                            class="gras"><label id="montantT"></label></span><br>
-                    <!--                        Facture Jour : <span class="gras">2</span><br>-->
-                    <!--                        Facture Rapport veille : <span class="gras">2</span><br>-->
-                </p>
-            </div>
-        </div>
 
+        </section>
 
-        <!--            <div class="global">-->
-
-        <!--                <div class="info1">-->
-        <!--                    -->
-        <!--                </div>-->
-
-        <!--                <div class="info1">-->
-        <!--                   -->
-        <!--                </div>-->
-
-        <!--                <div class="info1">-->
-        <!--                    <p>-->
-        <!--                        Facture Général : <span class="gras">2</span><br>-->
-        <!--                        Facture Règlement : <span class="gras">2</span><br>-->
-        <!--                        Facture A rapporter : <span class="gras">2</span><br>-->
-        <!--                    </p>-->
-        <!--                </div>-->
-
-        <!--            </div>-->
     </div>
-</div>
+    <div id="overlay" class="overlay" style="display: none;">
+        <div id="popup" class="popup">
+            <h2 class="bg-h2">
+                Détails générale
+                <span id="btnClose" class="btnClose">&times;</span>
+            </h2>
+            <div class="row">
+                <div class="col-md-5 offset-1 mt-2 mb-2">
+                    <p>
+                        Numero de chambre : <span class="gras"><label id="numchambre"></label></span><br> Facture Petit déjeuner : <span class="gras"><label id="facture_pd"></label></span><br> Facture Restaurant : <span class="gras"><label id="facture_r"></label></span><br>                        Facture Bar : <span class="gras"><label id="facture_bar"></label></span><br>
+                    </p>
+                </div>
+                <div class="col-md-5 offset-1 mt-2 mb-2">
+                    <p>
+                        Facture Linge : <span class="gras"><label id="facture_linge"></label></span><br> Facture Divers :
+                        <span class="gras"><label id="facture_divers"></label></span><br> Facture Chambre : <span class="gras"><label id="facture_c"></label></span><br> Montant total : <span class="gras"><label id="montantT"></label></span><br>
+                        <!--                        Facture Jour : <span class="gras">2</span><br>-->
+                        <!--                        Facture Rapport veille : <span class="gras">2</span><br>-->
+                    </p>
+                </div>
+            </div>
 
 
-<!--------------------------------footer--------------------------------->
-<footer>
-    <div class="footer">
-        copyrygth MI 2020
+            <!--            <div class="global">-->
+
+            <!--                <div class="info1">-->
+            <!--                    -->
+            <!--                </div>-->
+
+            <!--                <div class="info1">-->
+            <!--                   -->
+            <!--                </div>-->
+
+            <!--                <div class="info1">-->
+            <!--                    <p>-->
+            <!--                        Facture Général : <span class="gras">2</span><br>-->
+            <!--                        Facture Règlement : <span class="gras">2</span><br>-->
+            <!--                        Facture A rapporter : <span class="gras">2</span><br>-->
+            <!--                    </p>-->
+            <!--                </div>-->
+
+            <!--            </div>-->
+        </div>
     </div>
 
-</footer>
-<!--------------------------------footer--------------------------------->
 
-<!-----------------------------Jquery Library file---------------------------->
-<script src="/js/Jquery3.4.1.min.js"></script>
+    <!--------------------------------footer--------------------------------->
+    <footer>
+        <div class="footer">
+            copyrygth MI 2020
+        </div>
 
-<!-----------------------------Custom javascript file------------------------->
-<script src="/js/main_ac.js"></script>
-<script type="text/javascript" src="../../public/fontawesome-5.15.2/js/fontawesome.js"></script>
-<script>
-    $("#popup").hide();
-    $("#overlay").hide();
-    $(".btnClose").click(function () {
-        $("#popup").hide(200);
-        $("#overlay").hide(200);
-    });
-    $(".btnPopup").click(function () {
-        $("#popup").show(200);
-        $("#overlay").show(200);
-    });
+    </footer>
+    <!--------------------------------footer--------------------------------->
 
-    function editFunc(id) {
+    <!-----------------------------Jquery Library file---------------------------->
+    <script src="/js/Jquery3.4.1.min.js"></script>
 
-        $.ajax({
-            type: "GET",
-            url: "/client/detail",
-            data: {
-                id: id
-            },
-            dataType: 'json',
-            success: function (res) {
-                // console.log(res);
-                var num_chambre = '';
-                console.log(res);
-                for (var i = 0; i < res.Infos.length; i++) {
-
-                    num_chambre = num_chambre + res.Infos[i].id_chambre + ",";
-
-                }
-
-                // $('#state').append($('<option>', {value:k, text:v}));
-                $('#numchambre').html(num_chambre);
-                $('#facture_pd').html(res.TpetitD);
-                $('#facture_bar').html(res.Tbar);
-                $('#facture_divers').html(res.Tdivers);
-                $('#facture_linge').html(res.Tlinge);
-                $('#facture_r').html(res.Trestaurant);
-                $('#facture_c').html(res.Tchambre);
-                $('#montantT').html(res.Total);
-                //
-                // var val;
-                // var key;
-                // console.log(res.Infos[0].id_client);
-                // $.each( res, function(key, val) {
-                //     num_chambre=val['id_client'];
-                //     console.log(val);
-                //     alert(num_chambre);
-                //     // $('#state').append($('<option>', {value:k, text:v}));
-                // });
-
-            }
+    <!-----------------------------Custom javascript file------------------------->
+    <script src="/js/main_ac.js"></script>
+    <script type="text/javascript" src="../../public/fontawesome-5.15.2/js/fontawesome.js"></script>
+    <script>
+        $("#popup").hide();
+        $("#overlay").hide();
+        $(".btnClose").click(function() {
+            $("#popup").hide(200);
+            $("#overlay").hide(200);
         });
-    }
-</script>
+        $(".btnPopup").click(function() {
+            $("#popup").show(200);
+            $("#overlay").show(200);
+        });
 
+        function editFunc(id) {
 
-<script type="text/javascript">
-    $("#submit").click(function () {
+            $.ajax({
+                type: "GET",
+                url: "/client/detail",
+                data: {
+                    id: id
+                },
+                dataType: 'json',
+                success: function(res) {
+                    // console.log(res);
+                    var num_chambre = '';
+                    console.log(res);
+                    for (var i = 0; i < res.Infos.length; i++) {
 
+                        num_chambre = num_chambre + res.Infos[i].id_chambre + ",";
 
-        var name = $("#name").val();
+                    }
 
-        var str = "You Have Entered "
-            + "Name: " + name;
-
-        $("#modal_body").html(str);
-    });
-    //
-    function editFunc1(id) {
-
-        $.ajax({
-            type: "GET",
-            url: "/client/detail",
-            data: {
-                id: id
-            },
-            dataType: 'json',
-            success: function (res) {
-                // console.log(res);
-                var num_chambre = '';
-                for (var i = 0; i < res.Infos.length; i++) {
-
-                    num_chambre = num_chambre + res.Infos[i].id_chambre + ",";
-                    console.log(res)
+                    // $('#state').append($('<option>', {value:k, text:v}));
+                    $('#numchambre').html(num_chambre);
+                    $('#facture_pd').html(res.TpetitD);
+                    $('#facture_bar').html(res.Tbar);
+                    $('#facture_divers').html(res.Tdivers);
+                    $('#facture_linge').html(res.Tlinge);
+                    $('#facture_r').html(res.Trestaurant);
+                    $('#facture_c').html(res.Tchambre);
+                    $('#montantT').html(res.Total);
+                    //
+                    // var val;
+                    // var key;
+                    // console.log(res.Infos[0].id_client);
+                    // $.each( res, function(key, val) {
+                    //     num_chambre=val['id_client'];
+                    //     console.log(val);
+                    //     alert(num_chambre);
+                    //     // $('#state').append($('<option>', {value:k, text:v}));
+                    // });
 
                 }
+            });
+        }
+    </script>
 
-                // $('#state').append($('<option>', {value:k, text:v}));
-                $('#numchambre').html(num_chambre);
-                // $('#facture_pd').html(res.TpetitD);
-                // $('#facture_bar').html(res.Tbar);
-                // $('#facture_divers').html(res.Tdivers);
-                // $('#facture_linge').html(res.Tlinge);
-                // $('#facture_r').html(res.Trestaurant);
-                // $('#facture_c').html(res.Tchambre);
-                // $('#montantT').html(res.Total);
-                //
-                // var val;
-                // var key;
-                // console.log(res.Infos[0].id_client);
-                // $.each( res, function(key, val) {
-                //     num_chambre=val['id_client'];
-                //     console.log(val);
-                //     alert(num_chambre);
-                //     // $('#state').append($('<option>', {value:k, text:v}));
-                // });
 
-            }
-        })
-    }
-</script>
+    <script type="text/javascript">
+        $("#submit").click(function() {
+
+
+            var name = $("#name").val();
+
+            var str = "You Have Entered " +
+                "Name: " + name;
+
+            $("#modal_body").html(str);
+        });
+        //
+        function editFunc1(id) {
+
+            $.ajax({
+                type: "GET",
+                url: "/client/detail",
+                data: {
+                    id: id
+                },
+                dataType: 'json',
+                success: function(res) {
+                    // console.log(res);
+                    var num_chambre = '';
+                    for (var i = 0; i < res.Infos.length; i++) {
+
+                        num_chambre = num_chambre + res.Infos[i].id_chambre + ",";
+                        console.log(res)
+
+                    }
+
+                    // $('#state').append($('<option>', {value:k, text:v}));
+                    $('#numchambre').html(num_chambre);
+                    // $('#facture_pd').html(res.TpetitD);
+                    // $('#facture_bar').html(res.Tbar);
+                    // $('#facture_divers').html(res.Tdivers);
+                    // $('#facture_linge').html(res.Tlinge);
+                    // $('#facture_r').html(res.Trestaurant);
+                    // $('#facture_c').html(res.Tchambre);
+                    // $('#montantT').html(res.Total);
+                    //
+                    // var val;
+                    // var key;
+                    // console.log(res.Infos[0].id_client);
+                    // $.each( res, function(key, val) {
+                    //     num_chambre=val['id_client'];
+                    //     console.log(val);
+                    //     alert(num_chambre);
+                    //     // $('#state').append($('<option>', {value:k, text:v}));
+                    // });
+
+                }
+            })
+        }
+    </script>
 </body>
 
 </html>
