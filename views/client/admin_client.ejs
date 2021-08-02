@@ -32,7 +32,7 @@
         <li class="clientNom" id="nom" style="float:left">HOTEL ALTITEL</li>
         <li><a href="/logout" class="deconnexion">Déconnexion</a></li>
         <li class=" main_courante"><a href="/receptioniste/main_courant">Main courante</a></li>
-        <li class="bilan"><a href="">Bilan</a></li>
+        <li class="bilan"><a href="/bilan">Bilan</a></li>
         <li class=" accueil"><a href="/admin/acceuil">Accueil</a></li>
     </ul>
     </header>
@@ -60,7 +60,27 @@
                             Nombre total de client present dans l'hotel
                         </h5>
                         <p class="nombre_client " id="nombre_client">
-                            <%= client.length %>
+                            <% var i = 0; var num = '';var n = 0; var nom = ''; var hasOcuppe = 0; var status_ch = 0; var j = 0; let idCC = []; %>
+            
+                            <% var nbr=0; client.forEach(function(r){ %>
+                                <% chambre.forEach(function(rs){
+                                if(r.id_client == rs.id_client){ %>
+            
+                                    <% chambrec.forEach(function(row){
+                                    if(rs.id_chambre == row.id_chambre){
+                                    if(row.status == 'occupé'){ %>
+                                        <% nom = r.nom; hasOcuppe++; status_ch = rs.status_ch; idCC[j] = rs.idchambreClient %>
+                                        <% n = r.id_client %>
+                                        <% num = num + rs.id_chambre + ',';j++; %>
+                                    <% }}}) %>
+                                <% }}) %>
+                                <% if (hasOcuppe > 0){ %>
+                                    <%nbr=nbr+1%>
+                                    <% } %>
+                                    <% i = i + 1; j = 0; %>
+                                    <% num = ''; hasOcuppe = 0; status_ch = 0;idCC = []; %>
+                                <% }) %>
+                                <%=nbr%>
                         </P>
                         <hr class="separateur">
                         <div class="bas">
@@ -69,6 +89,7 @@
                                 <p>Cette information permet de constater le nombre total de client present dans l'hotel</p>
                             </div>
                         </div>
+            
                     </section>
                     <section class="StatBrefClient">
 
@@ -112,6 +133,7 @@
                     </section>
 
         </section>
+            
 
         <!--------------------------End of enrégistement---------------------->
         <section class="droite">
@@ -167,44 +189,48 @@
                         </div>
                     </div>
                 </div>
-                <table class="table table-borderless tableau">
+            </div>
+            <table class="table table-borderless tableau">
 
-                    <thead class="forme">
-                        <tr>
-                            <td>Nom</td>
-                            <td>N° chambre</td>
-                            <td>voir plus</td>
-                            <td>Passer<br>commande</td>
-                            <td>Consulter<br>facture</td>
-                            <td>Statut</td>
-                        </tr>
-                    </thead>
-                    <% var i = 0; var num = '';var n = 0; var nom = ''; var hasOcuppe = 0; var status_ch = 0; var j = 0; let idCC = []; %>
+                <thead class="forme">
+                <tr>
+                    <td>Nom</td>
+                    <td>N° chambre</td>
+                    <td>voir plus</td>
+                    <td>Passer<br>commande</td>
+                    <td>Consulter<br>facture</td>
+                    <td>Statut</td>
+                </tr>
+                </thead>
+               
 
-                        <% client.forEach(function(r){ %>
-                            <% chambre.forEach(function(rs){
+                <% client.forEach(function(r){ %>
+                    <% chambre.forEach(function(rs){
                     if(r.id_client == rs.id_client){ %>
 
                                 <% chambrec.forEach(function(row){
                         if(rs.id_chambre == row.id_chambre){
                         if(row.status == 'occupé'){ %>
-                                    <% nom = r.nom; hasOcuppe++; status_ch = rs.status_ch; idCC[j] = rs.idchambreClient %>
-                                        <% n = r.id_client %>
-                                            <% num = num + rs.id_chambre + ',';j++; %>
-                                                <% }}}) %>
-                                                    <% }}) %>
-                                                        <% if (hasOcuppe > 0){ %>
-                                                            <tr class="<%= status_ch == 1 ? '' : 'bg-danger'; %>">
-                                                                <td>
-                                                                    <%= nom %>
-                                                                </td>
-                                                                <td>
+                            <% nom = r.nom; hasOcuppe++; status_ch = rs.status_ch; idCC[j] = rs.idchambreClient %>
+                            <% n = r.id_client %>
+                            <% num = num + rs.id_chambre + ',';j++; %>
+                        <% }}}) %>
+                    <% }}) %>
+                    <% if (hasOcuppe > 0){ %>
+                        
+                        <tr class="<%= status_ch == 1 ? '' : 'bg-danger'; %>">
+                            <td>
+                                <%= nom %>
+                            </td>
+                            <td>
 
-                                                                    <div class="groupe">
+                                <div class="groupe">
 
 
-                                                                        <button type="button" class="btn btn-primary
-                                        btn-sm" data-toggle="modal" data-target="#exampleModal" id="submit" onClick="editFunc1(<%= n; %>)">
+                                    <button type="button" class="btn btn-primary
+                                        btn-sm" data-toggle="modal"
+                                            data-target="#exampleModal"
+                                            id="submit" onClick="editFunc1(<%= n; %>)">
 
                                         <%= num %>
                                     </button>
