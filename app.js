@@ -41,7 +41,7 @@ var mysqlConnection = mysql.createConnection({
         password: 'Hostire1.', //Hostire1.
         database: 'hotels' //hotels
     */
-    password: 'Hostire1',
+    password: 'Hostire1.',
     database: 'hotel'
 
 });
