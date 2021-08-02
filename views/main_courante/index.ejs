@@ -15,7 +15,7 @@
     <title>Main courante</title>
     <link rel="stylesheet" type="text/css" href="../../public/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../public/fontawesome-5.15.2/css/fontawesome.min.css">
-    <link rel="stylesheet" href="../../public/css/style_acceuil.css">
+
     <link rel="stylesheet" href="../../public/Accueil/css/style.css">
     <!---------------------------------boostrap------------------------------->
     <link rel="stylesheet" href="../../public/Accueil/css/bootstrap.min.css">
@@ -61,16 +61,15 @@
                                     <% } %>
                     </div>
                 </div>
+                <div class=""></div>
 
-
-                <form action="/receptioniste/main_courant/" method="POST">
-
-
-                    <div class="date">
+                <div class="date">
+                    <form action="/bilan" method="POST">
                         <label for="date">Selectionner la date ici</label>
-                        <input type="date" name="date" id="date" class="date_color">
-                        <button type="submit">valider</button>
-                    </div>
+                        <input type="date" name="date" id="date" value="2021-06-12" class="date_color">
+                        <button type="submit" class="botton-valide">Valider</button>
+                    </form>
+                </div>
                 </form>
             </div>
 
@@ -127,31 +126,31 @@
                              Veille = 0;
                              Reglement = 0;
                         %>
-                        <% if(chambreclient.length>=1){%>
-                            <% chambreclient.forEach(function(ch){
+                            <% if(chambreclient.length>=1){%>
+                                <% chambreclient.forEach(function(ch){
                     if(ch.id_client === row.id_client && ch.status=='occupé'){
                         Tchambre += ch.prix;
                         num_ch += ch.id_chambre + ', ';
                         %>
-                                <%  } })};
+                                    <%  } })};
                                 
                                 %>
-                                <% if(num_ch!==''){%>
-                        <tr>
-                           
+                                        <% if(num_ch!==''){%>
+                                            <tr>
 
-                                <td>
-                                    <%= row.nom %>
-                                </td>
-                                
-                                            <td>
-                                                <%= num_ch %>
-                                            </td>
-                                            <td>
-                                                <%= Tchambre %>
-                                            </td>
-                                            <% if(commande.length>=1){%>
-                                                <% commande.forEach(function(cm){
+
+                                                <td>
+                                                    <%= row.nom %>
+                                                </td>
+
+                                                <td>
+                                                    <%= num_ch %>
+                                                </td>
+                                                <td>
+                                                    <%= Tchambre %>
+                                                </td>
+                                                <% if(commande.length>=1){%>
+                                                    <% commande.forEach(function(cm){
                         if(cm.id_client === row.id_client ){
                             switch (cm.lieu) {
                                 case 'Petit dejeune':
@@ -172,69 +171,69 @@
                                 default: Tdivers =0, Tlinge = 0; Tbar = 0; TpetitD = 0; Trestaurant =0;
                             } %>
 
-                                                    <% } })} %>
-                                                        <td>
-                                                            <%=TpetitD%>
-                                                        </td>
-                                                        <td>
-                                                            <%=Trestaurant%>
-                                                        </td>
-                                                        <td>
-                                                            <%=Tbar%>
-                                                        </td>
-                                                        <td>
-                                                            <%=Tlinge%>
-                                                        </td>
-                                                        <td>
-                                                            <%=Tdivers%>
-                                                        </td>
-                                                        <%Total = Tlinge  + TpetitD + Tbar + Trestaurant + Tdivers + Tchambre;%>
-
+                                                        <% } })} %>
                                                             <td>
-                                                                <%= Total %>
+                                                                <%=TpetitD%>
                                                             </td>
-                                                            <% if (commandeh != undefined)
+                                                            <td>
+                                                                <%=Trestaurant%>
+                                                            </td>
+                                                            <td>
+                                                                <%=Tbar%>
+                                                            </td>
+                                                            <td>
+                                                                <%=Tlinge%>
+                                                            </td>
+                                                            <td>
+                                                                <%=Tdivers%>
+                                                            </td>
+                                                            <%Total = Tlinge  + TpetitD + Tbar + Trestaurant + Tdivers + Tchambre;%>
+
+                                                                <td>
+                                                                    <%= Total %>
+                                                                </td>
+                                                                <% if (commandeh != undefined)
                         commandeh.forEach(function(f){
                     if(f.id_client === row.id_client){
                             Veille += f.reporter;
                             Reglement += f.reglement;
                       } });%>
-                                                                <%if (facture != undefined)
+                                                                    <%if (facture != undefined)
                         facture.forEach(function(f){
                     if(f.id_client === row.id_client){
                            
                             Reglement += f.reglement;
                       } });%>
-                                                                    <td>
-                                                                        <%= Veille%>
-                                                                    </td>
-                                                                    <td>
-                                                                        <%= Veille + Total%>
-                                                                    </td>
-                                                                    <td>
-                                                                        <%= Reglement %>
-                                                                    </td>
-                                                                    <td>
-                                                                        <%= Veille + Total - Reglement %>
-                                                                    </td>
-                        </tr>
-                        <% i = i + 1;
+                                                                        <td>
+                                                                            <%= Veille%>
+                                                                        </td>
+                                                                        <td>
+                                                                            <%= Veille + Total%>
+                                                                        </td>
+                                                                        <td>
+                                                                            <%= Reglement %>
+                                                                        </td>
+                                                                        <td>
+                                                                            <%= Veille + Total - Reglement %>
+                                                                        </td>
+                                            </tr>
+                                            <% i = i + 1;
                } }) } else { %>
-                            <td></td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            </tr>
-                            <% } %>
+                                                <td></td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                                </tr>
+                                                <% } %>
                     </table>
 
 

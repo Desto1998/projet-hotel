@@ -1,210 +1,221 @@
 @import url('../css/font.css');
-
-html,body{
+html,
+body {
     margin: 0%;
-   box-sizing: border-box;
+    box-sizing: border-box;
     overflow-x: hidden;
 }
 
-:root{
-/*-----------------Theme colors----------------*/
-    --bgk-color:#273486;
-    --text-light:#686666da;
-    --bg-color:#0f0f0f;
-    --white:#ffffff;
-
-/*--------------------gradient color--------------*/
-   --sky:linear-gradient(120deg, #a1c4fd 0%, #b195f1 100%);
-
-
-/*-------------------them font-family-----------*/
-    --Abel:'Abel', cursive;
-    --Anton:'Anton', cursive;
-    --Josefin:'Josefin', cursive;
-    --Lexend:'Lexend', cursive;
-    --Livvic:'Livvic', cursive;
+:root {
+    /*-----------------Theme colors----------------*/
+    --bgk-color: #273486;
+    --text-light: #686666da;
+    --bg-color: #0f0f0f;
+    --white: #ffffff;
+    /*--------------------gradient color--------------*/
+    --sky: linear-gradient(120deg, #a1c4fd 0%, #b195f1 100%);
+    /*-------------------them font-family-----------*/
+    --Abel: 'Abel', cursive;
+    --Anton: 'Anton', cursive;
+    --Josefin: 'Josefin', cursive;
+    --Lexend: 'Lexend', cursive;
+    --Livvic: 'Livvic', cursive;
 }
+
 
 /*-------------------global classe--------------*/
 
-.ligne{
+.ligne {
     text-decoration: none;
 }
 
-.flexs-row{
+.flexs-row {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
-/*------------------- End of global classe--------------*/
 
+
+/*------------------- End of global classe--------------*/
 
 
 /*--------------------navabar-------------------*/
 
-.ab{
-    background-color: var(--bgk-color);
-    height: 4.1rem;
-    min-height: 8vh;
-    overflow: hidden;
-    transition: height 1s ease-in-out;
-
-}
-
-.ab .ab-menu{
-    justify-content: space-between;
-}
-
-.ab .toggles-collapses{
+.logo {
+    width: 45px !important;
+    height: 45px !important;
     position: absolute;
-    top: 0;
-    width: 90%;
-    cursor: pointer;
-    display: none;
-}
- 
-.collapses{
-    height: 33rem;
+    margin-left: 1%;
 }
 
-
-.ab .toggles-collapses .toggles-icons{
-    display: flex;
-    justify-content: flex-end;
-    padding: 1.7rem 0;
-}
-
-.ab .toggles-collapses .toggles-icons i{
-    font-size: 1.4rem;
-    color: var(--text-gray);
-}
-
-.ab .ab-items{
+ul {
     list-style-type: none;
-    display: flex;
-    margin: 0; 
-    color: var(--white);
+    margin: 0;
+    overflow: hidden;
+    background-color: #273486;
+    padding: 0%;
 }
 
-.ab .ab-items .ab-link{
-    padding: 1.6rem 0.5rem;
-
-    position: relative;
-    font-family: var(--Lexend);
-    font-size: 1rem;   
+li {
+    float: right;
 }
 
-.ab .ab-items .ligne{
-    color: var(--white)
+li a {
+    display: block;
+    padding: 3%;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    float: right;
+    text-align: center;
+    padding: 14px 16px;
+    font-weight: bold;
+    transition: .5s;
 }
 
-.image{
- padding: 1rem 1rem;
+.deconnexion {
+    background-color: white;
+    color: #273486;
+    transition: .5s;
 }
 
-.ab .ab-items .ab-link:hover{
-    background-color: var(--white);
+li a:hover,
+.deconnexion:hover {
+    background-color: #337ad8;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
 }
 
-.ab .ab-items .ab-link:hover .ligne{
-    color: var(--bgk-color);
+.clientNom {
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-left: 60px;
+    margin-top: 8px;
 }
 
-.ab .ab-brand span{  
-    padding: 1.5rem 0;
-    font-size: 1.6rem;   
-    font-family: var(--Abel);
-    font-size: 1.3rem;
-    color: var(--white)
+.footer {
+    color: #ED2227;
+    align-items: center;
+    margin-top: 5px;
+    bottom: 0;
+    padding-top: 15px;
+    width: 100%;
+    margin-left: 43%;
 }
 
-.ab .ab-brand{
-    display: flex;
-} 
-.ab .socials{
-    padding: 1.6rem 0;
-    
+.overlay {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
 }
 
-.ab .socials .liens{
-	padding: 1.7rem;
-    background-color: var(--white);
-    font-size: 1.1rem;
-    color: var(--bgk-color);
+@media only screen and (min-width: 768px) {
+    .clientNom {
+        color: white;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    .logo {
+        width: 45px;
+        height: 45px;
+        position: absolute;
+    }
 }
+
+
 /*--------------------End of navabar-------------------*/
 
 
 /*--------------------------Main site section----------------------------*/
 
+
 /*-------------------site title-----------------------*/
-.title-date{
-    justify-content: space-between;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+
+.title-date {
+    display: grid;
+    grid-template-columns: 50% 20% 30%;
+    width: 100% !important;
 }
 
-.title{
+.title {
     padding: 1.5rem 2rem;
     color: var(--bgk-color);
+    font-weight: bold;
 }
 
-.date{
-    padding: 2rem 2rem;
+.date {
+    padding: 2rem 1rem;
 }
 
-.botton-valide{
-    width: 10rem;
-    border-radius: 3rem;
+.botton-valide {
+    background-color: #28be69;
+    width: 30%;
+    font-size: 1rem;
+    border-radius: 30px;
+    color: #fff;
     border: none;
-    background: var(--sky);
+    padding: 1%;
+    transition: 0.5s;
+    margin-left: 2%;
 }
+
+.botton-valide:hover {
+    background-color: #337ad8;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+form {
+    display: flex;
+}
+
+
 /*-------------------End of site title-----------------------*/
+
 
 /*--------------------------Tableau--------------------------*/
 
-.forme{
-	background-color: #273486;
-	color: white;
+.forme {
+    background-color: #273486;
+    color: white;
 }
 
-tr:nth-child(even){
+tr:nth-child(even) {
     background-color: rgb(209, 222, 248);
 }
+
+
 /*----------------------End of Tableau-----------------------*/
+
 
 /*------------------------End of Main site section-------------------------*/
 
 
 /*---------viewport less then or equal to 750px--------*/
 
-@media only screen and (max-width: 750px){
-    .ab .ab-menu, .ab .ab-items{
+@media only screen and (max-width: 750px) {
+    .ab .ab-menu,
+    .ab .ab-items {
         flex-direction: column;
     }
-
-    .ab .toggles-collapses{
+    .ab .toggles-collapses {
         display: initial;
     }
-
-   
 }
 
-@media only screen and (max-width: 526px){
-    .botton-valide{
+@media only screen and (max-width: 526px) {
+    .botton-valide {
         width: 5rem;
     }
-   
-    .date input{
+    .date input {
         width: 5rem;
     }
-
-   
 }
-
-
-
 
 
 /*---------End of viewport less then or equal to 750px--------*/
