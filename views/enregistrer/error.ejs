@@ -91,6 +91,12 @@
 
 <% } %>
 </div>
+<div class="champ justify-content-center text-center d-flex">
+    <div class="col-md-8 p-2 text-center  alert-danger">
+       
+        <h3 class="">La date depart est inferieur à la date d'arrivée.</h3><br>
+    </div>
+</div>
 <section class="container">
     <div class="content">
         <form method="post" action="/client/rechercher">
@@ -103,7 +109,7 @@
         </form>
 
     </div>
-    <form method="post" class="formclient" id="clientform" action="/receptioniste/client/ajouter">
+    <form method="post" action="/receptioniste/client/ajouter">
         <div class="">
             <h3><strong>Information du client</strong></h3>
             <div class="container-fluid">
@@ -223,8 +229,6 @@
                     <div class="row">
                         <div class="col-md-4 col-lg-4 col-xl-4">
                             <div class="chambre_standart">
-                                <input type="hidden" name="chambre" value="0">
-                                <input type="hidden" name="montant" value="0">
                                 <p>Chambre standart</p>
 
                                 <% row.forEach(function(r){
