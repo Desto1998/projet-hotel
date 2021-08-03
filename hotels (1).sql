@@ -135,6 +135,10 @@ CREATE TABLE IF NOT EXISTS `client` (
   `prenom` varchar(45) NOT NULL,
   `tel` int(11) NOT NULL,
   `cni` int(11) NOT NULL,
+  `date_del` date ,
+  `lieu_del` varchar(100),
+  `date_nais` varchar(40),
+  `lieu_nais` varchar(100),
   `date_ajout` datetime NOT NULL,
   PRIMARY KEY (`id_client`),
   UNIQUE KEY `tel` (`tel`,`cni`),
@@ -151,7 +155,32 @@ INSERT INTO `client` (`id_client`, `nom`, `prenom`, `tel`, `cni`, `date_ajout`,`
 (27, 'CHOMBONG', 'Russelle', 698375118, 123456, '2021-07-13 09:30:31',1),
 (28, 'simeu', 'Thibaut', 789456123, 3366995, '2021-07-13 14:04:14',1),
 (29, 'totos', 'tatas', 456321789, 157963, '2021-07-13 14:40:19',1);
+--
+-- Structure de la table `client`
+--
 
+DROP TABLE IF EXISTS `infosclient`;
+CREATE TABLE IF NOT EXISTS `infosclient` (
+    `id_infosclient` int(11) NOT NULL AUTO_INCREMENT,
+    `pays` varchar(100),
+    `nationalite` varchar(100),
+    `profession` varchar(255),
+    `destination` varchar(100),
+    `transport` varchar(255),
+    `nbpersonne` int,
+    `date_arrive` date,
+    `date_depart` date,
+    `date_ajout` datetime NOT NULL,
+    PRIMARY KEY (`id_infosclient`),
+    `id_client` int NOT NULL,
+    `id_user` int NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    ) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `client`
+--
 -- --------------------------------------------------------
 
 --
