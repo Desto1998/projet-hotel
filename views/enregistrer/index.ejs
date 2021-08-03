@@ -90,7 +90,7 @@
         </form>
 
     </div>
-    <form method="post" action="/receptioniste/client/ajouter">
+    <form method="post" class="formclient" id="clientform" action="/receptioniste/client/ajouter">
         <div class="">
             <h3><strong>Information du client</strong></h3>
             <div class="container-fluid">
@@ -210,6 +210,8 @@
                     <div class="row">
                         <div class="col-md-4 col-lg-4 col-xl-4">
                             <div class="chambre_standart">
+                                <input type="hidden" name="chambre" value="0">
+                                <input type="hidden" name="montant" value="0">
                                 <p>Chambre standart</p>
 
                                 <% row.forEach(function(r){
