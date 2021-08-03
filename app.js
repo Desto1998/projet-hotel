@@ -854,7 +854,7 @@ app.post('/receptioniste/client/ajouter', urlencodedParser, [
         let second = Days.getSeconds();
         var compt =0;
         const PRIX =[];
-        const IDCHAMBRE =[];
+        var IDCHAMBRE =[];
         const TPRIX =[req.body.montant];
         const TIDCHAMBRE = [ req.body.chambre];
         let tch=0;
@@ -877,222 +877,181 @@ app.post('/receptioniste/client/ajouter', urlencodedParser, [
         var nbchambre = PRIX.length;
         var nbmontant = IDCHAMBRE.length;
         const userid = req.session.userid; console.log(nbchambre,nbmontant);
-        if (tp === tch && tp > 0) {
-            var sql = "insert into client(nom,prenom,tel,cni,date_del,lieu_del,date_nais,lieu_nais,date_ajout,id_user) values( " + '\'' + req.body.nom + '\',\'' + req.body.prenom + '\',\'' + req.body.phone + '\',\'' + req.body.cni + '\',\'' + req.body.date_del + '\',\'' + req.body.lieu_del + '\',\'' + req.body.date_nais + '\',\'' + req.body.lieu_nais + '\',\'' + toDay + "')";
+
+        if (req.body.date_arrive<=req.body.date_depart) {
+            
+        
+            var sql = "insert into client(nom,prenom,tel,cni,date_del,lieu_del,date_nais,lieu_nais,date_ajout) values( '"  + req.body.nom + "','" + req.body.prenom + "', "+ req.body.phone + "," + req.body.cni + ",'" + req.body.date_del + "','" + req.body.lieu_del + "','" + req.body.date_nais + "','" + req.body.lieu_nais + "','" + toDay + "')";
             let statut = 0;
             mysqlConnection.query(sql, (err, rows, fields) => {
+                
+                
                 var sql = "select * from client order by id_client asc";
                 mysqlConnection.query(sql, (err, rows, fields) => {
                     var id_client=0;
                     rows.forEach(r=>{
 id_client=r.id_client;
                     })
-                    var sql = "insert into log values(null,'" + req.session.userid + "','enregistrement  client : "+ req.body.nom +" nationalite : " + req.body.prenom + " CNI : " + req.body.cni + "',"+id_client+",null,null,null,null,null,'" + toDay + "')";
+                    const insertid = id_client;
+                    var sql = "insert into log(id_user, action, id_client,id_commande,id_sortie,id_entree,id_infos,id_chambre,created_at) values(" + req.session.userid + ",'enregistrement  client : "+ req.body.nom +" nationalite : " + req.body.prenom + " CNI : " + req.body.cni + "',"+id_client+","+null+","+null+","+null+","+null+","+null+",'" + toDay + "')";
                     mysqlConnection.query(sql, (err, rows, fields) => {
-                console.log(err);
-                console.log(rows);
-                const insertid = rows.insertId;
-                var sql = "insert into infosclient(pays,nationalite,profession,destination,transport,nbpersonne,date_arrive,date_depart,date_ajout,id_client,id_user) values( " + '\'' + req.body.pays + '\',\'' + req.body.nationalite + '\',\'' + req.body.profession + '\',\'' + req.body.destination + '\',\'' + req.body.transport + '\',\'' + req.body.nbpersonne + '\',\'' + req.body.date_arrive + '\',\'' + req.body.date_depart + '\',\'' + toDay + '\',\''+ insertid +  "')";
+                       
+                        
+                
+                var sql = "insert into infosclient(pays,nationalite,profession,destination,transport,nbpersonne,date_arrive,date_depart,date_ajout,id_client) values( '" + req.body.pays + "','" + req.body.nationalite + "','" + req.body.profession + "','" + req.body.destination + "','" + req.body.transport + "'," + req.body.nbpersonne + ",'" + req.body.date_arrive + "','" + req.body.date_depart + "','" + toDay + "',"+ insertid +  ")";
                 mysqlConnection.query(sql, (err, rows, fields) => {
+                   
                     var sql = "select * from infosclient order by id_infosclient asc";
                 mysqlConnection.query(sql, (err, rows, fields) => {
                     var id_infos=0;
                     rows.forEach(r=>{
 id_infos=r.id_infosclient;
                     })
-                    var sql = "insert into log values(null,'" + req.session.userid + "','enregistrement infos client : "+ req.body.pays +" nationalite : " + req.body.nationalite + " profession : " + req.body.profession + "',null,null,null,null,"+id_infos+",null,'" + toDay + "')";
+                    var sql = "insert into log(id_user, action, id_client,id_commande,id_sortie,id_entree,id_infos,id_chambre,created_at) values(" + req.session.userid + ",'enregistrement infos client : "+ req.body.pays +" nationalite : " + req.body.nationalite + " profession : " + req.body.profession + "',null,null,null,null,"+id_infos+",null,'" + toDay + "')";
                     mysqlConnection.query(sql, (err, rows, fields) => {
-                    console.log(err);
-                    console.log(rows);
+                   
                 })
             })
         })
-                statut++;
+               
+                var i=0;
+                
+                    req.body.chambre.forEach(r=>{
+                        var sql = "select * from chambre where id_chambre = "  + req.body.chambre[i]+ " ";
+                       
+                        mysqlConnection.query(sql, (err, rows, fields) => {
+                           
+                            if (rows[0].categorie === 'chambre standart') {
+                                if (i<=req.body.montant.length) {
+                                    i=i-1;
+                                }
+                                if (req.body.montant[i] >= 15000) {
+                                    var sql = "insert into chambreclient(id_client, id_chambre, status_ch,montant,date) values( "  + insertid + "," + req.body.chambre[i] + ",'" + 1 + "'," + req.body.montant[i] + ",'" + toDay +  "')";
+                                    console.log(sql);
+                                    mysqlConnection.query(sql, (err, rows, fields) => {
+                                        var sql = "insert into log(id_user, action, id_client,id_commande,id_sortie,id_entree,id_infos,id_chambre,created_at) values(" + req.session.userid + ",'enregistrement  chambre',"+null+","+null+","+null+","+null+","+null+","+req.body.chambre[i]+",'" + toDay + "')";
+                                        mysqlConnection.query(sql, (err, rows, fields) => {})
+                            })
+                                    var sql = "UPDATE  chambre SET status = 'occupé' WHERE id_chambre = " +  req.body.chambre[i] ;
+                                    console.log(sql);
+                                    mysqlConnection.query(sql, (err, rows, fields) => {
+                                       
+                                    })
+                                   
+                                } else {
+                                    
+                                    var sql = "insert into chambreclient(id_client, id_chambre, status_ch,montant,date) values( "  + insertid + "," + req.body.chambre[i] + ",\'' + 1 + '\'," + req.montant.body[i] + ",'" + toDay +  "')";
+                                    console.log(sql);
+                                    mysqlConnection.query(sql, (err, rows, fields) => {
+                                        var sql = "insert into log(id_user, action, id_client,id_commande,id_sortie,id_entree,id_infos,id_chambre,created_at) values(" + req.session.userid + ",'enregistrement  chambre',"+null+","+null+","+null+","+null+","+null+","+req.body.chambre[i]+",'" + toDay + "')";
+                                             mysqlConnection.query(sql, (err, rows, fields) => {})
+                            })
+                                    var sql = "UPDATE `chambre` SET `status` = 'occupé' WHERE `chambre`.`id_chambre` = " + req.body.chambre[i] + "";
+                                    console.log(sql);
+                                    mysqlConnection.query(sql, (err, rows, fields) => {
+                                       
+                                    })
+                                }
+                            }
+                            
+                            if (rows[0].categorie === 'chambre confort' ) {
+                                
+                                if (i<=req.body.montant.length) {
+                                    i=i-1;
+                                }
+                                console.log(i);
+                                 if (req.body.montant[i] >= 20000) {
+                                     
+                                     var sql = "insert into chambreclient(id_client, id_chambre, status_ch,montant,date) values( "  + insertid + "," + req.body.chambre[i] + ",'" + 1 + "'," + req.body.montant[i] + ",'" + toDay +  "')";
+                                    
+                                     mysqlConnection.query(sql, (err, rows, fields) => {
+                                       
+                                        
+                                        var sql = "insert into log(id_user, action, id_client,id_commande,id_sortie,id_entree,id_infos,id_chambre,created_at) values(" + req.session.userid + ",'enregistrement  chambre',"+null+","+null+","+null+","+null+","+null+","+req.body.chambre[i]+",'" + toDay + "')";
+                                             mysqlConnection.query(sql, (err, rows, fields) => {})
+                                        
+                                     })
+                                     var sql = "UPDATE chambre SET status = 'occupé' WHERE id_chambre =" + req.body.chambre[i] ;
+                                     mysqlConnection.query(sql, (err, rows, fields) => {})
+                                 } else {
+                                     var sql = "insert into chambreclient(id_client, id_chambre, status_ch,montant,date) values( "  + insertid + "," + req.body.chambre[i] + ",'" + 0 + "'," + req.body.montant[i] + ",'" + toDay +  "')";
+                                    
+                                     mysqlConnection.query(sql, (err, rows, fields) => {
+                                        var sql = "insert into log(id_user, action, id_client,id_commande,id_sortie,id_entree,id_infos,id_chambre,created_at) values(" + req.session.userid + ",'enregistrement  chambre',"+null+","+null+","+null+","+null+","+null+","+req.body.chambre[i]+",'" + toDay + "')";
+                                        mysqlConnection.query(sql, (err, rows, fields) => {})
+                                     })
+                                     var sql = "UPDATE `chambre` SET `status` = 'occupé' WHERE `chambre`.`id_chambre` = " + req.body.chambre[i] + "";
+                                    
+                                     mysqlConnection.query(sql, (err, rows, fields) => {})
+                                 }
+                             }
+                            // && rows[0].id_chambre == IDCHAMBRE[i]
+                            if (rows[0].categorie === 'salle de reunion' ) {
+                                if (i<=req.body.montant.length) {
+                                    i=i-1;
+                                }
+                                if (req.body.montant[i] == 35000 || req.body.montant[i] == 150000) {
+                                    var sql = "insert into chambreclient(id_client, id_chambre, status_ch,montant,date) values( "  + insertid + "," + req.body.chambre[i] + ",'" + 1 + "'," + req.body.montant[i] + ",'" + toDay +  "')";
+                                   
+                                    mysqlConnection.query(sql, (err, rows, fields) => {
+                                       
+                                        var sql = "insert into log(id_user, action, id_client,id_commande,id_sortie,id_entree,id_infos,id_chambre,created_at) values(" + req.session.userid + ",'enregistrement  chambre',"+null+","+null+","+null+","+null+","+null+","+req.body.chambre[i]+",'" + toDay + "')";
+                                        mysqlConnection.query(sql, (err, rows, fields) => {})
+                                    })
+                                    var sql = "UPDATE `chambre` SET `status` = 'occupé' WHERE `chambre`.`id_chambre` = " + req.body.chambre[i] + "";
+                                    
+                                    mysqlConnection.query(sql, (err, rows, fields) => {})
+                                } else {
+                                    var sql = "insert into chambreclient(id_client, id_chambre, status_ch,montant,date) values( "  + insertid + "," + req.body.chambre[i] + ",'" + 0 + "'," + req.body.montant[i] + ",'" + toDay +  "')";
+                                   
+                                    mysqlConnection.query(sql, (err, rows, fields) => {
+                                        var sql = "insert into log(id_user, action, id_client,id_commande,id_sortie,id_entree,id_infos,id_chambre,created_at) values(" + req.session.userid + ",'enregistrement  chambre',"+null+","+null+","+null+","+null+","+null+","+req.body.chambre[i]+",'" + toDay + "')";
+                                             mysqlConnection.query(sql, (err, rows, fields) => {})
+                                    })
+                                    var sql = "UPDATE `chambre` SET `status` = 'occupé' WHERE `chambre`.`id_chambre` = " + req.body.chambre[i] + "";
+                                   
+                                    mysqlConnection.query(sql, (err, rows, fields) => {})
+                                }
+                            }
+    
+                            if (rows[0].categorie === 'suite') {
+                                if (i<=req.body.montant.length) {
+                                    i=i-1;
+                                }
+                                if (req.body.montant[i] >= 35000) {
+                                    var sql = "insert into chambreclient(id_client, id_chambre, status_ch,montant,date) values( "  + insertid + "," + req.body.chambre[i] + ",'" + 1 + "'," + req.body.montant[i] + ",'" + toDay +  "')";
+                                  
+                                    mysqlConnection.query(sql, (err, rows, fields) => {
+                                        var sql = "insert into log(id_user, action, id_client,id_commande,id_sortie,id_entree,id_infos,id_chambre,created_at) values(" + req.session.userid + ",'enregistrement  chambre',"+null+","+null+","+null+","+null+","+null+","+req.body.chambre[i]+",'" + toDay + "')";
+                                             mysqlConnection.query(sql, (err, rows, fields) => {})
+                            })
+                                    var sql = "UPDATE `chambre` SET `status` = 'occupé' WHERE `chambre`.`id_chambre` = " + req.body.chambre[i] + "";
+                                   
+                                    mysqlConnection.query(sql, (err, rows, fields) => {
+                                        
+                                    })
+                                } else {
+                                    var sql = "insert into chambreclient(id_client, id_chambre, status_ch,montant,date) values( "  + insertid + "," + req.body.chambre[i] + ",'" + 0 + "'," + req.body.montant[i] + ",'" + toDay +  "')";
+                                   
+                                    mysqlConnection.query(sql, (err, rows, fields) => {
+                                        var sql = "insert into log(id_user, action, id_client,id_commande,id_sortie,id_entree,id_infos,id_chambre,created_at) values(" + req.session.userid + ",'enregistrement  chambre',"+null+","+null+","+null+","+null+","+null+","+req.body.chambre[i]+",'" + toDay + "')";
+                                        mysqlConnection.query(sql, (err, rows, fields) => {})
+                            })
+                                    var sql = "UPDATE `chambre` SET `status` = 'occupé' WHERE `chambre`.`id_chambre` = " + req.body.chambre[i] + "";
+                                    mysqlConnection.query(sql, (err, rows, fields) => {
+                                       
+                                    })
+                                }
+                            }
+                        })
+                        i=i+1;
+                    })
+                    
 
-                for (var i = 0; i < tp; i++) {
-                    var sql = "select * from chambre where id_chambre = "  + IDCHAMBRE[i]+ " ";
-                    console.log(sql);
-                    statut++;
-                    console.log(IDCHAMBRE[i]);
-                    mysqlConnection.query(sql, (err, rows, fields) => {
-                        console.log(sql);
-                        console.log(err);
-                        console.log(rows);
-                        if (rows[0].categorie === 'chambre standart') {
-                            statut++;
-                            if (PRIX[i] >= 15000) {
-                                var sql = "insert into chambreclient(id_client, id_chambre, status_ch,montant,date , id_user) values( " + '\'' + insertid + '\',\'' + IDCHAMBRE[i] + '\',\'' + 1 + '\',\'' + PRIX[i] + '\',\'' + toDay +  "')";
-                                console.log(sql);
-                                mysqlConnection.query(sql, (err, rows, fields) => {
-                                    var sql = "select * from chambreclient order by idchambreClient asc";
-                                    mysqlConnection.query(sql, (err, rows, fields) => {
-                                        var id_chambre=0;
-                                        rows.forEach(r=>{
-                    id_chambre=r.id_chambre;
-                                        })
-                                        var sql = "insert into log values(null,'" + req.session.userid + "','enregistrement  chambre ',null,null,null,null,null,"+id_chambre+",'" + toDay + "')";
-                                        mysqlConnection.query(sql, (err, rows, fields) => {
-                                    console.log(err);
-                                    console.log(rows);
-                                })
-                            })})
-                                var sql = "UPDATE  chambre SET status = 'occupé' WHERE id_chambre = " + '\''+ IDCHAMBRE[i]+ '\'' ;
-                                console.log(sql);
-                                mysqlConnection.query(sql, (err, rows, fields) => {
-                                    console.log(err);
-                                    console.log(rows);
-                                })
-                                console.log('suppp');
-                            } else {
-                                console.log('innff');
-                                var sql = "insert into chambreclient(id_client, id_chambre, status_ch,montant,date , id_user) values( " + '\'' + insertid + '\',\'' + IDCHAMBRE[i] + '\',\'' + 0 + '\',\'' + PRIX[i] + '\',\'' + toDay + '\',\'' + userid + '\'' + ")";
-                                console.log(sql);
-                                mysqlConnection.query(sql, (err, rows, fields) => {
-                                    var sql = "select * from chambreclient order by idchambreClient asc";
-                                    mysqlConnection.query(sql, (err, rows, fields) => {
-                                        var id_chambre=0;
-                                        rows.forEach(r=>{
-                    id_chambre=r.id_chambre;
-                                        })
-                                        var sql = "insert into log values(null,'" + req.session.userid + "','enregistrement  chambre ',null,null,null,null,null,"+id_chambre+",'" + toDay + "')";
-                                        mysqlConnection.query(sql, (err, rows, fields) => {
-                                    console.log(err);
-                                    console.log(rows);
-                                })
-                            })
-                        })
-                                var sql = "UPDATE `chambre` SET `status` = 'occupé' WHERE `chambre`.`id_chambre` = " + IDCHAMBRE[i] + "";
-                                console.log(sql);
-                                mysqlConnection.query(sql, (err, rows, fields) => {
-                                    console.log(err);
-                                    console.log(rows);
-                                })
-                            }
-                        }
-                        if (rows[0].categorie === 'chambre confort' ) {
-                            if (PRIX[i] >= 20000) {
-                                var sql = "insert into chambreclient(id_client, id_chambre, status_ch,montant,date , id_user) values( " + '\'' + insertid + '\',\'' + IDCHAMBRE[i] + '\',\'' + 1 + '\',\'' + PRIX[i] + '\',\'' + toDay + '\',\'' + userid + '\'' + ")";
-                                console.log(sql);
-                                mysqlConnection.query(sql, (err, rows, fields) => {
-                                    var sql = "select * from chambreclient order by idchambreClient asc";
-                                    mysqlConnection.query(sql, (err, rows, fields) => {
-                                        var id_chambre=0;
-                                        rows.forEach(r=>{
-                    id_chambre=r.id_chambre;
-                                        })
-                                        var sql = "insert into log values(null,'" + req.session.userid + "','enregistrement  chambre ',null,null,null,null,null,"+id_chambre+",'" + toDay + "')";
-                                        mysqlConnection.query(sql, (err, rows, fields) => {})
-                                    })
-                                })
-                                var sql = "UPDATE chambre SET status = 'occupé' WHERE id_chambre =" + '\'' + IDCHAMBRE[i] + '\'' + "";
-                                mysqlConnection.query(sql, (err, rows, fields) => {})
-                            } else {
-                                var sql = "insert into chambreclient(id_client, id_chambre, status_ch,montant,date , id_user) values( " + '\'' + insertid + '\',\'' + IDCHAMBRE[i] + '\',\'' + 0 + '\',\'' + PRIX[i] + '\',\'' + toDay + '\',\'' + userid + '\'' + ")";
-                                console.log(sql);
-                                mysqlConnection.query(sql, (err, rows, fields) => {
-                                    var sql = "select * from chambreclient order by idchambreClient asc";
-                                    mysqlConnection.query(sql, (err, rows, fields) => {
-                                        var id_chambre=0;
-                                        rows.forEach(r=>{
-                    id_chambre=r.id_chambre;
-                                        })
-                                        var sql = "insert into log values(null,'" + req.session.userid + "','enregistrement  chambre ',null,null,null,null,null,"+id_chambre+",'" + toDay + "')";
-                                        mysqlConnection.query(sql, (err, rows, fields) => {})
-                                    })
-                                })
-                                var sql = "UPDATE `chambre` SET `status` = 'occupé' WHERE `chambre`.`id_chambre` = " + IDCHAMBRE[i] + "";
-                                console.log(sql);
-                                mysqlConnection.query(sql, (err, rows, fields) => {})
-                            }
-                        }
-                        // && rows[0].id_chambre == IDCHAMBRE[i]
-                        if (rows[0].categorie === 'salle de reunion' ) {
-                            if (PRIX[i] == 35000 || PRIX[i] == 150000) {
-                                var sql = "insert into chambreclient(id_client, id_chambre, status_ch,montant,date , id_user) values( " + '\'' + insertid + '\',\'' + IDCHAMBRE[i] + '\',\'' + 1 + '\',\'' + PRIX[i] + '\',\'' + toDay + '\',\'' + userid + '\'' + ")";
-                                console.log(sql);
-                                mysqlConnection.query(sql, (err, rows, fields) => {
-                                    var sql = "select * from chambreclient order by idchambreClient asc";
-                                    mysqlConnection.query(sql, (err, rows, fields) => {
-                                        var id_chambre=0;
-                                        rows.forEach(r=>{
-                    id_chambre=r.id_chambre;
-                                        })
-                                        var sql = "insert into log values(null,'" + req.session.userid + "','enregistrement  chambre ',null,null,null,null,null,"+id_chambre+",'" + toDay + "')";
-                                        mysqlConnection.query(sql, (err, rows, fields) => {})
-                                    })
-                                })
-                                var sql = "UPDATE `chambre` SET `status` = 'occupé' WHERE `chambre`.`id_chambre` = " + IDCHAMBRE[i] + "";
-                                console.log(sql);
-                                mysqlConnection.query(sql, (err, rows, fields) => {})
-                            } else {
-                                var sql = "insert into chambreclient(id_client, id_chambre, status_ch,montant,date , id_user) values( " + '\'' + insertid + '\',\'' + IDCHAMBRE[i] + '\',\'' + 0 + '\',\'' + PRIX[i] + '\',\'' + toDay + '\',\'' + userid + '\'' + ")";
-                                console.log(sql);
-                                mysqlConnection.query(sql, (err, rows, fields) => {
-                                    var sql = "select * from chambreclient order by idchambreClient asc";
-                                    mysqlConnection.query(sql, (err, rows, fields) => {
-                                        var id_chambre=0;
-                                        rows.forEach(r=>{
-                    id_chambre=r.id_chambre;
-                                        })
-                                        var sql = "insert into log values(null,'" + req.session.userid + "','enregistrement  chambre ',null,null,null,null,null,"+id_chambre+",'" + toDay + "')";
-                                        mysqlConnection.query(sql, (err, rows, fields) => {})
-                                    })
-                                })
-                                var sql = "UPDATE `chambre` SET `status` = 'occupé' WHERE `chambre`.`id_chambre` = " + IDCHAMBRE[i] + "";
-                                console.log(sql);
-                                mysqlConnection.query(sql, (err, rows, fields) => {})
-                            }
-                        }
-
-                        if (rows[0].categorie === 'suite') {
-                            if (PRIX[i] >= 35000) {
-                                var sql = "insert into chambreclient(id_client, id_chambre, status_ch,montant,date , id_user) values( " + '\'' + insertid + '\',\'' + IDCHAMBRE[i] + '\',\'' + 1 + '\',\'' + PRIX[i] + '\',\'' + toDay + '\',\'' + userid + '\'' + ")";
-                                console.log(sql);
-                                mysqlConnection.query(sql, (err, rows, fields) => {
-                                    var sql = "select * from chambreclient order by idchambreClient asc";
-                                    mysqlConnection.query(sql, (err, rows, fields) => {
-                                        var id_chambre=0;
-                                        rows.forEach(r=>{
-                    id_chambre=r.id_chambre;
-                                        })
-                                        var sql = "insert into log values(null,'" + req.session.userid + "','enregistrement  chambre ',null,null,null,null,null,"+id_chambre+",'" + toDay + "')";
-                                        mysqlConnection.query(sql, (err, rows, fields) => {
-                                    console.log(err);
-                                    console.log(rows);
-                                })
-                            })
-                        })
-                                var sql = "UPDATE `chambre` SET `status` = 'occupé' WHERE `chambre`.`id_chambre` = " + IDCHAMBRE[i] + "";
-                                console.log(sql);
-                                mysqlConnection.query(sql, (err, rows, fields) => {
-                                    console.log(err);
-                                    console.log(rows);
-                                })
-                            } else {
-                                var sql = "insert into chambreclient(id_client, id_chambre, status_ch,montant,date , id_user) values( " + '\'' + insertid + '\',\'' + IDCHAMBRE[i] + '\',\'' + 0 + '\',\'' + PRIX[i] + '\',\'' + toDay + '\',\'' + userid + '\'' + ")";
-                                console.log(sql);
-                                mysqlConnection.query(sql, (err, rows, fields) => {
-                                    var sql = "select * from chambreclient order by idchambreClient asc";
-                                    mysqlConnection.query(sql, (err, rows, fields) => {
-                                        var id_chambre=0;
-                                        rows.forEach(r=>{
-                    id_chambre=r.id_chambre;
-                                        })
-                                        var sql = "insert into log values(null,'" + req.session.userid + "','enregistrement  chambre ',null,null,null,null,null,"+id_chambre+",'" + toDay + "')";
-                                        mysqlConnection.query(sql, (err, rows, fields) => {
-                                    console.log(err);
-                                    console.log(rows);
-                                })
-                            })
-                        })
-                                var sql = "UPDATE `chambre` SET `status` = 'occupé' WHERE `chambre`.`id_chambre` = " + IDCHAMBRE[i] + "";
-                                mysqlConnection.query(sql, (err, rows, fields) => {
-                                    console.log(err);
-                                    console.log(rows);
-                                })
-                            }
-                        }
+                   
+               
                         if (req.session.role === 'admin') {
+                            
                             var message = 'client enregitré avec succès';
                             var sql = "select * from client order by id_client asc";
                             mysqlConnection.query(sql, (err, rows, fields) => {
@@ -1143,14 +1102,20 @@ id_infos=r.id_infosclient;
                                 })
                             })
                         }
-                    })
-
-                }
+                   
             })
         })
             })
-        } else {
-            res.send("Vous avez mal saise les champs du formulaire")
+        }else{
+            var sql = "select * from chambre where status = 'libre'";
+            mysqlConnection.query(sql, (err, rows, fields) => {
+                row = rows;
+                var alert;
+                res.render('enregistrer/error', {
+                    row,
+                    alert
+                })
+            })
         }
 
     }
@@ -1215,7 +1180,7 @@ app.post('/receptioniste/client/modifier', urlencodedParser, [
                 statut++;
                 for (var i = 0; i < nbchambre; i++) {
                     var sql = "select * from chambre where id_chambre = " + IDCHAMBRE[i] + "";
-                    statut++;
+                    
                     mysqlConnection.query(sql, (err, rows, fields) => {
                         if (rows[0].categorie === 'chambre standart' && rows[0].id_chambre == IDCHAMBRE[i]) {
                             statut++;
