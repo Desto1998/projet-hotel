@@ -42,7 +42,8 @@
 
 
     <div class="login-content">
-        <form action="/receptioniste/commande/<%= id %>" method="POST" novalidate>
+        <form action="/receptioniste/commande" method="POST" novalidate>
+            <input type="hidden" name="id_client" value="<%= id %>">
             <img src="/image/Logo-atitle-hotel.png">
             <h2 class="title">
                 <% if(typeof alert != 'undefined'){%>
