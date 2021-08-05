@@ -38,7 +38,7 @@ var mysqlConnection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
 
-    password: 'Hostire1.', //Hostire1.
+    password: '', //Hostire1.
     database: 'hotels' //hotels
         /*
         password: 'Hostire1',
@@ -2373,7 +2373,6 @@ app.get("/admin/blocker", (req, res) => {
                 var sql = "insert into log(id_user, action, id_client,id_chambre) values('" + req.session.userid + "','Blocker la commande'" + ',' + id_client + ','+ id+  ")";
 
                 mysqlConnection.query(sql, (err, rows, fields) => {
-                    console.log(err,rows);
                     // data = rows;
 
                 })
@@ -2384,7 +2383,7 @@ app.get("/admin/blocker", (req, res) => {
         res.json('success');
 
     } else {
-        res.send('Vous ne pouvez effectuer cet action.');
+        res.send('');
     }
 });
 app.get("/admin/valider", (req, res) => {
@@ -2392,7 +2391,6 @@ app.get("/admin/valider", (req, res) => {
     var id_cc = req.query.id_cc;
     if (req.session.role === 'admin') {
         const userid = req.session.userid;
-        console.log(id_cc);
         id_cc.forEach(id => {
             var data = '';
             var sql = "update chambreclient set status_ch=1 " + ' ' + " where id_client = " + id_client + ' ' + " and idchambreClient = " + id + " ";
@@ -2403,7 +2401,6 @@ app.get("/admin/valider", (req, res) => {
                 var sql = "insert into log(id_user, action, id_client,id_chambre) values('" + req.session.userid + "','Blocker la commande'" + ',' + id_client + ','+ id+  ")";
 
                 mysqlConnection.query(sql, (err, rows, fields) => {
-                    console.log(err,rows);
                     // data = rows;
 
                 })
