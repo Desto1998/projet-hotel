@@ -38,7 +38,7 @@ var mysqlConnection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
 
-    password: '', //Hostire1.
+    password: 'Hostire1.', //Hostire1.
     database: 'hotels' //hotels
         /*
         password: 'Hostire1',
