@@ -1116,7 +1116,6 @@ id_infos=r.id_infosclient;
                                     mysqlConnection.query(sql, (err, rows, fields) => {
 
                                         chambrec = rows;
-                                        var message = '';
                                         // console.log(req.session);
                                         res.render('client/client', {
                                             client,
@@ -1183,7 +1182,6 @@ app.post('/receptioniste/client/modifier', urlencodedParser, [
             })
         })
     } else {
-        console.log(req.body);
         let date = Date.now();
         let Days = new Date(date);
 
@@ -1435,10 +1433,10 @@ app.post('/admin/client', urlencodedParser, [
 
 
 app.post('/receptioniste/client/autre_entree', urlencodedParser, [
-    check('montant', 'entrer un montan')
+    check('montant', 'entrer un montant')
     .exists()
     .isLength({ min: 3 }),
-    check('poste', 'entrer un montan')
+    check('poste', 'entrer un montant')
     .exists()
     .isLength({ min: 3 }),
 
