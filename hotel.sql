@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 03 août 2021 à 22:41
+-- Généré le : ven. 06 août 2021 à 22:03
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -60,21 +60,21 @@ INSERT INTO `chambre` (`id_chambre`, `code_chambre`, `categorie`, `prix`, `statu
 (205, 'A008', 'chambre standart', 27000, 'libre', '2021-08-03 11:52:05', '2021-08-03 11:52:05'),
 (206, 'A009', 'chambre standart', 27000, 'libre', '2021-08-03 11:52:05', '2021-08-03 11:52:05'),
 (207, 'A0010', 'chambre standart', 27000, 'libre', '2021-08-03 11:52:05', '2021-08-03 11:52:05'),
-(208, 'A0011', 'chambre standart', 27000, 'libre', '2021-08-03 11:52:05', '2021-08-04 00:39:04'),
-(209, 'A0012', 'chambre standart', 27000, 'libre', '2021-08-03 11:52:05', '2021-08-03 11:52:05'),
+(208, 'A0011', 'chambre standart', 27000, 'libre', '2021-08-03 11:52:05', '2021-08-04 10:33:27'),
+(209, 'A0012', 'chambre standart', 27000, 'libre', '2021-08-03 11:52:05', '2021-08-06 23:58:08'),
 (210, 'A0020', 'chambre confort', 35000, 'libre', '2021-08-03 11:52:05', '2021-08-03 11:52:05'),
 (212, 'A0021', 'chambre confort', 35000, 'libre', '2021-08-03 11:52:05', '2021-08-03 11:52:05'),
 (214, 'A0022', 'chambre confort', 35000, 'libre', '2021-08-03 11:52:05', '2021-08-03 11:52:05'),
 (301, 'A0023', 'chambre confort', 35000, 'libre', '2021-08-03 11:52:05', '2021-08-03 11:52:05'),
-(302, 'A0029', 'suite', 60000, 'libre', '2021-08-03 11:52:05', '2021-08-03 11:52:05'),
+(302, 'A0029', 'suite', 60000, 'libre', '2021-08-03 11:52:05', '2021-08-06 23:38:32'),
 (303, 'A0026', 'chambre confort', 35000, 'libre', '2021-08-03 11:52:05', '2021-08-03 11:52:05'),
 (304, 'A0027', 'chambre confort', 35000, 'libre', '2021-08-03 11:52:05', '2021-08-03 11:52:05'),
-(305, 'A0028', 'chambre confort', 35000, 'libre', '2021-08-03 11:52:05', '2021-08-03 11:52:05'),
+(305, 'A0028', 'chambre confort', 35000, 'libre', '2021-08-03 11:52:05', '2021-08-04 10:33:27'),
 (306, 'A0016', 'chambre confort', 35000, 'libre', '2021-08-03 11:52:05', '2021-08-03 11:52:05'),
-(307, 'A0024', 'chambre confort', 35000, 'libre', '2021-08-03 11:52:05', '2021-08-04 00:39:04'),
-(308, 'A0025', 'chambre confort', 35000, 'libre', '2021-08-03 11:52:05', '2021-08-04 00:39:04'),
+(307, 'A0024', 'chambre confort', 35000, 'libre', '2021-08-03 11:52:05', '2021-08-06 23:48:52'),
+(308, 'A0025', 'chambre confort', 35000, 'libre', '2021-08-03 11:52:05', '2021-08-06 23:58:08'),
 (309, 'A0030', 'suite', 60000, 'libre', '2021-08-03 11:52:05', '2021-08-03 11:52:05'),
-(310, 'A0031', 'suite', 60000, 'libre', '2021-08-03 11:52:05', '2021-08-04 00:39:04');
+(310, 'A0031', 'suite', 60000, 'libre', '2021-08-03 11:52:05', '2021-08-04 10:33:27');
 
 -- --------------------------------------------------------
 
@@ -93,19 +93,7 @@ CREATE TABLE IF NOT EXISTS `chambreclient` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`idchambreClient`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `chambreclient`
---
-
-INSERT INTO `chambreclient` (`idchambreClient`, `id_client`, `id_chambre`, `status_ch`, `montant`, `date`, `created_at`, `updated_at`) VALUES
-(27, 27, 20, 0, NULL, '2021-07-13 09:30:31', '2021-08-03 11:52:05', '2021-08-03 11:52:05'),
-(28, 27, 21, 0, NULL, '2021-07-13 09:30:31', '2021-08-03 11:52:05', '2021-08-03 11:52:05'),
-(29, 27, 7, 0, NULL, '2021-07-13 09:30:54', '2021-08-03 11:52:05', '2021-08-03 11:52:05'),
-(30, 28, 8, 0, NULL, '2021-07-13 14:04:14', '2021-08-03 11:52:05', '2021-08-03 11:52:05'),
-(31, 29, 1, 0, NULL, '2021-07-13 14:40:19', '2021-08-03 11:52:05', '2021-08-03 11:52:05'),
-(32, 29, 1, 0, NULL, '2021-07-13 14:40:19', '2021-08-03 11:52:05', '2021-08-03 11:52:05');
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -129,16 +117,7 @@ CREATE TABLE IF NOT EXISTS `client` (
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_client`),
   UNIQUE KEY `tel` (`tel`,`cni`)
-) ENGINE=MyISAM AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `client`
---
-
-INSERT INTO `client` (`id_client`, `nom`, `prenom`, `tel`, `cni`, `date_del`, `lieu_del`, `date_nais`, `lieu_nais`, `date_ajout`, `created_at`, `updated_at`) VALUES
-(27, 'CHOMBONG', 'Russelle', 698375118, 123456, NULL, NULL, NULL, NULL, '2021-07-13 09:30:31', '2021-08-03 11:52:05', '2021-08-03 11:52:05'),
-(28, 'simeu', 'Thibaut', 789456123, 3366995, NULL, NULL, NULL, NULL, '2021-07-13 14:04:14', '2021-08-03 11:52:05', '2021-08-03 11:52:05'),
-(29, 'totos', 'tatas', 456321789, 157963, NULL, NULL, NULL, NULL, '2021-07-13 14:40:19', '2021-08-03 11:52:05', '2021-08-03 11:52:05');
+) ENGINE=MyISAM AUTO_INCREMENT=67 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -181,22 +160,15 @@ INSERT INTO `commande` (`id_commande`, `nom_commande`, `lieu`, `montant`, `statu
 DROP TABLE IF EXISTS `entree`;
 CREATE TABLE IF NOT EXISTS `entree` (
   `id_entree` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(45) NOT NULL,
-  `prix` int(11) NOT NULL,
+  `bar` int(45) NOT NULL,
+  `restaurant` int(11) NOT NULL,
+  `divers` int(11) NOT NULL,
+  `hebergement` int(11) NOT NULL,
   `date` datetime NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_entree`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `entree`
---
-
-INSERT INTO `entree` (`id_entree`, `nom`, `prix`, `date`, `created_at`, `updated_at`) VALUES
-(1, 'reglement', 500, '2021-07-25 18:01:23', '2021-08-03 11:52:06', '2021-08-03 11:52:06'),
-(2, 'reglement', 500, '2021-07-25 18:03:51', '2021-08-03 11:52:06', '2021-08-03 11:52:06'),
-(3, 'reglement', 500, '2021-07-25 18:05:13', '2021-08-03 11:52:06', '2021-08-03 11:52:06');
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -247,34 +219,7 @@ CREATE TABLE IF NOT EXISTS `infosclient` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_infosclient`)
-) ENGINE=MyISAM AUTO_INCREMENT=72 DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `infosclient`
---
-
-INSERT INTO `infosclient` (`id_infosclient`, `pays`, `nationalite`, `profession`, `destination`, `transport`, `nbpersonne`, `date_arrive`, `date_depart`, `date_ajout`, `id_client`, `created_at`, `updated_at`) VALUES
-(56, 'cameroun', 'camerounaise', 'enseignant', 'bafoussam', 'voiture', 1, '2021-08-12', '2021-08-21', '2021-08-03 22:48:33', 29, '2021-08-03 20:48:33', '2021-08-03 22:48:33'),
-(55, 'cameroun', 'camerounaise', 'enseignant', 'bafoussam', 'voiture', 1, '2021-08-26', '2021-08-21', '2021-08-03 22:44:59', 44, '2021-08-03 20:44:59', '2021-08-03 22:44:59'),
-(54, 'cameroun', 'camerounaise', 'enseignant', 'bafoussam', 'voiture', 1, '2021-08-21', '2021-08-21', '2021-08-03 22:40:02', 43, '2021-08-03 20:40:02', '2021-08-03 22:40:02'),
-(53, 'cameroun', 'camerounaise', 'enseignant', 'bafoussam', 'voiture', 1, '2021-08-19', '2021-08-29', '2021-08-03 22:37:03', 42, '2021-08-03 20:37:03', '2021-08-03 22:37:03'),
-(52, 'cameroun', 'camerounaise', 'enseignant', 'bafoussam', 'voiture', 1, '2021-08-11', '2021-08-19', '2021-08-03 22:35:24', 41, '2021-08-03 20:35:24', '2021-08-03 22:35:24'),
-(51, 'cameroun', 'camerounaise', 'enseignant', 'bafoussam', 'voiture', 1, '2021-08-21', '2021-08-29', '2021-08-03 22:32:11', 40, '2021-08-03 20:32:11', '2021-08-03 22:32:11'),
-(57, 'cameroun', 'camerounaise', 'enseignant', 'bafoussam', 'voiture', 1, '2021-09-04', '2021-08-28', '2021-08-03 22:53:20', 45, '2021-08-03 20:53:20', '2021-08-03 22:53:20'),
-(58, 'cameroun', 'camerounaise', 'enseignant', 'bafoussam', 'voiture', 1, '2021-08-22', '2021-08-28', '2021-08-03 22:58:21', 45, '2021-08-03 20:58:21', '2021-08-03 22:58:21'),
-(59, 'cameroun', 'camerounaise', 'enseignant', 'bafoussam', 'voiture', 2, '2021-08-21', '2021-08-27', '2021-08-03 23:00:22', 46, '2021-08-03 21:00:22', '2021-08-03 23:00:22'),
-(60, 'cameroun', 'camerounaise', 'enseignant', 'bafoussam', 'voiture', 1, '2021-08-20', '2021-09-03', '2021-08-03 23:05:12', 47, '2021-08-03 21:05:12', '2021-08-03 23:05:12'),
-(61, 'cameroun', 'camerounaise', 'enseignant', 'bafoussam', 'voiture', 1, '2021-08-20', '2021-08-27', '2021-08-03 23:06:48', 48, '2021-08-03 21:06:48', '2021-08-03 23:06:48'),
-(62, 'cameroun', 'camerounaise', 'enseignant', 'bafoussam', 'voiture', 45, '2021-08-21', '2021-09-05', '2021-08-03 23:12:24', 49, '2021-08-03 21:12:24', '2021-08-03 23:12:24'),
-(63, 'cameroun', 'camerounaise', 'enseignant', 'bafoussam', 'voiture', 2, '2021-08-18', '2021-08-28', '2021-08-03 23:15:44', 50, '2021-08-03 21:15:44', '2021-08-03 23:15:44'),
-(64, 'cameroun', 'camerounaise', 'enseignant', 'bafoussam', 'voiture', 1, '2021-08-20', '2021-08-28', '2021-08-03 23:33:33', 51, '2021-08-03 21:33:33', '2021-08-03 23:33:33'),
-(65, 'cameroun', 'camerounaise', 'enseignant', 'bafoussam', 'voiture', 1, '2021-08-19', '2021-08-20', '2021-08-03 23:42:05', 51, '2021-08-03 21:42:05', '2021-08-03 23:42:05'),
-(66, 'cameroun', 'camerounaise', 'enseignant', 'bafoussam', 'voiture', 1, '2021-08-13', '2021-08-21', '2021-08-03 00:06:38', 51, '2021-08-03 22:06:38', '2021-08-04 00:06:38'),
-(67, 'cameroun', 'camerounaise', 'enseignant', 'bafoussam', 'voiture', 1, '2021-08-13', '2021-08-21', '2021-08-03 00:07:40', 51, '2021-08-03 22:07:40', '2021-08-04 00:07:40'),
-(68, 'cameroun', 'camerounaise', 'enseignant', 'bafoussam', 'voiture', 1, '2021-08-28', '2021-09-04', '2021-08-03 00:16:17', 52, '2021-08-03 22:16:17', '2021-08-04 00:16:17'),
-(69, 'cameroun', 'camerounaise', 'enseignant', 'bafoussam', 'voiture', 1, '2021-08-28', '2021-08-22', '2021-08-03 00:17:24', 53, '2021-08-03 22:17:24', '2021-08-04 00:17:24'),
-(70, 'cameroun', 'camerounaise', 'enseignant', 'bafoussam', 'voiture', 1, '2021-08-28', '2021-08-21', '2021-08-03 00:23:23', 53, '2021-08-03 22:23:23', '2021-08-04 00:23:23'),
-(71, 'cameroun', 'camerounaise', 'enseignant', 'bafoussam', 'voiture', 1, '2021-08-28', '2021-08-27', '2021-08-03 00:25:52', 54, '2021-08-03 22:25:52', '2021-08-04 00:25:52');
+) ENGINE=MyISAM AUTO_INCREMENT=97 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -295,7 +240,7 @@ CREATE TABLE IF NOT EXISTS `log` (
   `id_chambre` int(11) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=93 DEFAULT CHARSET=utf16 COLLATE=utf16_german2_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=146 DEFAULT CHARSET=utf16 COLLATE=utf16_german2_ci;
 
 -- --------------------------------------------------------
 
@@ -329,20 +274,16 @@ INSERT INTO `profil` (`id_profil`, `role`, `id_user`, `created_at`, `updated_at`
 DROP TABLE IF EXISTS `sortie`;
 CREATE TABLE IF NOT EXISTS `sortie` (
   `id_sortie` int(11) NOT NULL AUTO_INCREMENT,
-  `libelle` varchar(45) NOT NULL,
-  `prix` int(11) NOT NULL,
-  `date` datetime NOT NULL,
+  `bar` int(45) NOT NULL,
+  `restaurant` int(11) NOT NULL,
+  `charge` int(11) NOT NULL,
+  `divers` int(11) NOT NULL,
+  `hebergement` int(11) NOT NULL,
+  `date` date NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_sortie`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `sortie`
---
-
-INSERT INTO `sortie` (`id_sortie`, `libelle`, `prix`, `date`, `created_at`, `updated_at`) VALUES
-(1, 'Bar', 500, '2021-07-25 18:05:47', '2021-08-03 11:52:07', '2021-08-03 11:52:07');
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 

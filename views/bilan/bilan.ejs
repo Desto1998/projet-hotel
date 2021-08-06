@@ -229,43 +229,23 @@
                                                               Veille = 0; if(entree.length-1>=j){ %>
                                                                 <tr>
                                                                                 
-                                                                    <%
-                                                                  switch (entree[j].nom ) {
-                                                                      case 'Hebergement':
-                                                                          TpetitD +=entree[j].prix;
-                                                                          break;
-                                                                      case 'Restaurant':
-                                                                          Trestaurant += entree[j].prix;
-                                                                          break;
-                                                                      case 'Bar':
-                                                                          Tbar += entree[j].prix;
-                                                                          break;
-                                                                      case 'Linge':
-                                                                          Tlinge +=entree[j].prix;
-                                                                          break;
-                                                                      case 'Divers':
-                                                                          Tdivers += entree[j].prix;
-                                                                          break;
-                                                                      default: Tdivers =0, Tlinge = 0; Tbar = 0; TpetitD = 0; Trestaurant =0;
-                                                                  } %>
+                                                                    
 
 
                                                                         <td>
-                                                                            <%=TpetitD%>
+                                                                            <%=TpetitD=entree[j].hebergement%>
                                                                         </td>
 
                                                                         <td>
-                                                                            <%=Tbar%>
+                                                                            <%=Tbar=entree[j].bar%>
                                                                         </td>
 
                                                                         <td>
-                                                                            <%=Trestaurant%>
+                                                                            <%=Trestaurant=entree[j].restaurant%>
                                                                         </td>
+                                                                        
                                                                         <td>
-                                                                            <%= Tlinge %>
-                                                                        </td>
-                                                                        <td>
-                                                                            <%= Tdivers %>
+                                                                            <%= Tdivers=entree[j].divers %>
                                                                         </td>
 
                                                                         <%Reglement = Tlinge  + TpetitD + Tbar + Trestaurant + Tdivers + Tchambre;%>
@@ -279,24 +259,18 @@
                                                               entreeh.forEach(function(sort){%>
 
                                                                                 <%
-                                                                switch (sort.nom ) {
-                                                                    case 'Hebergement':
-                                                                        TpetitD +=sort.prix;
-                                                                        break;
-                                                                    case 'Restaurant':
-                                                                        Trestaurant +=sort.prix;
-                                                                        break;
-                                                                    case 'Bar':
-                                                                        Tbar += sort.prix;
-                                                                        break;
-                                                                    case 'Linge':
-                                                                        Tlinge +=sort.prix;
-                                                                        break;
-                                                                    case 'Divers':
-                                                                        Tdivers += sort.prix;
-                                                                        break;
-                                                                    default: Tdivers =0, Tlinge = 0; Tbar = 0; TpetitD = 0; Trestaurant =0;
-                                                                } })}%>
+                                                                
+                                                                        TpetitD =sort.hebergement;
+                                                                       
+                                                                        Trestaurant =sort.restaurant;
+                                                                        
+                                                                        Tbar = sort.bar;
+                                                                       
+                                                                        
+                                                                        
+                                                                        Tdivers = sort.divers;
+                                                                       
+                                                                 })}%>
                                                                                     <%Veille = Tdivers + Tlinge  + Tbar + TpetitD + Trestaurant;%>
 
 
@@ -339,40 +313,22 @@
                                                                                 
                                                                                 
                                                                                 
-                                                                                                                    <%
-                                                                                              switch (sorti[j].libelle ) {
-                                                                                                  case 'Hebergement':
-                                                                                                      TpetitD +=sorti[j].prix;
-                                                                                                      break;
-                                                                                                  case 'Restaurant':
-                                                                                                      Trestaurant += sorti[j].prix;
-                                                                                                      break;
-                                                                                                  case 'Bar':
-                                                                                                      Tbar += sorti[j].prix;
-                                                                                                      break;
-                                                                                                  case 'Linge':
-                                                                                                      Tlinge +=sorti[j].prix;
-                                                                                                      break;
-                                                                                                  case 'Divers':
-                                                                                                      Tdivers += sorti[j].prix;
-                                                                                                      break;
-                                                                                                  default: Tdivers =0, Tlinge = 0; Tbar = 0; TpetitD = 0; Trestaurant =0;
-                                                                                              } %>
+                                                                                                                   
                                                                                 
                                                                                 
                                                                                                                         <td>
-                                                                                                                            <%=TpetitD%>
+                                                                                                                            <%=TpetitD=sorti[j].bar%>
                                                                                                                         </td>
                                                                                 
                                                                                                                         <td>
-                                                                                                                            <%=Tbar%>
+                                                                                                                            <%=Tbar=sorti[j].restaurant%>
                                                                                                                         </td>
                                                                                 
                                                                                                                         <td>
-                                                                                                                            <%=Trestaurant%>
+                                                                                                                            <%=Trestaurant=sorti[j].charge%>
                                                                                                                         </td>
                                                                                                                         <td>
-                                                                                                                            <%= Tdivers %>
+                                                                                                                            <%= Tdivers=sorti[j].divers %>
                                                                                                                         </td>
                                                                                                                         <%Total = Tlinge  + TpetitD + Tbar + Trestaurant + Tdivers + Tchambre;%>
                                                                                                                             <td>
@@ -385,24 +341,18 @@
                                                                                           sortih.forEach(function(sort){%>
                                                                                 
                                                                                                                                 <%
-                                                                                            switch (sort.libelle ) {
-                                                                                                case 'Hebergement':
-                                                                                                    TpetitD +=sort.prix;
-                                                                                                    break;
-                                                                                                case 'Restaurant':
-                                                                                                    Trestaurant += sort.prix;
-                                                                                                    break;
-                                                                                                case 'Bar':
-                                                                                                    Tbar += sort.prix;
-                                                                                                    break;
-                                                                                                case 'Linge':
-                                                                                                    Tlinge +=sort.prix;
-                                                                                                    break;
-                                                                                                case 'Divers':
-                                                                                                    Tdivers += sort.prix;
-                                                                                                    break;
-                                                                                                default: Tdivers =0, Tlinge = 0; Tbar = 0; TpetitD = 0; Trestaurant =0;
-                                                                                            } })}%>
+                                                                                            
+                                                                                                    TpetitD =sort.bar;
+                                                                                                    
+                                                                                                    Trestaurant = sort.restaurant;
+                                                                                                   
+                                                                                                    Tbar = sort.charge;
+                                                                                                    
+                                                                                                   
+                                                                                                   
+                                                                                                    Tdivers = sort.divers;
+                                                                                                 
+                                                                                            } )}%>
                                                                                                                                     <%Veille = Tdivers + Tlinge  + Tbar + TpetitD + Trestaurant;%>
                                                                                 
                                                                                 
@@ -423,11 +373,9 @@
                                                                                 
                                                                                                                                             <% } %>
                                                                                                 <td>
-                                                                                                    <%if(Total- Reglement< 0){%>
+                                                                                                    
                                                                                                         <%= -Total+ Reglement%>
-                                                                                                            <%}else{%>
-                                                                                                                <%= Total+ Reglement%>
-                                                                                                                    <%}%>
+                                                                                                           
                                                                                                 </td>
                                 </tr>
 
@@ -438,224 +386,170 @@
             
 
 
-                                                                            <%
-                                                              totalj=0;
-                                                              totaljh=0;
-                                                              totalg=0;
-                                                              Tlinge = 0;
-                                                              Trestaurant = 0;
-                                                              TpetitD = 0;
-                                                              Tbar = 0;
-                                                              Tdivers = 0;
-                                                              Tchambre = 0;
-                                                             
-                                                              var num_ch = '';
-                                                              Veille = 0; if(entree.length>=1){ %>
-                                                                <tr>
-
-                                                                                <%
-                                                                  switch (entree[j].nom ) {
-                                                                      case 'Hebergement':
-                                                                          TpetitD +=entree[j].prix;
-                                                                          break;
-                                                                      case 'Restaurant':
-                                                                          Trestaurant += entree[j].prix;
-                                                                          break;
-                                                                      case 'Bar':
-                                                                          Tbar += entree[j].prix;
-                                                                          break;
-                                                                      case 'Linge':
-                                                                          Tlinge +=entree[j].prix;
-                                                                          break;
-                                                                      case 'Divers':
-                                                                          Tdivers += entree[j].prix;
-                                                                          break;
-                                                                      default: Tdivers =0, Tlinge = 0; Tbar = 0; TpetitD = 0; Trestaurant =0;
-                                                                  } %>
+                                        <% totalj=0;
+                                        totaljh=0;
+                                        totalg=0;
+                                        Tlinge = 0;
+                                        Trestaurant = 0;
+                                        TpetitD = 0;
+                                        Tbar = 0;
+                                        Tdivers = 0;
+                                        Tchambre = 0;
+                                       
+                                        var num_ch = '';
+                                        Veille = 0; if(entree.length>=1){ %>
+                                          <tr>
+                                                          
+                                              
 
 
-                                                                                    <td>
-                                                                                        <%=TpetitD%>
-                                                                                    </td>
+                                                  <td>
+                                                      <%=TpetitD=entree[j].hebergement%>
+                                                  </td>
 
-                                                                                    <td>
-                                                                                        <%=Tbar%>
-                                                                                    </td>
+                                                  <td>
+                                                      <%=Tbar=entree[j].bar%>
+                                                  </td>
 
-                                                                                    <td>
-                                                                                        <%=Trestaurant%>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <%= Tlinge %>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <%= Tdivers %>
-                                                                                    </td>
+                                                  <td>
+                                                      <%=Trestaurant=entree[j].restaurant%>
+                                                  </td>
+                                                  
+                                                  <td>
+                                                      <%= Tdivers=entree[j].divers %>
+                                                  </td>
 
-                                                                                    <%Reglement = Tlinge  + TpetitD + Tbar + Trestaurant + Tdivers + Tchambre;%>
-                                                                                        <td>
-                                                                                            <%= Reglement %>
-                                                                                        </td>
+                                                  <%Reglement = Tlinge  + TpetitD + Tbar + Trestaurant + Tdivers + Tchambre;%>
+                                                      <td>
+                                                          <%= Reglement %>
+                                                      </td>
 
 
 
-                                                                                        <% Tdivers =0, Tlinge = 0; Tbar = 0; TpetitD = 0; Trestaurant =0;if (entreeh != undefined){
-                                                              entreeh.forEach(function(sort){%>
+                                                      <% Tdivers =0, Tlinge = 0; Tbar = 0; TpetitD = 0; Trestaurant =0;if (entreeh != undefined){
+                                        entreeh.forEach(function(sort){%>
 
-                                                                                            <%
-                                                                switch (sort.nom ) {
-                                                                    case 'Hebergement':
-                                                                        TpetitD +=sort.prix;
-                                                                        break;
-                                                                    case 'Restaurant':
-                                                                        Trestaurant +=sort.prix;
-                                                                        break;
-                                                                    case 'Bar':
-                                                                        Tbar += sort.prix;
-                                                                        break;
-                                                                    case 'Linge':
-                                                                        Tlinge +=sort.prix;
-                                                                        break;
-                                                                    case 'Divers':
-                                                                        Tdivers += sort.prix;
-                                                                        break;
-                                                                    default: Tdivers =0, Tlinge = 0; Tbar = 0; TpetitD = 0; Trestaurant =0;
-                                                                } })}%>
-                                                                                                <%Veille = Tdivers + Tlinge  + Tbar + TpetitD + Trestaurant;%>
+                                                          <%
+                                          
+                                                  TpetitD =sort.hebergement;
+                                                 
+                                                  Trestaurant =sort.restaurant;
+                                                  
+                                                  Tbar = sort.bar;
+                                                 
+                                                  
+                                                  
+                                                  Tdivers = sort.divers;
+                                                 
+                                          } )}%>
+                                                              <%Veille = Tdivers + Tlinge  + Tbar + TpetitD + Trestaurant;%>
 
 
 
-                                                                                                    <td>
-                                                                                                        <%= Veille%>
-                                                                                                    </td>
+                                                                  <td>
+                                                                      <%= Veille%>
+                                                                  </td>
 
-                                                                                                    <% 
-                                                                                                         } else { %>
-                                                                                                        <td>0</td>
-                                                                                                        <td>0</td>
-                                                                                                        <td>0</td>
-                                                                                                        <td>0</td>
-                                                                                                        <td>0</td>
-                                                                                                        <td>0</td>
-                                                                                                        <td>0</td>
-
-
-                                                                                                        <% } %>
-
-                                                                                                       <% Total = 0;Reglement = 0;
-            totalj=0;
-            totaljh=0;
-            totalg=0;
-            Tlinge = 0;
-            Trestaurant = 0;
-            TpetitD = 0;
-            Tbar = 0;
-            Tdivers = 0;
-            Tchambre = 0;
-           
-            var num_ch = '';
-            Veille = 0;
-          %>
-                                        <% if(sorti.length-1>=j){ %>
-                                            
+                                                                  <% 
+                                                                                   } else { %>
+                                                                      <td>0</td>
+                                                                      <td>0</td>
+                                                                      <td>0</td>
+                                                                      <td>0</td>
+                                                                      <td>0</td>
+                                                                      <td>0</td>
+                                                                      <td>0</td>
 
 
+                                                                      <% } %>
+                                                                      <%Total = 0;Reglement = 0;
+                                                                      totalj=0;
+                                                                      totaljh=0;
+                                                                      totalg=0;
+                                                                      Tlinge = 0;
+                                                                      Trestaurant = 0;
+                                                                      TpetitD = 0;
+                                                                      Tbar = 0;
+                                                                      Tdivers = 0;
+                                                                      Tchambre = 0;
+                                                                     
+                                                                      var num_ch = '';
+                                                                      Veille = 0;
+                                                                    %>
+                                                                                      <% if(sorti.length-1>=j){ %>
+                                                                                          
+                                                          
+                                                          
+                                                          
+                                                          
+                                                          
+                                                          
+                                                                                             
+                                                          
+                                                          
+                                                                                                  <td>
+                                                                                                      <%=TpetitD=sorti[j].bar%>
+                                                                                                  </td>
+                                                          
+                                                                                                  <td>
+                                                                                                      <%=Tbar=sorti[j].restaurant%>
+                                                                                                  </td>
+                                                          
+                                                                                                  <td>
+                                                                                                      <%=Trestaurant=sorti[j].charge%>
+                                                                                                  </td>
+                                                                                                  <td>
+                                                                                                      <%= Tdivers=sorti[j].divers %>
+                                                                                                  </td>
+                                                                                                  <%Total = Tlinge  + TpetitD + Tbar + Trestaurant + Tdivers + Tchambre;%>
+                                                                                                      <td>
+                                                                                                          <%= Total %>
+                                                                                                      </td>
+                                                          
+                                                          
+                                                          
+                                                                                                      <% Tdivers =0, Tlinge = 0; Tbar = 0; TpetitD = 0; Trestaurant =0;if (sortih != undefined){
+                                                                    sortih.forEach(function(sort){%>
+                                                          
+                                                                                                          <%
+                                                                      
+                                                                              TpetitD =sort.bar;
+                                                                              
+                                                                              Trestaurant = sort.restaurant;
+                                                                             
+                                                                              Tbar = sort.charge;
+                                                                              
+                                                                             
+                                                                             
+                                                                              Tdivers = sort.divers;
+                                                                           
+                                                                      } )}%>
+                                                                                                              <%Veille = Tdivers + Tlinge  + Tbar + TpetitD + Trestaurant;%>
+                                                          
+                                                          
+                                                          
+                                                                                                                  <td>
+                                                                                                                      <%= Veille%>
+                                                                                                                  </td>
+                                                          
+                                                                                                                  <% 
+                                                                                                               } else { %>
+                                                                                                                      <td>0</td>
+                                                                                                                      <td>0</td>
+                                                                                                                      <td>0</td>
+                                                                                                                      <td>0</td>
+                                                                                                                      <td>0</td>
+                                                                                                                      <td>0</td>
+                                                          
+                                                          
+                                                                                                                      <% } %>
+                                                                          <td>
+                                                                              
+                                                                                  <%= -Total+ Reglement%>
+                                                                                     
+                                                                          </td>
+          </tr>
 
-
-
-
-
-                                                <%
-              switch (sorti[j].libelle ) {
-                  case 'Hebergement':
-                      TpetitD +=sorti[j].prix;
-                      break;
-                  case 'Restaurant':
-                      Trestaurant += sorti[j].prix;
-                      break;
-                  case 'Bar':
-                      Tbar += sorti[j].prix;
-                      break;
-                  case 'Linge':
-                      Tlinge +=sorti[j].prix;
-                      break;
-                  case 'Divers':
-                      Tdivers += sorti[j].prix;
-                      break;
-                  default: Tdivers =0, Tlinge = 0; Tbar = 0; TpetitD = 0; Trestaurant =0;
-              } %>
-
-
-                                                    <td>
-                                                        <%=TpetitD%>
-                                                    </td>
-
-                                                    <td>
-                                                        <%=Tbar%>
-                                                    </td>
-
-                                                    <td>
-                                                        <%=Trestaurant%>
-                                                    </td>
-                                                    <td>
-                                                        <%= Tdivers %>
-                                                    </td>
-                                                    <%Total = Tlinge  + TpetitD + Tbar + Trestaurant + Tdivers + Tchambre;%>
-                                                        <td>
-                                                            <%= Total %>
-                                                        </td>
-
-
-
-                                                        <% Tdivers =0, Tlinge = 0; Tbar = 0; TpetitD = 0; Trestaurant =0;if (sortih != undefined){
-          sortih.forEach(function(sort){%>
-
-                                                            <%
-            switch (sort.libelle ) {
-                case 'Hebergement':
-                    TpetitD +=sort.prix;
-                    break;
-                case 'Restaurant':
-                    Trestaurant += sort.prix;
-                    break;
-                case 'Bar':
-                    Tbar += sort.prix;
-                    break;
-                case 'Linge':
-                    Tlinge +=sort.prix;
-                    break;
-                case 'Divers':
-                    Tdivers += sort.prix;
-                    break;
-                default: Tdivers =0, Tlinge = 0; Tbar = 0; TpetitD = 0; Trestaurant =0;
-            } })}%>
-                                                                <%Veille = Tdivers + Tlinge  + Tbar + TpetitD + Trestaurant;%>
-
-
-
-                                                                    <td>
-                                                                        <%= Veille%>
-                                                                    </td>
-
-                                                                    <% 
-                                                     } else { %>
-                                                                        <td>0</td>
-                                                                        <td>0</td>
-                                                                        <td>0</td>
-                                                                        <td>0</td>
-                                                                        <td>0</td>
-                                                                        <td>0</td>
-
-
-                                                                        <% } %>
-                                                                                                        <td>
-                                                                                                            <%if(Total- Reglement< 0){%>
-                                                                                                                <%= -Total+ Reglement%>
-                                                                                                                    <%}else{%>
-                                                                                                                        <%= Total+ Reglement%>
-                                                                                                                            <%}%>
-                                                                                                                        </td>
-                                            </tr>
                                             <%}}%>
                 </table>
                 </div>
