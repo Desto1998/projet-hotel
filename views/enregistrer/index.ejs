@@ -223,8 +223,8 @@
                     <div class="row">
                         <div class="col-md-4 col-lg-4 col-xl-4">
                             <div class="chambre_standart">
-                                <input type="hidden" name="chambre" value="0">
-                                <input type="hidden" name="montant" value="0">
+<!--                                <input type="hidden" name="chambre" value="0">-->
+<!--                                <input type="hidden" name="montant" value="0">-->
                                 <p>Chambre standart</p>
 
                                 <% row.forEach(function(r){
@@ -235,15 +235,15 @@
                                         <div class="col-md-4 col-lg-4">
                                             N°
                                             <%= r.id_chambre %>
-                                            <input type="checkbox" class="back"
+                                            <input type="radio" class="back idchambre"
                                                    onchange="showMontant(<%= r.id_chambre %>)"
                                                    id="chambre<%= r.id_chambre %>" name="chambre"
                                                    value="<%= r.id_chambre %>">
 
                                         </div>
-                                        <div class="col-md-6 col-lg-6" style="display: none"
+                                        <div class="col-md-6 col-lg-6 montantblock" style="display: none"
                                              id="montantblock<%= r.id_chambre %>">
-                                            Montant<input type="number" disabled class="back form-control"
+                                            Montant<input type="number" disabled class="back montant form-control"
                                                           id="montant<%= r.id_chambre %>" name="montant"
                                                           value="<%= r.prix %>">
                                         </div>
@@ -263,14 +263,14 @@
                                         <div class="col-md-4 col-lg-4">
                                             N°
                                             <%= r.id_chambre %>
-                                            <input type="checkbox" class="back"
+                                            <input type="radio" class="back idchambre"
                                                    onchange="showMontant(<%= r.id_chambre %>)"
                                                    id="chambre<%= r.id_chambre %>" name="chambre"
                                                    value="<%= r.id_chambre %>">
                                         </div>
-                                        <div class="col-md-6 col-lg-6" style="display: none"
+                                        <div class="col-md-6 col-lg-6 montantblock" style="display: none"
                                              id="montantblock<%= r.id_chambre %>">
-                                            Montant<input type="number" disabled class="back form-control"
+                                            Montant<input type="number" disabled class="back montant form-control"
                                                           id="montant<%= r.id_chambre %>" name="montant"
                                                           value="<%= r.prix %>">
                                         </div>
@@ -293,14 +293,14 @@
                                         <div class="col-md-4 col-lg-4">
                                             N°
                                             <%= r.id_chambre %>
-                                            <input type="checkbox" class="back"
+                                            <input type="radio" class="back idchambre"
                                                    onchange="showMontant(<%= r.id_chambre %>)"
                                                    id="chambre<%= r.id_chambre %>" name="chambre"
                                                    value="<%= r.id_chambre %>">
                                         </div>
-                                        <div class="col-md-6 col-lg-6" style="display: none"
+                                        <div class="col-md-6 col-lg-6 montantblock" style="display: none"
                                              id="montantblock<%= r.id_chambre %>">
-                                            Montant<input type="number" disabled class="back form-control"
+                                            Montant<input type="number" disabled class="back montant form-control"
                                                           id="montant<%= r.id_chambre %>" name="montant"
                                                           value="<%= r.prix %>">
                                         </div>
@@ -319,14 +319,14 @@
                                         <div class="col-md-4 col-lg-4">
                                             N°
                                             <%= r.id_chambre %>
-                                            <input type="checkbox" onchange="showMontant(<%= r.id_chambre %>)"
-                                                   class="back"
+                                            <input type="radio" onchange="showMontant(<%= r.id_chambre %>)"
+                                                   class="back idchambre"
                                                    id="chambre<%= r.id_chambre %>" name="chambre"
                                                    value="<%= r.id_chambre %>">
                                         </div>
-                                        <div class="col-md-6 col-lg-6" style="display: none"
+                                        <div class="col-md-6 col-lg-6 montantblock" style="display: none"
                                              id="montantblock<%= r.id_chambre %>">
-                                            Montant<input type="number" disabled class="back form-control"
+                                            Montant<input type="number" disabled class="montant back form-control"
                                                           id="montant<%= r.id_chambre %>" name="montant"
                                                           value="<%= r.prix %>">
                                         </div>
@@ -376,20 +376,27 @@
         var id_chambre = $('#chambre' + id).val();
         if (id_chambre == id) {
             if ($("#chambre" + id).is(':checked')) {
+                $('.montantblock').hide(100);
                 $('#montantblock' + id).show(100);
+                $('.montant').attr('disabled', true);
+                $('#montant').prop('required', false);
                 $('#montant' + id).attr('disabled', false);
                 $('#montant' + id).prop('required', true);
             } else {
                 $('#montant' + id).attr('disabled', true);
+                $('.montantblock').hide(100);
                 $('#montantblock' + id).hide(100);
+                // $('#montant' + id).prop("checked", false);
                 $('#montant' + id).prop('required', false);
             }
 
         } else {
             $('#montant' + id).attr('disabled', true);
+            // $('#montant' + id).prop("checked", false);
             $('#montantblock' + id).hide(100);
             $('#montant' + id).prop('required', false);
         }
+
     }
 </script>
 </body>
