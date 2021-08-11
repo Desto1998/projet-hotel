@@ -103,7 +103,7 @@
         </form>
 
     </div>
-    <form method="post" action="/receptioniste/client/ajouter">
+    <form method="post" class="formclient" id="clientform" action="/receptioniste/client/ajouter">
         <div class="">
             <h3><strong>Information du client</strong></h3>
             <div class="container-fluid">
@@ -132,7 +132,7 @@
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                             <div class="form-group">
                                 <label>Date délivrance <span class="text-danger">*</span></label>
-                                <input type="date" id="date_del" class="form-control" name="date_del" value="<%=infos[0].date_del%>">
+                                <input type="date" id="date_del" class="form-control" name="date_del">
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -144,7 +144,7 @@
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                             <div class="form-group">
                                 <label>Date de Naissance<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="date_nais" name="date_nais" value="<%=infos[0].date_nais%>" required>
+                                <input type="date" class="form-control" id="date_nais" name="date_nais" value="<%=infos[0].date_nais%>"  required>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -159,7 +159,6 @@
                                 <input type="text" class="form-control" id="phone" name="phone" value="<%=infos[0].tel%>" required>
                             </div>
                         </div>
-                        <% if (infosclient.length>=1) {%>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                             <div class="form-group">
                                 <label>Pays de résidence<span class="text-danger">*</span></label>
@@ -178,48 +177,28 @@
                                 <input type="text" class="form-control" id="profession" name="profession" value="<%=infosclient[0].profession%>" required>
                             </div>
                         </div>
-                        <%}else{%>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <div class="form-group">
-                                    <label>Pays de résidence<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="pays" name="pays"  required>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <div class="form-group">
-                                    <label>Nationalité<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="nationalite" name="nationalite"  required>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <div class="form-group">
-                                    <label>Profession<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="profession" name="profession"  required>
-                                </div>
-                            </div>
-                            <%}%>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                             <div class="form-group">
                                 <label>Venant de se rendant à<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="destination" name="destination" >
+                                <input type="text" class="form-control" id="destination" name="destination">
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                             <div class="form-group">
                                 <label>Mode de transport et matricule à<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="transport" name="transport" ">
+                                <input type="text" class="form-control" id="transport" name="transport">
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                             <div class="form-group">
                                 <label>Nombre de personne<span class="text-danger">*</span></label>
-                                <input type="number" class="form-control" id="nbpersonne" name="nbpersonne" ">
+                                <input type="number" class="form-control" id="nbpersonne" name="nbpersonne">
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                             <div class="form-group">
                                 <label>Date arrivée<span class="text-danger">*</span></label>
-                                <input type="date" class="form-control" id="date_arrive" name="date_arrive" ">
+                                <input type="date" class="form-control" id="date_arrive" name="date_arrive">
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -244,6 +223,8 @@
                     <div class="row">
                         <div class="col-md-4 col-lg-4 col-xl-4">
                             <div class="chambre_standart">
+                                <input type="hidden" name="chambre" value="0">
+                                <input type="hidden" name="montant" value="0">
                                 <p>Chambre standart</p>
 
                                 <% row.forEach(function(r){
