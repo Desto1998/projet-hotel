@@ -239,8 +239,10 @@
                                                                                 
                                                                     
 
+                                                                   
+                                                                    <% var days=new String(entree[j].created_at); %>
                                                                     <td>
-                                                                        <%=num_ch=entree[j].date%>
+                                                                    <%=days.slice(0, 16)%>
                                                                     </td>
                                                                         <td>
                                                                             <%=TpetitD=entree[j].hebergement%>
@@ -324,9 +326,10 @@
                                                                                 
                                                                                 
                                                                                 
-                                                                                                                <td>
-                                                                                                                    <%=num_ch=sorti[j].date%>
-                                                                                                                </td>
+                                                                                                                <% var days=new String(sorti[j].created_at); %>
+                                                                    <td>
+                                                                    <%=days.slice(0, 16)%>
+                                                                    </td>
                                                                                                                 <td>
                                                                                                                     <%=Tlinge=sorti[j].hebergement%>
                                                                                                                 </td>
@@ -402,9 +405,9 @@
                                                                if(entree.length-1>=j){ %>
                                                                 <tr>
                                                                                 
-                                                                    
+                                                                    <% var days=new String(entree[j].created_at); %>
                                                                     <td>
-                                                                    <%=num_ch=entree[j].date%>
+                                                                    <%=days.slice(0, 16)%>
                                                                     </td>
                                                                         <td>
                                                                             <%=TpetitD=entree[j].hebergement%>
@@ -487,9 +490,10 @@
                                                           
                                                                                        
                                                           
-                                                                                        <td>
-                                                                                            <%=num_ch=sorti[j].date%>
-                                                                                        </td>
+                                                                                        <% var days=new String(sorti[j].created_at); %>
+                                                                    <td>
+                                                                    <%=days.slice(0, 16)%>
+                                                                    </td>
                                                                                              
                                                                                         <td>
                                                                                             <%=Tlinge=sorti[j].hebergement%>
