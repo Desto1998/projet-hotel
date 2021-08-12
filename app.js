@@ -197,12 +197,19 @@ app.post('/bilan', urlencodedParser, [check('date', 'inserer la date')
         let hiers = f.slice(0, 7) + "-" + h + " 23:59:59";
 
         var day = req.body.date + " 00:00:00";
+        var days=new String(req.body.date);
+        var mois=days.slice(5, 7);
+        var annee=days.slice(0, 4);
+        var jour=days.slice(0, 4)+"-"+days.slice(5, 7)+"-01";
+        var jour1=days.slice(0, 4)+"-"+days.slice(5, 7)+"-31";
+
+
         var days = req.body.date + " 23:59:59"
-        var sql = "select * from sortie where date >= '" + day + "' and date <= '" + days + "' ORDER BY id_sortie DESC";
+        var sql = "select * from sortie where date >= '" + jour + "' and date <= '" + jour1 + "' ORDER BY id_sortie DESC";
         mysqlConnection.query(sql, (err, rows, fields) => {
             sorti = rows;
 
-            var sql = "select * from entree where date >= '" + day + "' and date <= '" + days + "'  ORDER BY id_entree DESC ";
+            var sql = "select * from entree where date >= '" + jour + "' and date <= '" + jour1 + "'  ORDER BY id_entree DESC ";
             mysqlConnection.query(sql, (err, rows, fields) => {
                 entree = rows;
 

@@ -179,8 +179,9 @@
                 <table class="table table-borderless">
                     <thead class="forme">
 
-                        <tr style="font-size: 1.5rem;">
+                        <tr style="font-size: 1.6rem;">
                             <th>Liste des entrées</th>
+                            <th></th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -193,15 +194,20 @@
                             <th></th>
                             <th></th>
                             <th></th>
+                            <th></th>
+                            
+                            
                             <th>Résultat</th>
                         </tr>
                         <tr style="color: black;">
+                            <th>Date </th>
                             <th>Hebergement</th>
                             <th>Bar</th>
                             <th>Restaurant</th>
                             <th>Autres sources</th>
                             <th>Total</th>
                             <th>Cumul</th>
+                            <th>Date </th>
                             <th>Hebergement</th>
                             <th>Bar</th>
                             <th>Restaurant</th>
@@ -233,7 +239,9 @@
                                                                                 
                                                                     
 
-
+                                                                    <td>
+                                                                        <%=num_ch=entree[j].date%>
+                                                                    </td>
                                                                         <td>
                                                                             <%=TpetitD=entree[j].hebergement%>
                                                                         </td>
@@ -290,6 +298,7 @@
                                                                                             <td>0</td>
                                                                                             <td>0</td>
                                                                                             <td>0</td>
+                                                                                            <td>0</td>
 
 
                                                                                             <% } %>
@@ -315,7 +324,9 @@
                                                                                 
                                                                                 
                                                                                 
-                                                                                                                   
+                                                                                                                <td>
+                                                                                                                    <%=num_ch=sorti[j].date%>
+                                                                                                                </td>
                                                                                                                 <td>
                                                                                                                     <%=Tlinge=sorti[j].hebergement%>
                                                                                                                 </td>
@@ -358,6 +369,7 @@
                                                                                                                                             <td>0</td>
                                                                                                                                             <td>0</td>
                                                                                                                                             <td>0</td>
+                                                                                                                                            <td>0</td>
                                                                                 
                                                                                 
                                                                                                                                             <% } %>
@@ -369,9 +381,9 @@
                                 </tr>
 
 
-                                <%}}else{%>
-                                    Veille = 0;
-                                    Veille1 = 0;
+                                <%}}else{ Veille = 0;
+                                    Veille1 = 0;%>
+                                   
                                     <%for(var j=0;j<=ent-1;j++){%>
             
 
@@ -391,8 +403,9 @@
                                                                 <tr>
                                                                                 
                                                                     
-
-
+                                                                    <td>
+                                                                    <%=num_ch=entree[j].date%>
+                                                                    </td>
                                                                         <td>
                                                                             <%=TpetitD=entree[j].hebergement%>
                                                                         </td>
@@ -449,6 +462,7 @@
                                                                                             <td>0</td>
                                                                                             <td>0</td>
                                                                                             <td>0</td>
+                                                                                            <td>0</td>
 
 
                                                                                             <% } %>
@@ -471,9 +485,11 @@
                                                           
                                                           
                                                           
+                                                                                       
                                                           
-                                                          
-                                                          
+                                                                                        <td>
+                                                                                            <%=num_ch=sorti[j].date%>
+                                                                                        </td>
                                                                                              
                                                                                         <td>
                                                                                             <%=Tlinge=sorti[j].hebergement%>
@@ -499,18 +515,14 @@
                                                                                                       </td>
                                                           
                                                           
-                                                          
-                                                                                                      
-                                                                                                              
-                                                          
-                                                          
-                                                          
                                                                                                                   <td>
                                                                                                                     <%=Veille1=Veille1+Total%>
                                                                                                                   </td>
                                                           
                                                                                                                   <% 
                                                                                                                } else { %>
+                                                                                                                      <td>0</td>
+                                                                                                                      <td>0</td>
                                                                                                                       <td>0</td>
                                                                                                                       <td>0</td>
                                                                                                                       <td>0</td>
